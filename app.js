@@ -27,6 +27,7 @@ let chartSeries = [];
 
 // Plate math toggle
 let showPlateMath = localStorage.getItem('lift_plateMath') === 'true';
+let showPRPlateMath = localStorage.getItem('lift_prPlateMath') === 'true';
 
 // ── STORAGE ────────────────────────────────────────────────
 
@@ -740,7 +741,24 @@ function deleteSession(id) {
 
 // ── STATS ──────────────────────────────────────────────────
 
-function renderStats() { renderPRBoard(); buildChartSeriesList(); renderChart(); }
+function renderStats() {
+  renderPRBoard();
+  buildChartSeriesList();
+  renderChart();
+  // Sync plate button state
+  const btn = document.getElementById('pr-plate-btn');
+  if (btn) {
+    btn.style.background = showPRPlateMath ? 'var(--accent)' : '';
+    btn.style.color = showPRPlateMath ? '#fff' : '';
+    btn.style.borderColor = showPRPlateMath ? 'var(--accent)' : '';
+  }
+}
+
+function togglePRPlateMath() {
+  showPRPlateMath = !showPRPlateMath;
+  localStorage.setItem('lift_prPlateMath', showPRPlateMath);
+  renderStats();
+}
 
 function computeAllPRs() {
   const prMap = {};
@@ -762,6 +780,7 @@ function computeAllPRs() {
 }
 
 const PR_FEATURED = ['Bench Press', 'Squat', 'Deadlift', 'Weighted Dip', 'Weighted Pull-Up'];
+const BARBELL_EXERCISES = ['Barbell Shrug', 'Bench Press', 'Deadlift', 'Hip Thrust', 'RDL', 'Squat'];
 
 function renderPRBoard() {
   const prs = computeAllPRs().sort((a, b) => a.name.localeCompare(b.name));
@@ -775,13 +794,20 @@ function renderPRBoard() {
   const featured = prs.filter(pr => PR_FEATURED.includes(pr.name));
   const rest = prs.filter(pr => !PR_FEATURED.includes(pr.name));
 
-  const renderRow = (pr, i) => `<div class="pr-row">
-    <div class="pr-name">${esc(pr.name)}</div>
-    <div>
-      <div class="pr-val">${pr.weight > 0 ? pr.weight + '<span style="font-size:13px;color:var(--text2)"> lbs</span>' : 'BW'}</div>
-      <div class="pr-sub">${pr.reps} reps${pr.bw ? ' · BW ' + pr.bw : ''}${pr.date ? ' · ' + formatDate(pr.date) : ''}</div>
-    </div>
-  </div>`;
+  const renderRow = (pr) => {
+    const isBarbell = BARBELL_EXERCISES.includes(pr.name);
+    const plateHtml = showPRPlateMath && isBarbell && pr.weight > 0
+      ? `<div style="font-size:12px;color:var(--accent);font-family:'Barlow Condensed',sans-serif;font-weight:700;margin-top:2px;">🏋️ ${calcPlates(pr.weight)}</div>`
+      : '';
+    return `<div class="pr-row">
+      <div class="pr-name">${esc(pr.name)}</div>
+      <div>
+        <div class="pr-val">${pr.weight > 0 ? pr.weight + '<span style="font-size:13px;color:var(--text2)"> lbs</span>' : 'BW'}</div>
+        <div class="pr-sub">${pr.reps} reps${pr.bw ? ' · BW ' + pr.bw : ''}${pr.date ? ' · ' + formatDate(pr.date) : ''}</div>
+        ${plateHtml}
+      </div>
+    </div>`;
+  };
 
   let html = featured.map(renderRow).join('');
 

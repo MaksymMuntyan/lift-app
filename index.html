@@ -837,7 +837,10 @@
 
   <!-- ════════════════ STATS SCREEN ════════════════ -->
   <div class="screen" id="screen-stats">
-    <div class="section-label">PR BOARD</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:20px 16px 8px;">
+      <div class="section-label" style="padding:0;">PR BOARD</div>
+      <button class="btn-inline" id="pr-plate-btn" onclick="togglePRPlateMath()" style="font-size:13px;padding:5px 12px;">🏋️ Plates</button>
+    </div>
     <div id="pr-board" class="card" style="margin: 0 16px; overflow: visible;"></div>
     <div class="section-label" style="margin-top:16px;">PROGRESS CHART</div>
     <div class="toggle-row" id="chart-series-list"></div>
