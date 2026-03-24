@@ -652,6 +652,7 @@ function finishWorkout() {
 
   setLastDayId(session.routineId, session.dayId);
   setLastRoutineId(session.routineId);
+  autoBackup(); // silent background backup to GitHub
   showSessionSummary(savedSession);
   session = null;
   renderIdleHome();
@@ -889,7 +890,7 @@ function renderChart() {
 
 // ── MANAGE ─────────────────────────────────────────────────
 
-function renderManage() { renderRoutineManageList(); renderExerciseManageList(); }
+function renderManage() { renderRoutineManageList(); renderExerciseManageList(); renderGithubToken(); }
 
 function renderRoutineManageList() {
   const routines = getRoutines();
@@ -1180,7 +1181,131 @@ document.querySelectorAll('.modal-backdrop').forEach(b => {
   b.addEventListener('click', e => { if(e.target===b) b.classList.remove('open'); });
 });
 
-// ── EXPORT / IMPORT ────────────────────────────────────────
+// ── GITHUB AUTO BACKUP ─────────────────────────────────────
+
+const GITHUB_OWNER = 'MaksymMuntyan';
+const GITHUB_REPO  = 'lift-app';
+
+function getGithubToken() { return localStorage.getItem('lift_githubToken') || ''; }
+
+function saveGithubToken(token) {
+  localStorage.setItem('lift_githubToken', token.trim());
+  updateBackupStatus('Token saved.', 'var(--text2)');
+}
+
+function updateBackupStatus(msg, color) {
+  const el = document.getElementById('github-backup-status');
+  if (el) { el.textContent = msg; el.style.color = color || 'var(--text2)'; }
+}
+
+function renderGithubToken() {
+  const el = document.getElementById('github-token-input');
+  if (el) {
+    const token = getGithubToken();
+    el.value = token ? '••••••••••••••••' : '';
+    if (token) updateBackupStatus('Token configured ✓', 'var(--green)');
+  }
+}
+
+function buildBackupData(userNum) {
+  const saved = currentUser;
+  currentUser = userNum;
+  const data = {
+    version: 2, user: userNum,
+    userName: USERS[userNum].name,
+    exportDate: new Date().toISOString(),
+    exercises:   getExercises(),
+    routines:    getRoutines(),
+    sessions:    getSessions(),
+    bodyweights: getBodyweights()
+  };
+  currentUser = saved;
+  return data;
+}
+
+async function pushBackupToGithub(userNum) {
+  const token = getGithubToken();
+  if (!token) return { ok: false, msg: 'No token configured' };
+
+  const userName = USERS[userNum].name.toLowerCase();
+  const filename = `backup-${userName}.json`;
+  const content  = JSON.stringify(buildBackupData(userNum), null, 2);
+  const encoded  = btoa(unescape(encodeURIComponent(content)));
+  const apiUrl   = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${filename}`;
+
+  // Get existing file SHA if it exists (required to update)
+  let sha = null;
+  try {
+    const check = await fetch(apiUrl, {
+      headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json' }
+    });
+    if (check.ok) { const existing = await check.json(); sha = existing.sha; }
+  } catch(e) {}
+
+  const res = await fetch(apiUrl, {
+    method: 'PUT',
+    headers: {
+      'Authorization': `token ${token}`,
+      'Accept': 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      message: `Auto backup ${USERS[userNum].name} ${new Date().toISOString().slice(0,10)}`,
+      content: encoded,
+      ...(sha ? { sha } : {})
+    })
+  });
+
+  if (res.ok) return { ok: true };
+  const err = await res.json();
+  return { ok: false, msg: err.message || 'GitHub API error' };
+}
+
+async function autoBackup() {
+  // Called silently after every workout — backs up current user only
+  const token = getGithubToken();
+  if (!token) return;
+  try {
+    const result = await pushBackupToGithub(currentUser);
+    if (result.ok) console.log(`✓ Auto backup complete for ${USERS[currentUser].name}`);
+    else console.warn('Auto backup failed:', result.msg);
+  } catch(e) { console.warn('Auto backup error:', e); }
+}
+
+async function runManualBackup() {
+  const token = getGithubToken();
+  if (!token) { updateBackupStatus('No token saved yet. Enter your token first.', 'var(--red)'); return; }
+  updateBackupStatus('Backing up both users...', 'var(--text2)');
+  try {
+    const [r1, r2] = await Promise.all([pushBackupToGithub(1), pushBackupToGithub(2)]);
+    if (r1.ok && r2.ok) {
+      updateBackupStatus('✓ Max and Laura both backed up to GitHub!', 'var(--green)');
+    } else {
+      const msg = (!r1.ok ? `Max: ${r1.msg} ` : '') + (!r2.ok ? `Laura: ${r2.msg}` : '');
+      updateBackupStatus('✗ ' + msg.trim(), 'var(--red)');
+    }
+  } catch(e) { updateBackupStatus('✗ Error: ' + e.message, 'var(--red)'); }
+}
+
+async function testGithubBackup() {
+  const token = getGithubToken();
+  if (!token) { updateBackupStatus('No token saved yet. Enter your token first.', 'var(--red)'); return; }
+  updateBackupStatus('Testing...', 'var(--text2)');
+  try {
+    const res = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}`, {
+      headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json' }
+    });
+    if (res.ok) {
+      updateBackupStatus('✓ Token works! Tap "Back Up Now" to run a full backup.', 'var(--green)');
+    } else if (res.status === 401) {
+      updateBackupStatus('✗ Token invalid or expired. Generate a new one.', 'var(--red)');
+    } else if (res.status === 404) {
+      updateBackupStatus('✗ Repo not found — make sure it\'s named lift-app.', 'var(--red)');
+    } else {
+      updateBackupStatus(`✗ GitHub returned ${res.status}.`, 'var(--red)');
+    }
+  } catch(e) { updateBackupStatus('✗ Network error: ' + e.message, 'var(--red)'); }
+}
 
 function exportData() {
   const data = { version:2, user:currentUser, exportDate:new Date().toISOString(),
