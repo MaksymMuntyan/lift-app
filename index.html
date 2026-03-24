@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="LIFT" />
+  <meta name="theme-color" content="#f4f4f0" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <title>LIFT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f4f4f0;
+      --surface: #ffffff;
+      --surface2: #ebebeb;
+      --border: #d8d8d4;
+      --accent: #2563eb;
+      --accent2: #ea580c;
+      --text: #111111;
+      --text2: #666666;
+      --text3: #aaaaaa;
+      --red: #dc2626;
+      --green: #16a34a;
+      --radius: 8px;
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+    html, body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      font-size: 16px;
+      height: 100%;
+      overflow: hidden;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    #app {
+      display: flex;
+      flex-direction: column;
+      height: 100dvh;
+      max-width: 480px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: calc(var(--safe-top) + 12px) 16px 12px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+      min-height: 56px;
+      z-index: 10;
+    }
+    .topbar-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+    }
+    .topbar-sub {
+      font-size: 11px;
+      color: var(--text2);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .icon-btn {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .icon-btn:active { background: var(--border); }
+
+    /* ── NAV TABS ── */
+    .nav {
+      display: flex;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .nav-tab {
+      flex: 1;
+      padding: 12px 4px;
+      background: none;
+      border: none;
+      color: var(--text3);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.15s;
+    }
+    .nav-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .nav-tab:active { background: var(--surface); }
+
+    /* ── SCREENS ── */
+    .screen {
+      display: none;
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: calc(var(--safe-bottom) + 80px);
+    }
+    .screen.active { display: flex; flex-direction: column; }
+
+    /* ── BOTTOM ACTION BAR ── */
+    .bottom-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0; right: 0;
+      padding: 12px 16px calc(var(--safe-bottom) + 12px);
+      background: linear-gradient(to top, var(--bg) 80%, transparent);      z-index: 10;
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: var(--radius);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-align: center;
+    }
+    .btn:active { transform: scale(0.98); }
+    .btn-primary { background: var(--accent); color: #ffffff; }
+    .btn-primary:active { background: #1d4ed8; }
+    .btn-secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+    .btn-danger { background: transparent; color: var(--red); border: 1px solid var(--red); }
+    .btn-sm {
+      width: auto;
+      padding: 8px 16px;
+      font-size: 13px;
+    }
+    .btn-inline {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: var(--radius);
+      padding: 8px 14px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .btn-inline:active { background: var(--border); }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .card-header {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .card-body { padding: 16px; }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text3);
+      padding: 20px 16px 8px;
+    }
+
+    /* ── LISTS ── */
+    .list-item {
+      display: flex;
+      align-items: center;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      cursor: pointer;
+      gap: 12px;
+      transition: background 0.1s;
+    }
+    .list-item:last-child { border-bottom: none; }
+    .list-item:active { background: var(--surface2); }
+    .list-item-main { flex: 1; min-width: 0; }
+    .list-item-title {
+      font-weight: 600;
+      font-size: 16px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .list-item-sub { font-size: 13px; color: var(--text2); margin-top: 2px; }
+    .list-item-right { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; color: var(--text2); white-space: nowrap; }
+
+    /* ── FORM ── */
+    .field { padding: 0 16px 16px; }
+    .field label {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text2);
+      margin-bottom: 8px;
+    }
+    .input {
+      width: 100%;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      font-size: 16px;
+      padding: 12px 14px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .input:focus { border-color: var(--accent); }
+    .input::placeholder { color: var(--text3); }
+    select.input { appearance: none; -webkit-appearance: none; }
+
+    /* ── BADGE ── */
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .badge-pr { background: var(--accent); color: #0a0a0a; }
+    .badge-new { background: var(--accent2); color: #fff; }
+
+    /* ── DIVIDER ── */
+    .divider { height: 1px; background: var(--border); margin: 0 16px; }
+
+    /* ── MODAL / SHEET ── */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 100;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    .modal-backdrop.open { display: flex; }
+    .modal-sheet {
+      background: var(--surface);
+      border-radius: 16px 16px 0 0;
+      border: 1px solid var(--border);
+      border-bottom: none;
+      width: 100%;
+      max-width: 480px;
+      max-height: 92dvh;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: calc(var(--safe-bottom) + 16px);
+    }
+    .modal-handle {
+      width: 36px;
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      margin: 12px auto 8px;
+      flex-shrink: 0;
+    }
+    .modal-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      padding: 8px 16px 16px;
+      flex-shrink: 0;
+    }
+    .modal-body {
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      flex: 1;
+      padding: 0 16px;
+    }
+    .modal-footer {
+      padding: 16px 16px 0;
+      flex-shrink: 0;
+      display: flex;
+      gap: 10px;
+    }
+    .modal-footer .btn { flex: 1; }
+
+    /* ── WORKOUT ACTIVE ── */
+    .workout-header {
+      padding: 16px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    .workout-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      line-height: 1;
+    }
+    .workout-meta { font-size: 13px; color: var(--text2); margin-top: 4px; }
+
+    .exercise-block {
+      margin: 0 16px 12px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .exercise-block.current { border-color: var(--accent); }
+    .exercise-block-header {
+      background: var(--surface);
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .exercise-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      flex: 1;
+    }
+    .last-session {
+      background: var(--surface2);
+      padding: 8px 14px;
+      font-size: 13px;
+      color: var(--text2);
+      border-bottom: 1px solid var(--border);
+    }
+    .last-session span { color: var(--text); font-weight: 600; }
+
+    /* Weight selector */
+    .weight-selector {
+      padding: 12px 14px;
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .weight-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text2);
+      flex-shrink: 0;
+    }
+    .weight-stepper {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex: 1;
+    }
+    .stepper-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 44px;
+      height: 44px;
+      font-size: 22px;
+      font-weight: 300;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.1s;
+    }
+    .stepper-btn:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+    .stepper-btn:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
+    .stepper-btn:active { background: var(--border); }
+    .weight-display {
+      flex: 1;
+      text-align: center;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .weight-unit { font-size: 14px; font-weight: 400; color: var(--text2); margin-left: 2px; }
+
+    /* Sets */
+    .sets-area { padding: 10px 14px; background: var(--surface); }
+    .set-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .set-row:last-child { border-bottom: none; }
+    .set-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text3);
+      width: 28px;
+      flex-shrink: 0;
+    }
+    .set-weight {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text2);
+      width: 64px;
+      flex-shrink: 0;
+    }
+    .reps-input-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex: 1;
+    }
+    .reps-btn {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius);
+      font-size: 20px;
+      font-weight: 300;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .reps-btn:active { background: var(--border); }
+    .reps-display {
+      flex: 1;
+      text-align: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      cursor: pointer;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .set-status {
+      width: 36px;
+      flex-shrink: 0;
+      text-align: center;
+      font-size: 18px;
+    }
+    .add-set-btn {
+      margin: 8px 14px 12px;
+      padding: 10px;
+      background: var(--surface2);
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+      color: var(--text2);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      width: calc(100% - 28px);
+    }
+    .add-set-btn:active { background: var(--border); }
+
+    /* ── PR BOARD ── */
+    .pr-row {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      gap: 10px;
+    }
+    .pr-row:last-child { border-bottom: none; }
+    .pr-rank {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text3);
+      width: 24px;
+      flex-shrink: 0;
+    }
+    .pr-name { flex: 1; font-weight: 600; font-size: 15px; }
+    .pr-val {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      text-align: right;
+    }
+    .pr-sub { font-size: 12px; color: var(--text2); text-align: right; }
+
+    /* ── GRAPHS ── */
+    .chart-container {
+      position: relative;
+      height: 220px;
+      margin: 0 16px;
+    }
+    canvas { display: block; }
+
+    /* ── EMPTY STATE ── */
+    .empty-state {
+      text-align: center;
+      padding: 60px 32px;
+      color: var(--text2);
+    }
+    .empty-icon { font-size: 48px; margin-bottom: 16px; }
+    .empty-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    /* ── NUMPAD ── */
+    .numpad {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding: 12px 0;
+    }
+    .numpad-key {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      padding: 16px;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.1s;
+    }
+    .numpad-key:active { background: var(--border); }
+    .numpad-key.del { font-size: 20px; }
+    .numpad-current {
+      background: var(--surface);
+      border: 1px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 36px;
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: 12px;
+      color: var(--accent);
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .numpad-label {
+      font-size: 11px;
+      color: var(--text2);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    /* ── SESSION SUMMARY ── */
+    .summary-exercise {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .summary-ex-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .summary-ex-sets { font-size: 13px; color: var(--text2); }
+    .summary-ex-best {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-top: 2px;
+    }
+
+    /* ── USER SWITCHER ── */
+    .user-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 12px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+    }
+    .user-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .user-dot.u2 { background: var(--accent2); }
+
+    /* ── TAGS FOR OR-CHOICES ── */
+    .or-badge {
+      display: inline-block;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin: 0 4px;
+    }
+
+    /* ── ROUTINE EDITOR ── */
+    .slot-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .slot-drag { color: var(--text3); font-size: 20px; cursor: grab; }
+    .slot-choices { flex: 1; font-size: 15px; font-weight: 500; }
+    .slot-remove {
+      color: var(--text3);
+      font-size: 20px;
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── STATS TOGGLE ── */
+    .toggle-row {
+      display: flex;
+      gap: 8px;
+      padding: 12px 16px 0;
+      overflow-x: auto;
+      flex-shrink: 0;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .toggle-row::-webkit-scrollbar { display: none; }
+    .toggle-chip {
+      flex-shrink: 0;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text2);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .toggle-chip.active {
+      background: var(--accent);
+      color: #0a0a0a;
+      border-color: var(--accent);
+    }
+    .toggle-chip:active { opacity: 0.7; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .screen.active > * { animation: slideUp 0.2s ease both; }
+
+    @keyframes popIn {
+      0% { transform: scale(0.8); opacity: 0; }
+      70% { transform: scale(1.05); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .pr-flash { animation: popIn 0.35s ease both; }
+
+    /* ── MISC ── */
+    .flex { display: flex; }
+    .gap-8 { gap: 8px; }
+    .gap-12 { gap: 12px; }
+    .flex-1 { flex: 1; }
+    .text-right { text-align: right; }
+    .text-accent { color: var(--accent); }
+    .text-red { color: var(--red); }
+    .text-green { color: var(--green); }
+    .mt-8 { margin-top: 8px; }
+    .mt-16 { margin-top: 16px; }
+    .px-16 { padding: 0 16px; }
+    .py-8 { padding: 8px 0; }
+    .hidden { display: none !important; }
+    .scroll-list { padding-bottom: 8px; }
+
+    /* Chart.js override */
+    .chartjs-tooltip { pointer-events: none; }
+  </style>
+</head>
+<body>
+<div id="app">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div>
+      <div class="topbar-title">LIFT</div>
+      <div class="topbar-sub" id="topbar-date"></div>
+    </div>
+    <div class="flex gap-8 align-center">
+      <div class="user-pill" id="user-switcher" onclick="switchUser()">
+        <div class="user-dot" id="user-dot"></div>
+        <span id="user-name-display">User 1</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <div class="nav">
+    <button class="nav-tab active" onclick="showTab('home')" id="tab-home">HOME</button>
+    <button class="nav-tab" onclick="showTab('history')" id="tab-history">HISTORY</button>
+    <button class="nav-tab" onclick="showTab('stats')" id="tab-stats">STATS</button>
+    <button class="nav-tab" onclick="showTab('manage')" id="tab-manage">MANAGE</button>
+  </div>
+
+  <!-- ════════════════ HOME SCREEN ════════════════ -->
+  <div class="screen active" id="screen-home">
+    <div id="home-idle">
+      <div class="section-label">START A WORKOUT</div>
+      <div id="routine-list" class="scroll-list px-16"></div>
+      <div class="section-label">RECENT PRs</div>
+      <div id="recent-prs" class="card mx-16" style="margin: 0 16px;"></div>
+    </div>
+    <div id="home-active" class="hidden">
+      <!-- Active workout renders here -->
+    </div>
+    <div class="bottom-bar" id="home-bottom-idle">
+      <button class="btn btn-secondary btn-sm" onclick="openLogBodyweight()" style="width:auto;margin:0 auto;">⚖️ Log Bodyweight</button>
+    </div>
+    <div class="bottom-bar hidden" id="home-bottom-active">
+      <div class="flex gap-8">
+        <button class="btn btn-danger" onclick="cancelWorkout()" style="flex:1">Discard</button>
+        <button class="btn btn-primary" onclick="finishWorkout()" style="flex:2">Finish Workout ✓</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════ HISTORY SCREEN ════════════════ -->
+  <div class="screen" id="screen-history">
+    <div id="history-list" class="scroll-list"></div>
+  </div>
+
+  <!-- ════════════════ STATS SCREEN ════════════════ -->
+  <div class="screen" id="screen-stats">
+    <div class="section-label">PR BOARD</div>
+    <div id="pr-board" class="card" style="margin: 0 16px;"></div>
+    <div class="section-label" style="margin-top:16px;">PROGRESS CHART</div>
+    <div class="toggle-row" id="chart-series-list"></div>
+    <div style="margin: 12px 16px 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px;">
+      <canvas id="progress-chart" height="200"></canvas>
+    </div>
+  </div>
+
+  <!-- ════════════════ MANAGE SCREEN ════════════════ -->
+  <div class="screen" id="screen-manage">
+    <div class="section-label">ROUTINES</div>
+    <div id="routine-manage-list" class="scroll-list" style="margin: 0 16px;"></div>
+    <div class="px-16 mt-8">
+      <button class="btn btn-secondary" onclick="openAddRoutine()">+ New Routine</button>
+    </div>
+    <div class="section-label" style="margin-top:24px;">EXERCISES</div>
+    <div id="exercise-manage-list" class="scroll-list" style="margin: 0 16px;"></div>
+    <div class="px-16 mt-8">
+      <button class="btn btn-secondary" onclick="openAddExercise()">+ New Exercise</button>
+    </div>
+    <div class="section-label" style="margin-top:24px;">DATA</div>
+    <div class="px-16">
+      <button class="btn btn-secondary" onclick="exportData()" style="margin-bottom:8px;">⬇ Export JSON</button>
+      <label class="btn btn-secondary" style="display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;">
+        ⬆ Import JSON <input type="file" accept=".json" onchange="importData(event)" style="display:none">
+      </label>
+    </div>
+  </div>
+
+</div><!-- /#app -->
+
+<!-- ════════ MODALS ════════ -->
+
+<!-- Choose OR-exercise -->
+<div class="modal-backdrop" id="modal-choose-exercise">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">CHOOSE EXERCISE</div>
+    <div class="modal-body" id="modal-choose-exercise-list"></div>
+  </div>
+</div>
+
+<!-- Numpad modal -->
+<div class="modal-backdrop" id="modal-numpad">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="numpad-title">ENTER VALUE</div>
+    <div class="modal-body">
+      <div class="numpad-label" id="numpad-label"></div>
+      <div class="numpad-current" id="numpad-display">—</div>
+      <div class="numpad">
+        <div class="numpad-key" onclick="numpadKey('7')">7</div>
+        <div class="numpad-key" onclick="numpadKey('8')">8</div>
+        <div class="numpad-key" onclick="numpadKey('9')">9</div>
+        <div class="numpad-key" onclick="numpadKey('4')">4</div>
+        <div class="numpad-key" onclick="numpadKey('5')">5</div>
+        <div class="numpad-key" onclick="numpadKey('6')">6</div>
+        <div class="numpad-key" onclick="numpadKey('1')">1</div>
+        <div class="numpad-key" onclick="numpadKey('2')">2</div>
+        <div class="numpad-key" onclick="numpadKey('3')">3</div>
+        <div class="numpad-key" onclick="numpadKey('.')">.</div>
+        <div class="numpad-key" onclick="numpadKey('0')">0</div>
+        <div class="numpad-key del" onclick="numpadKey('del')">⌫</div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeNumpad()">Cancel</button>
+      <button class="btn btn-primary" onclick="confirmNumpad()">Set</button>
+    </div>
+  </div>
+</div>
+
+<!-- Log bodyweight -->
+<div class="modal-backdrop" id="modal-bodyweight">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">LOG BODYWEIGHT</div>
+    <div class="modal-body">
+      <div class="numpad-label">YOUR WEIGHT (LBS)</div>
+      <div class="numpad-current" id="bw-display">—</div>
+      <div class="numpad">
+        <div class="numpad-key" onclick="bwKey('7')">7</div>
+        <div class="numpad-key" onclick="bwKey('8')">8</div>
+        <div class="numpad-key" onclick="bwKey('9')">9</div>
+        <div class="numpad-key" onclick="bwKey('4')">4</div>
+        <div class="numpad-key" onclick="bwKey('5')">5</div>
+        <div class="numpad-key" onclick="bwKey('6')">6</div>
+        <div class="numpad-key" onclick="bwKey('1')">1</div>
+        <div class="numpad-key" onclick="bwKey('2')">2</div>
+        <div class="numpad-key" onclick="bwKey('3')">3</div>
+        <div class="numpad-key" onclick="bwKey('.')">.</div>
+        <div class="numpad-key" onclick="bwKey('0')">0</div>
+        <div class="numpad-key del" onclick="bwKey('del')">⌫</div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modal-bodyweight')">Cancel</button>
+      <button class="btn btn-primary" onclick="confirmBodyweight()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add/Edit Exercise -->
+<div class="modal-backdrop" id="modal-exercise">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="modal-exercise-title">NEW EXERCISE</div>
+    <div class="modal-body">
+      <div style="padding-top:8px;">
+        <div class="field">
+          <label>Exercise Name</label>
+          <input class="input" type="text" id="exercise-name-input" placeholder="e.g. Bench Press" />
+        </div>
+        <div class="field">
+          <label>Category (optional)</label>
+          <input class="input" type="text" id="exercise-cat-input" placeholder="e.g. Push, Pull, Legs" />
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modal-exercise')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveExercise()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add/Edit Routine -->
+<div class="modal-backdrop" id="modal-routine">
+  <div class="modal-sheet" style="max-height:96dvh">
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="modal-routine-title">NEW ROUTINE</div>
+    <div class="modal-body" id="modal-routine-body">
+      <div class="field" style="padding-top:8px">
+        <label>Routine Name</label>
+        <input class="input" type="text" id="routine-name-input" placeholder="e.g. Macky 4x Upper Lower" />
+      </div>
+
+      <!-- Day tabs -->
+      <div class="section-label" style="padding:8px 0 4px;">DAYS</div>
+      <div class="toggle-row" id="routine-day-tabs" style="padding:0 0 8px;"></div>
+
+      <!-- Day name + remove -->
+      <div style="display:flex;gap:8px;align-items:center;margin-bottom:12px;">
+        <input class="input" type="text" id="routine-day-name-input" placeholder="Day name, e.g. Upper A"
+          style="flex:1;" oninput="syncDayName()" />
+        <button class="btn-inline" onclick="removeEditorDay()" style="color:var(--red);border-color:var(--red);flex-shrink:0;">Remove Day</button>
+      </div>
+
+      <div class="section-label" style="padding:0 0 8px;">EXERCISE SLOTS</div>
+      <div id="routine-slots"></div>
+      <button class="btn btn-secondary mt-8" onclick="addRoutineSlot()">+ Add Exercise Slot</button>
+      <div style="height:16px;"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modal-routine')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveRoutine()">Save Routine</button>
+    </div>
+  </div>
+</div>
+
+<!-- Session summary -->
+<div class="modal-backdrop" id="modal-summary">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">SESSION COMPLETE 💪</div>
+    <div class="modal-body" id="modal-summary-body"></div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" onclick="closeModal('modal-summary')">Done</button>
+    </div>
+  </div>
+</div>
+
+<!-- Pick a day before starting workout -->
+<div class="modal-backdrop" id="modal-day-picker">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">PICK A DAY</div>
+    <div style="padding:0 16px 12px;font-size:13px;color:var(--text2);" id="modal-day-picker-routine"></div>
+    <div class="modal-body" id="modal-day-picker-list"></div>
+  </div>
+</div>
+
+<!-- Add extra exercise during workout -->
+<div class="modal-backdrop" id="modal-extra-exercise">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">ADD EXERCISE</div>
+    <div style="padding:0 16px 8px;font-size:13px;color:var(--text2);">Pick from your exercise library</div>
+    <div class="modal-body" id="modal-extra-exercise-list"></div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modal-extra-exercise')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Select exercise for slot -->
+<div class="modal-backdrop" id="modal-slot-picker">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">ADD TO SLOT</div>
+    <div class="modal-body" id="modal-slot-picker-list"></div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modal-slot-picker')">Done</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="seed.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
