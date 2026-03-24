@@ -1,6 +1,6 @@
 {
-  "name": "LIFT — Workout Tracker",
-  "short_name": "LIFT",
+  "name": "MackyLift",
+  "short_name": "MackyLift",
   "description": "Personal gym workout and PR tracker",
   "start_url": "./",
   "display": "standalone",

@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="LIFT" />
+  <meta name="apple-mobile-web-app-title" content="MackyLift" />
   <meta name="theme-color" content="#f4f4f0" />
   <link rel="manifest" href="manifest.json" />
   <link rel="apple-touch-icon" href="icon-192.png" />
-  <title>LIFT</title>
+  <title>MackyLift</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
@@ -197,6 +197,9 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       overflow: hidden;
+    }
+    #pr-board {
+      overflow: visible;
     }
     .card-header {
       padding: 14px 16px;
@@ -786,7 +789,7 @@
   <!-- TOP BAR -->
   <div class="topbar">
     <div>
-      <div class="topbar-title">LIFT</div>
+      <div class="topbar-title">MackyLift</div>
       <div class="topbar-sub" id="topbar-date"></div>
     </div>
     <div class="flex gap-8 align-center">
@@ -835,12 +838,13 @@
   <!-- ════════════════ STATS SCREEN ════════════════ -->
   <div class="screen" id="screen-stats">
     <div class="section-label">PR BOARD</div>
-    <div id="pr-board" class="card" style="margin: 0 16px;"></div>
+    <div id="pr-board" class="card" style="margin: 0 16px; overflow: visible;"></div>
     <div class="section-label" style="margin-top:16px;">PROGRESS CHART</div>
     <div class="toggle-row" id="chart-series-list"></div>
     <div style="margin: 12px 16px 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px;">
       <canvas id="progress-chart" height="200"></canvas>
     </div>
+    <div style="height: 20px;"></div>
   </div>
 
   <!-- ════════════════ MANAGE SCREEN ════════════════ -->
