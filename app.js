@@ -1287,6 +1287,55 @@ async function runManualBackup() {
   } catch(e) { updateBackupStatus('✗ Error: ' + e.message, 'var(--red)'); }
 }
 
+async function restoreFromGithub() {
+  if (!confirm('Restore from GitHub? This will overwrite ALL current data for both Max and Laura.')) return;
+
+  updateBackupStatus('Restoring...', 'var(--text2)');
+
+  let restored = 0;
+  const errors = [];
+
+  for (const userNum of [1, 2]) {
+    const userName = USERS[userNum].name.toLowerCase();
+    // Use raw URL — no token needed since repo is public
+    const rawUrl = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/main/backup-${userName}.json`;
+
+    try {
+      const res = await fetch(rawUrl);
+
+      if (!res.ok) {
+        if (res.status === 404) errors.push(`${USERS[userNum].name}: no backup found yet — run a backup first`);
+        else errors.push(`${USERS[userNum].name}: error ${res.status}`);
+        continue;
+      }
+
+      const json = await res.json();
+
+      const savedUser = currentUser;
+      currentUser = userNum;
+      if (json.exercises)   saveExercises(json.exercises);
+      if (json.routines)    saveRoutines(json.routines);
+      if (json.sessions)    saveSessions(json.sessions);
+      if (json.bodyweights) saveBodyweights(json.bodyweights);
+      currentUser = savedUser;
+
+      restored++;
+    } catch(e) {
+      errors.push(`${USERS[userNum].name}: ${e.message}`);
+    }
+  }
+
+  if (restored === 2) {
+    updateBackupStatus('✓ Both Max and Laura restored! Reloading...', 'var(--green)');
+    setTimeout(() => location.reload(), 1500);
+  } else if (restored === 1) {
+    updateBackupStatus(`✓ Partial restore. ${errors.join(', ')}`, 'var(--accent2)');
+    setTimeout(() => location.reload(), 2000);
+  } else {
+    updateBackupStatus('✗ Restore failed: ' + errors.join(', '), 'var(--red)');
+  }
+}
+
 async function testGithubBackup() {
   const token = getGithubToken();
   if (!token) { updateBackupStatus('No token saved yet. Enter your token first.', 'var(--red)'); return; }

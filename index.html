@@ -872,8 +872,7 @@
     <div class="section-label" style="margin-top:24px;">AUTO BACKUP TO GITHUB</div>
     <div class="px-16">
       <div style="font-size:13px;color:var(--text2);margin-bottom:10px;">
-        After every workout, your full data is automatically saved to your GitHub repo as a JSON file. 
-        To restore after data loss: Manage → Import JSON → paste the backup file URL.
+        After every workout, your full data is automatically saved to GitHub. Enter your token once per device — it's saved and never asked for again. To recover after data loss, just tap Restore (no token needed).
       </div>
       <div class="field" style="padding:0 0 8px;">
         <label>GitHub Personal Access Token</label>
@@ -882,10 +881,11 @@
           onchange="saveGithubToken(this.value)" />
       </div>
       <div id="github-backup-status" style="font-size:13px;color:var(--text2);margin-bottom:8px;min-height:18px;"></div>
-      <div class="flex gap-8">
-        <button class="btn btn-secondary" onclick="testGithubBackup()" style="flex:1">Test Backup</button>
+      <div class="flex gap-8" style="margin-bottom:8px;">
+        <button class="btn btn-secondary" onclick="testGithubBackup()" style="flex:1">Test</button>
         <button class="btn btn-secondary" onclick="runManualBackup()" style="flex:1">Back Up Now</button>
       </div>
+      <button class="btn btn-primary" onclick="restoreFromGithub()">⬇ Restore from GitHub</button>
       <div style="font-size:12px;color:var(--text3);margin-top:8px;">
         Saves to: MaksymMuntyan/lift-app → backup-max.json / backup-laura.json
       </div>
