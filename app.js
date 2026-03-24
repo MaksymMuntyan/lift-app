@@ -1230,15 +1230,14 @@ async function pushBackupToGithub(userNum) {
   const userName = USERS[userNum].name.toLowerCase();
   const filename = `backup-${userName}.json`;
   const content  = JSON.stringify(buildBackupData(userNum), null, 2);
-  // Safe base64 encoding that handles all unicode characters
   const encoded  = btoa(encodeURIComponent(content).replace(/%([0-9A-F]{2})/g, (_, p1) => String.fromCharCode(parseInt(p1, 16))));
   const apiUrl   = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${filename}`;
 
-  // Get existing file SHA if it exists (required to update)
+  // Always fetch a fresh SHA immediately before writing — never use a cached value
   let sha = null;
   try {
-    const check = await fetch(apiUrl, {
-      headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json' }
+    const check = await fetch(apiUrl + '?t=' + Date.now(), {
+      headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json', 'Cache-Control': 'no-cache' }
     });
     if (check.ok) { const existing = await check.json(); sha = existing.sha; }
   } catch(e) {}
@@ -1258,8 +1257,28 @@ async function pushBackupToGithub(userNum) {
   });
 
   if (res.ok) return { ok: true };
-  const err = await res.json();
-  return { ok: false, msg: err.message || 'GitHub API error' };
+  
+  // If we get a conflict error, retry once with a fresh SHA
+  if (res.status === 409) {
+    try {
+      const retry = await fetch(apiUrl + '?t=' + Date.now(), {
+        headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json', 'Cache-Control': 'no-cache' }
+      });
+      if (retry.ok) {
+        const retryData = await retry.json();
+        const retrySha = retryData.sha;
+        const retryRes = await fetch(apiUrl, {
+          method: 'PUT',
+          headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: `Auto backup ${USERS[userNum].name} ${new Date().toISOString().slice(0,10)}`, content: encoded, sha: retrySha })
+        });
+        if (retryRes.ok) return { ok: true };
+      }
+    } catch(e) {}
+  }
+
+  const err = await res.json().catch(() => ({}));
+  return { ok: false, msg: err.message || `GitHub error ${res.status}` };
 }
 
 async function autoBackup() {
