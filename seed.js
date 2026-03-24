@@ -130,7 +130,7 @@ const SEED = {
 
     // ── LAURA 3x Full Body ────────────────────────────────
     {
-      name: 'Laura Full Body 3x Week',
+      name: 'Laura 3x Full Body',
       days: [
         {
           name: 'Day A (Push)',
