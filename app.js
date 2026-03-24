@@ -702,16 +702,47 @@ function computeAllPRs() {
   });
 }
 
+const PR_FEATURED = ['Bench Press', 'Squat', 'Deadlift', 'Weighted Dip', 'Weighted Pull-Up'];
+
 function renderPRBoard() {
-  const prs = computeAllPRs();
-  document.getElementById('pr-board').innerHTML = prs.length === 0
-    ? `<div style="padding:20px;color:var(--text2);font-size:14px;">No data yet.</div>`
-    : prs.map((pr,i) => `<div class="pr-row">
-        <div class="pr-rank">#${i+1}</div>
-        <div class="pr-name">${esc(pr.name)}</div>
-        <div><div class="pr-val">${pr.weight}<span style="font-size:13px;color:var(--text2)"> lbs</span></div>
-        <div class="pr-sub">${pr.reps} reps${pr.bw?' · BW '+pr.bw:''}${pr.date?' · '+formatDate(pr.date):''}</div></div>
-      </div>`).join('');
+  const prs = computeAllPRs().sort((a, b) => a.name.localeCompare(b.name));
+  const el = document.getElementById('pr-board');
+
+  if (prs.length === 0) {
+    el.innerHTML = `<div style="padding:20px;color:var(--text2);font-size:14px;">No data yet.</div>`;
+    return;
+  }
+
+  const featured = prs.filter(pr => PR_FEATURED.includes(pr.name));
+  const rest = prs.filter(pr => !PR_FEATURED.includes(pr.name));
+
+  const renderRow = (pr, i) => `<div class="pr-row">
+    <div class="pr-name">${esc(pr.name)}</div>
+    <div>
+      <div class="pr-val">${pr.weight > 0 ? pr.weight + '<span style="font-size:13px;color:var(--text2)"> lbs</span>' : 'BW'}</div>
+      <div class="pr-sub">${pr.reps} reps${pr.bw ? ' · BW ' + pr.bw : ''}${pr.date ? ' · ' + formatDate(pr.date) : ''}</div>
+    </div>
+  </div>`;
+
+  let html = featured.map(renderRow).join('');
+
+  if (rest.length > 0) {
+    html += `<div id="pr-more" class="hidden">${rest.map(renderRow).join('')}</div>`;
+    html += `<div style="padding:12px 16px;">
+      <button class="btn btn-secondary btn-sm" onclick="togglePRMore(this)" style="width:100%;">
+        Show all lifts (${rest.length} more)
+      </button>
+    </div>`;
+  }
+
+  el.innerHTML = html;
+}
+
+function togglePRMore(btn) {
+  const more = document.getElementById('pr-more');
+  const hidden = more.classList.toggle('hidden');
+  const count = more.querySelectorAll('.pr-row').length;
+  btn.textContent = hidden ? `Show all lifts (${count} more)` : 'Show less';
 }
 
 function buildChartSeriesList() {
