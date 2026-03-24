@@ -16,37 +16,37 @@ const SEED = {
   // ── EXERCISES ─────────────────────────────────────────
   // bodyweight: true  →  weight defaults to 0, no weight selector shown
   exercises: [
-    { name: 'Barbell Shrug',                 category: 'Upper Back'      },
-    { name: 'Bench Press',                   category: 'Chest'           },
+    { name: 'Barbell Shrug',                 category: 'Upper Back',      barbell: true },
+    { name: 'Bench Press',                   category: 'Chest',           barbell: true },
     { name: 'Cable Crunch',                  category: 'Abs'             },
     { name: 'Cable Forearm Curl',            category: 'Forearms'        },
     { name: 'Cable Row',                     category: 'Back'            },
-    { name: 'Deadlift',                      category: 'Posterior Chain' },
-    { name: 'Dip',                           category: 'Chest',          bodyweight: true },
+    { name: 'Deadlift',                      category: 'Posterior Chain', barbell: true },
+    { name: 'Dip',                           category: 'Chest',           bodyweight: true },
     { name: 'Dumbbell Curl',                 category: 'Biceps'          },
     { name: 'Dumbbell Incline Press',        category: 'Chest'           },
     { name: 'Dumbbell Row',                  category: 'Back'            },
     { name: 'Dumbbell Split Squat',          category: 'Quads'           },
     { name: 'Dumbbell Wrist Curl',           category: 'Forearms'        },
-    { name: 'Hip Thrust',                    category: 'Posterior Chain' },
+    { name: 'Hip Thrust',                    category: 'Posterior Chain', barbell: true },
     { name: 'Incline Dumbbell Curl',         category: 'Biceps'          },
-    { name: 'Incline Push-Up',               category: 'Chest',          bodyweight: true },
+    { name: 'Incline Push-Up',               category: 'Chest',           bodyweight: true },
     { name: 'Overhead Tricep Extension',     category: 'Triceps'         },
-    { name: 'Pistol Squat',                  category: 'Quads',          bodyweight: true },
+    { name: 'Pistol Squat',                  category: 'Quads',           bodyweight: true },
     { name: 'Preacher Hammer Curl',          category: 'Biceps'          },
-    { name: 'Pull-Up',                       category: 'Back',           bodyweight: true },
-    { name: 'RDL',                           category: 'Posterior Chain' },
+    { name: 'Pull-Up',                       category: 'Back',            bodyweight: true },
+    { name: 'RDL',                           category: 'Posterior Chain', barbell: true },
     { name: 'Ring Dip',                      category: 'Chest'           },
     { name: 'Ring Fly',                      category: 'Chest'           },
     { name: 'Single Cable Forearm Curl',     category: 'Forearms'        },
-    { name: 'Squat',                         category: 'Quads'           },
-    { name: 'Top Bar Deep Shoulder Push-Up', category: 'Shoulders',      bodyweight: true },
+    { name: 'Squat',                         category: 'Quads',           barbell: true },
+    { name: 'Top Bar Deep Shoulder Push-Up', category: 'Shoulders',       bodyweight: true },
     { name: 'Tricep Pushdown',               category: 'Triceps'         },
     { name: 'Weighted Body Row',             category: 'Back'            },
     { name: 'Weighted Dip',                  category: 'Chest'           },
     { name: 'Weighted Pistol Squat',         category: 'Quads'           },
     { name: 'Weighted Pull-Up',              category: 'Back'            },
-    { name: 'Wide Towel Pull-Up',            category: 'Forearms',       bodyweight: true },
+    { name: 'Wide Towel Pull-Up',            category: 'Forearms',        bodyweight: true },
   ],
 
   // ── ROUTINES ───────────────────────────────────────────
@@ -130,7 +130,7 @@ const SEED = {
 
     // ── LAURA 3x Full Body ────────────────────────────────
     {
-      name: 'Laura 3x Full Body',
+      name: 'Laura Full Body 3x Week',
       days: [
         {
           name: 'Day A (Push)',
@@ -485,12 +485,15 @@ const SEED = {
     this.exercises.forEach(ex => {
       if (!exMap[ex.name]) {
         const id = Date.now().toString(36) + Math.random().toString(36).slice(2,6);
-        exercises.push({ id, name: ex.name, category: ex.category || '', bodyweight: ex.bodyweight || false });
+        exercises.push({ id, name: ex.name, category: ex.category || '', bodyweight: ex.bodyweight || false, barbell: ex.barbell || false });
         exMap[ex.name] = id;
       } else {
-        // Update existing exercise with bodyweight flag if missing
+        // Update existing exercise with flags if missing
         const existing = exercises.find(e => e.name === ex.name);
-        if (existing && ex.bodyweight) existing.bodyweight = true;
+        if (existing) {
+          if (ex.bodyweight) existing.bodyweight = true;
+          if (ex.barbell) existing.barbell = true;
+        }
       }
     });
     set('exercises', exercises);

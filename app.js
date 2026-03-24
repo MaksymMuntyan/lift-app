@@ -25,6 +25,9 @@ let editingExerciseId = null;
 let chartInstance = null;
 let chartSeries = [];
 
+// Plate math toggle
+let showPlateMath = localStorage.getItem('lift_plateMath') === 'true';
+
 // ── STORAGE ────────────────────────────────────────────────
 
 const KEY = k => `lift_u${currentUser}_${k}`;
@@ -224,6 +227,7 @@ function resolveInlineSlot(exIdx, choiceId) {
   if (!ex) return;
 
   const isBodyweight = !!ex.bodyweight;
+  const isBarbell = !!ex.barbell;
   let lastWeight = isBodyweight ? 0 : 45, lastReps = 5, lastDate = null;
   for (let i = allSessions.length - 1; i >= 0; i--) {
     const s = allSessions[i];
@@ -238,7 +242,7 @@ function resolveInlineSlot(exIdx, choiceId) {
   const targetSets = slot.sets || 3;
   session.exercises[exIdx] = {
     exerciseId: choiceId, name: ex.name, targetWeight: lastWeight,
-    lastWeight, lastReps, lastDate, isBodyweight,
+    lastWeight, lastReps, lastDate, isBodyweight, isBarbell,
     repMin: slot.repMin, repMax: slot.repMax, targetSets,
     sets: Array.from({ length: targetSets }, () => ({ weight: lastWeight, reps: 0, logged: false })),
     skipped: false
@@ -268,6 +272,7 @@ function buildSessionExercises() {
     if (!ex) return null;
 
     const isBodyweight = !!ex.bodyweight;
+    const isBarbell = !!ex.barbell;
     let lastWeight = isBodyweight ? 0 : 45, lastReps = 5, lastDate = null;
     for (let i = allSessions.length - 1; i >= 0; i--) {
       const s = allSessions[i];
@@ -282,7 +287,7 @@ function buildSessionExercises() {
     const targetSets = slot.sets || 3;
     return {
       exerciseId: exId, name: ex.name, targetWeight: lastWeight,
-      lastWeight, lastReps, lastDate, isBodyweight,
+      lastWeight, lastReps, lastDate, isBodyweight, isBarbell,
       repMin: slot.repMin, repMax: slot.repMax, targetSets,
       sets: Array.from({ length: targetSets }, () => ({ weight: lastWeight, reps: 0, logged: false })),
       skipped: false, pending: false
@@ -294,6 +299,27 @@ function buildSessionExercises() {
 
 // ── ACTIVE WORKOUT ─────────────────────────────────────────
 
+function togglePlateMath() {
+  showPlateMath = !showPlateMath;
+  localStorage.setItem('lift_plateMath', showPlateMath);
+  renderActiveWorkout();
+}
+
+function calcPlates(totalWeight) {
+  const barWeight = 45;
+  const plates = [45, 35, 25, 10, 5, 2.5];
+  let remaining = (totalWeight - barWeight) / 2;
+  if (remaining <= 0) return totalWeight <= 0 ? null : '45 lb bar only';
+  const result = [];
+  for (const p of plates) {
+    const count = Math.floor(remaining / p);
+    if (count > 0) { result.push(`${count}× ${p}`); remaining -= count * p; }
+  }
+  remaining = Math.round(remaining * 10) / 10;
+  if (remaining > 0) result.push(`+${remaining} ?`);
+  return result.length ? result.join(' + ') + ' per side' : '45 lb bar only';
+}
+
 function renderActiveWorkout() {
   hide('home-idle'); show('home-active');
   hide('home-bottom-idle'); show('home-bottom-active');
@@ -302,12 +328,23 @@ function renderActiveWorkout() {
   const prMap = {};
   prs.forEach(p => { prMap[p.exerciseId] = p; });
 
+  const plateBtnStyle = showPlateMath
+    ? `background:var(--accent);color:#fff;border-color:var(--accent);`
+    : ``;
+
   let html = `<div class="workout-header">
-    <div class="workout-title">${esc(session.routineName)}</div>
-    <div style="font-size:15px;font-weight:600;color:var(--accent);margin-top:2px;">${esc(session.dayName)}</div>
-    <div class="workout-meta">${formatDate(session.date)}${session.bodyweight
-      ? ' · BW: ' + session.bodyweight + ' lbs'
-      : ' &nbsp;<span style="color:var(--text3);font-size:12px;">tap ⚖️ to log BW</span>'}</div>
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;">
+      <div>
+        <div class="workout-title">${esc(session.routineName)}</div>
+        <div style="font-size:15px;font-weight:600;color:var(--accent);margin-top:2px;">${esc(session.dayName)}</div>
+        <div class="workout-meta">${formatDate(session.date)}${session.bodyweight
+          ? ' · BW: ' + session.bodyweight + ' lbs'
+          : ' &nbsp;<span style="color:var(--text3);font-size:12px;">tap ⚖️ to log BW</span>'}</div>
+      </div>
+      <button class="btn-inline" onclick="togglePlateMath()" style="margin-top:4px;flex-shrink:0;${plateBtnStyle}">
+        🏋️ Plates
+      </button>
+    </div>
   </div><div style="height:12px;"></div>`;
 
   session.exercises.forEach((ex, exIdx) => {
@@ -408,6 +445,12 @@ function renderExerciseBlock(ex, exIdx, pr) {
       </div>
       <button class="btn-inline" onclick="adjustWeight(${exIdx},2.5)" style="padding:6px 10px;font-size:12px;">+2.5</button>
     </div>`;
+    if (showPlateMath && ex.isBarbell) {
+      const plates = calcPlates(ex.targetWeight);
+      html += `<div style="padding:6px 14px 8px;font-size:13px;color:var(--accent);font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:0.04em;">
+        🏋️ ${plates}
+      </div>`;
+    }
   }
   html += `<div class="sets-area" id="sets-area-${exIdx}">`;
   ex.sets.forEach((set, setIdx) => { html += renderSetRow(exIdx, setIdx, set, ex.targetWeight); });
@@ -540,6 +583,7 @@ function addExtraExercise(exId) {
   if (!ex) return;
 
   const isBodyweight = !!ex.bodyweight;
+  const isBarbell = !!ex.barbell;
   let lastWeight = isBodyweight ? 0 : 45, lastReps = 5, lastDate = null;
   for (let i = allSessions.length - 1; i >= 0; i--) {
     const s = allSessions[i];
@@ -553,7 +597,7 @@ function addExtraExercise(exId) {
 
   session.exercises.push({
     exerciseId: exId, name: ex.name, targetWeight: lastWeight,
-    lastWeight, lastReps, lastDate, isBodyweight,
+    lastWeight, lastReps, lastDate, isBodyweight, isBarbell,
     repMin: null, repMax: null, targetSets: 3,
     sets: Array.from({ length: 3 }, () => ({ weight: lastWeight, reps: 0, logged: false, skipped: false })),
     skipped: false, pending: false, extra: true
