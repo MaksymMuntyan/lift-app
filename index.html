@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="LIFT" />
@@ -31,6 +31,14 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+    /* Prevent double-tap zoom on all interactive elements */
+    button, input, select, textarea, a,
+    .list-item, .nav-tab, .numpad-key, .stepper-btn, .reps-btn,
+    .weight-display, .reps-display, .toggle-chip, .btn-inline,
+    .slot-item, .modal-handle, .add-set-btn {
+      touch-action: manipulation;
+    }
 
     html, body {
       background: var(--bg);

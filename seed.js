@@ -83,7 +83,7 @@ const SEED = {
 
     // ── MACKY 4x Upper Lower─────────────────────────────────────────
     {
-      name: 'Macky 4x',
+      name: 'Macky 4x Upper Lower',
       days: [
         {
           name: 'Day A (Upper 1)',
@@ -135,7 +135,7 @@ const SEED = {
         {
           name: 'Day A (Push)',
           slots: [
-            { exercises: ['Squat'],                                          sets: 3, repMin: 5,  repMax: 5  },
+            { exercises: ['Squat'],                                          sets: 3, repMin: 3,  repMax: 5  },
             { exercises: ['Ring Dip'],                                       sets: 3, repMin: 8,  repMax: 15 },
             { exercises: ['Weighted Body Row', 'Cable Row', 'Pull-Up'],     sets: 3, repMin: 5,  repMax: 15 },
             { exercises: ['Hip Thrust', 'RDL'],                             sets: 3, repMin: 10, repMax: 12 },
@@ -145,7 +145,7 @@ const SEED = {
         {
           name: 'Day B (Pull)',
           slots: [
-            { exercises: ['Deadlift'],                                       sets: 2, repMin: 5,  repMax: 5  },
+            { exercises: ['Deadlift'],                                       sets: 2, repMin: 3,  repMax: 5  },
             { exercises: ['Weighted Pull-Up'],                               sets: 3, repMin: 6,  repMax: 8  },
             { exercises: ['Incline Push-Up'],                                sets: 3, repMin: 8,  repMax: 15 },
             { exercises: ['Dumbbell Split Squat', 'Pistol Squat'],          sets: 3, repMin: 10, repMax: 12 },

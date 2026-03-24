@@ -357,7 +357,10 @@ function renderExerciseBlock(ex, exIdx, pr) {
   const hasRange = ex.repMin || ex.repMax;
   const rangeLabel = ex.repMin && ex.repMax ? `${ex.repMin}–${ex.repMax} reps`
                    : ex.repMin ? `${ex.repMin}+ reps`
-                   : ex.repMax ? `≤${ex.repMax} reps` : '';
+                   : ex.repMax ? `up to ${ex.repMax} reps` : '';
+  const setsLabel = hasRange
+    ? `${ex.targetSets} sets of ${rangeLabel}`
+    : `${ex.targetSets} sets`;
 
   let dpHint = '';
   if (hasRange && ex.lastDate) {
@@ -371,7 +374,7 @@ function renderExerciseBlock(ex, exIdx, pr) {
     <div class="exercise-block-header">
       <div>
         <div class="exercise-name">${esc(ex.name)}</div>
-        ${hasRange ? `<div style="font-size:13px;color:var(--text2);margin-top:1px;">${ex.targetSets}×${rangeLabel}</div>` : ''}
+        ${hasRange ? `<div style="font-size:13px;color:var(--text2);margin-top:1px;">${setsLabel}</div>` : ''}
       </div>
       <div style="display:flex;align-items:center;gap:8px;">
         ${isNewPR ? '<span class="badge badge-pr pr-flash">PR 🔥</span>' : ''}
@@ -382,7 +385,7 @@ function renderExerciseBlock(ex, exIdx, pr) {
   if (ex.lastDate)
     html += `<div class="last-session">Last: <span>${ex.lastWeight} lbs × ${ex.lastReps}</span> on ${formatDate(ex.lastDate)}${dpHint ? '&nbsp;&nbsp;' + dpHint : ''}</div>`;
   else
-    html += `<div class="last-session" style="color:var(--text3)">No previous data${hasRange ? ' · Target: ' + rangeLabel : ''}</div>`;
+    html += `<div class="last-session" style="color:var(--text3)">No previous data${hasRange ? ' · Target: ' + setsLabel : ''}</div>`;
 
   html += `<div class="weight-selector">
     <span class="weight-label">Target</span>
@@ -690,7 +693,13 @@ function computeAllPRs() {
           weight: st.weight, reps: st.reps, bw: st.bodyweight, date: s.date };
     });
   });
-  return Object.values(prMap).sort((a,b) => b.weight - a.weight);
+  // Sort: weighted exercises first (by weight desc), then bodyweight exercises (weight=0) by name
+  return Object.values(prMap).sort((a, b) => {
+    if (a.weight > 0 && b.weight === 0) return -1;
+    if (a.weight === 0 && b.weight > 0) return 1;
+    if (a.weight !== b.weight) return b.weight - a.weight;
+    return a.name.localeCompare(b.name);
+  });
 }
 
 function renderPRBoard() {
@@ -1040,7 +1049,12 @@ function numpadKey(k) {
 }
 
 function closeNumpad() { closeModal('modal-numpad'); }
-function confirmNumpad() { const val=parseFloat(numpadValue); if(val>0&&numpadCallback)numpadCallback(val); closeModal('modal-numpad'); }
+function confirmNumpad() {
+  const val = parseFloat(numpadValue);
+  // Allow 0 for bodyweight exercises, just not NaN or negative
+  if (!isNaN(val) && val >= 0 && numpadCallback) numpadCallback(val);
+  closeModal('modal-numpad');
+}
 
 // ── MODALS ─────────────────────────────────────────────────
 
