@@ -1230,7 +1230,8 @@ async function pushBackupToGithub(userNum) {
   const userName = USERS[userNum].name.toLowerCase();
   const filename = `backup-${userName}.json`;
   const content  = JSON.stringify(buildBackupData(userNum), null, 2);
-  const encoded  = btoa(unescape(encodeURIComponent(content)));
+  // Safe base64 encoding that handles all unicode characters
+  const encoded  = btoa(encodeURIComponent(content).replace(/%([0-9A-F]{2})/g, (_, p1) => String.fromCharCode(parseInt(p1, 16))));
   const apiUrl   = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${filename}`;
 
   // Get existing file SHA if it exists (required to update)
