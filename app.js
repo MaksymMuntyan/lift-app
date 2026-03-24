@@ -223,7 +223,8 @@ function resolveInlineSlot(exIdx, choiceId) {
   const ex = exercises.find(e => e.id === choiceId);
   if (!ex) return;
 
-  let lastWeight = 45, lastReps = 5, lastDate = null;
+  const isBodyweight = !!ex.bodyweight;
+  let lastWeight = isBodyweight ? 0 : 45, lastReps = 5, lastDate = null;
   for (let i = allSessions.length - 1; i >= 0; i--) {
     const s = allSessions[i];
     const match = s.sets.filter(st => st.exerciseId === choiceId);
@@ -237,7 +238,7 @@ function resolveInlineSlot(exIdx, choiceId) {
   const targetSets = slot.sets || 3;
   session.exercises[exIdx] = {
     exerciseId: choiceId, name: ex.name, targetWeight: lastWeight,
-    lastWeight, lastReps, lastDate,
+    lastWeight, lastReps, lastDate, isBodyweight,
     repMin: slot.repMin, repMax: slot.repMax, targetSets,
     sets: Array.from({ length: targetSets }, () => ({ weight: lastWeight, reps: 0, logged: false })),
     skipped: false
@@ -266,7 +267,8 @@ function buildSessionExercises() {
     const ex = exercises.find(e => e.id === exId);
     if (!ex) return null;
 
-    let lastWeight = 45, lastReps = 5, lastDate = null;
+    const isBodyweight = !!ex.bodyweight;
+    let lastWeight = isBodyweight ? 0 : 45, lastReps = 5, lastDate = null;
     for (let i = allSessions.length - 1; i >= 0; i--) {
       const s = allSessions[i];
       const match = s.sets.filter(st => st.exerciseId === exId);
@@ -280,7 +282,7 @@ function buildSessionExercises() {
     const targetSets = slot.sets || 3;
     return {
       exerciseId: exId, name: ex.name, targetWeight: lastWeight,
-      lastWeight, lastReps, lastDate,
+      lastWeight, lastReps, lastDate, isBodyweight,
       repMin: slot.repMin, repMax: slot.repMax, targetSets,
       sets: Array.from({ length: targetSets }, () => ({ weight: lastWeight, reps: 0, logged: false })),
       skipped: false, pending: false
@@ -382,21 +384,32 @@ function renderExerciseBlock(ex, exIdx, pr) {
       </div>
     </div>`;
 
-  if (ex.lastDate)
-    html += `<div class="last-session">Last: <span>${ex.lastWeight} lbs × ${ex.lastReps}</span> on ${formatDate(ex.lastDate)}${dpHint ? '&nbsp;&nbsp;' + dpHint : ''}</div>`;
-  else
+  if (ex.lastDate) {
+    const lastStr = ex.isBodyweight
+      ? `BW × ${ex.lastReps}`
+      : `${ex.lastWeight} lbs × ${ex.lastReps}`;
+    html += `<div class="last-session">Last: <span>${lastStr}</span> on ${formatDate(ex.lastDate)}${dpHint ? '&nbsp;&nbsp;' + dpHint : ''}</div>`;
+  } else {
     html += `<div class="last-session" style="color:var(--text3)">No previous data${hasRange ? ' · Target: ' + setsLabel : ''}</div>`;
+  }
 
-  html += `<div class="weight-selector">
-    <span class="weight-label">Target</span>
-    <div class="weight-stepper">
-      <button class="stepper-btn" onclick="adjustWeight(${exIdx},-5)">−</button>
-      <div class="weight-display" onclick="openWeightNumpad(${exIdx})">${ex.targetWeight}<span class="weight-unit">lbs</span></div>
-      <button class="stepper-btn" onclick="adjustWeight(${exIdx},5)">+</button>
-    </div>
-    <button class="btn-inline" onclick="adjustWeight(${exIdx},2.5)" style="padding:6px 10px;font-size:12px;">+2.5</button>
-  </div>
-  <div class="sets-area" id="sets-area-${exIdx}">`;
+  if (ex.isBodyweight) {
+    html += `<div class="weight-selector">
+      <span class="weight-label">Weight</span>
+      <div style="flex:1;font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;color:var(--text2);padding:0 8px;">Bodyweight</div>
+    </div>`;
+  } else {
+    html += `<div class="weight-selector">
+      <span class="weight-label">Target</span>
+      <div class="weight-stepper">
+        <button class="stepper-btn" onclick="adjustWeight(${exIdx},-5)">−</button>
+        <div class="weight-display" onclick="openWeightNumpad(${exIdx})">${ex.targetWeight}<span class="weight-unit">lbs</span></div>
+        <button class="stepper-btn" onclick="adjustWeight(${exIdx},5)">+</button>
+      </div>
+      <button class="btn-inline" onclick="adjustWeight(${exIdx},2.5)" style="padding:6px 10px;font-size:12px;">+2.5</button>
+    </div>`;
+  }
+  html += `<div class="sets-area" id="sets-area-${exIdx}">`;
   ex.sets.forEach((set, setIdx) => { html += renderSetRow(exIdx, setIdx, set, ex.targetWeight); });
   html += `</div><button class="add-set-btn" onclick="addSet(${exIdx})">+ Add Set</button></div>`;
   return html;
@@ -405,6 +418,7 @@ function renderExerciseBlock(ex, exIdx, pr) {
 function renderSetRow(exIdx, setIdx, set, targetWeight) {
   const ex = session ? session.exercises[exIdx] : null;
   const w = set.logged ? set.weight : targetWeight;
+  const wLabel = (ex && ex.isBodyweight) ? 'BW' : `${w} lbs`;
   const statusIcon  = set.logged ? (set.reps > 0 ? '✓' : '✗') : '';
   const statusColor = set.logged ? (set.reps > 0 ? 'var(--green)' : 'var(--red)') : '';
   let repsColor = 'var(--text)';
@@ -415,7 +429,7 @@ function renderSetRow(exIdx, setIdx, set, targetWeight) {
   }
   return `<div class="set-row" id="set-row-${exIdx}-${setIdx}"${set.skipped?' style="opacity:0.35;"':''}>
     <div class="set-num">S${setIdx+1}</div>
-    <div class="set-weight">${w} lbs</div>
+    <div class="set-weight">${wLabel}</div>
     <div class="reps-input-row">
       <button class="reps-btn" onclick="adjustReps(${exIdx},${setIdx},-1)" ${set.skipped?'disabled':''}>−</button>
       <div class="reps-display" onclick="openRepsNumpad(${exIdx},${setIdx})" style="color:${set.logged&&set.reps>0?repsColor:'var(--text)'};">${set.reps>0?set.reps:'—'}</div>
@@ -525,7 +539,8 @@ function addExtraExercise(exId) {
   const ex = exercises.find(e => e.id === exId);
   if (!ex) return;
 
-  let lastWeight = 45, lastReps = 5, lastDate = null;
+  const isBodyweight = !!ex.bodyweight;
+  let lastWeight = isBodyweight ? 0 : 45, lastReps = 5, lastDate = null;
   for (let i = allSessions.length - 1; i >= 0; i--) {
     const s = allSessions[i];
     const match = s.sets.filter(st => st.exerciseId === exId);
@@ -538,7 +553,7 @@ function addExtraExercise(exId) {
 
   session.exercises.push({
     exerciseId: exId, name: ex.name, targetWeight: lastWeight,
-    lastWeight, lastReps, lastDate,
+    lastWeight, lastReps, lastDate, isBodyweight,
     repMin: null, repMax: null, targetSets: 3,
     sets: Array.from({ length: 3 }, () => ({ weight: lastWeight, reps: 0, logged: false, skipped: false })),
     skipped: false, pending: false, extra: true

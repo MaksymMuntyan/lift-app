@@ -13,46 +13,46 @@
 
 const SEED = {
 
-  // ── EXERCISES (shared library, same for both users) ────
+  // ── EXERCISES ─────────────────────────────────────────
+  // bodyweight: true  →  weight defaults to 0, no weight selector shown
   exercises: [
-    { name: 'Barbell Shrug',                 category: 'Upper Back' },
-    { name: 'Bench Press',                   category: 'Chest' },
-    { name: 'Cable Crunch',                  category: 'Abs' },
-    { name: 'Cable Forearm Curl',            category: 'Forearms' },
-    { name: 'Cable Row',                     category: 'Back' },
+    { name: 'Barbell Shrug',                 category: 'Upper Back'      },
+    { name: 'Bench Press',                   category: 'Chest'           },
+    { name: 'Cable Crunch',                  category: 'Abs'             },
+    { name: 'Cable Forearm Curl',            category: 'Forearms'        },
+    { name: 'Cable Row',                     category: 'Back'            },
     { name: 'Deadlift',                      category: 'Posterior Chain' },
-    { name: 'Dip',                           category: 'Chest' },
-    { name: 'Dumbbell Curl',                 category: 'Biceps' },
-    { name: 'Dumbbell Incline Press',        category: 'Chest' },
-    { name: 'Dumbbell Row',                  category: 'Back' },
-    { name: 'Dumbbell Split Squat',          category: 'Quads' },
-    { name: 'Dumbbell Wrist Curl',           category: 'Forearms' },
+    { name: 'Dip',                           category: 'Chest',          bodyweight: true },
+    { name: 'Dumbbell Curl',                 category: 'Biceps'          },
+    { name: 'Dumbbell Incline Press',        category: 'Chest'           },
+    { name: 'Dumbbell Row',                  category: 'Back'            },
+    { name: 'Dumbbell Split Squat',          category: 'Quads'           },
+    { name: 'Dumbbell Wrist Curl',           category: 'Forearms'        },
     { name: 'Hip Thrust',                    category: 'Posterior Chain' },
-    { name: 'Incline Dumbbell Curl',         category: 'Biceps' },
-    { name: 'Incline Push-Up',               category: 'Chest' },
-    { name: 'Overhead Tricep Extension',     category: 'Triceps' },
-    { name: 'Pistol Squat',                  category: 'Quads' },
-    { name: 'Preacher Hammer Curl',          category: 'Biceps' },
-    { name: 'Pull-Up',                       category: 'Back' },
+    { name: 'Incline Dumbbell Curl',         category: 'Biceps'          },
+    { name: 'Incline Push-Up',               category: 'Chest',          bodyweight: true },
+    { name: 'Overhead Tricep Extension',     category: 'Triceps'         },
+    { name: 'Pistol Squat',                  category: 'Quads',          bodyweight: true },
+    { name: 'Preacher Hammer Curl',          category: 'Biceps'          },
+    { name: 'Pull-Up',                       category: 'Back',           bodyweight: true },
     { name: 'RDL',                           category: 'Posterior Chain' },
-    { name: 'Ring Dip',                      category: 'Chest' },
-    { name: 'Ring Fly',                      category: 'Chest' },
-    { name: 'Single Cable Forearm Curl',     category: 'Forearms' },
-    { name: 'Squat',                         category: 'Quads' },
-    { name: 'Top Bar Deep Shoulder Push-Up', category: 'Shoulders' },
-    { name: 'Tricep Pushdown',               category: 'Triceps' },
-    { name: 'Weighted Body Row',             category: 'Back' },
-    { name: 'Weighted Dip',                  category: 'Chest' },
-    { name: 'Weighted Pistol Squat',         category: 'Quads' },
-    { name: 'Weighted Pull-Up',              category: 'Back' },
-    { name: 'Wide Towel Pull-Up',            category: 'Forearms' },
+    { name: 'Ring Dip',                      category: 'Chest'           },
+    { name: 'Ring Fly',                      category: 'Chest'           },
+    { name: 'Single Cable Forearm Curl',     category: 'Forearms'        },
+    { name: 'Squat',                         category: 'Quads'           },
+    { name: 'Top Bar Deep Shoulder Push-Up', category: 'Shoulders',      bodyweight: true },
+    { name: 'Tricep Pushdown',               category: 'Triceps'         },
+    { name: 'Weighted Body Row',             category: 'Back'            },
+    { name: 'Weighted Dip',                  category: 'Chest'           },
+    { name: 'Weighted Pistol Squat',         category: 'Quads'           },
+    { name: 'Weighted Pull-Up',              category: 'Back'            },
+    { name: 'Wide Towel Pull-Up',            category: 'Forearms',       bodyweight: true },
   ],
 
   // ── ROUTINES ───────────────────────────────────────────
-  // exercises: one name = straight set, multiple = OR choice
   routines: [
 
-    // ── MACKY 3x ─────────────────────────────────────────
+    // ── MACKY 3x Full Body ────────────────────────────────
     {
       name: 'Macky 3x Full Body',
       days: [
@@ -81,7 +81,7 @@ const SEED = {
       ]
     },
 
-    // ── MACKY 4x Upper Lower─────────────────────────────────────────
+    // ── MACKY 4x Upper Lower ──────────────────────────────
     {
       name: 'Macky 4x Upper Lower',
       days: [
@@ -98,11 +98,11 @@ const SEED = {
         {
           name: 'Day B (Lower 1)',
           slots: [
-            { exercises: ['Deadlift'],                                                              sets: 2, repMin: 3,  repMax: 5  },
-            { exercises: ['Dumbbell Split Squat', 'Weighted Pistol Squat', 'Pistol Squat'],        sets: 3, repMin: 8,  repMax: 12 },
-            { exercises: ['Cable Crunch'],                                                          sets: 3, repMin: 8,  repMax: 12 },
-            { exercises: ['Preacher Hammer Curl', 'Wide Towel Pull-Up', 'Cable Forearm Curl'],     sets: 3, repMin: 10, repMax: 15 },
-            { exercises: ['Preacher Hammer Curl', 'Wide Towel Pull-Up', 'Cable Forearm Curl'],     sets: 3, repMin: 10, repMax: 15 },
+            { exercises: ['Deadlift'],                                                          sets: 2, repMin: 3,  repMax: 5  },
+            { exercises: ['Dumbbell Split Squat', 'Weighted Pistol Squat', 'Pistol Squat'],    sets: 3, repMin: 8,  repMax: 12 },
+            { exercises: ['Cable Crunch'],                                                      sets: 3, repMin: 8,  repMax: 12 },
+            { exercises: ['Preacher Hammer Curl', 'Wide Towel Pull-Up', 'Cable Forearm Curl'], sets: 3, repMin: 10, repMax: 15 },
+            { exercises: ['Preacher Hammer Curl', 'Wide Towel Pull-Up', 'Cable Forearm Curl'], sets: 3, repMin: 10, repMax: 15 },
           ]
         },
         {
@@ -111,8 +111,8 @@ const SEED = {
             { exercises: ['Weighted Pull-Up'],                                                  sets: 3, repMin: 5,  repMax: 8  },
             { exercises: ['Weighted Dip'],                                                      sets: 3, repMin: 5,  repMax: 8  },
             { exercises: ['Weighted Body Row', 'Cable Row', 'Dumbbell Row'],                   sets: 3, repMin: 8,  repMax: 12 },
-            { exercises: ['Overhead Tricep Extension'],                                        sets: 3, repMin: 10, repMax: 12 },
-            { exercises: ['Incline Dumbbell Curl'],                                            sets: 3, repMin: 10, repMax: 12 },
+            { exercises: ['Overhead Tricep Extension'],                                         sets: 3, repMin: 10, repMax: 12 },
+            { exercises: ['Incline Dumbbell Curl'],                                             sets: 3, repMin: 10, repMax: 12 },
           ]
         },
         {
@@ -135,21 +135,21 @@ const SEED = {
         {
           name: 'Day A (Push)',
           slots: [
-            { exercises: ['Squat'],                                          sets: 3, repMin: 3,  repMax: 5  },
-            { exercises: ['Ring Dip'],                                       sets: 3, repMin: 8,  repMax: 15 },
-            { exercises: ['Weighted Body Row', 'Cable Row', 'Pull-Up'],     sets: 3, repMin: 5,  repMax: 15 },
-            { exercises: ['Hip Thrust', 'RDL'],                             sets: 3, repMin: 10, repMax: 12 },
-            { exercises: ['Cable Crunch'],                                   sets: 3, repMin: 10, repMax: 12 },
+            { exercises: ['Squat'],                                                             sets: 3, repMin: 3,  repMax: 5  },
+            { exercises: ['Ring Dip'],                                                          sets: 3, repMin: 8,  repMax: 15 },
+            { exercises: ['Weighted Body Row', 'Cable Row', 'Pull-Up'],                        sets: 3, repMin: 5,  repMax: 15 },
+            { exercises: ['Hip Thrust', 'RDL'],                                                sets: 3, repMin: 10, repMax: 12 },
+            { exercises: ['Cable Crunch'],                                                      sets: 3, repMin: 10, repMax: 12 },
           ]
         },
         {
           name: 'Day B (Pull)',
           slots: [
-            { exercises: ['Deadlift'],                                       sets: 2, repMin: 3,  repMax: 5  },
-            { exercises: ['Weighted Pull-Up'],                               sets: 3, repMin: 6,  repMax: 8  },
-            { exercises: ['Incline Push-Up'],                                sets: 3, repMin: 8,  repMax: 15 },
-            { exercises: ['Dumbbell Split Squat', 'Pistol Squat'],          sets: 3, repMin: 10, repMax: 12 },
-            { exercises: ['Cable Crunch'],                                   sets: 3, repMin: 10, repMax: 12 },
+            { exercises: ['Deadlift'],                                                          sets: 2, repMin: 3,  repMax: 5  },
+            { exercises: ['Weighted Pull-Up'],                                                  sets: 3, repMin: 6,  repMax: 8  },
+            { exercises: ['Incline Push-Up'],                                                   sets: 3, repMin: 8,  repMax: 15 },
+            { exercises: ['Dumbbell Split Squat', 'Pistol Squat'],                             sets: 3, repMin: 10, repMax: 12 },
+            { exercises: ['Cable Crunch'],                                                      sets: 3, repMin: 10, repMax: 12 },
           ]
         },
       ]
@@ -160,7 +160,7 @@ const SEED = {
   // ── MAX'S SESSION HISTORY (User 1 only) ───────────────
   maxSessions: [
     {
-      date: '2026-02-27', routine: 'Macky 4x', day: 'Day C (Upper 2)', bodyweight: 156.8,
+      date: '2026-02-27', routine: 'Macky 4x Upper Lower', day: 'Day C (Upper 2)', bodyweight: 156.8,
       sets: [
         { exercise: 'Weighted Pull-Up', weight: 45, reps: 6 },
         { exercise: 'Weighted Pull-Up', weight: 65, reps: 6 },
@@ -171,7 +171,7 @@ const SEED = {
       ]
     },
     {
-      date: '2026-03-02', routine: 'Macky 4x', day: 'Day A (Upper 1)', bodyweight: 156,
+      date: '2026-03-02', routine: 'Macky 4x Upper Lower', day: 'Day A (Upper 1)', bodyweight: 156,
       sets: [
         { exercise: 'Weighted Dip', weight: 70, reps: 6 },
         { exercise: 'Weighted Dip', weight: 80, reps: 4 },
@@ -194,7 +194,7 @@ const SEED = {
       ]
     },
     {
-      date: '2026-03-04', routine: 'Macky 4x', day: 'Day B (Lower 1)', bodyweight: 156,
+      date: '2026-03-04', routine: 'Macky 4x Upper Lower', day: 'Day B (Lower 1)', bodyweight: 156,
       sets: [
         { exercise: 'Deadlift', weight: 135, reps: 5 },
         { exercise: 'Deadlift', weight: 225, reps: 5 },
@@ -214,7 +214,7 @@ const SEED = {
       ]
     },
     {
-      date: '2026-03-06', routine: 'Macky 4x', day: 'Day A (Upper 1)', bodyweight: 159.2,
+      date: '2026-03-06', routine: 'Macky 4x Upper Lower', day: 'Day A (Upper 1)', bodyweight: 159.2,
       sets: [
         { exercise: 'Bench Press', weight: 155, reps: 5 },
         { exercise: 'Bench Press', weight: 165, reps: 4 },
@@ -235,7 +235,7 @@ const SEED = {
       ]
     },
     {
-      date: '2026-03-07', routine: 'Macky 4x', day: 'Day D (Lower 2)', bodyweight: 157,
+      date: '2026-03-07', routine: 'Macky 4x Upper Lower', day: 'Day D (Lower 2)', bodyweight: 157,
       sets: [
         { exercise: 'Squat', weight: 175, reps: 5 },
         { exercise: 'Squat', weight: 175, reps: 5 },
@@ -255,7 +255,7 @@ const SEED = {
       ]
     },
     {
-      date: '2026-03-09', routine: 'Macky 4x', day: 'Day A (Upper 1)', bodyweight: 157,
+      date: '2026-03-09', routine: 'Macky 4x Upper Lower', day: 'Day A (Upper 1)', bodyweight: 157,
       sets: [
         { exercise: 'Bench Press', weight: 165, reps: 5 },
         { exercise: 'Bench Press', weight: 165, reps: 5 },
@@ -275,7 +275,7 @@ const SEED = {
       ]
     },
     {
-      date: '2026-03-11', routine: 'Macky 4x', day: 'Day B (Lower 1)', bodyweight: 155,
+      date: '2026-03-11', routine: 'Macky 4x Upper Lower', day: 'Day B (Lower 1)', bodyweight: 155,
       sets: [
         { exercise: 'Deadlift', weight: 225, reps: 3 },
         { exercise: 'Deadlift', weight: 225, reps: 2 },
@@ -294,7 +294,7 @@ const SEED = {
       ]
     },
     {
-      date: '2026-03-13', routine: 'Macky 4x', day: 'Day C (Upper 2)', bodyweight: 155,
+      date: '2026-03-13', routine: 'Macky 4x Upper Lower', day: 'Day C (Upper 2)', bodyweight: 155,
       sets: [
         { exercise: 'Weighted Pull-Up', weight: 65, reps: 6 },
         { exercise: 'Weighted Pull-Up', weight: 65, reps: 6 },
@@ -314,7 +314,7 @@ const SEED = {
       ]
     },
     {
-      date: '2026-03-14', routine: 'Macky 4x', day: 'Day D (Lower 2)', bodyweight: 155,
+      date: '2026-03-14', routine: 'Macky 4x Upper Lower', day: 'Day D (Lower 2)', bodyweight: 155,
       sets: [
         { exercise: 'Squat', weight: 175, reps: 5 },
         { exercise: 'Squat', weight: 185, reps: 5 },
@@ -334,7 +334,7 @@ const SEED = {
       ]
     },
     {
-      date: '2026-03-16', routine: 'Macky 4x', day: 'Day A (Upper 1)', bodyweight: 155.6,
+      date: '2026-03-16', routine: 'Macky 4x Upper Lower', day: 'Day A (Upper 1)', bodyweight: 155.6,
       sets: [
         { exercise: 'Bench Press', weight: 170, reps: 5 },
         { exercise: 'Bench Press', weight: 170, reps: 3 },
@@ -354,7 +354,7 @@ const SEED = {
       ]
     },
     {
-      date: '2026-03-18', routine: 'Macky 4x', day: 'Day B (Lower 1)', bodyweight: 155.6,
+      date: '2026-03-18', routine: 'Macky 4x Upper Lower', day: 'Day B (Lower 1)', bodyweight: 155.6,
       sets: [
         { exercise: 'Deadlift', weight: 225, reps: 3 },
         { exercise: 'Deadlift', weight: 245, reps: 2 },
@@ -374,7 +374,7 @@ const SEED = {
       ]
     },
     {
-      date: '2026-03-20', routine: 'Macky 4x', day: 'Day C (Upper 2)', bodyweight: 154.6,
+      date: '2026-03-20', routine: 'Macky 4x Upper Lower', day: 'Day C (Upper 2)', bodyweight: 154.6,
       sets: [
         { exercise: 'Weighted Pull-Up', weight: 70, reps: 5 },
         { exercise: 'Weighted Pull-Up', weight: 70, reps: 4 },
@@ -394,7 +394,7 @@ const SEED = {
       ]
     },
     {
-      date: '2026-03-21', routine: 'Macky 4x', day: 'Day D (Lower 2)', bodyweight: 153.4,
+      date: '2026-03-21', routine: 'Macky 4x Upper Lower', day: 'Day D (Lower 2)', bodyweight: 153.4,
       sets: [
         { exercise: 'Squat', weight: 195, reps: 2 },
         { exercise: 'Squat', weight: 185, reps: 5 },
@@ -414,7 +414,7 @@ const SEED = {
       ]
     },
     {
-      date: '2026-03-23', routine: 'Macky 4x', day: 'Day A (Upper 1)', bodyweight: 154.4,
+      date: '2026-03-23', routine: 'Macky 4x Upper Lower', day: 'Day A (Upper 1)', bodyweight: 154.4,
       sets: [
         { exercise: 'Bench Press', weight: 175, reps: 4 },
         { exercise: 'Bench Press', weight: 175, reps: 3 },
@@ -437,7 +437,7 @@ const SEED = {
 
   // ── LAURA'S SESSION HISTORY (User 2 only) ─────────────
   lauraSessions: [
-    // Add Laura's history here when you have it, same format as above
+    // Add Laura's history here when you have it
   ],
 
   // ── BODYWEIGHT LOGS ────────────────────────────────────
@@ -477,7 +477,7 @@ const SEED = {
     const userName       = userNum === 1 ? 'Max' : 'Laura';
     console.log(`Installing seed data for ${userName} (User ${userNum})...`);
 
-    // Exercises
+    // Exercises — include bodyweight flag
     const existingEx = get('exercises') || [];
     const exMap = {};
     existingEx.forEach(e => { exMap[e.name] = e.id; });
@@ -485,8 +485,12 @@ const SEED = {
     this.exercises.forEach(ex => {
       if (!exMap[ex.name]) {
         const id = Date.now().toString(36) + Math.random().toString(36).slice(2,6);
-        exercises.push({ id, name: ex.name, category: ex.category || '' });
+        exercises.push({ id, name: ex.name, category: ex.category || '', bodyweight: ex.bodyweight || false });
         exMap[ex.name] = id;
+      } else {
+        // Update existing exercise with bodyweight flag if missing
+        const existing = exercises.find(e => e.name === ex.name);
+        if (existing && ex.bodyweight) existing.bodyweight = true;
       }
     });
     set('exercises', exercises);
