@@ -859,32 +859,56 @@ function renderChart() {
 
   const sessions = getSessions().sort((a,b) => a.date.localeCompare(b.date));
   const bws = getBodyweights().sort((a,b) => a.date.localeCompare(b.date));
-  const allDates = new Set([...sessions.map(s=>s.date), ...bws.map(b=>b.date)]);
-  const dates = [...allDates].sort();
 
   const datasets = activeSeries.map((series,i) => {
     const color = CHART_COLORS[i % CHART_COLORS.length];
     if (series.type === 'bodyweight') {
-      return { label:'Bodyweight', data: bws.map(b=>({x:b.date,y:b.weight})),
-        borderColor:color, backgroundColor:color+'22', tension:0.3, pointRadius:4, pointBackgroundColor:color };
+      return {
+        label: 'Bodyweight',
+        data: bws.map(b => ({ x: b.date, y: b.weight })),
+        borderColor: color, backgroundColor: color+'22', tension: 0.3,
+        pointRadius: 4, pointBackgroundColor: color
+      };
     } else {
-      const data = dates.map(d => {
-        let best = null;
-        sessions.filter(s=>s.date===d).forEach(s =>
-          s.sets.filter(st=>st.exerciseId===series.id).forEach(st => { if (!best||st.weight>best) best=st.weight; }));
-        return best !== null ? {x:d,y:best} : null;
-      }).filter(Boolean);
-      return { label:series.label, data, borderColor:color, backgroundColor:color+'22', tension:0.3, pointRadius:4, pointBackgroundColor:color, spanGaps:true };
+      // Build one data point per date this exercise was logged
+      const byDate = {};
+      sessions.forEach(s => {
+        s.sets.filter(st => st.exerciseId === series.id).forEach(st => {
+          if (!byDate[s.date] || st.weight > byDate[s.date]) byDate[s.date] = st.weight;
+        });
+      });
+      const data = Object.entries(byDate).sort((a,b) => a[0].localeCompare(b[0])).map(([date, weight]) => ({ x: date, y: weight }));
+      return {
+        label: series.label, data,
+        borderColor: color, backgroundColor: color+'22', tension: 0.3,
+        pointRadius: 4, pointBackgroundColor: color, spanGaps: false
+      };
     }
   });
 
   chartInstance = new Chart(ctx, {
-    type:'line', data:{datasets},
-    options:{ responsive:true, maintainAspectRatio:false, interaction:{mode:'index',intersect:false},
-      plugins:{ legend:{display:activeSeries.length>1,labels:{color:'#888',font:{family:'Barlow Condensed',size:13,weight:'700'},boxWidth:12}},
-        tooltip:{backgroundColor:'#ffffff',borderColor:'#d8d8d4',borderWidth:1,titleColor:'#2563eb',bodyColor:'#111111',padding:10}},
-      scales:{ x:{type:'category',ticks:{color:'#666666',font:{family:'Barlow',size:11},maxRotation:45},grid:{color:'#ebebeb'}},
-               y:{ticks:{color:'#666666',font:{family:'Barlow Condensed',size:13,weight:'700'}},grid:{color:'#ebebeb'}} } }
+    type: 'line',
+    data: { datasets },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { mode: 'nearest', intersect: false, axis: 'x' },
+      plugins: {
+        legend: { display: activeSeries.length > 1, labels: { color:'#888', font:{ family:'Barlow Condensed', size:13, weight:'700' }, boxWidth:12 } },
+        tooltip: { backgroundColor:'#ffffff', borderColor:'#d8d8d4', borderWidth:1, titleColor:'#2563eb', bodyColor:'#111111', padding:10 }
+      },
+      scales: {
+        x: {
+          type: 'time',
+          time: { unit: 'day', tooltipFormat: 'MMM d', displayFormats: { day: 'MMM d' } },
+          ticks: { color:'#666666', font:{ family:'Barlow', size:11 }, maxRotation: 45, autoSkip: true, maxTicksLimit: 8 },
+          grid: { color:'#ebebeb' }
+        },
+        y: {
+          ticks: { color:'#666666', font:{ family:'Barlow Condensed', size:13, weight:'700' } },
+          grid: { color:'#ebebeb' }
+        }
+      }
+    }
   });
 }
 
