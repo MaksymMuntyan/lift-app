@@ -1237,7 +1237,7 @@ async function pushBackupToGithub(userNum) {
   let sha = undefined;
   try {
     const check = await fetch(apiUrl + '?t=' + Date.now(), {
-      headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json', 'Cache-Control': 'no-cache' }
+      headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json' }
     });
     console.log(`SHA check for ${filename}: status ${check.status}`);
     if (check.ok) {
@@ -1270,7 +1270,7 @@ async function pushBackupToGithub(userNum) {
   if (res.status === 409 || res.status === 422) {
     try {
       const retry = await fetch(apiUrl + '?t=' + Date.now(), {
-        headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json', 'Cache-Control': 'no-cache' }
+        headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json' }
       });
       if (retry.ok) {
         const retryData = await retry.json();
