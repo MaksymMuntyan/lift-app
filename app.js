@@ -1239,15 +1239,20 @@ async function pushBackupToGithub(userNum) {
     const check = await fetch(apiUrl + '?t=' + Date.now(), {
       headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json', 'Cache-Control': 'no-cache' }
     });
-    if (check.ok) { const existing = await check.json(); if (existing.sha) sha = existing.sha; }
+    console.log(`SHA check for ${filename}: status ${check.status}`);
+    if (check.ok) {
+      const existing = await check.json();
+      if (existing.sha) { sha = existing.sha; console.log(`Got SHA: ${sha.slice(0,8)}...`); }
+    }
     // 404 = file doesn't exist yet, sha stays undefined — that's correct
-  } catch(e) {}
+  } catch(e) { console.log('SHA fetch error:', e.message); }
 
   const body = {
     message: `Auto backup ${USERS[userNum].name} ${new Date().toISOString().slice(0,10)}`,
     content: encoded
   };
   if (sha !== undefined) body.sha = sha;
+  console.log(`Pushing ${filename}, sha included: ${sha !== undefined}`);
 
   const res = await fetch(apiUrl, {
     method: 'PUT',
