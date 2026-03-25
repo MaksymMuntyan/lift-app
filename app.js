@@ -1234,13 +1234,20 @@ async function pushBackupToGithub(userNum) {
   const apiUrl   = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${filename}`;
 
   // Always fetch a fresh SHA immediately before writing — never use a cached value
-  let sha = null;
+  let sha = undefined;
   try {
     const check = await fetch(apiUrl + '?t=' + Date.now(), {
       headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json', 'Cache-Control': 'no-cache' }
     });
-    if (check.ok) { const existing = await check.json(); sha = existing.sha; }
+    if (check.ok) { const existing = await check.json(); if (existing.sha) sha = existing.sha; }
+    // 404 = file doesn't exist yet, sha stays undefined — that's correct
   } catch(e) {}
+
+  const body = {
+    message: `Auto backup ${USERS[userNum].name} ${new Date().toISOString().slice(0,10)}`,
+    content: encoded
+  };
+  if (sha !== undefined) body.sha = sha;
 
   const res = await fetch(apiUrl, {
     method: 'PUT',
@@ -1249,28 +1256,24 @@ async function pushBackupToGithub(userNum) {
       'Accept': 'application/vnd.github.v3+json',
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({
-      message: `Auto backup ${USERS[userNum].name} ${new Date().toISOString().slice(0,10)}`,
-      content: encoded,
-      ...(sha ? { sha } : {})
-    })
+    body: JSON.stringify(body)
   });
 
   if (res.ok) return { ok: true };
   
   // If we get a conflict error, retry once with a fresh SHA
-  if (res.status === 409) {
+  if (res.status === 409 || res.status === 422) {
     try {
       const retry = await fetch(apiUrl + '?t=' + Date.now(), {
         headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json', 'Cache-Control': 'no-cache' }
       });
       if (retry.ok) {
         const retryData = await retry.json();
-        const retrySha = retryData.sha;
+        const retryBody = { ...body, sha: retryData.sha };
         const retryRes = await fetch(apiUrl, {
           method: 'PUT',
           headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: `Auto backup ${USERS[userNum].name} ${new Date().toISOString().slice(0,10)}`, content: encoded, sha: retrySha })
+          body: JSON.stringify(retryBody)
         });
         if (retryRes.ok) return { ok: true };
       }
@@ -1295,9 +1298,11 @@ async function autoBackup() {
 async function runManualBackup() {
   const token = getGithubToken();
   if (!token) { updateBackupStatus('No token saved yet. Enter your token first.', 'var(--red)'); return; }
-  updateBackupStatus('Backing up both users...', 'var(--text2)');
+  updateBackupStatus('Backing up...', 'var(--text2)');
   try {
-    const [r1, r2] = await Promise.all([pushBackupToGithub(1), pushBackupToGithub(2)]);
+    // Sequential — not parallel — avoids SHA race conditions
+    const r1 = await pushBackupToGithub(1);
+    const r2 = await pushBackupToGithub(2);
     if (r1.ok && r2.ok) {
       updateBackupStatus('✓ Max and Laura both backed up to GitHub!', 'var(--green)');
     } else {
