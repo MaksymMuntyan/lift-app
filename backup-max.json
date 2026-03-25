@@ -2,220 +2,220 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-03-25T02:06:51.642Z",
+  "exportDate": "2026-03-25T02:14:41.577Z",
   "exercises": [
     {
-      "id": "mn5ek04u32fl",
+      "id": "mn5etkgy0ckh",
       "name": "Barbell Shrug",
       "category": "Upper Back",
       "bodyweight": false,
       "barbell": true
     },
     {
-      "id": "mn5ek04ut9dm",
+      "id": "mn5etkgy6ste",
       "name": "Bench Press",
       "category": "Chest",
       "bodyweight": false,
       "barbell": true
     },
     {
-      "id": "mn5ek04ushc8",
+      "id": "mn5etkgy9e4h",
       "name": "Cable Crunch",
       "category": "Abs",
       "bodyweight": false,
       "barbell": false
     },
     {
-      "id": "mn5ek04u09k8",
+      "id": "mn5etkgyp8ho",
       "name": "Cable Forearm Curl",
       "category": "Forearms",
       "bodyweight": false,
       "barbell": false
     },
     {
-      "id": "mn5ek04uq5hc",
+      "id": "mn5etkgyteqw",
       "name": "Cable Row",
       "category": "Back",
       "bodyweight": false,
       "barbell": false
     },
     {
-      "id": "mn5ek04umd9i",
+      "id": "mn5etkgym72s",
       "name": "Deadlift",
       "category": "Posterior Chain",
       "bodyweight": false,
       "barbell": true
     },
     {
-      "id": "mn5ek04uo2mt",
+      "id": "mn5etkgyng1e",
       "name": "Dip",
       "category": "Chest",
       "bodyweight": true,
       "barbell": false
     },
     {
-      "id": "mn5ek04ut0h8",
+      "id": "mn5etkgyam9o",
       "name": "Dumbbell Curl",
       "category": "Biceps",
       "bodyweight": false,
       "barbell": false
     },
     {
-      "id": "mn5ek04uquqg",
+      "id": "mn5etkgy631y",
       "name": "Dumbbell Incline Press",
       "category": "Chest",
       "bodyweight": false,
       "barbell": false
     },
     {
-      "id": "mn5ek04uj0in",
+      "id": "mn5etkgypeph",
       "name": "Dumbbell Row",
       "category": "Back",
       "bodyweight": false,
       "barbell": false
     },
     {
-      "id": "mn5ek04uarzd",
+      "id": "mn5etkgy9e8s",
       "name": "Dumbbell Split Squat",
       "category": "Quads",
       "bodyweight": false,
       "barbell": false
     },
     {
-      "id": "mn5ek04ukiru",
+      "id": "mn5etkgym1zw",
       "name": "Dumbbell Wrist Curl",
       "category": "Forearms",
       "bodyweight": false,
       "barbell": false
     },
     {
-      "id": "mn5ek04u5mf3",
+      "id": "mn5etkgyqz60",
       "name": "Hip Thrust",
       "category": "Posterior Chain",
       "bodyweight": false,
       "barbell": true
     },
     {
-      "id": "mn5ek04u0h9n",
+      "id": "mn5etkgyr0sz",
       "name": "Incline Dumbbell Curl",
       "category": "Biceps",
       "bodyweight": false,
       "barbell": false
     },
     {
-      "id": "mn5ek04u0977",
+      "id": "mn5etkgyanhp",
       "name": "Incline Push-Up",
       "category": "Chest",
       "bodyweight": true,
       "barbell": false
     },
     {
-      "id": "mn5ek04ui9yv",
+      "id": "mn5etkgydr1t",
       "name": "Overhead Tricep Extension",
       "category": "Triceps",
       "bodyweight": false,
       "barbell": false
     },
     {
-      "id": "mn5ek04uw8g3",
+      "id": "mn5etkgynbc4",
       "name": "Pistol Squat",
       "category": "Quads",
       "bodyweight": true,
       "barbell": false
     },
     {
-      "id": "mn5ek04uufi8",
+      "id": "mn5etkgy9w3r",
       "name": "Preacher Hammer Curl",
       "category": "Biceps",
       "bodyweight": false,
       "barbell": false
     },
     {
-      "id": "mn5ek04ulbq3",
+      "id": "mn5etkgy4hri",
       "name": "Pull-Up",
       "category": "Back",
       "bodyweight": true,
       "barbell": false
     },
     {
-      "id": "mn5ek04unz56",
+      "id": "mn5etkgyooyd",
       "name": "RDL",
       "category": "Posterior Chain",
       "bodyweight": false,
       "barbell": true
     },
     {
-      "id": "mn5ek04up158",
+      "id": "mn5etkgypwtw",
       "name": "Ring Dip",
       "category": "Chest",
       "bodyweight": false,
       "barbell": false
     },
     {
-      "id": "mn5ek04u463w",
+      "id": "mn5etkgyek69",
       "name": "Ring Fly",
       "category": "Chest",
       "bodyweight": false,
       "barbell": false
     },
     {
-      "id": "mn5ek04uydw0",
+      "id": "mn5etkgyr1a2",
       "name": "Single Cable Forearm Curl",
       "category": "Forearms",
       "bodyweight": false,
       "barbell": false
     },
     {
-      "id": "mn5ek04ugm2u",
+      "id": "mn5etkgyq9ms",
       "name": "Squat",
       "category": "Quads",
       "bodyweight": false,
       "barbell": true
     },
     {
-      "id": "mn5ek04ux0wp",
+      "id": "mn5etkgyyw1c",
       "name": "Top Bar Deep Shoulder Push-Up",
       "category": "Shoulders",
       "bodyweight": true,
       "barbell": false
     },
     {
-      "id": "mn5ek04uaeyn",
+      "id": "mn5etkgyx3qn",
       "name": "Tricep Pushdown",
       "category": "Triceps",
       "bodyweight": false,
       "barbell": false
     },
     {
-      "id": "mn5ek04uxync",
+      "id": "mn5etkgysovt",
       "name": "Weighted Body Row",
       "category": "Back",
       "bodyweight": false,
       "barbell": false
     },
     {
-      "id": "mn5ek04ulmms",
+      "id": "mn5etkgy2q9w",
       "name": "Weighted Dip",
       "category": "Chest",
       "bodyweight": false,
       "barbell": false
     },
     {
-      "id": "mn5ek04u93fw",
+      "id": "mn5etkgy60k8",
       "name": "Weighted Pistol Squat",
       "category": "Quads",
       "bodyweight": false,
       "barbell": false
     },
     {
-      "id": "mn5ek04u5mbo",
+      "id": "mn5etkgy9yvz",
       "name": "Weighted Pull-Up",
       "category": "Back",
       "bodyweight": false,
       "barbell": false
     },
     {
-      "id": "mn5ek04u2raq",
+      "id": "mn5etkgys1u6",
       "name": "Wide Towel Pull-Up",
       "category": "Forearms",
       "bodyweight": true,
@@ -224,17 +224,17 @@
   ],
   "routines": [
     {
-      "id": "mn5ek04vf56o",
+      "id": "mn5etkgy1eb1",
       "name": "Macky 3x Full Body",
       "days": [
         {
-          "id": "mn5ek04vev8o",
+          "id": "mn5etkgy7ny8",
           "name": "Day A (Push)",
           "slots": [
             {
               "choices": [
-                "mn5ek04ulmms",
-                "mn5ek04ut9dm"
+                "mn5etkgy2q9w",
+                "mn5etkgy6ste"
               ],
               "sets": 3,
               "repMin": 6,
@@ -242,7 +242,7 @@
             },
             {
               "choices": [
-                "mn5ek04ulbq3"
+                "mn5etkgy4hri"
               ],
               "sets": 3,
               "repMin": 10,
@@ -250,8 +250,8 @@
             },
             {
               "choices": [
-                "mn5ek04u463w",
-                "mn5ek04uquqg"
+                "mn5etkgyek69",
+                "mn5etkgy631y"
               ],
               "sets": 3,
               "repMin": 10,
@@ -259,7 +259,7 @@
             },
             {
               "choices": [
-                "mn5ek04ugm2u"
+                "mn5etkgyq9ms"
               ],
               "sets": 3,
               "repMin": 3,
@@ -267,8 +267,8 @@
             },
             {
               "choices": [
-                "mn5ek04uaeyn",
-                "mn5ek04ui9yv"
+                "mn5etkgyx3qn",
+                "mn5etkgydr1t"
               ],
               "sets": 3,
               "repMin": 10,
@@ -276,9 +276,9 @@
             },
             {
               "choices": [
-                "mn5ek04uufi8",
-                "mn5ek04u2raq",
-                "mn5ek04u09k8"
+                "mn5etkgy9w3r",
+                "mn5etkgys1u6",
+                "mn5etkgyp8ho"
               ],
               "sets": 3,
               "repMin": 8,
@@ -287,12 +287,12 @@
           ]
         },
         {
-          "id": "mn5ek04vuuq3",
+          "id": "mn5etkgymng3",
           "name": "Day B (Pull)",
           "slots": [
             {
               "choices": [
-                "mn5ek04umd9i"
+                "mn5etkgym72s"
               ],
               "sets": 2,
               "repMin": 3,
@@ -300,7 +300,7 @@
             },
             {
               "choices": [
-                "mn5ek04u5mbo"
+                "mn5etkgy9yvz"
               ],
               "sets": 3,
               "repMin": 5,
@@ -308,9 +308,9 @@
             },
             {
               "choices": [
-                "mn5ek04uquqg",
-                "mn5ek04ux0wp",
-                "mn5ek04uo2mt"
+                "mn5etkgy631y",
+                "mn5etkgyyw1c",
+                "mn5etkgyng1e"
               ],
               "sets": 3,
               "repMin": 8,
@@ -318,7 +318,7 @@
             },
             {
               "choices": [
-                "mn5ek04ushc8"
+                "mn5etkgy9e4h"
               ],
               "sets": 3,
               "repMin": 8,
@@ -326,8 +326,8 @@
             },
             {
               "choices": [
-                "mn5ek04ut0h8",
-                "mn5ek04u0h9n"
+                "mn5etkgyam9o",
+                "mn5etkgyr0sz"
               ],
               "sets": 3,
               "repMin": 10,
@@ -335,9 +335,9 @@
             },
             {
               "choices": [
-                "mn5ek04uufi8",
-                "mn5ek04u2raq",
-                "mn5ek04u09k8"
+                "mn5etkgy9w3r",
+                "mn5etkgys1u6",
+                "mn5etkgyp8ho"
               ],
               "sets": 3,
               "repMin": 10,
@@ -348,16 +348,16 @@
       ]
     },
     {
-      "id": "mn5ek04v5dga",
+      "id": "mn5etkgy6ssj",
       "name": "Macky 4x Upper Lower",
       "days": [
         {
-          "id": "mn5ek04vsj79",
+          "id": "mn5etkgy7s44",
           "name": "Day A (Upper 1)",
           "slots": [
             {
               "choices": [
-                "mn5ek04ut9dm"
+                "mn5etkgy6ste"
               ],
               "sets": 3,
               "repMin": 3,
@@ -365,7 +365,7 @@
             },
             {
               "choices": [
-                "mn5ek04ulbq3"
+                "mn5etkgy4hri"
               ],
               "sets": 3,
               "repMin": 10,
@@ -373,8 +373,8 @@
             },
             {
               "choices": [
-                "mn5ek04u463w",
-                "mn5ek04uquqg"
+                "mn5etkgyek69",
+                "mn5etkgy631y"
               ],
               "sets": 3,
               "repMin": 10,
@@ -382,7 +382,7 @@
             },
             {
               "choices": [
-                "mn5ek04ut0h8"
+                "mn5etkgyam9o"
               ],
               "sets": 3,
               "repMin": 10,
@@ -390,7 +390,7 @@
             },
             {
               "choices": [
-                "mn5ek04uaeyn"
+                "mn5etkgyx3qn"
               ],
               "sets": 3,
               "repMin": 10,
@@ -399,12 +399,12 @@
           ]
         },
         {
-          "id": "mn5ek04vvlkg",
+          "id": "mn5etkgy04r2",
           "name": "Day B (Lower 1)",
           "slots": [
             {
               "choices": [
-                "mn5ek04umd9i"
+                "mn5etkgym72s"
               ],
               "sets": 2,
               "repMin": 3,
@@ -412,9 +412,9 @@
             },
             {
               "choices": [
-                "mn5ek04uarzd",
-                "mn5ek04u93fw",
-                "mn5ek04uw8g3"
+                "mn5etkgy9e8s",
+                "mn5etkgy60k8",
+                "mn5etkgynbc4"
               ],
               "sets": 3,
               "repMin": 8,
@@ -422,7 +422,7 @@
             },
             {
               "choices": [
-                "mn5ek04ushc8"
+                "mn5etkgy9e4h"
               ],
               "sets": 3,
               "repMin": 8,
@@ -430,9 +430,9 @@
             },
             {
               "choices": [
-                "mn5ek04uufi8",
-                "mn5ek04u2raq",
-                "mn5ek04u09k8"
+                "mn5etkgy9w3r",
+                "mn5etkgys1u6",
+                "mn5etkgyp8ho"
               ],
               "sets": 3,
               "repMin": 10,
@@ -440,9 +440,9 @@
             },
             {
               "choices": [
-                "mn5ek04uufi8",
-                "mn5ek04u2raq",
-                "mn5ek04u09k8"
+                "mn5etkgy9w3r",
+                "mn5etkgys1u6",
+                "mn5etkgyp8ho"
               ],
               "sets": 3,
               "repMin": 10,
@@ -451,12 +451,12 @@
           ]
         },
         {
-          "id": "mn5ek04vsd7m",
+          "id": "mn5etkgycbn3",
           "name": "Day C (Upper 2)",
           "slots": [
             {
               "choices": [
-                "mn5ek04u5mbo"
+                "mn5etkgy9yvz"
               ],
               "sets": 3,
               "repMin": 5,
@@ -464,7 +464,7 @@
             },
             {
               "choices": [
-                "mn5ek04ulmms"
+                "mn5etkgy2q9w"
               ],
               "sets": 3,
               "repMin": 5,
@@ -472,9 +472,9 @@
             },
             {
               "choices": [
-                "mn5ek04uxync",
-                "mn5ek04uq5hc",
-                "mn5ek04uj0in"
+                "mn5etkgysovt",
+                "mn5etkgyteqw",
+                "mn5etkgypeph"
               ],
               "sets": 3,
               "repMin": 8,
@@ -482,7 +482,7 @@
             },
             {
               "choices": [
-                "mn5ek04ui9yv"
+                "mn5etkgydr1t"
               ],
               "sets": 3,
               "repMin": 10,
@@ -490,7 +490,7 @@
             },
             {
               "choices": [
-                "mn5ek04u0h9n"
+                "mn5etkgyr0sz"
               ],
               "sets": 3,
               "repMin": 10,
@@ -499,12 +499,12 @@
           ]
         },
         {
-          "id": "mn5ek04vg48w",
+          "id": "mn5etkgys6kr",
           "name": "Day D (Lower 2)",
           "slots": [
             {
               "choices": [
-                "mn5ek04ugm2u"
+                "mn5etkgyq9ms"
               ],
               "sets": 3,
               "repMin": 3,
@@ -512,7 +512,7 @@
             },
             {
               "choices": [
-                "mn5ek04unz56"
+                "mn5etkgyooyd"
               ],
               "sets": 3,
               "repMin": 10,
@@ -520,7 +520,7 @@
             },
             {
               "choices": [
-                "mn5ek04u32fl"
+                "mn5etkgy0ckh"
               ],
               "sets": 3,
               "repMin": 10,
@@ -528,7 +528,7 @@
             },
             {
               "choices": [
-                "mn5ek04ushc8"
+                "mn5etkgy9e4h"
               ],
               "sets": 3,
               "repMin": 8,
@@ -536,9 +536,9 @@
             },
             {
               "choices": [
-                "mn5ek04uufi8",
-                "mn5ek04u2raq",
-                "mn5ek04u09k8"
+                "mn5etkgy9w3r",
+                "mn5etkgys1u6",
+                "mn5etkgyp8ho"
               ],
               "sets": 3,
               "repMin": 10,
@@ -549,16 +549,16 @@
       ]
     },
     {
-      "id": "mn5ek04vugo0",
+      "id": "mn5etkgyqx00",
       "name": "Laura Full Body 3x Week",
       "days": [
         {
-          "id": "mn5ek04vtjdj",
+          "id": "mn5etkgywp8x",
           "name": "Day A (Push)",
           "slots": [
             {
               "choices": [
-                "mn5ek04ugm2u"
+                "mn5etkgyq9ms"
               ],
               "sets": 3,
               "repMin": 3,
@@ -566,7 +566,7 @@
             },
             {
               "choices": [
-                "mn5ek04up158"
+                "mn5etkgypwtw"
               ],
               "sets": 3,
               "repMin": 8,
@@ -574,9 +574,9 @@
             },
             {
               "choices": [
-                "mn5ek04uxync",
-                "mn5ek04uq5hc",
-                "mn5ek04ulbq3"
+                "mn5etkgysovt",
+                "mn5etkgyteqw",
+                "mn5etkgy4hri"
               ],
               "sets": 3,
               "repMin": 5,
@@ -584,8 +584,8 @@
             },
             {
               "choices": [
-                "mn5ek04u5mf3",
-                "mn5ek04unz56"
+                "mn5etkgyqz60",
+                "mn5etkgyooyd"
               ],
               "sets": 3,
               "repMin": 10,
@@ -593,7 +593,7 @@
             },
             {
               "choices": [
-                "mn5ek04ushc8"
+                "mn5etkgy9e4h"
               ],
               "sets": 3,
               "repMin": 10,
@@ -602,12 +602,12 @@
           ]
         },
         {
-          "id": "mn5ek04vttuv",
+          "id": "mn5etkgz1wfb",
           "name": "Day B (Pull)",
           "slots": [
             {
               "choices": [
-                "mn5ek04umd9i"
+                "mn5etkgym72s"
               ],
               "sets": 2,
               "repMin": 3,
@@ -615,7 +615,7 @@
             },
             {
               "choices": [
-                "mn5ek04u5mbo"
+                "mn5etkgy9yvz"
               ],
               "sets": 3,
               "repMin": 6,
@@ -623,7 +623,7 @@
             },
             {
               "choices": [
-                "mn5ek04u0977"
+                "mn5etkgyanhp"
               ],
               "sets": 3,
               "repMin": 8,
@@ -631,8 +631,8 @@
             },
             {
               "choices": [
-                "mn5ek04uarzd",
-                "mn5ek04uw8g3"
+                "mn5etkgy9e8s",
+                "mn5etkgynbc4"
               ],
               "sets": 3,
               "repMin": 10,
@@ -640,7 +640,7 @@
             },
             {
               "choices": [
-                "mn5ek04ushc8"
+                "mn5etkgy9e4h"
               ],
               "sets": 3,
               "repMin": 10,
@@ -653,16 +653,16 @@
   ],
   "sessions": [
     {
-      "id": "mn5ek04v1pyz",
+      "id": "mn5etkgz4ppg",
       "date": "2026-02-27",
-      "routineId": "mn5ek04v5dga",
+      "routineId": "mn5etkgy6ssj",
       "routineName": "Macky 4x Upper Lower",
-      "dayId": "mn5ek04vsd7m",
+      "dayId": "mn5etkgycbn3",
       "dayName": "Day C (Upper 2)",
       "bodyweight": 156.8,
       "sets": [
         {
-          "exerciseId": "mn5ek04u5mbo",
+          "exerciseId": "mn5etkgy9yvz",
           "exerciseName": "Weighted Pull-Up",
           "setNum": 1,
           "weight": 45,
@@ -670,7 +670,7 @@
           "bodyweight": 156.8
         },
         {
-          "exerciseId": "mn5ek04u5mbo",
+          "exerciseId": "mn5etkgy9yvz",
           "exerciseName": "Weighted Pull-Up",
           "setNum": 2,
           "weight": 65,
@@ -678,7 +678,7 @@
           "bodyweight": 156.8
         },
         {
-          "exerciseId": "mn5ek04u5mbo",
+          "exerciseId": "mn5etkgy9yvz",
           "exerciseName": "Weighted Pull-Up",
           "setNum": 3,
           "weight": 65,
@@ -686,7 +686,7 @@
           "bodyweight": 156.8
         },
         {
-          "exerciseId": "mn5ek04uo2mt",
+          "exerciseId": "mn5etkgyng1e",
           "exerciseName": "Dip",
           "setNum": 4,
           "weight": 0,
@@ -694,7 +694,7 @@
           "bodyweight": 156.8
         },
         {
-          "exerciseId": "mn5ek04uo2mt",
+          "exerciseId": "mn5etkgyng1e",
           "exerciseName": "Dip",
           "setNum": 5,
           "weight": 0,
@@ -702,7 +702,7 @@
           "bodyweight": 156.8
         },
         {
-          "exerciseId": "mn5ek04uo2mt",
+          "exerciseId": "mn5etkgyng1e",
           "exerciseName": "Dip",
           "setNum": 6,
           "weight": 0,
@@ -712,16 +712,16 @@
       ]
     },
     {
-      "id": "mn5ek04v9wyi",
+      "id": "mn5etkgz755w",
       "date": "2026-03-02",
-      "routineId": "mn5ek04v5dga",
+      "routineId": "mn5etkgy6ssj",
       "routineName": "Macky 4x Upper Lower",
-      "dayId": "mn5ek04vsj79",
+      "dayId": "mn5etkgy7s44",
       "dayName": "Day A (Upper 1)",
       "bodyweight": 156,
       "sets": [
         {
-          "exerciseId": "mn5ek04ulmms",
+          "exerciseId": "mn5etkgy2q9w",
           "exerciseName": "Weighted Dip",
           "setNum": 1,
           "weight": 70,
@@ -729,7 +729,7 @@
           "bodyweight": 156
         },
         {
-          "exerciseId": "mn5ek04ulmms",
+          "exerciseId": "mn5etkgy2q9w",
           "exerciseName": "Weighted Dip",
           "setNum": 2,
           "weight": 80,
@@ -737,7 +737,7 @@
           "bodyweight": 156
         },
         {
-          "exerciseId": "mn5ek04ulmms",
+          "exerciseId": "mn5etkgy2q9w",
           "exerciseName": "Weighted Dip",
           "setNum": 3,
           "weight": 80,
@@ -745,7 +745,7 @@
           "bodyweight": 156
         },
         {
-          "exerciseId": "mn5ek04u463w",
+          "exerciseId": "mn5etkgyek69",
           "exerciseName": "Ring Fly",
           "setNum": 4,
           "weight": 0,
@@ -753,7 +753,7 @@
           "bodyweight": 156
         },
         {
-          "exerciseId": "mn5ek04u463w",
+          "exerciseId": "mn5etkgyek69",
           "exerciseName": "Ring Fly",
           "setNum": 5,
           "weight": 0,
@@ -761,7 +761,7 @@
           "bodyweight": 156
         },
         {
-          "exerciseId": "mn5ek04u463w",
+          "exerciseId": "mn5etkgyek69",
           "exerciseName": "Ring Fly",
           "setNum": 6,
           "weight": 0,
@@ -769,7 +769,7 @@
           "bodyweight": 156
         },
         {
-          "exerciseId": "mn5ek04ulbq3",
+          "exerciseId": "mn5etkgy4hri",
           "exerciseName": "Pull-Up",
           "setNum": 7,
           "weight": 0,
@@ -777,7 +777,7 @@
           "bodyweight": 156
         },
         {
-          "exerciseId": "mn5ek04ulbq3",
+          "exerciseId": "mn5etkgy4hri",
           "exerciseName": "Pull-Up",
           "setNum": 8,
           "weight": 0,
@@ -785,7 +785,7 @@
           "bodyweight": 156
         },
         {
-          "exerciseId": "mn5ek04ulbq3",
+          "exerciseId": "mn5etkgy4hri",
           "exerciseName": "Pull-Up",
           "setNum": 9,
           "weight": 0,
@@ -793,7 +793,7 @@
           "bodyweight": 156
         },
         {
-          "exerciseId": "mn5ek04ugm2u",
+          "exerciseId": "mn5etkgyq9ms",
           "exerciseName": "Squat",
           "setNum": 10,
           "weight": 135,
@@ -801,7 +801,7 @@
           "bodyweight": 156
         },
         {
-          "exerciseId": "mn5ek04ugm2u",
+          "exerciseId": "mn5etkgyq9ms",
           "exerciseName": "Squat",
           "setNum": 11,
           "weight": 165,
@@ -809,7 +809,7 @@
           "bodyweight": 156
         },
         {
-          "exerciseId": "mn5ek04ugm2u",
+          "exerciseId": "mn5etkgyq9ms",
           "exerciseName": "Squat",
           "setNum": 12,
           "weight": 165,
@@ -817,7 +817,7 @@
           "bodyweight": 156
         },
         {
-          "exerciseId": "mn5ek04uaeyn",
+          "exerciseId": "mn5etkgyx3qn",
           "exerciseName": "Tricep Pushdown",
           "setNum": 13,
           "weight": 60,
@@ -825,7 +825,7 @@
           "bodyweight": 156
         },
         {
-          "exerciseId": "mn5ek04uaeyn",
+          "exerciseId": "mn5etkgyx3qn",
           "exerciseName": "Tricep Pushdown",
           "setNum": 14,
           "weight": 70,
@@ -833,7 +833,7 @@
           "bodyweight": 156
         },
         {
-          "exerciseId": "mn5ek04uaeyn",
+          "exerciseId": "mn5etkgyx3qn",
           "exerciseName": "Tricep Pushdown",
           "setNum": 15,
           "weight": 70,
@@ -841,7 +841,7 @@
           "bodyweight": 156
         },
         {
-          "exerciseId": "mn5ek04u09k8",
+          "exerciseId": "mn5etkgyp8ho",
           "exerciseName": "Cable Forearm Curl",
           "setNum": 16,
           "weight": 70,
@@ -849,7 +849,7 @@
           "bodyweight": 156
         },
         {
-          "exerciseId": "mn5ek04u09k8",
+          "exerciseId": "mn5etkgyp8ho",
           "exerciseName": "Cable Forearm Curl",
           "setNum": 17,
           "weight": 95,
@@ -857,7 +857,7 @@
           "bodyweight": 156
         },
         {
-          "exerciseId": "mn5ek04u09k8",
+          "exerciseId": "mn5etkgyp8ho",
           "exerciseName": "Cable Forearm Curl",
           "setNum": 18,
           "weight": 95,
@@ -867,16 +867,16 @@
       ]
     },
     {
-      "id": "mn5ek04vr3fo",
+      "id": "mn5etkgzw83q",
       "date": "2026-03-04",
-      "routineId": "mn5ek04v5dga",
+      "routineId": "mn5etkgy6ssj",
       "routineName": "Macky 4x Upper Lower",
-      "dayId": "mn5ek04vvlkg",
+      "dayId": "mn5etkgy04r2",
       "dayName": "Day B (Lower 1)",
       "bodyweight": 156,
       "sets": [
         {
-          "exerciseId": "mn5ek04umd9i",
+          "exerciseId": "mn5etkgym72s",
           "exerciseName": "Deadlift",
           "setNum": 1,
           "weight": 135,
@@ -884,7 +884,7 @@
           "bodyweight": 156
         },
         {
-          "exerciseId": "mn5ek04umd9i",
+          "exerciseId": "mn5etkgym72s",
           "exerciseName": "Deadlift",
           "setNum": 2,
           "weight": 225,
@@ -892,7 +892,7 @@
           "bodyweight": 156
         },
         {
-          "exerciseId": "mn5ek04umd9i",
+          "exerciseId": "mn5etkgym72s",
           "exerciseName": "Deadlift",
           "setNum": 3,
           "weight": 255,
@@ -900,7 +900,7 @@
           "bodyweight": 156
         },
         {
-          "exerciseId": "mn5ek04u5mbo",
+          "exerciseId": "mn5etkgy9yvz",
           "exerciseName": "Weighted Pull-Up",
           "setNum": 4,
           "weight": 65,
@@ -908,7 +908,7 @@
           "bodyweight": 156
         },
         {
-          "exerciseId": "mn5ek04u5mbo",
+          "exerciseId": "mn5etkgy9yvz",
           "exerciseName": "Weighted Pull-Up",
           "setNum": 5,
           "weight": 65,
@@ -916,7 +916,7 @@
           "bodyweight": 156
         },
         {
-          "exerciseId": "mn5ek04u5mbo",
+          "exerciseId": "mn5etkgy9yvz",
           "exerciseName": "Weighted Pull-Up",
           "setNum": 6,
           "weight": 65,
@@ -924,7 +924,7 @@
           "bodyweight": 156
         },
         {
-          "exerciseId": "mn5ek04ux0wp",
+          "exerciseId": "mn5etkgyyw1c",
           "exerciseName": "Top Bar Deep Shoulder Push-Up",
           "setNum": 7,
           "weight": 0,
@@ -932,7 +932,7 @@
           "bodyweight": 156
         },
         {
-          "exerciseId": "mn5ek04ux0wp",
+          "exerciseId": "mn5etkgyyw1c",
           "exerciseName": "Top Bar Deep Shoulder Push-Up",
           "setNum": 8,
           "weight": 0,
@@ -940,7 +940,7 @@
           "bodyweight": 156
         },
         {
-          "exerciseId": "mn5ek04ux0wp",
+          "exerciseId": "mn5etkgyyw1c",
           "exerciseName": "Top Bar Deep Shoulder Push-Up",
           "setNum": 9,
           "weight": 0,
@@ -948,7 +948,7 @@
           "bodyweight": 156
         },
         {
-          "exerciseId": "mn5ek04ushc8",
+          "exerciseId": "mn5etkgy9e4h",
           "exerciseName": "Cable Crunch",
           "setNum": 10,
           "weight": 140,
@@ -956,7 +956,7 @@
           "bodyweight": 156
         },
         {
-          "exerciseId": "mn5ek04ushc8",
+          "exerciseId": "mn5etkgy9e4h",
           "exerciseName": "Cable Crunch",
           "setNum": 11,
           "weight": 120,
@@ -964,7 +964,7 @@
           "bodyweight": 156
         },
         {
-          "exerciseId": "mn5ek04ushc8",
+          "exerciseId": "mn5etkgy9e4h",
           "exerciseName": "Cable Crunch",
           "setNum": 12,
           "weight": 120,
@@ -972,7 +972,7 @@
           "bodyweight": 156
         },
         {
-          "exerciseId": "mn5ek04ut0h8",
+          "exerciseId": "mn5etkgyam9o",
           "exerciseName": "Dumbbell Curl",
           "setNum": 13,
           "weight": 32,
@@ -980,7 +980,7 @@
           "bodyweight": 156
         },
         {
-          "exerciseId": "mn5ek04ut0h8",
+          "exerciseId": "mn5etkgyam9o",
           "exerciseName": "Dumbbell Curl",
           "setNum": 14,
           "weight": 32,
@@ -988,7 +988,7 @@
           "bodyweight": 156
         },
         {
-          "exerciseId": "mn5ek04ut0h8",
+          "exerciseId": "mn5etkgyam9o",
           "exerciseName": "Dumbbell Curl",
           "setNum": 15,
           "weight": 32,
@@ -998,16 +998,16 @@
       ]
     },
     {
-      "id": "mn5ek04vwt7e",
+      "id": "mn5etkgzfzyf",
       "date": "2026-03-06",
-      "routineId": "mn5ek04v5dga",
+      "routineId": "mn5etkgy6ssj",
       "routineName": "Macky 4x Upper Lower",
-      "dayId": "mn5ek04vsj79",
+      "dayId": "mn5etkgy7s44",
       "dayName": "Day A (Upper 1)",
       "bodyweight": 159.2,
       "sets": [
         {
-          "exerciseId": "mn5ek04ut9dm",
+          "exerciseId": "mn5etkgy6ste",
           "exerciseName": "Bench Press",
           "setNum": 1,
           "weight": 155,
@@ -1015,7 +1015,7 @@
           "bodyweight": 159.2
         },
         {
-          "exerciseId": "mn5ek04ut9dm",
+          "exerciseId": "mn5etkgy6ste",
           "exerciseName": "Bench Press",
           "setNum": 2,
           "weight": 165,
@@ -1023,7 +1023,7 @@
           "bodyweight": 159.2
         },
         {
-          "exerciseId": "mn5ek04ut9dm",
+          "exerciseId": "mn5etkgy6ste",
           "exerciseName": "Bench Press",
           "setNum": 3,
           "weight": 165,
@@ -1031,7 +1031,7 @@
           "bodyweight": 159.2
         },
         {
-          "exerciseId": "mn5ek04ut9dm",
+          "exerciseId": "mn5etkgy6ste",
           "exerciseName": "Bench Press",
           "setNum": 4,
           "weight": 155,
@@ -1039,7 +1039,7 @@
           "bodyweight": 159.2
         },
         {
-          "exerciseId": "mn5ek04ulbq3",
+          "exerciseId": "mn5etkgy4hri",
           "exerciseName": "Pull-Up",
           "setNum": 5,
           "weight": 0,
@@ -1047,7 +1047,7 @@
           "bodyweight": 159.2
         },
         {
-          "exerciseId": "mn5ek04ulbq3",
+          "exerciseId": "mn5etkgy4hri",
           "exerciseName": "Pull-Up",
           "setNum": 6,
           "weight": 0,
@@ -1055,7 +1055,7 @@
           "bodyweight": 159.2
         },
         {
-          "exerciseId": "mn5ek04ulbq3",
+          "exerciseId": "mn5etkgy4hri",
           "exerciseName": "Pull-Up",
           "setNum": 7,
           "weight": 0,
@@ -1063,7 +1063,7 @@
           "bodyweight": 159.2
         },
         {
-          "exerciseId": "mn5ek04uquqg",
+          "exerciseId": "mn5etkgy631y",
           "exerciseName": "Dumbbell Incline Press",
           "setNum": 8,
           "weight": 53,
@@ -1071,7 +1071,7 @@
           "bodyweight": 159.2
         },
         {
-          "exerciseId": "mn5ek04uquqg",
+          "exerciseId": "mn5etkgy631y",
           "exerciseName": "Dumbbell Incline Press",
           "setNum": 9,
           "weight": 53,
@@ -1079,7 +1079,7 @@
           "bodyweight": 159.2
         },
         {
-          "exerciseId": "mn5ek04uquqg",
+          "exerciseId": "mn5etkgy631y",
           "exerciseName": "Dumbbell Incline Press",
           "setNum": 10,
           "weight": 53,
@@ -1087,7 +1087,7 @@
           "bodyweight": 159.2
         },
         {
-          "exerciseId": "mn5ek04uaeyn",
+          "exerciseId": "mn5etkgyx3qn",
           "exerciseName": "Tricep Pushdown",
           "setNum": 11,
           "weight": 70,
@@ -1095,7 +1095,7 @@
           "bodyweight": 159.2
         },
         {
-          "exerciseId": "mn5ek04uaeyn",
+          "exerciseId": "mn5etkgyx3qn",
           "exerciseName": "Tricep Pushdown",
           "setNum": 12,
           "weight": 80,
@@ -1103,7 +1103,7 @@
           "bodyweight": 159.2
         },
         {
-          "exerciseId": "mn5ek04uaeyn",
+          "exerciseId": "mn5etkgyx3qn",
           "exerciseName": "Tricep Pushdown",
           "setNum": 13,
           "weight": 80,
@@ -1111,7 +1111,7 @@
           "bodyweight": 159.2
         },
         {
-          "exerciseId": "mn5ek04u0h9n",
+          "exerciseId": "mn5etkgyr0sz",
           "exerciseName": "Incline Dumbbell Curl",
           "setNum": 14,
           "weight": 25,
@@ -1119,7 +1119,7 @@
           "bodyweight": 159.2
         },
         {
-          "exerciseId": "mn5ek04u0h9n",
+          "exerciseId": "mn5etkgyr0sz",
           "exerciseName": "Incline Dumbbell Curl",
           "setNum": 15,
           "weight": 25,
@@ -1127,7 +1127,7 @@
           "bodyweight": 159.2
         },
         {
-          "exerciseId": "mn5ek04u0h9n",
+          "exerciseId": "mn5etkgyr0sz",
           "exerciseName": "Incline Dumbbell Curl",
           "setNum": 16,
           "weight": 25,
@@ -1137,16 +1137,16 @@
       ]
     },
     {
-      "id": "mn5ek04v27n4",
+      "id": "mn5etkgz511u",
       "date": "2026-03-07",
-      "routineId": "mn5ek04v5dga",
+      "routineId": "mn5etkgy6ssj",
       "routineName": "Macky 4x Upper Lower",
-      "dayId": "mn5ek04vg48w",
+      "dayId": "mn5etkgys6kr",
       "dayName": "Day D (Lower 2)",
       "bodyweight": 157,
       "sets": [
         {
-          "exerciseId": "mn5ek04ugm2u",
+          "exerciseId": "mn5etkgyq9ms",
           "exerciseName": "Squat",
           "setNum": 1,
           "weight": 175,
@@ -1154,7 +1154,7 @@
           "bodyweight": 157
         },
         {
-          "exerciseId": "mn5ek04ugm2u",
+          "exerciseId": "mn5etkgyq9ms",
           "exerciseName": "Squat",
           "setNum": 2,
           "weight": 175,
@@ -1162,7 +1162,7 @@
           "bodyweight": 157
         },
         {
-          "exerciseId": "mn5ek04ugm2u",
+          "exerciseId": "mn5etkgyq9ms",
           "exerciseName": "Squat",
           "setNum": 3,
           "weight": 175,
@@ -1170,7 +1170,7 @@
           "bodyweight": 157
         },
         {
-          "exerciseId": "mn5ek04unz56",
+          "exerciseId": "mn5etkgyooyd",
           "exerciseName": "RDL",
           "setNum": 4,
           "weight": 135,
@@ -1178,7 +1178,7 @@
           "bodyweight": 157
         },
         {
-          "exerciseId": "mn5ek04unz56",
+          "exerciseId": "mn5etkgyooyd",
           "exerciseName": "RDL",
           "setNum": 5,
           "weight": 155,
@@ -1186,7 +1186,7 @@
           "bodyweight": 157
         },
         {
-          "exerciseId": "mn5ek04unz56",
+          "exerciseId": "mn5etkgyooyd",
           "exerciseName": "RDL",
           "setNum": 6,
           "weight": 155,
@@ -1194,7 +1194,7 @@
           "bodyweight": 157
         },
         {
-          "exerciseId": "mn5ek04u32fl",
+          "exerciseId": "mn5etkgy0ckh",
           "exerciseName": "Barbell Shrug",
           "setNum": 7,
           "weight": 155,
@@ -1202,7 +1202,7 @@
           "bodyweight": 157
         },
         {
-          "exerciseId": "mn5ek04u32fl",
+          "exerciseId": "mn5etkgy0ckh",
           "exerciseName": "Barbell Shrug",
           "setNum": 8,
           "weight": 185,
@@ -1210,7 +1210,7 @@
           "bodyweight": 157
         },
         {
-          "exerciseId": "mn5ek04u32fl",
+          "exerciseId": "mn5etkgy0ckh",
           "exerciseName": "Barbell Shrug",
           "setNum": 9,
           "weight": 185,
@@ -1218,7 +1218,7 @@
           "bodyweight": 157
         },
         {
-          "exerciseId": "mn5ek04ukiru",
+          "exerciseId": "mn5etkgym1zw",
           "exerciseName": "Dumbbell Wrist Curl",
           "setNum": 10,
           "weight": 32,
@@ -1226,7 +1226,7 @@
           "bodyweight": 157
         },
         {
-          "exerciseId": "mn5ek04u2raq",
+          "exerciseId": "mn5etkgys1u6",
           "exerciseName": "Wide Towel Pull-Up",
           "setNum": 11,
           "weight": 0,
@@ -1234,7 +1234,7 @@
           "bodyweight": 157
         },
         {
-          "exerciseId": "mn5ek04ukiru",
+          "exerciseId": "mn5etkgym1zw",
           "exerciseName": "Dumbbell Wrist Curl",
           "setNum": 12,
           "weight": 32,
@@ -1242,7 +1242,7 @@
           "bodyweight": 157
         },
         {
-          "exerciseId": "mn5ek04u2raq",
+          "exerciseId": "mn5etkgys1u6",
           "exerciseName": "Wide Towel Pull-Up",
           "setNum": 13,
           "weight": 0,
@@ -1250,7 +1250,7 @@
           "bodyweight": 157
         },
         {
-          "exerciseId": "mn5ek04ukiru",
+          "exerciseId": "mn5etkgym1zw",
           "exerciseName": "Dumbbell Wrist Curl",
           "setNum": 14,
           "weight": 25,
@@ -1258,7 +1258,7 @@
           "bodyweight": 157
         },
         {
-          "exerciseId": "mn5ek04u2raq",
+          "exerciseId": "mn5etkgys1u6",
           "exerciseName": "Wide Towel Pull-Up",
           "setNum": 15,
           "weight": 0,
@@ -1268,16 +1268,16 @@
       ]
     },
     {
-      "id": "mn5ek04v1ply",
+      "id": "mn5etkgzam31",
       "date": "2026-03-09",
-      "routineId": "mn5ek04v5dga",
+      "routineId": "mn5etkgy6ssj",
       "routineName": "Macky 4x Upper Lower",
-      "dayId": "mn5ek04vsj79",
+      "dayId": "mn5etkgy7s44",
       "dayName": "Day A (Upper 1)",
       "bodyweight": 157,
       "sets": [
         {
-          "exerciseId": "mn5ek04ut9dm",
+          "exerciseId": "mn5etkgy6ste",
           "exerciseName": "Bench Press",
           "setNum": 1,
           "weight": 165,
@@ -1285,7 +1285,7 @@
           "bodyweight": 157
         },
         {
-          "exerciseId": "mn5ek04ut9dm",
+          "exerciseId": "mn5etkgy6ste",
           "exerciseName": "Bench Press",
           "setNum": 2,
           "weight": 165,
@@ -1293,7 +1293,7 @@
           "bodyweight": 157
         },
         {
-          "exerciseId": "mn5ek04ut9dm",
+          "exerciseId": "mn5etkgy6ste",
           "exerciseName": "Bench Press",
           "setNum": 3,
           "weight": 165,
@@ -1301,7 +1301,7 @@
           "bodyweight": 157
         },
         {
-          "exerciseId": "mn5ek04ulbq3",
+          "exerciseId": "mn5etkgy4hri",
           "exerciseName": "Pull-Up",
           "setNum": 4,
           "weight": 0,
@@ -1309,7 +1309,7 @@
           "bodyweight": 157
         },
         {
-          "exerciseId": "mn5ek04ulbq3",
+          "exerciseId": "mn5etkgy4hri",
           "exerciseName": "Pull-Up",
           "setNum": 5,
           "weight": 0,
@@ -1317,7 +1317,7 @@
           "bodyweight": 157
         },
         {
-          "exerciseId": "mn5ek04ulbq3",
+          "exerciseId": "mn5etkgy4hri",
           "exerciseName": "Pull-Up",
           "setNum": 6,
           "weight": 0,
@@ -1325,7 +1325,7 @@
           "bodyweight": 157
         },
         {
-          "exerciseId": "mn5ek04u463w",
+          "exerciseId": "mn5etkgyek69",
           "exerciseName": "Ring Fly",
           "setNum": 7,
           "weight": 0,
@@ -1333,7 +1333,7 @@
           "bodyweight": 157
         },
         {
-          "exerciseId": "mn5ek04u463w",
+          "exerciseId": "mn5etkgyek69",
           "exerciseName": "Ring Fly",
           "setNum": 8,
           "weight": 0,
@@ -1341,7 +1341,7 @@
           "bodyweight": 157
         },
         {
-          "exerciseId": "mn5ek04u463w",
+          "exerciseId": "mn5etkgyek69",
           "exerciseName": "Ring Fly",
           "setNum": 9,
           "weight": 0,
@@ -1349,7 +1349,7 @@
           "bodyweight": 157
         },
         {
-          "exerciseId": "mn5ek04ut0h8",
+          "exerciseId": "mn5etkgyam9o",
           "exerciseName": "Dumbbell Curl",
           "setNum": 10,
           "weight": 32,
@@ -1357,7 +1357,7 @@
           "bodyweight": 157
         },
         {
-          "exerciseId": "mn5ek04ut0h8",
+          "exerciseId": "mn5etkgyam9o",
           "exerciseName": "Dumbbell Curl",
           "setNum": 11,
           "weight": 32,
@@ -1365,7 +1365,7 @@
           "bodyweight": 157
         },
         {
-          "exerciseId": "mn5ek04ut0h8",
+          "exerciseId": "mn5etkgyam9o",
           "exerciseName": "Dumbbell Curl",
           "setNum": 12,
           "weight": 32,
@@ -1373,7 +1373,7 @@
           "bodyweight": 157
         },
         {
-          "exerciseId": "mn5ek04uaeyn",
+          "exerciseId": "mn5etkgyx3qn",
           "exerciseName": "Tricep Pushdown",
           "setNum": 13,
           "weight": 90,
@@ -1381,7 +1381,7 @@
           "bodyweight": 157
         },
         {
-          "exerciseId": "mn5ek04uaeyn",
+          "exerciseId": "mn5etkgyx3qn",
           "exerciseName": "Tricep Pushdown",
           "setNum": 14,
           "weight": 90,
@@ -1389,7 +1389,7 @@
           "bodyweight": 157
         },
         {
-          "exerciseId": "mn5ek04uaeyn",
+          "exerciseId": "mn5etkgyx3qn",
           "exerciseName": "Tricep Pushdown",
           "setNum": 15,
           "weight": 90,
@@ -1399,16 +1399,16 @@
       ]
     },
     {
-      "id": "mn5ek04voeka",
+      "id": "mn5etkgztm52",
       "date": "2026-03-11",
-      "routineId": "mn5ek04v5dga",
+      "routineId": "mn5etkgy6ssj",
       "routineName": "Macky 4x Upper Lower",
-      "dayId": "mn5ek04vvlkg",
+      "dayId": "mn5etkgy04r2",
       "dayName": "Day B (Lower 1)",
       "bodyweight": 155,
       "sets": [
         {
-          "exerciseId": "mn5ek04umd9i",
+          "exerciseId": "mn5etkgym72s",
           "exerciseName": "Deadlift",
           "setNum": 1,
           "weight": 225,
@@ -1416,7 +1416,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04umd9i",
+          "exerciseId": "mn5etkgym72s",
           "exerciseName": "Deadlift",
           "setNum": 2,
           "weight": 225,
@@ -1424,7 +1424,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04uarzd",
+          "exerciseId": "mn5etkgy9e8s",
           "exerciseName": "Dumbbell Split Squat",
           "setNum": 3,
           "weight": 32,
@@ -1432,7 +1432,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04uarzd",
+          "exerciseId": "mn5etkgy9e8s",
           "exerciseName": "Dumbbell Split Squat",
           "setNum": 4,
           "weight": 25,
@@ -1440,7 +1440,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04uarzd",
+          "exerciseId": "mn5etkgy9e8s",
           "exerciseName": "Dumbbell Split Squat",
           "setNum": 5,
           "weight": 25,
@@ -1448,7 +1448,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04ushc8",
+          "exerciseId": "mn5etkgy9e4h",
           "exerciseName": "Cable Crunch",
           "setNum": 6,
           "weight": 135,
@@ -1456,7 +1456,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04ushc8",
+          "exerciseId": "mn5etkgy9e4h",
           "exerciseName": "Cable Crunch",
           "setNum": 7,
           "weight": 135,
@@ -1464,7 +1464,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04ushc8",
+          "exerciseId": "mn5etkgy9e4h",
           "exerciseName": "Cable Crunch",
           "setNum": 8,
           "weight": 135,
@@ -1472,7 +1472,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04ukiru",
+          "exerciseId": "mn5etkgym1zw",
           "exerciseName": "Dumbbell Wrist Curl",
           "setNum": 9,
           "weight": 32,
@@ -1480,7 +1480,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04u2raq",
+          "exerciseId": "mn5etkgys1u6",
           "exerciseName": "Wide Towel Pull-Up",
           "setNum": 10,
           "weight": 0,
@@ -1488,7 +1488,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04ukiru",
+          "exerciseId": "mn5etkgym1zw",
           "exerciseName": "Dumbbell Wrist Curl",
           "setNum": 11,
           "weight": 32,
@@ -1496,7 +1496,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04u2raq",
+          "exerciseId": "mn5etkgys1u6",
           "exerciseName": "Wide Towel Pull-Up",
           "setNum": 12,
           "weight": 0,
@@ -1504,7 +1504,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04ukiru",
+          "exerciseId": "mn5etkgym1zw",
           "exerciseName": "Dumbbell Wrist Curl",
           "setNum": 13,
           "weight": 32,
@@ -1512,7 +1512,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04u2raq",
+          "exerciseId": "mn5etkgys1u6",
           "exerciseName": "Wide Towel Pull-Up",
           "setNum": 14,
           "weight": 0,
@@ -1522,16 +1522,16 @@
       ]
     },
     {
-      "id": "mn5ek04vocif",
+      "id": "mn5etkgzhndl",
       "date": "2026-03-13",
-      "routineId": "mn5ek04v5dga",
+      "routineId": "mn5etkgy6ssj",
       "routineName": "Macky 4x Upper Lower",
-      "dayId": "mn5ek04vsd7m",
+      "dayId": "mn5etkgycbn3",
       "dayName": "Day C (Upper 2)",
       "bodyweight": 155,
       "sets": [
         {
-          "exerciseId": "mn5ek04u5mbo",
+          "exerciseId": "mn5etkgy9yvz",
           "exerciseName": "Weighted Pull-Up",
           "setNum": 1,
           "weight": 65,
@@ -1539,7 +1539,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04u5mbo",
+          "exerciseId": "mn5etkgy9yvz",
           "exerciseName": "Weighted Pull-Up",
           "setNum": 2,
           "weight": 65,
@@ -1547,7 +1547,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04u5mbo",
+          "exerciseId": "mn5etkgy9yvz",
           "exerciseName": "Weighted Pull-Up",
           "setNum": 3,
           "weight": 65,
@@ -1555,7 +1555,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04ulmms",
+          "exerciseId": "mn5etkgy2q9w",
           "exerciseName": "Weighted Dip",
           "setNum": 4,
           "weight": 80,
@@ -1563,7 +1563,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04ulmms",
+          "exerciseId": "mn5etkgy2q9w",
           "exerciseName": "Weighted Dip",
           "setNum": 5,
           "weight": 80,
@@ -1571,7 +1571,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04ulmms",
+          "exerciseId": "mn5etkgy2q9w",
           "exerciseName": "Weighted Dip",
           "setNum": 6,
           "weight": 80,
@@ -1579,7 +1579,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04uxync",
+          "exerciseId": "mn5etkgysovt",
           "exerciseName": "Weighted Body Row",
           "setNum": 7,
           "weight": 24.2,
@@ -1587,7 +1587,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04uxync",
+          "exerciseId": "mn5etkgysovt",
           "exerciseName": "Weighted Body Row",
           "setNum": 8,
           "weight": 24.2,
@@ -1595,7 +1595,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04uxync",
+          "exerciseId": "mn5etkgysovt",
           "exerciseName": "Weighted Body Row",
           "setNum": 9,
           "weight": 24.2,
@@ -1603,7 +1603,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04uaeyn",
+          "exerciseId": "mn5etkgyx3qn",
           "exerciseName": "Tricep Pushdown",
           "setNum": 10,
           "weight": 100,
@@ -1611,7 +1611,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04uaeyn",
+          "exerciseId": "mn5etkgyx3qn",
           "exerciseName": "Tricep Pushdown",
           "setNum": 11,
           "weight": 110,
@@ -1619,7 +1619,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04uaeyn",
+          "exerciseId": "mn5etkgyx3qn",
           "exerciseName": "Tricep Pushdown",
           "setNum": 12,
           "weight": 110,
@@ -1627,7 +1627,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04u0h9n",
+          "exerciseId": "mn5etkgyr0sz",
           "exerciseName": "Incline Dumbbell Curl",
           "setNum": 13,
           "weight": 25,
@@ -1635,7 +1635,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04u0h9n",
+          "exerciseId": "mn5etkgyr0sz",
           "exerciseName": "Incline Dumbbell Curl",
           "setNum": 14,
           "weight": 25,
@@ -1643,7 +1643,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04u0h9n",
+          "exerciseId": "mn5etkgyr0sz",
           "exerciseName": "Incline Dumbbell Curl",
           "setNum": 15,
           "weight": 25,
@@ -1653,16 +1653,16 @@
       ]
     },
     {
-      "id": "mn5ek04vimve",
+      "id": "mn5etkgz9uvt",
       "date": "2026-03-14",
-      "routineId": "mn5ek04v5dga",
+      "routineId": "mn5etkgy6ssj",
       "routineName": "Macky 4x Upper Lower",
-      "dayId": "mn5ek04vg48w",
+      "dayId": "mn5etkgys6kr",
       "dayName": "Day D (Lower 2)",
       "bodyweight": 155,
       "sets": [
         {
-          "exerciseId": "mn5ek04ugm2u",
+          "exerciseId": "mn5etkgyq9ms",
           "exerciseName": "Squat",
           "setNum": 1,
           "weight": 175,
@@ -1670,7 +1670,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04ugm2u",
+          "exerciseId": "mn5etkgyq9ms",
           "exerciseName": "Squat",
           "setNum": 2,
           "weight": 185,
@@ -1678,7 +1678,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04ugm2u",
+          "exerciseId": "mn5etkgyq9ms",
           "exerciseName": "Squat",
           "setNum": 3,
           "weight": 185,
@@ -1686,7 +1686,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04unz56",
+          "exerciseId": "mn5etkgyooyd",
           "exerciseName": "RDL",
           "setNum": 4,
           "weight": 165,
@@ -1694,7 +1694,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04unz56",
+          "exerciseId": "mn5etkgyooyd",
           "exerciseName": "RDL",
           "setNum": 5,
           "weight": 165,
@@ -1702,7 +1702,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04unz56",
+          "exerciseId": "mn5etkgyooyd",
           "exerciseName": "RDL",
           "setNum": 6,
           "weight": 165,
@@ -1710,7 +1710,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04u32fl",
+          "exerciseId": "mn5etkgy0ckh",
           "exerciseName": "Barbell Shrug",
           "setNum": 7,
           "weight": 195,
@@ -1718,7 +1718,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04u32fl",
+          "exerciseId": "mn5etkgy0ckh",
           "exerciseName": "Barbell Shrug",
           "setNum": 8,
           "weight": 205,
@@ -1726,7 +1726,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04u32fl",
+          "exerciseId": "mn5etkgy0ckh",
           "exerciseName": "Barbell Shrug",
           "setNum": 9,
           "weight": 205,
@@ -1734,7 +1734,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04uufi8",
+          "exerciseId": "mn5etkgy9w3r",
           "exerciseName": "Preacher Hammer Curl",
           "setNum": 10,
           "weight": 25,
@@ -1742,7 +1742,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04uufi8",
+          "exerciseId": "mn5etkgy9w3r",
           "exerciseName": "Preacher Hammer Curl",
           "setNum": 11,
           "weight": 25,
@@ -1750,7 +1750,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04uufi8",
+          "exerciseId": "mn5etkgy9w3r",
           "exerciseName": "Preacher Hammer Curl",
           "setNum": 12,
           "weight": 25,
@@ -1758,7 +1758,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04uydw0",
+          "exerciseId": "mn5etkgyr1a2",
           "exerciseName": "Single Cable Forearm Curl",
           "setNum": 13,
           "weight": 70,
@@ -1766,7 +1766,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04uydw0",
+          "exerciseId": "mn5etkgyr1a2",
           "exerciseName": "Single Cable Forearm Curl",
           "setNum": 14,
           "weight": 70,
@@ -1774,7 +1774,7 @@
           "bodyweight": 155
         },
         {
-          "exerciseId": "mn5ek04uydw0",
+          "exerciseId": "mn5etkgyr1a2",
           "exerciseName": "Single Cable Forearm Curl",
           "setNum": 15,
           "weight": 70,
@@ -1784,16 +1784,16 @@
       ]
     },
     {
-      "id": "mn5ek04vi3fa",
+      "id": "mn5etkgzu2ap",
       "date": "2026-03-16",
-      "routineId": "mn5ek04v5dga",
+      "routineId": "mn5etkgy6ssj",
       "routineName": "Macky 4x Upper Lower",
-      "dayId": "mn5ek04vsj79",
+      "dayId": "mn5etkgy7s44",
       "dayName": "Day A (Upper 1)",
       "bodyweight": 155.6,
       "sets": [
         {
-          "exerciseId": "mn5ek04ut9dm",
+          "exerciseId": "mn5etkgy6ste",
           "exerciseName": "Bench Press",
           "setNum": 1,
           "weight": 170,
@@ -1801,7 +1801,7 @@
           "bodyweight": 155.6
         },
         {
-          "exerciseId": "mn5ek04ut9dm",
+          "exerciseId": "mn5etkgy6ste",
           "exerciseName": "Bench Press",
           "setNum": 2,
           "weight": 170,
@@ -1809,7 +1809,7 @@
           "bodyweight": 155.6
         },
         {
-          "exerciseId": "mn5ek04ut9dm",
+          "exerciseId": "mn5etkgy6ste",
           "exerciseName": "Bench Press",
           "setNum": 3,
           "weight": 170,
@@ -1817,7 +1817,7 @@
           "bodyweight": 155.6
         },
         {
-          "exerciseId": "mn5ek04ulbq3",
+          "exerciseId": "mn5etkgy4hri",
           "exerciseName": "Pull-Up",
           "setNum": 4,
           "weight": 0,
@@ -1825,7 +1825,7 @@
           "bodyweight": 155.6
         },
         {
-          "exerciseId": "mn5ek04ulbq3",
+          "exerciseId": "mn5etkgy4hri",
           "exerciseName": "Pull-Up",
           "setNum": 5,
           "weight": 0,
@@ -1833,7 +1833,7 @@
           "bodyweight": 155.6
         },
         {
-          "exerciseId": "mn5ek04ulbq3",
+          "exerciseId": "mn5etkgy4hri",
           "exerciseName": "Pull-Up",
           "setNum": 6,
           "weight": 0,
@@ -1841,7 +1841,7 @@
           "bodyweight": 155.6
         },
         {
-          "exerciseId": "mn5ek04uquqg",
+          "exerciseId": "mn5etkgy631y",
           "exerciseName": "Dumbbell Incline Press",
           "setNum": 7,
           "weight": 53,
@@ -1849,7 +1849,7 @@
           "bodyweight": 155.6
         },
         {
-          "exerciseId": "mn5ek04uquqg",
+          "exerciseId": "mn5etkgy631y",
           "exerciseName": "Dumbbell Incline Press",
           "setNum": 8,
           "weight": 53,
@@ -1857,7 +1857,7 @@
           "bodyweight": 155.6
         },
         {
-          "exerciseId": "mn5ek04uquqg",
+          "exerciseId": "mn5etkgy631y",
           "exerciseName": "Dumbbell Incline Press",
           "setNum": 9,
           "weight": 53,
@@ -1865,7 +1865,7 @@
           "bodyweight": 155.6
         },
         {
-          "exerciseId": "mn5ek04ut0h8",
+          "exerciseId": "mn5etkgyam9o",
           "exerciseName": "Dumbbell Curl",
           "setNum": 10,
           "weight": 32,
@@ -1873,7 +1873,7 @@
           "bodyweight": 155.6
         },
         {
-          "exerciseId": "mn5ek04ut0h8",
+          "exerciseId": "mn5etkgyam9o",
           "exerciseName": "Dumbbell Curl",
           "setNum": 11,
           "weight": 32,
@@ -1881,7 +1881,7 @@
           "bodyweight": 155.6
         },
         {
-          "exerciseId": "mn5ek04ut0h8",
+          "exerciseId": "mn5etkgyam9o",
           "exerciseName": "Dumbbell Curl",
           "setNum": 12,
           "weight": 32,
@@ -1889,7 +1889,7 @@
           "bodyweight": 155.6
         },
         {
-          "exerciseId": "mn5ek04uaeyn",
+          "exerciseId": "mn5etkgyx3qn",
           "exerciseName": "Tricep Pushdown",
           "setNum": 13,
           "weight": 110,
@@ -1897,7 +1897,7 @@
           "bodyweight": 155.6
         },
         {
-          "exerciseId": "mn5ek04uaeyn",
+          "exerciseId": "mn5etkgyx3qn",
           "exerciseName": "Tricep Pushdown",
           "setNum": 14,
           "weight": 110,
@@ -1905,7 +1905,7 @@
           "bodyweight": 155.6
         },
         {
-          "exerciseId": "mn5ek04uaeyn",
+          "exerciseId": "mn5etkgyx3qn",
           "exerciseName": "Tricep Pushdown",
           "setNum": 15,
           "weight": 110,
@@ -1915,16 +1915,16 @@
       ]
     },
     {
-      "id": "mn5ek04vw3bf",
+      "id": "mn5etkgzzxky",
       "date": "2026-03-18",
-      "routineId": "mn5ek04v5dga",
+      "routineId": "mn5etkgy6ssj",
       "routineName": "Macky 4x Upper Lower",
-      "dayId": "mn5ek04vvlkg",
+      "dayId": "mn5etkgy04r2",
       "dayName": "Day B (Lower 1)",
       "bodyweight": 155.6,
       "sets": [
         {
-          "exerciseId": "mn5ek04umd9i",
+          "exerciseId": "mn5etkgym72s",
           "exerciseName": "Deadlift",
           "setNum": 1,
           "weight": 225,
@@ -1932,7 +1932,7 @@
           "bodyweight": 155.6
         },
         {
-          "exerciseId": "mn5ek04umd9i",
+          "exerciseId": "mn5etkgym72s",
           "exerciseName": "Deadlift",
           "setNum": 2,
           "weight": 245,
@@ -1940,7 +1940,7 @@
           "bodyweight": 155.6
         },
         {
-          "exerciseId": "mn5ek04umd9i",
+          "exerciseId": "mn5etkgym72s",
           "exerciseName": "Deadlift",
           "setNum": 3,
           "weight": 245,
@@ -1948,7 +1948,7 @@
           "bodyweight": 155.6
         },
         {
-          "exerciseId": "mn5ek04uarzd",
+          "exerciseId": "mn5etkgy9e8s",
           "exerciseName": "Dumbbell Split Squat",
           "setNum": 4,
           "weight": 25,
@@ -1956,7 +1956,7 @@
           "bodyweight": 155.6
         },
         {
-          "exerciseId": "mn5ek04uarzd",
+          "exerciseId": "mn5etkgy9e8s",
           "exerciseName": "Dumbbell Split Squat",
           "setNum": 5,
           "weight": 25,
@@ -1964,7 +1964,7 @@
           "bodyweight": 155.6
         },
         {
-          "exerciseId": "mn5ek04uarzd",
+          "exerciseId": "mn5etkgy9e8s",
           "exerciseName": "Dumbbell Split Squat",
           "setNum": 6,
           "weight": 25,
@@ -1972,7 +1972,7 @@
           "bodyweight": 155.6
         },
         {
-          "exerciseId": "mn5ek04ushc8",
+          "exerciseId": "mn5etkgy9e4h",
           "exerciseName": "Cable Crunch",
           "setNum": 7,
           "weight": 135,
@@ -1980,7 +1980,7 @@
           "bodyweight": 155.6
         },
         {
-          "exerciseId": "mn5ek04ushc8",
+          "exerciseId": "mn5etkgy9e4h",
           "exerciseName": "Cable Crunch",
           "setNum": 8,
           "weight": 135,
@@ -1988,7 +1988,7 @@
           "bodyweight": 155.6
         },
         {
-          "exerciseId": "mn5ek04ushc8",
+          "exerciseId": "mn5etkgy9e4h",
           "exerciseName": "Cable Crunch",
           "setNum": 9,
           "weight": 135,
@@ -1996,7 +1996,7 @@
           "bodyweight": 155.6
         },
         {
-          "exerciseId": "mn5ek04uufi8",
+          "exerciseId": "mn5etkgy9w3r",
           "exerciseName": "Preacher Hammer Curl",
           "setNum": 10,
           "weight": 25,
@@ -2004,7 +2004,7 @@
           "bodyweight": 155.6
         },
         {
-          "exerciseId": "mn5ek04uufi8",
+          "exerciseId": "mn5etkgy9w3r",
           "exerciseName": "Preacher Hammer Curl",
           "setNum": 11,
           "weight": 25,
@@ -2012,7 +2012,7 @@
           "bodyweight": 155.6
         },
         {
-          "exerciseId": "mn5ek04uufi8",
+          "exerciseId": "mn5etkgy9w3r",
           "exerciseName": "Preacher Hammer Curl",
           "setNum": 12,
           "weight": 25,
@@ -2020,7 +2020,7 @@
           "bodyweight": 155.6
         },
         {
-          "exerciseId": "mn5ek04uydw0",
+          "exerciseId": "mn5etkgyr1a2",
           "exerciseName": "Single Cable Forearm Curl",
           "setNum": 13,
           "weight": 70,
@@ -2028,7 +2028,7 @@
           "bodyweight": 155.6
         },
         {
-          "exerciseId": "mn5ek04uydw0",
+          "exerciseId": "mn5etkgyr1a2",
           "exerciseName": "Single Cable Forearm Curl",
           "setNum": 14,
           "weight": 70,
@@ -2036,7 +2036,7 @@
           "bodyweight": 155.6
         },
         {
-          "exerciseId": "mn5ek04uydw0",
+          "exerciseId": "mn5etkgyr1a2",
           "exerciseName": "Single Cable Forearm Curl",
           "setNum": 15,
           "weight": 70,
@@ -2046,16 +2046,16 @@
       ]
     },
     {
-      "id": "mn5ek04vhrys",
+      "id": "mn5etkgz155p",
       "date": "2026-03-20",
-      "routineId": "mn5ek04v5dga",
+      "routineId": "mn5etkgy6ssj",
       "routineName": "Macky 4x Upper Lower",
-      "dayId": "mn5ek04vsd7m",
+      "dayId": "mn5etkgycbn3",
       "dayName": "Day C (Upper 2)",
       "bodyweight": 154.6,
       "sets": [
         {
-          "exerciseId": "mn5ek04u5mbo",
+          "exerciseId": "mn5etkgy9yvz",
           "exerciseName": "Weighted Pull-Up",
           "setNum": 1,
           "weight": 70,
@@ -2063,7 +2063,7 @@
           "bodyweight": 154.6
         },
         {
-          "exerciseId": "mn5ek04u5mbo",
+          "exerciseId": "mn5etkgy9yvz",
           "exerciseName": "Weighted Pull-Up",
           "setNum": 2,
           "weight": 70,
@@ -2071,7 +2071,7 @@
           "bodyweight": 154.6
         },
         {
-          "exerciseId": "mn5ek04u5mbo",
+          "exerciseId": "mn5etkgy9yvz",
           "exerciseName": "Weighted Pull-Up",
           "setNum": 3,
           "weight": 70,
@@ -2079,7 +2079,7 @@
           "bodyweight": 154.6
         },
         {
-          "exerciseId": "mn5ek04ulmms",
+          "exerciseId": "mn5etkgy2q9w",
           "exerciseName": "Weighted Dip",
           "setNum": 4,
           "weight": 80,
@@ -2087,7 +2087,7 @@
           "bodyweight": 154.6
         },
         {
-          "exerciseId": "mn5ek04ulmms",
+          "exerciseId": "mn5etkgy2q9w",
           "exerciseName": "Weighted Dip",
           "setNum": 5,
           "weight": 80,
@@ -2095,7 +2095,7 @@
           "bodyweight": 154.6
         },
         {
-          "exerciseId": "mn5ek04ulmms",
+          "exerciseId": "mn5etkgy2q9w",
           "exerciseName": "Weighted Dip",
           "setNum": 6,
           "weight": 80,
@@ -2103,7 +2103,7 @@
           "bodyweight": 154.6
         },
         {
-          "exerciseId": "mn5ek04uxync",
+          "exerciseId": "mn5etkgysovt",
           "exerciseName": "Weighted Body Row",
           "setNum": 7,
           "weight": 24.2,
@@ -2111,7 +2111,7 @@
           "bodyweight": 154.6
         },
         {
-          "exerciseId": "mn5ek04uxync",
+          "exerciseId": "mn5etkgysovt",
           "exerciseName": "Weighted Body Row",
           "setNum": 8,
           "weight": 24.2,
@@ -2119,7 +2119,7 @@
           "bodyweight": 154.6
         },
         {
-          "exerciseId": "mn5ek04uxync",
+          "exerciseId": "mn5etkgysovt",
           "exerciseName": "Weighted Body Row",
           "setNum": 9,
           "weight": 24.2,
@@ -2127,7 +2127,7 @@
           "bodyweight": 154.6
         },
         {
-          "exerciseId": "mn5ek04ui9yv",
+          "exerciseId": "mn5etkgydr1t",
           "exerciseName": "Overhead Tricep Extension",
           "setNum": 10,
           "weight": 80,
@@ -2135,7 +2135,7 @@
           "bodyweight": 154.6
         },
         {
-          "exerciseId": "mn5ek04ui9yv",
+          "exerciseId": "mn5etkgydr1t",
           "exerciseName": "Overhead Tricep Extension",
           "setNum": 11,
           "weight": 80,
@@ -2143,7 +2143,7 @@
           "bodyweight": 154.6
         },
         {
-          "exerciseId": "mn5ek04ui9yv",
+          "exerciseId": "mn5etkgydr1t",
           "exerciseName": "Overhead Tricep Extension",
           "setNum": 12,
           "weight": 70,
@@ -2151,7 +2151,7 @@
           "bodyweight": 154.6
         },
         {
-          "exerciseId": "mn5ek04u0h9n",
+          "exerciseId": "mn5etkgyr0sz",
           "exerciseName": "Incline Dumbbell Curl",
           "setNum": 13,
           "weight": 25,
@@ -2159,7 +2159,7 @@
           "bodyweight": 154.6
         },
         {
-          "exerciseId": "mn5ek04u0h9n",
+          "exerciseId": "mn5etkgyr0sz",
           "exerciseName": "Incline Dumbbell Curl",
           "setNum": 14,
           "weight": 25,
@@ -2167,7 +2167,7 @@
           "bodyweight": 154.6
         },
         {
-          "exerciseId": "mn5ek04u0h9n",
+          "exerciseId": "mn5etkgyr0sz",
           "exerciseName": "Incline Dumbbell Curl",
           "setNum": 15,
           "weight": 25,
@@ -2177,16 +2177,16 @@
       ]
     },
     {
-      "id": "mn5ek04vkh81",
+      "id": "mn5etkgzxjm5",
       "date": "2026-03-21",
-      "routineId": "mn5ek04v5dga",
+      "routineId": "mn5etkgy6ssj",
       "routineName": "Macky 4x Upper Lower",
-      "dayId": "mn5ek04vg48w",
+      "dayId": "mn5etkgys6kr",
       "dayName": "Day D (Lower 2)",
       "bodyweight": 153.4,
       "sets": [
         {
-          "exerciseId": "mn5ek04ugm2u",
+          "exerciseId": "mn5etkgyq9ms",
           "exerciseName": "Squat",
           "setNum": 1,
           "weight": 195,
@@ -2194,7 +2194,7 @@
           "bodyweight": 153.4
         },
         {
-          "exerciseId": "mn5ek04ugm2u",
+          "exerciseId": "mn5etkgyq9ms",
           "exerciseName": "Squat",
           "setNum": 2,
           "weight": 185,
@@ -2202,7 +2202,7 @@
           "bodyweight": 153.4
         },
         {
-          "exerciseId": "mn5ek04ugm2u",
+          "exerciseId": "mn5etkgyq9ms",
           "exerciseName": "Squat",
           "setNum": 3,
           "weight": 190,
@@ -2210,7 +2210,7 @@
           "bodyweight": 153.4
         },
         {
-          "exerciseId": "mn5ek04unz56",
+          "exerciseId": "mn5etkgyooyd",
           "exerciseName": "RDL",
           "setNum": 4,
           "weight": 165,
@@ -2218,7 +2218,7 @@
           "bodyweight": 153.4
         },
         {
-          "exerciseId": "mn5ek04unz56",
+          "exerciseId": "mn5etkgyooyd",
           "exerciseName": "RDL",
           "setNum": 5,
           "weight": 165,
@@ -2226,7 +2226,7 @@
           "bodyweight": 153.4
         },
         {
-          "exerciseId": "mn5ek04unz56",
+          "exerciseId": "mn5etkgyooyd",
           "exerciseName": "RDL",
           "setNum": 6,
           "weight": 165,
@@ -2234,7 +2234,7 @@
           "bodyweight": 153.4
         },
         {
-          "exerciseId": "mn5ek04u32fl",
+          "exerciseId": "mn5etkgy0ckh",
           "exerciseName": "Barbell Shrug",
           "setNum": 7,
           "weight": 215,
@@ -2242,7 +2242,7 @@
           "bodyweight": 153.4
         },
         {
-          "exerciseId": "mn5ek04u32fl",
+          "exerciseId": "mn5etkgy0ckh",
           "exerciseName": "Barbell Shrug",
           "setNum": 8,
           "weight": 215,
@@ -2250,7 +2250,7 @@
           "bodyweight": 153.4
         },
         {
-          "exerciseId": "mn5ek04u32fl",
+          "exerciseId": "mn5etkgy0ckh",
           "exerciseName": "Barbell Shrug",
           "setNum": 9,
           "weight": 215,
@@ -2258,7 +2258,7 @@
           "bodyweight": 153.4
         },
         {
-          "exerciseId": "mn5ek04ushc8",
+          "exerciseId": "mn5etkgy9e4h",
           "exerciseName": "Cable Crunch",
           "setNum": 10,
           "weight": 155,
@@ -2266,7 +2266,7 @@
           "bodyweight": 153.4
         },
         {
-          "exerciseId": "mn5ek04ushc8",
+          "exerciseId": "mn5etkgy9e4h",
           "exerciseName": "Cable Crunch",
           "setNum": 11,
           "weight": 155,
@@ -2274,7 +2274,7 @@
           "bodyweight": 153.4
         },
         {
-          "exerciseId": "mn5ek04ushc8",
+          "exerciseId": "mn5etkgy9e4h",
           "exerciseName": "Cable Crunch",
           "setNum": 12,
           "weight": 155,
@@ -2282,7 +2282,7 @@
           "bodyweight": 153.4
         },
         {
-          "exerciseId": "mn5ek04uufi8",
+          "exerciseId": "mn5etkgy9w3r",
           "exerciseName": "Preacher Hammer Curl",
           "setNum": 13,
           "weight": 32,
@@ -2290,7 +2290,7 @@
           "bodyweight": 153.4
         },
         {
-          "exerciseId": "mn5ek04uufi8",
+          "exerciseId": "mn5etkgy9w3r",
           "exerciseName": "Preacher Hammer Curl",
           "setNum": 14,
           "weight": 32,
@@ -2298,7 +2298,7 @@
           "bodyweight": 153.4
         },
         {
-          "exerciseId": "mn5ek04uufi8",
+          "exerciseId": "mn5etkgy9w3r",
           "exerciseName": "Preacher Hammer Curl",
           "setNum": 15,
           "weight": 32,
@@ -2308,16 +2308,16 @@
       ]
     },
     {
-      "id": "mn5ek04vvccj",
+      "id": "mn5etkgzfxcd",
       "date": "2026-03-23",
-      "routineId": "mn5ek04v5dga",
+      "routineId": "mn5etkgy6ssj",
       "routineName": "Macky 4x Upper Lower",
-      "dayId": "mn5ek04vsj79",
+      "dayId": "mn5etkgy7s44",
       "dayName": "Day A (Upper 1)",
       "bodyweight": 154.4,
       "sets": [
         {
-          "exerciseId": "mn5ek04ut9dm",
+          "exerciseId": "mn5etkgy6ste",
           "exerciseName": "Bench Press",
           "setNum": 1,
           "weight": 175,
@@ -2325,7 +2325,7 @@
           "bodyweight": 154.4
         },
         {
-          "exerciseId": "mn5ek04ut9dm",
+          "exerciseId": "mn5etkgy6ste",
           "exerciseName": "Bench Press",
           "setNum": 2,
           "weight": 175,
@@ -2333,7 +2333,7 @@
           "bodyweight": 154.4
         },
         {
-          "exerciseId": "mn5ek04ut9dm",
+          "exerciseId": "mn5etkgy6ste",
           "exerciseName": "Bench Press",
           "setNum": 3,
           "weight": 175,
@@ -2341,7 +2341,7 @@
           "bodyweight": 154.4
         },
         {
-          "exerciseId": "mn5ek04ulbq3",
+          "exerciseId": "mn5etkgy4hri",
           "exerciseName": "Pull-Up",
           "setNum": 4,
           "weight": 0,
@@ -2349,7 +2349,7 @@
           "bodyweight": 154.4
         },
         {
-          "exerciseId": "mn5ek04ulbq3",
+          "exerciseId": "mn5etkgy4hri",
           "exerciseName": "Pull-Up",
           "setNum": 5,
           "weight": 0,
@@ -2357,7 +2357,7 @@
           "bodyweight": 154.4
         },
         {
-          "exerciseId": "mn5ek04ulbq3",
+          "exerciseId": "mn5etkgy4hri",
           "exerciseName": "Pull-Up",
           "setNum": 6,
           "weight": 0,
@@ -2365,7 +2365,7 @@
           "bodyweight": 154.4
         },
         {
-          "exerciseId": "mn5ek04uquqg",
+          "exerciseId": "mn5etkgy631y",
           "exerciseName": "Dumbbell Incline Press",
           "setNum": 7,
           "weight": 53,
@@ -2373,7 +2373,7 @@
           "bodyweight": 154.4
         },
         {
-          "exerciseId": "mn5ek04uquqg",
+          "exerciseId": "mn5etkgy631y",
           "exerciseName": "Dumbbell Incline Press",
           "setNum": 8,
           "weight": 53,
@@ -2381,7 +2381,7 @@
           "bodyweight": 154.4
         },
         {
-          "exerciseId": "mn5ek04uquqg",
+          "exerciseId": "mn5etkgy631y",
           "exerciseName": "Dumbbell Incline Press",
           "setNum": 9,
           "weight": 53,
@@ -2389,7 +2389,7 @@
           "bodyweight": 154.4
         },
         {
-          "exerciseId": "mn5ek04ut0h8",
+          "exerciseId": "mn5etkgyam9o",
           "exerciseName": "Dumbbell Curl",
           "setNum": 10,
           "weight": 32,
@@ -2397,7 +2397,7 @@
           "bodyweight": 154.4
         },
         {
-          "exerciseId": "mn5ek04ut0h8",
+          "exerciseId": "mn5etkgyam9o",
           "exerciseName": "Dumbbell Curl",
           "setNum": 11,
           "weight": 32,
@@ -2405,7 +2405,7 @@
           "bodyweight": 154.4
         },
         {
-          "exerciseId": "mn5ek04ut0h8",
+          "exerciseId": "mn5etkgyam9o",
           "exerciseName": "Dumbbell Curl",
           "setNum": 12,
           "weight": 32,
@@ -2413,7 +2413,7 @@
           "bodyweight": 154.4
         },
         {
-          "exerciseId": "mn5ek04uaeyn",
+          "exerciseId": "mn5etkgyx3qn",
           "exerciseName": "Tricep Pushdown",
           "setNum": 13,
           "weight": 125,
@@ -2421,7 +2421,7 @@
           "bodyweight": 154.4
         },
         {
-          "exerciseId": "mn5ek04uaeyn",
+          "exerciseId": "mn5etkgyx3qn",
           "exerciseName": "Tricep Pushdown",
           "setNum": 14,
           "weight": 125,
@@ -2429,7 +2429,7 @@
           "bodyweight": 154.4
         },
         {
-          "exerciseId": "mn5ek04uaeyn",
+          "exerciseId": "mn5etkgyx3qn",
           "exerciseName": "Tricep Pushdown",
           "setNum": 15,
           "weight": 125,
