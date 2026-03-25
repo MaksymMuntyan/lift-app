@@ -406,14 +406,16 @@ function renderExerciseBlock(ex, exIdx, pr) {
     : `${ex.targetSets} sets`;
 
   let dpHint = '';
-  if (hasRange && ex.lastDate && !isMaxReps) {
-    if (ex.repMax && ex.lastReps >= ex.repMax)
-      dpHint = `<span style="color:var(--accent2);font-size:12px;font-weight:700;">↑ Got ${ex.lastReps} last time — bump weight!</span>`;
-    else if (ex.repMin && ex.lastReps < ex.repMin)
-      dpHint = `<span style="color:var(--text2);font-size:12px;">Got ${ex.lastReps} last time — keep weight, push for ${ex.repMin}</span>`;
-  }
-  if (isMaxReps && ex.lastDate) {
-    dpHint = `<span style="color:var(--accent);font-size:12px;font-weight:700;">Last max: ${ex.lastReps} reps — beat it!</span>`;
+  if (ex.lastDate) {
+    if (ex.isBodyweight || isMaxReps) {
+      // Bodyweight or MAX — just show last reps and encourage beating it
+      dpHint = `<span style="color:var(--accent);font-size:12px;font-weight:700;">Got ${ex.lastReps} last time — beat it!</span>`;
+    } else if (hasRange) {
+      if (ex.repMax && ex.lastReps >= ex.repMax)
+        dpHint = `<span style="color:var(--accent2);font-size:12px;font-weight:700;">↑ Got ${ex.lastReps} last time — bump weight!</span>`;
+      else if (ex.repMin && ex.lastReps < ex.repMin)
+        dpHint = `<span style="color:var(--text2);font-size:12px;">Got ${ex.lastReps} last time — push for ${ex.repMin}</span>`;
+    }
   }
 
   let html = `<div class="exercise-block${isNewPR ? ' current' : ''}" id="ex-block-${exIdx}">
@@ -856,11 +858,12 @@ function buildChartSeriesList() {
 }
 
 function renderChartSeriesChips() {
-  const anyActive = chartSeries.filter(s => s.active);
-  const activeisBW = anyActive.length > 0 ? anyActive[0].isBW : null;
+  const activeExercises = chartSeries.filter(s => s.active && s.type !== 'bodyweight');
+  const activeisBW = activeExercises.length > 0 ? activeExercises[0].isBW : null;
   document.getElementById('chart-series-list').innerHTML =
     chartSeries.map((s,i) => {
-      const incompatible = activeisBW !== null && s.active === false && s.isBW !== activeisBW;
+      // Bodyweight tracker is always compatible — never fade it
+      const incompatible = s.type !== 'bodyweight' && !s.active && activeisBW !== null && s.isBW !== activeisBW;
       return `<div class="toggle-chip${s.active?' active':''}${incompatible?' disabled':''}"
         onclick="toggleChartSeries('${s.id}')"
         style="${incompatible?'opacity:0.35;cursor:not-allowed;':''}"
@@ -873,12 +876,13 @@ function toggleChartSeries(id) {
   const s = chartSeries.find(x => x.id === id);
   if (!s) return;
 
-  // If turning on, check compatibility
-  if (!s.active) {
-    const currentActive = chartSeries.filter(x => x.active);
-    if (currentActive.length > 0 && currentActive[0].isBW !== s.isBW) {
-      // Incompatible type — clear all and start fresh with this one
-      chartSeries.forEach(x => { x.active = false; });
+  // The bodyweight tracker (scale weight) is always compatible with everything
+  // Only exercise series need to be same-type
+  if (!s.active && s.type !== 'bodyweight') {
+    const currentActiveExercises = chartSeries.filter(x => x.active && x.type !== 'bodyweight');
+    if (currentActiveExercises.length > 0 && currentActiveExercises[0].isBW !== s.isBW) {
+      // Incompatible exercise type — clear exercises but keep bodyweight tracker if active
+      chartSeries.forEach(x => { if (x.type !== 'bodyweight') x.active = false; });
     }
   }
 
@@ -897,7 +901,9 @@ function renderChart() {
 
   const sessions = getSessions().sort((a,b) => a.date.localeCompare(b.date));
   const bws = getBodyweights().sort((a,b) => a.date.localeCompare(b.date));
-  const isBodyweightChart = activeSeries[0].isBW;
+  const activeExerciseSeries = activeSeries.filter(s => s.type !== 'bodyweight');
+  const isBodyweightChart = activeExerciseSeries.length > 0 && activeExerciseSeries[0].isBW;
+  const yLabel = isBodyweightChart ? 'Reps' : 'lbs';
 
   // Build per-series data maps
   const seriesData = activeSeries.map(series => {
@@ -941,8 +947,6 @@ function renderChart() {
       spanGaps: true
     };
   });
-
-  const yLabel = isBodyweightChart && activeSeries[0].type !== 'bodyweight' ? 'Reps' : 'lbs';
 
   chartInstance = new Chart(ctx, {
     type: 'line',

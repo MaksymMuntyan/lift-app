@@ -137,8 +137,8 @@ const SEED = {
           name: 'Day A (Push)',
           slots: [
             { exercises: ['Squat'],                                                             sets: 3, repMin: 3,  repMax: 5  },
-            { exercises: ['Ring Dip'],                                                          sets: 3, repMin: 8,  repMax: 15 },
-            { exercises: ['Body Row', 'Cable Row', 'Pull-Up'],                                 sets: 3, repMin: 5,  repMax: 15 },
+            { exercises: ['Ring Dip'],                                                          sets: 3, repMax: 'MAX' },
+            { exercises: ['Body Row', 'Cable Row', 'Pull-Up'],                                 sets: 3, repMax: 'MAX'  },
             { exercises: ['Hip Thrust', 'RDL'],                                                sets: 3, repMin: 10, repMax: 12 },
             { exercises: ['Cable Crunch'],                                                      sets: 3, repMin: 10, repMax: 12 },
           ]
@@ -148,7 +148,7 @@ const SEED = {
           slots: [
             { exercises: ['Deadlift'],                                                          sets: 2, repMin: 3,  repMax: 5  },
             { exercises: ['Pull-Up'],                                                           sets: 3, repMax: 'MAX' },
-            { exercises: ['Incline Push-Up'],                                                   sets: 3, repMin: 8,  repMax: 15 },
+            { exercises: ['Incline Push-Up'],                                                   sets: 3, repMAX: 'MAX'},
             { exercises: ['Dumbbell Split Squat', 'Pistol Squat'],                             sets: 3, repMin: 10, repMax: 12 },
             { exercises: ['Cable Crunch'],                                                      sets: 3, repMin: 10, repMax: 12 },
           ]
