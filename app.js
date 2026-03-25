@@ -889,13 +889,13 @@ function renderChart() {
   const datasets = activeSeries.map((series, i) => {
     const color = CHART_COLORS[i % CHART_COLORS.length];
     const map = seriesData[i];
-    // Use null for missing dates so Chart.js draws gaps correctly
-    const data = allDates.map(d => map[d] !== undefined ? map[d] : null);
+    // Only plot dates where this series has actual data, mapped to the shared label index
+    const data = allDates.map((d, idx) => map[d] !== undefined ? map[d] : null);
     return {
       label: series.type === 'bodyweight' ? 'Bodyweight' : series.label,
       data, borderColor: color, backgroundColor: color + '22',
       tension: 0.3, pointRadius: 4, pointBackgroundColor: color,
-      spanGaps: false // don't connect across gaps
+      spanGaps: true // connect across null gaps so lines are continuous
     };
   });
 
