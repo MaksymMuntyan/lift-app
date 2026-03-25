@@ -860,53 +860,58 @@ function renderChart() {
   const sessions = getSessions().sort((a,b) => a.date.localeCompare(b.date));
   const bws = getBodyweights().sort((a,b) => a.date.localeCompare(b.date));
 
-  const datasets = activeSeries.map((series,i) => {
-    const color = CHART_COLORS[i % CHART_COLORS.length];
+  // Build per-series data maps first
+  const seriesData = activeSeries.map(series => {
+    const map = {};
     if (series.type === 'bodyweight') {
-      return {
-        label: 'Bodyweight',
-        data: bws.map(b => ({ x: b.date, y: b.weight })),
-        borderColor: color, backgroundColor: color+'22', tension: 0.3,
-        pointRadius: 4, pointBackgroundColor: color
-      };
+      bws.forEach(b => { map[b.date] = b.weight; });
     } else {
-      // Build one data point per date this exercise was logged
-      const byDate = {};
       sessions.forEach(s => {
         s.sets.filter(st => st.exerciseId === series.id).forEach(st => {
-          if (!byDate[s.date] || st.weight > byDate[s.date]) byDate[s.date] = st.weight;
+          if (!map[s.date] || st.weight > map[s.date]) map[s.date] = st.weight;
         });
       });
-      const data = Object.entries(byDate).sort((a,b) => a[0].localeCompare(b[0])).map(([date, weight]) => ({ x: date, y: weight }));
-      return {
-        label: series.label, data,
-        borderColor: color, backgroundColor: color+'22', tension: 0.3,
-        pointRadius: 4, pointBackgroundColor: color, spanGaps: false
-      };
     }
+    return map;
+  });
+
+  // Collect ALL dates across all active series and sort them
+  const allDates = [...new Set(seriesData.flatMap(m => Object.keys(m)))].sort();
+
+  if (allDates.length === 0) return;
+
+  // Format dates for display: '2026-03-07' → 'Mar 7'
+  const labels = allDates.map(d => {
+    const [y, m, day] = d.split('-');
+    return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][parseInt(m)-1] + ' ' + parseInt(day);
+  });
+
+  const datasets = activeSeries.map((series, i) => {
+    const color = CHART_COLORS[i % CHART_COLORS.length];
+    const map = seriesData[i];
+    // Use null for missing dates so Chart.js draws gaps correctly
+    const data = allDates.map(d => map[d] !== undefined ? map[d] : null);
+    return {
+      label: series.type === 'bodyweight' ? 'Bodyweight' : series.label,
+      data, borderColor: color, backgroundColor: color + '22',
+      tension: 0.3, pointRadius: 4, pointBackgroundColor: color,
+      spanGaps: false // don't connect across gaps
+    };
   });
 
   chartInstance = new Chart(ctx, {
     type: 'line',
-    data: { datasets },
+    data: { labels, datasets },
     options: {
       responsive: true, maintainAspectRatio: false,
-      interaction: { mode: 'nearest', intersect: false, axis: 'x' },
+      interaction: { mode: 'index', intersect: false },
       plugins: {
         legend: { display: activeSeries.length > 1, labels: { color:'#888', font:{ family:'Barlow Condensed', size:13, weight:'700' }, boxWidth:12 } },
         tooltip: { backgroundColor:'#ffffff', borderColor:'#d8d8d4', borderWidth:1, titleColor:'#2563eb', bodyColor:'#111111', padding:10 }
       },
       scales: {
-        x: {
-          type: 'time',
-          time: { unit: 'day', tooltipFormat: 'MMM d', displayFormats: { day: 'MMM d' } },
-          ticks: { color:'#666666', font:{ family:'Barlow', size:11 }, maxRotation: 45, autoSkip: true, maxTicksLimit: 8 },
-          grid: { color:'#ebebeb' }
-        },
-        y: {
-          ticks: { color:'#666666', font:{ family:'Barlow Condensed', size:13, weight:'700' } },
-          grid: { color:'#ebebeb' }
-        }
+        x: { ticks: { color:'#666666', font:{ family:'Barlow', size:11 }, maxRotation:45, autoSkip:true, maxTicksLimit:8 }, grid:{ color:'#ebebeb' } },
+        y: { ticks: { color:'#666666', font:{ family:'Barlow Condensed', size:13, weight:'700' } }, grid:{ color:'#ebebeb' } }
       }
     }
   });
