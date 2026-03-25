@@ -18,6 +18,7 @@ const SEED = {
   exercises: [
     { name: 'Barbell Shrug',                 category: 'Upper Back',      barbell: true },
     { name: 'Bench Press',                   category: 'Chest',           barbell: true },
+    { name: 'Body Row',                      category: 'Back',            bodyweight: true },
     { name: 'Cable Crunch',                  category: 'Abs'             },
     { name: 'Cable Forearm Curl',            category: 'Forearms'        },
     { name: 'Cable Row',                     category: 'Back'            },
@@ -36,7 +37,7 @@ const SEED = {
     { name: 'Preacher Hammer Curl',          category: 'Biceps'          },
     { name: 'Pull-Up',                       category: 'Back',            bodyweight: true },
     { name: 'RDL',                           category: 'Posterior Chain', barbell: true },
-    { name: 'Ring Dip',                      category: 'Chest'           },
+    { name: 'Ring Dip',                      category: 'Chest',           bodyweight: true },
     { name: 'Ring Fly',                      category: 'Chest'           },
     { name: 'Single Cable Forearm Curl',     category: 'Forearms'        },
     { name: 'Squat',                         category: 'Quads',           barbell: true },
@@ -137,7 +138,7 @@ const SEED = {
           slots: [
             { exercises: ['Squat'],                                                             sets: 3, repMin: 3,  repMax: 5  },
             { exercises: ['Ring Dip'],                                                          sets: 3, repMin: 8,  repMax: 15 },
-            { exercises: ['Weighted Body Row', 'Cable Row', 'Pull-Up'],                        sets: 3, repMin: 5,  repMax: 15 },
+            { exercises: ['Body Row', 'Cable Row', 'Pull-Up'],                                 sets: 3, repMin: 5,  repMax: 15 },
             { exercises: ['Hip Thrust', 'RDL'],                                                sets: 3, repMin: 10, repMax: 12 },
             { exercises: ['Cable Crunch'],                                                      sets: 3, repMin: 10, repMax: 12 },
           ]
@@ -146,7 +147,7 @@ const SEED = {
           name: 'Day B (Pull)',
           slots: [
             { exercises: ['Deadlift'],                                                          sets: 2, repMin: 3,  repMax: 5  },
-            { exercises: ['Weighted Pull-Up'],                                                  sets: 3, repMin: 6,  repMax: 8  },
+            { exercises: ['Pull-Up'],                                                           sets: 3, repMax: 'MAX' },
             { exercises: ['Incline Push-Up'],                                                   sets: 3, repMin: 8,  repMax: 15 },
             { exercises: ['Dumbbell Split Squat', 'Pistol Squat'],                             sets: 3, repMin: 10, repMax: 12 },
             { exercises: ['Cable Crunch'],                                                      sets: 3, repMin: 10, repMax: 12 },
@@ -513,7 +514,7 @@ const SEED = {
           choices: slot.exercises.map(n => exMap[n]).filter(Boolean),
           sets: slot.sets || 3,
           repMin: slot.repMin || null,
-          repMax: slot.repMax || null,
+          repMax: slot.repMax === 'MAX' ? 'MAX' : (slot.repMax || null),
         }))
       }));
       if (routineMap[r.name]) {

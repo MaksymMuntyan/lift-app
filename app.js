@@ -395,19 +395,25 @@ function renderExerciseBlock(ex, exIdx, pr) {
   const isNewPR = pr && (bestLoggedWeight > pr.weight || (bestLoggedWeight === pr.weight && bestLoggedReps > pr.reps));
 
   const hasRange = ex.repMin || ex.repMax;
-  const rangeLabel = ex.repMin && ex.repMax ? `${ex.repMin}–${ex.repMax} reps`
-                   : ex.repMin ? `${ex.repMin}+ reps`
-                   : ex.repMax ? `up to ${ex.repMax} reps` : '';
+  const isMaxReps = ex.repMax === 'MAX';
+  const rangeLabel = isMaxReps
+    ? (ex.repMin ? `${ex.repMin}+ reps (MAX)` : 'MAX reps')
+    : ex.repMin && ex.repMax ? `${ex.repMin}–${ex.repMax} reps`
+    : ex.repMin ? `${ex.repMin}+ reps`
+    : ex.repMax ? `up to ${ex.repMax} reps` : '';
   const setsLabel = hasRange
     ? `${ex.targetSets} sets of ${rangeLabel}`
     : `${ex.targetSets} sets`;
 
   let dpHint = '';
-  if (hasRange && ex.lastDate) {
+  if (hasRange && ex.lastDate && !isMaxReps) {
     if (ex.repMax && ex.lastReps >= ex.repMax)
       dpHint = `<span style="color:var(--accent2);font-size:12px;font-weight:700;">↑ Got ${ex.lastReps} last time — bump weight!</span>`;
     else if (ex.repMin && ex.lastReps < ex.repMin)
       dpHint = `<span style="color:var(--text2);font-size:12px;">Got ${ex.lastReps} last time — keep weight, push for ${ex.repMin}</span>`;
+  }
+  if (isMaxReps && ex.lastDate) {
+    dpHint = `<span style="color:var(--accent);font-size:12px;font-weight:700;">Last max: ${ex.lastReps} reps — beat it!</span>`;
   }
 
   let html = `<div class="exercise-block${isNewPR ? ' current' : ''}" id="ex-block-${exIdx}">
@@ -467,9 +473,10 @@ function renderSetRow(exIdx, setIdx, set, targetWeight) {
   const statusColor = set.logged ? (set.reps > 0 ? 'var(--green)' : 'var(--red)') : '';
   let repsColor = 'var(--text)';
   if (set.logged && set.reps > 0 && ex) {
-    if (ex.repMax && set.reps >= ex.repMax)     repsColor = 'var(--accent)';
-    else if (ex.repMin && set.reps >= ex.repMin) repsColor = 'var(--green)';
-    else if (ex.repMin && set.reps < ex.repMin)  repsColor = 'var(--text2)';
+    if (ex.repMax === 'MAX') repsColor = 'var(--green)'; // any logged reps is good for MAX
+    else if (ex.repMax && set.reps >= ex.repMax)     repsColor = 'var(--accent)';
+    else if (ex.repMin && set.reps >= ex.repMin)     repsColor = 'var(--green)';
+    else if (ex.repMin && set.reps < ex.repMin)      repsColor = 'var(--text2)';
   }
   return `<div class="set-row" id="set-row-${exIdx}-${setIdx}"${set.skipped?' style="opacity:0.35;"':''}>
     <div class="set-num">S${setIdx+1}</div>
@@ -835,17 +842,48 @@ function buildChartSeriesList() {
   const exercises = getExercises();
   const wasActive = {};
   chartSeries.forEach(s => { wasActive[s.id] = s.active; });
-  chartSeries = [{ id:'bodyweight', label:'Bodyweight', type:'bodyweight', active: wasActive['bodyweight']||false },
-    ...exercises.map(ex => ({ id:ex.id, label:ex.name, type:'exercise', active: wasActive[ex.id]||false }))];
+  chartSeries = [
+    { id:'bodyweight', label:'Bodyweight (lbs)', type:'bodyweight', isBW: true, active: wasActive['bodyweight']||false },
+    ...exercises.map(ex => ({
+      id: ex.id, label: ex.name,
+      type: 'exercise',
+      isBW: !!ex.bodyweight,
+      active: wasActive[ex.id]||false
+    }))
+  ];
   if (chartSeries.filter(s=>s.active).length === 0 && chartSeries.length > 1) chartSeries[1].active = true;
+  renderChartSeriesChips();
+}
+
+function renderChartSeriesChips() {
+  const anyActive = chartSeries.filter(s => s.active);
+  const activeisBW = anyActive.length > 0 ? anyActive[0].isBW : null;
   document.getElementById('chart-series-list').innerHTML =
-    chartSeries.map((s,i) => `<div class="toggle-chip${s.active?' active':''}" onclick="toggleChartSeries('${s.id}')">${esc(s.label)}</div>`).join('');
+    chartSeries.map((s,i) => {
+      const incompatible = activeisBW !== null && s.active === false && s.isBW !== activeisBW;
+      return `<div class="toggle-chip${s.active?' active':''}${incompatible?' disabled':''}"
+        onclick="toggleChartSeries('${s.id}')"
+        style="${incompatible?'opacity:0.35;cursor:not-allowed;':''}"
+        title="${incompatible?'Can\'t mix weighted and bodyweight exercises on the same chart':''}"
+      >${esc(s.label)}</div>`;
+    }).join('');
 }
 
 function toggleChartSeries(id) {
   const s = chartSeries.find(x => x.id === id);
-  if (s) s.active = !s.active;
-  document.querySelectorAll('#chart-series-list .toggle-chip').forEach((el,i) => el.classList.toggle('active', chartSeries[i].active));
+  if (!s) return;
+
+  // If turning on, check compatibility
+  if (!s.active) {
+    const currentActive = chartSeries.filter(x => x.active);
+    if (currentActive.length > 0 && currentActive[0].isBW !== s.isBW) {
+      // Incompatible type — clear all and start fresh with this one
+      chartSeries.forEach(x => { x.active = false; });
+    }
+  }
+
+  s.active = !s.active;
+  renderChartSeriesChips();
   renderChart();
 }
 
@@ -859,13 +897,22 @@ function renderChart() {
 
   const sessions = getSessions().sort((a,b) => a.date.localeCompare(b.date));
   const bws = getBodyweights().sort((a,b) => a.date.localeCompare(b.date));
+  const isBodyweightChart = activeSeries[0].isBW;
 
-  // Build per-series data maps first
+  // Build per-series data maps
   const seriesData = activeSeries.map(series => {
     const map = {};
     if (series.type === 'bodyweight') {
       bws.forEach(b => { map[b.date] = b.weight; });
+    } else if (isBodyweightChart) {
+      // Bodyweight exercise — track MAX REPS per session
+      sessions.forEach(s => {
+        s.sets.filter(st => st.exerciseId === series.id).forEach(st => {
+          if (!map[s.date] || st.reps > map[s.date]) map[s.date] = st.reps;
+        });
+      });
     } else {
+      // Weighted exercise — track max weight
       sessions.forEach(s => {
         s.sets.filter(st => st.exerciseId === series.id).forEach(st => {
           if (!map[s.date] || st.weight > map[s.date]) map[s.date] = st.weight;
@@ -875,12 +922,9 @@ function renderChart() {
     return map;
   });
 
-  // Collect ALL dates across all active series and sort them
   const allDates = [...new Set(seriesData.flatMap(m => Object.keys(m)))].sort();
-
   if (allDates.length === 0) return;
 
-  // Format dates for display: '2026-03-07' → 'Mar 7'
   const labels = allDates.map(d => {
     const [y, m, day] = d.split('-');
     return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][parseInt(m)-1] + ' ' + parseInt(day);
@@ -889,15 +933,16 @@ function renderChart() {
   const datasets = activeSeries.map((series, i) => {
     const color = CHART_COLORS[i % CHART_COLORS.length];
     const map = seriesData[i];
-    // Only plot dates where this series has actual data, mapped to the shared label index
-    const data = allDates.map((d, idx) => map[d] !== undefined ? map[d] : null);
+    const data = allDates.map(d => map[d] !== undefined ? map[d] : null);
     return {
       label: series.type === 'bodyweight' ? 'Bodyweight' : series.label,
       data, borderColor: color, backgroundColor: color + '22',
       tension: 0.3, pointRadius: 4, pointBackgroundColor: color,
-      spanGaps: true // connect across null gaps so lines are continuous
+      spanGaps: true
     };
   });
+
+  const yLabel = isBodyweightChart && activeSeries[0].type !== 'bodyweight' ? 'Reps' : 'lbs';
 
   chartInstance = new Chart(ctx, {
     type: 'line',
@@ -911,7 +956,11 @@ function renderChart() {
       },
       scales: {
         x: { ticks: { color:'#666666', font:{ family:'Barlow', size:11 }, maxRotation:45, autoSkip:true, maxTicksLimit:8 }, grid:{ color:'#ebebeb' } },
-        y: { ticks: { color:'#666666', font:{ family:'Barlow Condensed', size:13, weight:'700' } }, grid:{ color:'#ebebeb' } }
+        y: {
+          ticks: { color:'#666666', font:{ family:'Barlow Condensed', size:13, weight:'700' } },
+          grid: { color:'#ebebeb' },
+          title: { display: true, text: yLabel, color:'#aaaaaa', font:{ family:'Barlow Condensed', size:12 } }
+        }
       }
     }
   });
@@ -1070,16 +1119,31 @@ function renderRoutineSlots() {
           style="width:52px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;padding:6px 8px;text-align:center;"
           oninput="editingDays[${activeDayIdx}].slots[${i}].sets=parseInt(this.value)||3" />
         <span style="font-size:11px;color:var(--text2);font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;">Reps</span>
-        <input type="number" min="1" max="99" value="${slot.repMin||''}" placeholder="min"
-          style="width:52px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;padding:6px 8px;text-align:center;"
-          oninput="editingDays[${activeDayIdx}].slots[${i}].repMin=parseInt(this.value)||null" />
-        <span style="color:var(--text3)">–</span>
-        <input type="number" min="1" max="99" value="${slot.repMax||''}" placeholder="max"
-          style="width:52px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;padding:6px 8px;text-align:center;"
-          oninput="editingDays[${activeDayIdx}].slots[${i}].repMax=parseInt(this.value)||null" />
+        ${slot.repMax === 'MAX'
+          ? `<span style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;color:var(--accent);">MAX</span>`
+          : `<input type="number" min="1" max="99" value="${slot.repMin||''}" placeholder="min"
+              style="width:52px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;padding:6px 8px;text-align:center;"
+              oninput="editingDays[${activeDayIdx}].slots[${i}].repMin=parseInt(this.value)||null" />
+            <span style="color:var(--text3)">–</span>
+            <input type="number" min="1" max="99" value="${slot.repMax||''}" placeholder="max"
+              style="width:52px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;padding:6px 8px;text-align:center;"
+              oninput="editingDays[${activeDayIdx}].slots[${i}].repMax=parseInt(this.value)||null" />`
+        }
+        <label style="display:flex;align-items:center;gap:4px;font-size:13px;color:var(--text2);cursor:pointer;">
+          <input type="checkbox" ${slot.repMax === 'MAX' ? 'checked' : ''}
+            onchange="setSlotMaxReps(${i}, this.checked)"
+            style="width:16px;height:16px;cursor:pointer;" />
+          MAX
+        </label>
       </div>
     </div>`;
   }).join('');
+}
+
+function setSlotMaxReps(slotIdx, isMax) {
+  editingDays[activeDayIdx].slots[slotIdx].repMax = isMax ? 'MAX' : null;
+  if (isMax) editingDays[activeDayIdx].slots[slotIdx].repMin = null;
+  renderRoutineSlots();
 }
 
 function syncDayName() {
@@ -1128,7 +1192,7 @@ function saveRoutine() {
   if (!name) { alert('Enter a routine name.'); return; }
   syncDayName();
   const validDays = editingDays
-    .map(d => ({ ...d, slots: (d.slots||[]).filter(s=>(s.choices||[]).length>0).map(s=>({ choices:s.choices, sets:s.sets||3, repMin:s.repMin||null, repMax:s.repMax||null })) }))
+    .map(d => ({ ...d, slots: (d.slots||[]).filter(s=>(s.choices||[]).length>0).map(s=>({ choices:s.choices, sets:s.sets||3, repMin:s.repMin||null, repMax:s.repMax==='MAX'?'MAX':(s.repMax||null) })) }))
     .filter(d => d.slots.length > 0);
   if (validDays.length === 0) { alert('Add at least one exercise to a day.'); return; }
 
