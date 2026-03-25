@@ -1,0 +1,656 @@
+{
+  "version": 2,
+  "user": 2,
+  "userName": "Laura",
+  "exportDate": "2026-03-25T02:06:52.271Z",
+  "exercises": [
+    {
+      "id": "mn5ek076q89z",
+      "name": "Barbell Shrug",
+      "category": "Upper Back",
+      "bodyweight": false,
+      "barbell": true
+    },
+    {
+      "id": "mn5ek076dsc6",
+      "name": "Bench Press",
+      "category": "Chest",
+      "bodyweight": false,
+      "barbell": true
+    },
+    {
+      "id": "mn5ek076ryyf",
+      "name": "Cable Crunch",
+      "category": "Abs",
+      "bodyweight": false,
+      "barbell": false
+    },
+    {
+      "id": "mn5ek0761kut",
+      "name": "Cable Forearm Curl",
+      "category": "Forearms",
+      "bodyweight": false,
+      "barbell": false
+    },
+    {
+      "id": "mn5ek076l90a",
+      "name": "Cable Row",
+      "category": "Back",
+      "bodyweight": false,
+      "barbell": false
+    },
+    {
+      "id": "mn5ek076gmxk",
+      "name": "Deadlift",
+      "category": "Posterior Chain",
+      "bodyweight": false,
+      "barbell": true
+    },
+    {
+      "id": "mn5ek076uqec",
+      "name": "Dip",
+      "category": "Chest",
+      "bodyweight": true,
+      "barbell": false
+    },
+    {
+      "id": "mn5ek07674tl",
+      "name": "Dumbbell Curl",
+      "category": "Biceps",
+      "bodyweight": false,
+      "barbell": false
+    },
+    {
+      "id": "mn5ek0767dcr",
+      "name": "Dumbbell Incline Press",
+      "category": "Chest",
+      "bodyweight": false,
+      "barbell": false
+    },
+    {
+      "id": "mn5ek076tpo8",
+      "name": "Dumbbell Row",
+      "category": "Back",
+      "bodyweight": false,
+      "barbell": false
+    },
+    {
+      "id": "mn5ek076wbgc",
+      "name": "Dumbbell Split Squat",
+      "category": "Quads",
+      "bodyweight": false,
+      "barbell": false
+    },
+    {
+      "id": "mn5ek076rtqq",
+      "name": "Dumbbell Wrist Curl",
+      "category": "Forearms",
+      "bodyweight": false,
+      "barbell": false
+    },
+    {
+      "id": "mn5ek076fv97",
+      "name": "Hip Thrust",
+      "category": "Posterior Chain",
+      "bodyweight": false,
+      "barbell": true
+    },
+    {
+      "id": "mn5ek076dv6c",
+      "name": "Incline Dumbbell Curl",
+      "category": "Biceps",
+      "bodyweight": false,
+      "barbell": false
+    },
+    {
+      "id": "mn5ek07690x7",
+      "name": "Incline Push-Up",
+      "category": "Chest",
+      "bodyweight": true,
+      "barbell": false
+    },
+    {
+      "id": "mn5ek076llpa",
+      "name": "Overhead Tricep Extension",
+      "category": "Triceps",
+      "bodyweight": false,
+      "barbell": false
+    },
+    {
+      "id": "mn5ek0762yov",
+      "name": "Pistol Squat",
+      "category": "Quads",
+      "bodyweight": true,
+      "barbell": false
+    },
+    {
+      "id": "mn5ek076oiz2",
+      "name": "Preacher Hammer Curl",
+      "category": "Biceps",
+      "bodyweight": false,
+      "barbell": false
+    },
+    {
+      "id": "mn5ek076utn2",
+      "name": "Pull-Up",
+      "category": "Back",
+      "bodyweight": true,
+      "barbell": false
+    },
+    {
+      "id": "mn5ek076oscz",
+      "name": "RDL",
+      "category": "Posterior Chain",
+      "bodyweight": false,
+      "barbell": true
+    },
+    {
+      "id": "mn5ek0768hhv",
+      "name": "Ring Dip",
+      "category": "Chest",
+      "bodyweight": false,
+      "barbell": false
+    },
+    {
+      "id": "mn5ek076dp8y",
+      "name": "Ring Fly",
+      "category": "Chest",
+      "bodyweight": false,
+      "barbell": false
+    },
+    {
+      "id": "mn5ek07645xy",
+      "name": "Single Cable Forearm Curl",
+      "category": "Forearms",
+      "bodyweight": false,
+      "barbell": false
+    },
+    {
+      "id": "mn5ek076oj0j",
+      "name": "Squat",
+      "category": "Quads",
+      "bodyweight": false,
+      "barbell": true
+    },
+    {
+      "id": "mn5ek076goe6",
+      "name": "Top Bar Deep Shoulder Push-Up",
+      "category": "Shoulders",
+      "bodyweight": true,
+      "barbell": false
+    },
+    {
+      "id": "mn5ek076zeg3",
+      "name": "Tricep Pushdown",
+      "category": "Triceps",
+      "bodyweight": false,
+      "barbell": false
+    },
+    {
+      "id": "mn5ek0760oda",
+      "name": "Weighted Body Row",
+      "category": "Back",
+      "bodyweight": false,
+      "barbell": false
+    },
+    {
+      "id": "mn5ek076ijhs",
+      "name": "Weighted Dip",
+      "category": "Chest",
+      "bodyweight": false,
+      "barbell": false
+    },
+    {
+      "id": "mn5ek076gt1r",
+      "name": "Weighted Pistol Squat",
+      "category": "Quads",
+      "bodyweight": false,
+      "barbell": false
+    },
+    {
+      "id": "mn5ek0767cxx",
+      "name": "Weighted Pull-Up",
+      "category": "Back",
+      "bodyweight": false,
+      "barbell": false
+    },
+    {
+      "id": "mn5ek076fdwj",
+      "name": "Wide Towel Pull-Up",
+      "category": "Forearms",
+      "bodyweight": true,
+      "barbell": false
+    }
+  ],
+  "routines": [
+    {
+      "id": "mn5ek077lgpg",
+      "name": "Macky 3x Full Body",
+      "days": [
+        {
+          "id": "mn5ek077g1pf",
+          "name": "Day A (Push)",
+          "slots": [
+            {
+              "choices": [
+                "mn5ek076ijhs",
+                "mn5ek076dsc6"
+              ],
+              "sets": 3,
+              "repMin": 6,
+              "repMax": 8
+            },
+            {
+              "choices": [
+                "mn5ek076utn2"
+              ],
+              "sets": 3,
+              "repMin": 10,
+              "repMax": 20
+            },
+            {
+              "choices": [
+                "mn5ek076dp8y",
+                "mn5ek0767dcr"
+              ],
+              "sets": 3,
+              "repMin": 10,
+              "repMax": 12
+            },
+            {
+              "choices": [
+                "mn5ek076oj0j"
+              ],
+              "sets": 3,
+              "repMin": 3,
+              "repMax": 5
+            },
+            {
+              "choices": [
+                "mn5ek076zeg3",
+                "mn5ek076llpa"
+              ],
+              "sets": 3,
+              "repMin": 10,
+              "repMax": 15
+            },
+            {
+              "choices": [
+                "mn5ek076oiz2",
+                "mn5ek076fdwj",
+                "mn5ek0761kut"
+              ],
+              "sets": 3,
+              "repMin": 8,
+              "repMax": 15
+            }
+          ]
+        },
+        {
+          "id": "mn5ek077udzg",
+          "name": "Day B (Pull)",
+          "slots": [
+            {
+              "choices": [
+                "mn5ek076gmxk"
+              ],
+              "sets": 2,
+              "repMin": 3,
+              "repMax": 5
+            },
+            {
+              "choices": [
+                "mn5ek0767cxx"
+              ],
+              "sets": 3,
+              "repMin": 5,
+              "repMax": 8
+            },
+            {
+              "choices": [
+                "mn5ek0767dcr",
+                "mn5ek076goe6",
+                "mn5ek076uqec"
+              ],
+              "sets": 3,
+              "repMin": 8,
+              "repMax": 12
+            },
+            {
+              "choices": [
+                "mn5ek076ryyf"
+              ],
+              "sets": 3,
+              "repMin": 8,
+              "repMax": 12
+            },
+            {
+              "choices": [
+                "mn5ek07674tl",
+                "mn5ek076dv6c"
+              ],
+              "sets": 3,
+              "repMin": 10,
+              "repMax": 12
+            },
+            {
+              "choices": [
+                "mn5ek076oiz2",
+                "mn5ek076fdwj",
+                "mn5ek0761kut"
+              ],
+              "sets": 3,
+              "repMin": 10,
+              "repMax": 15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mn5ek077di76",
+      "name": "Macky 4x Upper Lower",
+      "days": [
+        {
+          "id": "mn5ek077bbhv",
+          "name": "Day A (Upper 1)",
+          "slots": [
+            {
+              "choices": [
+                "mn5ek076dsc6"
+              ],
+              "sets": 3,
+              "repMin": 3,
+              "repMax": 5
+            },
+            {
+              "choices": [
+                "mn5ek076utn2"
+              ],
+              "sets": 3,
+              "repMin": 10,
+              "repMax": 20
+            },
+            {
+              "choices": [
+                "mn5ek076dp8y",
+                "mn5ek0767dcr"
+              ],
+              "sets": 3,
+              "repMin": 10,
+              "repMax": 12
+            },
+            {
+              "choices": [
+                "mn5ek07674tl"
+              ],
+              "sets": 3,
+              "repMin": 10,
+              "repMax": 12
+            },
+            {
+              "choices": [
+                "mn5ek076zeg3"
+              ],
+              "sets": 3,
+              "repMin": 10,
+              "repMax": 15
+            }
+          ]
+        },
+        {
+          "id": "mn5ek077y0jj",
+          "name": "Day B (Lower 1)",
+          "slots": [
+            {
+              "choices": [
+                "mn5ek076gmxk"
+              ],
+              "sets": 2,
+              "repMin": 3,
+              "repMax": 5
+            },
+            {
+              "choices": [
+                "mn5ek076wbgc",
+                "mn5ek076gt1r",
+                "mn5ek0762yov"
+              ],
+              "sets": 3,
+              "repMin": 8,
+              "repMax": 12
+            },
+            {
+              "choices": [
+                "mn5ek076ryyf"
+              ],
+              "sets": 3,
+              "repMin": 8,
+              "repMax": 12
+            },
+            {
+              "choices": [
+                "mn5ek076oiz2",
+                "mn5ek076fdwj",
+                "mn5ek0761kut"
+              ],
+              "sets": 3,
+              "repMin": 10,
+              "repMax": 15
+            },
+            {
+              "choices": [
+                "mn5ek076oiz2",
+                "mn5ek076fdwj",
+                "mn5ek0761kut"
+              ],
+              "sets": 3,
+              "repMin": 10,
+              "repMax": 15
+            }
+          ]
+        },
+        {
+          "id": "mn5ek0775yks",
+          "name": "Day C (Upper 2)",
+          "slots": [
+            {
+              "choices": [
+                "mn5ek0767cxx"
+              ],
+              "sets": 3,
+              "repMin": 5,
+              "repMax": 8
+            },
+            {
+              "choices": [
+                "mn5ek076ijhs"
+              ],
+              "sets": 3,
+              "repMin": 5,
+              "repMax": 8
+            },
+            {
+              "choices": [
+                "mn5ek0760oda",
+                "mn5ek076l90a",
+                "mn5ek076tpo8"
+              ],
+              "sets": 3,
+              "repMin": 8,
+              "repMax": 12
+            },
+            {
+              "choices": [
+                "mn5ek076llpa"
+              ],
+              "sets": 3,
+              "repMin": 10,
+              "repMax": 12
+            },
+            {
+              "choices": [
+                "mn5ek076dv6c"
+              ],
+              "sets": 3,
+              "repMin": 10,
+              "repMax": 12
+            }
+          ]
+        },
+        {
+          "id": "mn5ek0776jmg",
+          "name": "Day D (Lower 2)",
+          "slots": [
+            {
+              "choices": [
+                "mn5ek076oj0j"
+              ],
+              "sets": 3,
+              "repMin": 3,
+              "repMax": 5
+            },
+            {
+              "choices": [
+                "mn5ek076oscz"
+              ],
+              "sets": 3,
+              "repMin": 10,
+              "repMax": 12
+            },
+            {
+              "choices": [
+                "mn5ek076q89z"
+              ],
+              "sets": 3,
+              "repMin": 10,
+              "repMax": 12
+            },
+            {
+              "choices": [
+                "mn5ek076ryyf"
+              ],
+              "sets": 3,
+              "repMin": 8,
+              "repMax": 12
+            },
+            {
+              "choices": [
+                "mn5ek076oiz2",
+                "mn5ek076fdwj",
+                "mn5ek0761kut"
+              ],
+              "sets": 3,
+              "repMin": 10,
+              "repMax": 15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mn5ek0778fm8",
+      "name": "Laura Full Body 3x Week",
+      "days": [
+        {
+          "id": "mn5ek077pxfz",
+          "name": "Day A (Push)",
+          "slots": [
+            {
+              "choices": [
+                "mn5ek076oj0j"
+              ],
+              "sets": 3,
+              "repMin": 3,
+              "repMax": 5
+            },
+            {
+              "choices": [
+                "mn5ek0768hhv"
+              ],
+              "sets": 3,
+              "repMin": 8,
+              "repMax": 15
+            },
+            {
+              "choices": [
+                "mn5ek0760oda",
+                "mn5ek076l90a",
+                "mn5ek076utn2"
+              ],
+              "sets": 3,
+              "repMin": 5,
+              "repMax": 15
+            },
+            {
+              "choices": [
+                "mn5ek076fv97",
+                "mn5ek076oscz"
+              ],
+              "sets": 3,
+              "repMin": 10,
+              "repMax": 12
+            },
+            {
+              "choices": [
+                "mn5ek076ryyf"
+              ],
+              "sets": 3,
+              "repMin": 10,
+              "repMax": 12
+            }
+          ]
+        },
+        {
+          "id": "mn5ek077y2i5",
+          "name": "Day B (Pull)",
+          "slots": [
+            {
+              "choices": [
+                "mn5ek076gmxk"
+              ],
+              "sets": 2,
+              "repMin": 3,
+              "repMax": 5
+            },
+            {
+              "choices": [
+                "mn5ek0767cxx"
+              ],
+              "sets": 3,
+              "repMin": 6,
+              "repMax": 8
+            },
+            {
+              "choices": [
+                "mn5ek07690x7"
+              ],
+              "sets": 3,
+              "repMin": 8,
+              "repMax": 15
+            },
+            {
+              "choices": [
+                "mn5ek076wbgc",
+                "mn5ek0762yov"
+              ],
+              "sets": 3,
+              "repMin": 10,
+              "repMax": 12
+            },
+            {
+              "choices": [
+                "mn5ek076ryyf"
+              ],
+              "sets": 3,
+              "repMin": 10,
+              "repMax": 12
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "sessions": [],
+  "bodyweights": []
+}
