@@ -230,12 +230,14 @@ function resolveInlineSlot(exIdx, choiceId) {
   const isBodyweight = !!ex.bodyweight;
   const isBarbell = !!ex.barbell;
   let lastWeight = isBodyweight ? 0 : 45, lastReps = 5, lastDate = null;
+  let lastSetReps = [];
   for (let i = allSessions.length - 1; i >= 0; i--) {
     const s = allSessions[i];
     const match = s.sets.filter(st => st.exerciseId === choiceId);
     if (match.length > 0) {
       const best = match.reduce((a, b) => b.weight > a.weight ? b : (b.weight === a.weight && b.reps > a.reps ? b : a), match[0]);
       lastWeight = best.weight; lastReps = best.reps; lastDate = s.date;
+      lastSetReps = match.map(st => st.reps);
       break;
     }
   }
@@ -243,7 +245,7 @@ function resolveInlineSlot(exIdx, choiceId) {
   const targetSets = slot.sets || 3;
   session.exercises[exIdx] = {
     exerciseId: choiceId, name: ex.name, targetWeight: lastWeight,
-    lastWeight, lastReps, lastDate, isBodyweight, isBarbell,
+    lastWeight, lastReps, lastDate, lastSetReps, isBodyweight, isBarbell,
     repMin: slot.repMin, repMax: slot.repMax, targetSets,
     sets: Array.from({ length: targetSets }, () => ({ weight: lastWeight, reps: 0, logged: false })),
     skipped: false
@@ -275,12 +277,14 @@ function buildSessionExercises() {
     const isBodyweight = !!ex.bodyweight;
     const isBarbell = !!ex.barbell;
     let lastWeight = isBodyweight ? 0 : 45, lastReps = 5, lastDate = null;
+    let lastSetReps = []; // reps per set from last session, in order
     for (let i = allSessions.length - 1; i >= 0; i--) {
       const s = allSessions[i];
       const match = s.sets.filter(st => st.exerciseId === exId);
       if (match.length > 0) {
         const best = match.reduce((a, b) => b.weight > a.weight ? b : (b.weight === a.weight && b.reps > a.reps ? b : a), match[0]);
         lastWeight = best.weight; lastReps = best.reps; lastDate = s.date;
+        lastSetReps = match.map(st => st.reps); // preserve set order
         break;
       }
     }
@@ -288,7 +292,7 @@ function buildSessionExercises() {
     const targetSets = slot.sets || 3;
     return {
       exerciseId: exId, name: ex.name, targetWeight: lastWeight,
-      lastWeight, lastReps, lastDate, isBodyweight, isBarbell,
+      lastWeight, lastReps, lastDate, lastSetReps, isBodyweight, isBarbell,
       repMin: slot.repMin, repMax: slot.repMax, targetSets,
       sets: Array.from({ length: targetSets }, () => ({ weight: lastWeight, reps: 0, logged: false })),
       skipped: false, pending: false
@@ -471,6 +475,11 @@ function renderSetRow(exIdx, setIdx, set, targetWeight) {
   const ex = session ? session.exercises[exIdx] : null;
   const w = set.logged ? set.weight : targetWeight;
   const wLabel = (ex && ex.isBodyweight) ? 'BW' : `${w} lbs`;
+  const prevReps = ex && ex.lastSetReps && ex.lastSetReps[setIdx] !== undefined
+    ? ex.lastSetReps[setIdx] : null;
+  const setNumHtml = `<div class="set-num">S${setIdx+1}${prevReps !== null
+    ? `<div style="font-size:10px;color:var(--text3);font-weight:400;letter-spacing:0;margin-top:1px;">${prevReps}</div>`
+    : ''}</div>`;
   const statusIcon  = set.logged ? (set.reps > 0 ? '✓' : '✗') : '';
   const statusColor = set.logged ? (set.reps > 0 ? 'var(--green)' : 'var(--red)') : '';
   let repsColor = 'var(--text)';
@@ -481,7 +490,7 @@ function renderSetRow(exIdx, setIdx, set, targetWeight) {
     else if (ex.repMin && set.reps < ex.repMin)      repsColor = 'var(--text2)';
   }
   return `<div class="set-row" id="set-row-${exIdx}-${setIdx}"${set.skipped?' style="opacity:0.35;"':''}>
-    <div class="set-num">S${setIdx+1}</div>
+    ${setNumHtml}
     <div class="set-weight">${wLabel}</div>
     <div class="reps-input-row">
       <button class="reps-btn" onclick="adjustReps(${exIdx},${setIdx},-1)" ${set.skipped?'disabled':''}>−</button>
@@ -595,19 +604,21 @@ function addExtraExercise(exId) {
   const isBodyweight = !!ex.bodyweight;
   const isBarbell = !!ex.barbell;
   let lastWeight = isBodyweight ? 0 : 45, lastReps = 5, lastDate = null;
+  let lastSetReps = [];
   for (let i = allSessions.length - 1; i >= 0; i--) {
     const s = allSessions[i];
     const match = s.sets.filter(st => st.exerciseId === exId);
     if (match.length > 0) {
       const best = match.reduce((a, b) => b.weight > a.weight ? b : (b.weight === a.weight && b.reps > a.reps ? b : a), match[0]);
       lastWeight = best.weight; lastReps = best.reps; lastDate = s.date;
+      lastSetReps = match.map(st => st.reps);
       break;
     }
   }
 
   session.exercises.push({
     exerciseId: exId, name: ex.name, targetWeight: lastWeight,
-    lastWeight, lastReps, lastDate, isBodyweight, isBarbell,
+    lastWeight, lastReps, lastDate, lastSetReps, isBodyweight, isBarbell,
     repMin: null, repMax: null, targetSets: 3,
     sets: Array.from({ length: 3 }, () => ({ weight: lastWeight, reps: 0, logged: false, skipped: false })),
     skipped: false, pending: false, extra: true
