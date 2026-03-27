@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-03-25T17:44:24.294Z",
+  "exportDate": "2026-03-27T17:48:22.063Z",
   "exercises": [
     {
       "id": "mn5gy4vx6det",
@@ -2551,6 +2551,105 @@
           "bodyweight": 153.4
         }
       ]
+    },
+    {
+      "id": "mn95e8t776mi",
+      "date": "2026-03-27",
+      "routineId": "mn5gy4vxuitz",
+      "routineName": "Macky 4x Upper Lower",
+      "dayId": "mn5gy4vxq9e0",
+      "dayName": "Day C (Upper 2)",
+      "bodyweight": 153,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vximn0",
+          "exerciseName": "Weighted Pull-Up",
+          "setNum": 1,
+          "weight": 70,
+          "reps": 6,
+          "bodyweight": 153
+        },
+        {
+          "exerciseId": "mn5gy4vximn0",
+          "exerciseName": "Weighted Pull-Up",
+          "setNum": 2,
+          "weight": 70,
+          "reps": 5,
+          "bodyweight": 153
+        },
+        {
+          "exerciseId": "mn5gy4vximn0",
+          "exerciseName": "Weighted Pull-Up",
+          "setNum": 3,
+          "weight": 70,
+          "reps": 4,
+          "bodyweight": 153
+        },
+        {
+          "exerciseId": "mn5gy4vxzw9a",
+          "exerciseName": "Weighted Dip",
+          "setNum": 1,
+          "weight": 80,
+          "reps": 7,
+          "bodyweight": 153
+        },
+        {
+          "exerciseId": "mn5gy4vxzw9a",
+          "exerciseName": "Weighted Dip",
+          "setNum": 2,
+          "weight": 80,
+          "reps": 4,
+          "bodyweight": 153
+        },
+        {
+          "exerciseId": "mn5gy4vxzw9a",
+          "exerciseName": "Weighted Dip",
+          "setNum": 3,
+          "weight": 80,
+          "reps": 4,
+          "bodyweight": 153
+        },
+        {
+          "exerciseId": "mn5gy4vxfboo",
+          "exerciseName": "Squat",
+          "setNum": 1,
+          "weight": 195,
+          "reps": 5,
+          "bodyweight": 153
+        },
+        {
+          "exerciseId": "mn5gy4vxfboo",
+          "exerciseName": "Squat",
+          "setNum": 2,
+          "weight": 195,
+          "reps": 2,
+          "bodyweight": 153
+        },
+        {
+          "exerciseId": "mn5gy4vx6rzi",
+          "exerciseName": "RDL",
+          "setNum": 1,
+          "weight": 175,
+          "reps": 12,
+          "bodyweight": 153
+        },
+        {
+          "exerciseId": "mn5gy4vx6rzi",
+          "exerciseName": "RDL",
+          "setNum": 2,
+          "weight": 175,
+          "reps": 9,
+          "bodyweight": 153
+        },
+        {
+          "exerciseId": "mn5gy4vx6rzi",
+          "exerciseName": "RDL",
+          "setNum": 3,
+          "weight": 175,
+          "reps": 9,
+          "bodyweight": 153
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -2613,6 +2712,10 @@
     {
       "date": "2026-03-25",
       "weight": 153.4
+    },
+    {
+      "date": "2026-03-27",
+      "weight": 153
     }
   ]
 }
