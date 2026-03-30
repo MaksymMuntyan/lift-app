@@ -1769,6 +1769,7 @@ function forceUpdate() {
   }
 }
 function hide(id) { document.getElementById(id).classList.add('hidden'); }
+function show(id) { document.getElementById(id).classList.remove('hidden'); }
 
 function todayStr() {
   const d=new Date();
