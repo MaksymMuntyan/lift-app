@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-03-30T17:50:08.166Z",
+  "exportDate": "2026-03-30T19:23:30.901Z",
   "exercises": [
     {
       "id": "mn5gy4vx6det",
@@ -30,21 +30,24 @@
       "name": "Cable Crunch",
       "category": "Abs",
       "bodyweight": false,
-      "barbell": false
+      "barbell": false,
+      "cable": true
     },
     {
       "id": "mn5gy4vxkhya",
       "name": "Cable Forearm Curl",
       "category": "Forearms",
       "bodyweight": false,
-      "barbell": false
+      "barbell": false,
+      "cable": true
     },
     {
       "id": "mn5gy4vxska4",
       "name": "Cable Row",
       "category": "Back",
       "bodyweight": false,
-      "barbell": false
+      "barbell": false,
+      "cable": true
     },
     {
       "id": "mn5gy4vxd84s",
@@ -121,7 +124,8 @@
       "name": "Overhead Tricep Extension",
       "category": "Triceps",
       "bodyweight": false,
-      "barbell": false
+      "barbell": false,
+      "cable": true
     },
     {
       "id": "mn5gy4vx2p8a",
@@ -162,7 +166,7 @@
       "id": "mn5gy4vxd95m",
       "name": "Ring Fly",
       "category": "Chest",
-      "bodyweight": false,
+      "bodyweight": true,
       "barbell": false
     },
     {
@@ -170,7 +174,8 @@
       "name": "Single Cable Forearm Curl",
       "category": "Forearms",
       "bodyweight": false,
-      "barbell": false
+      "barbell": false,
+      "cable": true
     },
     {
       "id": "mn5gy4vxfboo",
@@ -191,7 +196,8 @@
       "name": "Tricep Pushdown",
       "category": "Triceps",
       "bodyweight": false,
-      "barbell": false
+      "barbell": false,
+      "cable": true
     },
     {
       "id": "mn5gy4vxxtfg",
