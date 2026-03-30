@@ -1,5 +1,10 @@
 Notes
 
 git add .
-git commit -m "update"
+git commit -m "removed most info from seed.js, now found in github backup"
+git pull --rebase
 git push
+
+
+https://maksymmuntyan.github.io/lift-app
+

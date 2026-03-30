@@ -1765,12 +1765,16 @@ function importData(e) {
 // ── UTILS ──────────────────────────────────────────────────
 
 function forceUpdate() {
+  // Patch exercise flags for both users first
+  if (typeof SEED !== 'undefined') {
+    SEED.patchExercises(1);
+    SEED.patchExercises(2);
+  }
+  // Then unregister service worker and reload fresh
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.getRegistrations().then(regs => {
       regs.forEach(r => r.unregister());
-    }).then(() => {
-      location.reload(true);
-    });
+    }).then(() => location.reload(true));
   } else {
     location.reload(true);
   }
