@@ -749,7 +749,35 @@
     }
     .toggle-chip:active { opacity: 0.7; }
 
-    /* ── ANIMATIONS ── */
+    /* ── CARDIO ── */
+    .cardio-type-btn {
+      background: var(--surface);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 12px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.15s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .cardio-type-btn:active { transform: scale(0.97); }
+    .cardio-type-btn.logged-today { border-color: var(--accent); background: var(--surface2); }
+    .cardio-type-icon { font-size: 28px; }
+    .cardio-type-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .cardio-type-count {
+      font-size: 11px;
+      color: var(--text2);
+    }
     @keyframes slideUp {
       from { transform: translateY(20px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
@@ -802,9 +830,10 @@
 
   <!-- NAV -->
   <div class="nav">
-    <button class="nav-tab active" onclick="showTab('home')" id="tab-home">HOME</button>
+    <button class="nav-tab active" onclick="showTab('home')" id="tab-home">LIFTING</button>
     <button class="nav-tab" onclick="showTab('history')" id="tab-history">HISTORY</button>
     <button class="nav-tab" onclick="showTab('stats')" id="tab-stats">STATS</button>
+    <button class="nav-tab" onclick="showTab('cardio')" id="tab-cardio">CARDIO</button>
     <button class="nav-tab" onclick="showTab('manage')" id="tab-manage">MANAGE</button>
   </div>
 
@@ -848,6 +877,26 @@
       <canvas id="progress-chart" height="200"></canvas>
     </div>
     <div style="height: 20px;"></div>
+  </div>
+
+  <!-- ════════════════ CARDIO SCREEN ════════════════ -->
+  <div class="screen" id="screen-cardio">
+    <div class="section-label">LOG CARDIO</div>
+    <div style="padding:0 16px 16px;display:grid;grid-template-columns:1fr 1fr;gap:10px;" id="cardio-type-grid"></div>
+    <div class="section-label" style="margin-top:8px;">ACTIVITY LOG</div>
+    <div style="display:flex;gap:8px;padding:0 16px 12px;align-items:center;">
+      <select class="input" id="cardio-view-period" onchange="renderCardioScreen()" style="flex:1;">
+        <option value="week">This Week</option>
+        <option value="month">This Month</option>
+        <option value="year">This Year</option>
+        <option value="all">All Time</option>
+      </select>
+    </div>
+    <div id="cardio-chart-container" style="margin:0 16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;">
+      <canvas id="cardio-chart" height="180"></canvas>
+    </div>
+    <div id="cardio-history-list" class="scroll-list" style="margin-top:12px;"></div>
+    <div style="height:20px;"></div>
   </div>
 
   <!-- ════════════════ MANAGE SCREEN ════════════════ -->
@@ -1054,6 +1103,46 @@
     <div class="modal-body" id="modal-extra-exercise-list"></div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('modal-extra-exercise')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Log cardio session -->
+<div class="modal-backdrop" id="modal-cardio-log">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="cardio-modal-title">LOG WORKOUT</div>
+    <div class="modal-body">
+      <div style="padding-top:8px;">
+        <div id="cardio-running-fields" class="hidden">
+          <div class="field">
+            <label>Distance (miles) — optional</label>
+            <input class="input" type="number" id="cardio-distance" placeholder="e.g. 3.1" step="0.1" min="0" />
+          </div>
+          <div class="field">
+            <label>Time (minutes) — optional</label>
+            <input class="input" type="number" id="cardio-time" placeholder="e.g. 30" min="0" />
+          </div>
+        </div>
+        <div id="cardio-other-fields" class="hidden">
+          <div class="field">
+            <label>Duration (minutes) — optional</label>
+            <input class="input" type="number" id="cardio-duration" placeholder="e.g. 60" min="0" />
+          </div>
+        </div>
+        <div class="field">
+          <label>Notes — optional</label>
+          <input class="input" type="text" id="cardio-notes" placeholder="How did it go?" />
+        </div>
+        <div class="field">
+          <label>Date</label>
+          <input class="input" type="date" id="cardio-date" />
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modal-cardio-log')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveCardioSession()">Log It ✓</button>
     </div>
   </div>
 </div>

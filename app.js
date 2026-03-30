@@ -78,7 +78,7 @@ function updateUserDisplay() {
   document.getElementById('user-dot').className = 'user-dot' + (currentUser === 2 ? ' u2' : '');
 }
 
-function renderAll() { renderHome(); renderHistory(); renderStats(); renderManage(); }
+function renderAll() { renderHome(); renderHistory(); renderStats(); renderManage(); renderCardioScreen(); }
 
 // ── TABS ───────────────────────────────────────────────────
 
@@ -90,6 +90,7 @@ function showTab(name) {
   if (name === 'stats')   renderStats();
   if (name === 'history') renderHistory();
   if (name === 'manage')  renderManage();
+  if (name === 'cardio')  renderCardioScreen();
 }
 
 // ── HOME ───────────────────────────────────────────────────
@@ -229,6 +230,7 @@ function resolveInlineSlot(exIdx, choiceId) {
 
   const isBodyweight = !!ex.bodyweight;
   const isBarbell = !!ex.barbell;
+  const isCable = !!ex.cable;
   let lastWeight = isBodyweight ? 0 : 45, lastReps = 5, lastDate = null;
   let lastSetReps = [];
   for (let i = allSessions.length - 1; i >= 0; i--) {
@@ -245,7 +247,7 @@ function resolveInlineSlot(exIdx, choiceId) {
   const targetSets = slot.sets || 3;
   session.exercises[exIdx] = {
     exerciseId: choiceId, name: ex.name, targetWeight: lastWeight,
-    lastWeight, lastReps, lastDate, lastSetReps, isBodyweight, isBarbell,
+    lastWeight, lastReps, lastDate, lastSetReps, isBodyweight, isBarbell, isCable,
     repMin: slot.repMin, repMax: slot.repMax, targetSets,
     sets: Array.from({ length: targetSets }, () => ({ weight: lastWeight, reps: 0, logged: false })),
     skipped: false
@@ -276,15 +278,16 @@ function buildSessionExercises() {
 
     const isBodyweight = !!ex.bodyweight;
     const isBarbell = !!ex.barbell;
+    const isCable = !!ex.cable;
     let lastWeight = isBodyweight ? 0 : 45, lastReps = 5, lastDate = null;
-    let lastSetReps = []; // reps per set from last session, in order
+    let lastSetReps = [];
     for (let i = allSessions.length - 1; i >= 0; i--) {
       const s = allSessions[i];
       const match = s.sets.filter(st => st.exerciseId === exId);
       if (match.length > 0) {
         const best = match.reduce((a, b) => b.weight > a.weight ? b : (b.weight === a.weight && b.reps > a.reps ? b : a), match[0]);
         lastWeight = best.weight; lastReps = best.reps; lastDate = s.date;
-        lastSetReps = match.map(st => st.reps); // preserve set order
+        lastSetReps = match.map(st => st.reps);
         break;
       }
     }
@@ -292,7 +295,7 @@ function buildSessionExercises() {
     const targetSets = slot.sets || 3;
     return {
       exerciseId: exId, name: ex.name, targetWeight: lastWeight,
-      lastWeight, lastReps, lastDate, lastSetReps, isBodyweight, isBarbell,
+      lastWeight, lastReps, lastDate, lastSetReps, isBodyweight, isBarbell, isCable,
       repMin: slot.repMin, repMax: slot.repMax, targetSets,
       sets: Array.from({ length: targetSets }, () => ({ weight: lastWeight, reps: 0, logged: false })),
       skipped: false, pending: false
@@ -323,6 +326,21 @@ function calcPlates(totalWeight) {
   remaining = Math.round(remaining * 10) / 10;
   if (remaining > 0) result.push(`+${remaining} ?`);
   return result.length ? result.join(' + ') + ' per side' : '45 lb bar only';
+}
+
+function calcCablePlates(totalWeight) {
+  // Cable: no bar, just plates on the stack
+  const plates = [45, 35, 25, 10, 5, 2.5];
+  let remaining = totalWeight;
+  if (remaining <= 0) return null;
+  const result = [];
+  for (const p of plates) {
+    const count = Math.floor(remaining / p);
+    if (count > 0) { result.push(`${count}× ${p}`); remaining -= count * p; }
+  }
+  remaining = Math.round(remaining * 10) / 10;
+  if (remaining > 0) result.push(`+${remaining} ?`);
+  return result.length ? result.join(' + ') : null;
 }
 
 function renderActiveWorkout() {
@@ -458,11 +476,14 @@ function renderExerciseBlock(ex, exIdx, pr) {
       </div>
       <button class="btn-inline" onclick="adjustWeight(${exIdx},2.5)" style="padding:6px 10px;font-size:12px;">+2.5</button>
     </div>`;
-    if (showPlateMath && ex.isBarbell) {
-      const plates = calcPlates(ex.targetWeight);
-      html += `<div style="padding:6px 14px 8px;font-size:13px;color:var(--accent);font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:0.04em;">
-        🏋️ ${plates}
-      </div>`;
+    if (showPlateMath && (ex.isBarbell || ex.isCable)) {
+      const plates = ex.isBarbell ? calcPlates(ex.targetWeight) : calcCablePlates(ex.targetWeight);
+      if (plates) {
+        const label = ex.isCable ? `🔵 ${plates}` : `🏋️ ${plates}`;
+        html += `<div style="padding:6px 14px 8px;font-size:13px;color:var(--accent);font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:0.04em;">
+          ${label}
+        </div>`;
+      }
     }
   }
   html += `<div class="sets-area" id="sets-area-${exIdx}">`;
@@ -603,6 +624,7 @@ function addExtraExercise(exId) {
 
   const isBodyweight = !!ex.bodyweight;
   const isBarbell = !!ex.barbell;
+  const isCable = !!ex.cable;
   let lastWeight = isBodyweight ? 0 : 45, lastReps = 5, lastDate = null;
   let lastSetReps = [];
   for (let i = allSessions.length - 1; i >= 0; i--) {
@@ -618,7 +640,7 @@ function addExtraExercise(exId) {
 
   session.exercises.push({
     exerciseId: exId, name: ex.name, targetWeight: lastWeight,
-    lastWeight, lastReps, lastDate, lastSetReps, isBodyweight, isBarbell,
+    lastWeight, lastReps, lastDate, lastSetReps, isBodyweight, isBarbell, isCable,
     repMin: null, repMax: null, targetSets: 3,
     sets: Array.from({ length: 3 }, () => ({ weight: lastWeight, reps: 0, logged: false, skipped: false })),
     skipped: false, pending: false, extra: true
@@ -802,6 +824,7 @@ function computeAllPRs() {
 
 const PR_FEATURED = ['Bench Press', 'Squat', 'Deadlift', 'Weighted Dip', 'Weighted Pull-Up'];
 const BARBELL_EXERCISES = ['Barbell Shrug', 'Bench Press', 'Deadlift', 'Hip Thrust', 'RDL', 'Squat'];
+const CABLE_EXERCISES = ['Cable Crunch', 'Cable Forearm Curl', 'Cable Row', 'Overhead Tricep Extension', 'Single Cable Forearm Curl', 'Tricep Pushdown'];
 
 function renderPRBoard() {
   const prs = computeAllPRs().sort((a, b) => a.name.localeCompare(b.name));
@@ -817,9 +840,12 @@ function renderPRBoard() {
 
   const renderRow = (pr) => {
     const isBarbell = BARBELL_EXERCISES.includes(pr.name);
-    const plateHtml = showPRPlateMath && isBarbell && pr.weight > 0
-      ? `<div style="font-size:12px;color:var(--accent);font-family:'Barlow Condensed',sans-serif;font-weight:700;margin-top:2px;">🏋️ ${calcPlates(pr.weight)}</div>`
-      : '';
+    const isCable = CABLE_EXERCISES.includes(pr.name);
+    let plateHtml = '';
+    if (showPRPlateMath && pr.weight > 0) {
+      if (isBarbell) plateHtml = `<div style="font-size:12px;color:var(--accent);font-family:'Barlow Condensed',sans-serif;font-weight:700;margin-top:2px;">🏋️ ${calcPlates(pr.weight)}</div>`;
+      else if (isCable) { const p = calcCablePlates(pr.weight); if (p) plateHtml = `<div style="font-size:12px;color:var(--accent);font-family:'Barlow Condensed',sans-serif;font-weight:700;margin-top:2px;">🔵 ${p}</div>`; }
+    }
     return `<div class="pr-row">
       <div class="pr-name">${esc(pr.name)}</div>
       <div>
@@ -1289,7 +1315,213 @@ document.querySelectorAll('.modal-backdrop').forEach(b => {
   b.addEventListener('click', e => { if(e.target===b) b.classList.remove('open'); });
 });
 
-// ── GITHUB AUTO BACKUP ─────────────────────────────────────
+// ── CARDIO ─────────────────────────────────────────────────
+
+const CARDIO_TYPES = [
+  { id: 'running',    label: 'Running',     icon: '🏃', hasDistance: true, hasTime: true  },
+  { id: 'bjj',        label: 'BJJ',         icon: '🥋', hasDistance: false, hasTime: false },
+  { id: 'muaythai',   label: 'Muay Thai',   icon: '🥊', hasDistance: false, hasTime: false },
+  { id: 'boxing',     label: 'Boxing',      icon: '🤜', hasDistance: false, hasTime: false },
+  { id: 'powertrack', label: 'Power Track', icon: '⚡', hasDistance: false, hasTime: false },
+  { id: 'fasttrack',  label: 'Fast Track',  icon: '🚀', hasDistance: false, hasTime: false },
+];
+
+function getCardioSessions()   { return load('cardio', []); }
+function saveCardioSessions(d) { save('cardio', d); }
+
+let currentCardioType = null;
+let cardioChartInstance = null;
+
+function renderCardioScreen() {
+  const sessions = getCardioSessions();
+  const today = todayStr();
+
+  // Type grid
+  const grid = document.getElementById('cardio-type-grid');
+  if (grid) {
+    grid.innerHTML = CARDIO_TYPES.map(t => {
+      const count = sessions.filter(s => s.type === t.id).length;
+      const loggedToday = sessions.some(s => s.type === t.id && s.date === today);
+      return `<div class="cardio-type-btn${loggedToday ? ' logged-today' : ''}" onclick="openCardioLog('${t.id}')">
+        <div class="cardio-type-icon">${t.icon}</div>
+        <div class="cardio-type-label">${t.label}</div>
+        <div class="cardio-type-count">${count} total${loggedToday ? ' · ✓ today' : ''}</div>
+      </div>`;
+    }).join('');
+  }
+
+  renderCardioChart();
+  renderCardioHistory();
+}
+
+function openCardioLog(typeId) {
+  currentCardioType = CARDIO_TYPES.find(t => t.id === typeId);
+  if (!currentCardioType) return;
+
+  document.getElementById('cardio-modal-title').textContent = `LOG ${currentCardioType.label.toUpperCase()}`;
+
+  // Show/hide relevant fields
+  const runFields = document.getElementById('cardio-running-fields');
+  const otherFields = document.getElementById('cardio-other-fields');
+  if (currentCardioType.hasDistance) {
+    show('cardio-running-fields'); hide('cardio-other-fields');
+  } else {
+    hide('cardio-running-fields'); show('cardio-other-fields');
+  }
+
+  // Reset fields
+  ['cardio-distance','cardio-time','cardio-duration','cardio-notes'].forEach(id => {
+    const el = document.getElementById(id); if (el) el.value = '';
+  });
+  document.getElementById('cardio-date').value = todayStr();
+
+  openModal('modal-cardio-log');
+}
+
+function saveCardioSession() {
+  if (!currentCardioType) return;
+  const date = document.getElementById('cardio-date').value || todayStr();
+  const notes = document.getElementById('cardio-notes').value.trim();
+
+  const session = {
+    id: uid(),
+    date,
+    type: currentCardioType.id,
+    label: currentCardioType.label,
+    icon: currentCardioType.icon,
+    notes: notes || null,
+  };
+
+  if (currentCardioType.hasDistance) {
+    const dist = parseFloat(document.getElementById('cardio-distance').value);
+    const time = parseFloat(document.getElementById('cardio-time').value);
+    if (dist > 0) session.distance = dist;
+    if (time > 0) session.duration = time;
+  } else {
+    const dur = parseFloat(document.getElementById('cardio-duration').value);
+    if (dur > 0) session.duration = dur;
+  }
+
+  const sessions = getCardioSessions();
+  sessions.push(session);
+  sessions.sort((a,b) => a.date.localeCompare(b.date));
+  saveCardioSessions(sessions);
+
+  closeModal('modal-cardio-log');
+  renderCardioScreen();
+}
+
+function renderCardioHistory() {
+  const period = document.getElementById('cardio-view-period')?.value || 'week';
+  const all = getCardioSessions();
+  const filtered = filterCardioByPeriod(all, period);
+  const el = document.getElementById('cardio-history-list');
+  if (!el) return;
+
+  if (filtered.length === 0) {
+    el.innerHTML = `<div class="empty-state" style="padding:30px;"><div class="empty-icon">🏃</div><div class="empty-title">No sessions yet</div></div>`;
+    return;
+  }
+
+  // Group by date descending
+  const byDate = {};
+  [...filtered].reverse().forEach(s => {
+    if (!byDate[s.date]) byDate[s.date] = [];
+    byDate[s.date].push(s);
+  });
+
+  el.innerHTML = Object.entries(byDate).sort((a,b) => b[0].localeCompare(a[0])).map(([date, sessions]) => {
+    const rows = sessions.map(s => {
+      const details = [];
+      if (s.distance) details.push(`${s.distance} mi`);
+      if (s.duration) details.push(`${s.duration} min`);
+      if (s.notes) details.push(s.notes);
+      return `<div style="display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--border);">
+        <div style="font-size:24px;">${s.icon}</div>
+        <div style="flex:1;">
+          <div style="font-weight:600;font-size:15px;">${s.label}</div>
+          ${details.length ? `<div style="font-size:13px;color:var(--text2);">${details.join(' · ')}</div>` : ''}
+        </div>
+        <div style="font-size:12px;color:var(--text3);cursor:pointer;" onclick="deleteCardioSession('${s.id}')">✕</div>
+      </div>`;
+    }).join('');
+    return `<div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin:0 16px 8px;overflow:hidden;">
+      <div style="padding:8px 16px;background:var(--surface2);font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;color:var(--text2);letter-spacing:0.1em;text-transform:uppercase;">${formatDate(date)}</div>
+      ${rows}
+    </div>`;
+  }).join('');
+}
+
+function deleteCardioSession(id) {
+  if (!confirm('Delete this session?')) return;
+  saveCardioSessions(getCardioSessions().filter(s => s.id !== id));
+  renderCardioScreen();
+}
+
+function filterCardioByPeriod(sessions, period) {
+  const now = new Date();
+  const today = todayStr();
+  if (period === 'all') return sessions;
+
+  let start;
+  if (period === 'week') {
+    const day = now.getDay();
+    const diff = now.getDate() - day + (day === 0 ? -6 : 1);
+    start = new Date(now.getFullYear(), now.getMonth(), diff);
+  } else if (period === 'month') {
+    start = new Date(now.getFullYear(), now.getMonth(), 1);
+  } else if (period === 'year') {
+    start = new Date(now.getFullYear(), 0, 1);
+  }
+
+  const startStr = start.toISOString().slice(0,10);
+  return sessions.filter(s => s.date >= startStr && s.date <= today);
+}
+
+function renderCardioChart() {
+  const ctx = document.getElementById('cardio-chart');
+  if (!ctx) return;
+  if (cardioChartInstance) { cardioChartInstance.destroy(); cardioChartInstance = null; }
+
+  const period = document.getElementById('cardio-view-period')?.value || 'week';
+  const all = getCardioSessions();
+  const filtered = filterCardioByPeriod(all, period);
+
+  if (filtered.length === 0) return;
+
+  // Count sessions per type
+  const counts = {};
+  CARDIO_TYPES.forEach(t => { counts[t.id] = 0; });
+  filtered.forEach(s => { if (counts[s.type] !== undefined) counts[s.type]++; });
+
+  const active = CARDIO_TYPES.filter(t => counts[t.id] > 0);
+  const colors = ['#2563eb','#ea580c','#0891b2','#9333ea','#16a34a','#ca8a04'];
+
+  cardioChartInstance = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: active.map(t => t.label),
+      datasets: [{
+        data: active.map(t => counts[t.id]),
+        backgroundColor: active.map((_, i) => colors[i % colors.length] + 'cc'),
+        borderColor: active.map((_, i) => colors[i % colors.length]),
+        borderWidth: 2,
+        borderRadius: 6,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { backgroundColor:'#ffffff', borderColor:'#d8d8d4', borderWidth:1, titleColor:'#2563eb', bodyColor:'#111111', padding:10 }
+      },
+      scales: {
+        x: { ticks: { color:'#666', font:{ family:'Barlow Condensed', size:13, weight:'700' } }, grid:{ display:false } },
+        y: { ticks: { color:'#666', font:{ family:'Barlow Condensed', size:13 }, stepSize:1 }, grid:{ color:'#ebebeb' }, beginAtZero:true }
+      }
+    }
+  });
+}
 
 const GITHUB_OWNER = 'MaksymMuntyan';
 const GITHUB_REPO  = 'lift-app';
@@ -1325,7 +1557,8 @@ function buildBackupData(userNum) {
     exercises:   getExercises(),
     routines:    getRoutines(),
     sessions:    getSessions(),
-    bodyweights: getBodyweights()
+    bodyweights: getBodyweights(),
+    cardio:      getCardioSessions()
   };
   currentUser = saved;
   return data;
@@ -1455,6 +1688,7 @@ async function restoreFromGithub() {
       if (json.routines)    saveRoutines(json.routines);
       if (json.sessions)    saveSessions(json.sessions);
       if (json.bodyweights) saveBodyweights(json.bodyweights);
+      if (json.cardio)      saveCardioSessions(json.cardio);
       currentUser = savedUser;
 
       restored++;
@@ -1496,7 +1730,8 @@ async function testGithubBackup() {
 
 function exportData() {
   const data = { version:2, user:currentUser, exportDate:new Date().toISOString(),
-    exercises:getExercises(), routines:getRoutines(), sessions:getSessions(), bodyweights:getBodyweights() };
+    exercises:getExercises(), routines:getRoutines(), sessions:getSessions(),
+    bodyweights:getBodyweights(), cardio:getCardioSessions() };
   const blob = new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
   const a = Object.assign(document.createElement('a'),{href:URL.createObjectURL(blob),download:`lift-backup-u${currentUser}-${todayStr()}.json`});
   a.click(); URL.revokeObjectURL(a.href);
@@ -1513,6 +1748,7 @@ function importData(e) {
       if(data.routines)saveRoutines(data.routines);
       if(data.sessions)saveSessions(data.sessions);
       if(data.bodyweights)saveBodyweights(data.bodyweights);
+      if(data.cardio)saveCardioSessions(data.cardio);
       renderAll(); alert('Import successful!');
     } catch { alert('Invalid file.'); }
   };

@@ -19,9 +19,9 @@ const SEED = {
     { name: 'Barbell Shrug',                 category: 'Upper Back',      barbell: true },
     { name: 'Bench Press',                   category: 'Chest',           barbell: true },
     { name: 'Body Row',                      category: 'Back',            bodyweight: true },
-    { name: 'Cable Crunch',                  category: 'Abs'             },
-    { name: 'Cable Forearm Curl',            category: 'Forearms'        },
-    { name: 'Cable Row',                     category: 'Back'            },
+    { name: 'Cable Crunch',                  category: 'Abs',             cable: true  },
+    { name: 'Cable Forearm Curl',            category: 'Forearms',        cable: true  },
+    { name: 'Cable Row',                     category: 'Back',            cable: true  },
     { name: 'Deadlift',                      category: 'Posterior Chain', barbell: true },
     { name: 'Dip',                           category: 'Chest',           bodyweight: true },
     { name: 'Dumbbell Curl',                 category: 'Biceps'          },
@@ -32,17 +32,17 @@ const SEED = {
     { name: 'Hip Thrust',                    category: 'Posterior Chain', barbell: true },
     { name: 'Incline Dumbbell Curl',         category: 'Biceps'          },
     { name: 'Incline Push-Up',               category: 'Chest',           bodyweight: true },
-    { name: 'Overhead Tricep Extension',     category: 'Triceps'         },
+    { name: 'Overhead Tricep Extension',     category: 'Triceps',         cable: true  },
     { name: 'Pistol Squat',                  category: 'Quads',           bodyweight: true },
     { name: 'Preacher Hammer Curl',          category: 'Biceps'          },
     { name: 'Pull-Up',                       category: 'Back',            bodyweight: true },
     { name: 'RDL',                           category: 'Posterior Chain', barbell: true },
     { name: 'Ring Dip',                      category: 'Chest',           bodyweight: true },
     { name: 'Ring Fly',                      category: 'Chest'           },
-    { name: 'Single Cable Forearm Curl',     category: 'Forearms'        },
+    { name: 'Single Cable Forearm Curl',     category: 'Forearms',        cable: true  },
     { name: 'Squat',                         category: 'Quads',           barbell: true },
     { name: 'Top Bar Deep Shoulder Push-Up', category: 'Shoulders',       bodyweight: true },
-    { name: 'Tricep Pushdown',               category: 'Triceps'         },
+    { name: 'Tricep Pushdown',               category: 'Triceps',         cable: true  },
     { name: 'Weighted Body Row',             category: 'Back'            },
     { name: 'Weighted Dip',                  category: 'Chest'           },
     { name: 'Weighted Pistol Squat',         category: 'Quads'           },
@@ -137,8 +137,8 @@ const SEED = {
           name: 'Day A (Push)',
           slots: [
             { exercises: ['Squat'],                                                             sets: 3, repMin: 3,  repMax: 5  },
-            { exercises: ['Ring Dip'],                                                          sets: 3, repMax: 'MAX' },
-            { exercises: ['Body Row', 'Cable Row', 'Pull-Up'],                                 sets: 3, repMax: 'MAX'  },
+            { exercises: ['Ring Dip'],                                                          sets: 3, repMin: 8,  repMax: 15 },
+            { exercises: ['Body Row', 'Cable Row', 'Pull-Up'],                                 sets: 3, repMin: 5,  repMax: 15 },
             { exercises: ['Hip Thrust', 'RDL'],                                                sets: 3, repMin: 10, repMax: 12 },
             { exercises: ['Cable Crunch'],                                                      sets: 3, repMin: 10, repMax: 12 },
           ]
@@ -148,7 +148,7 @@ const SEED = {
           slots: [
             { exercises: ['Deadlift'],                                                          sets: 2, repMin: 3,  repMax: 5  },
             { exercises: ['Pull-Up'],                                                           sets: 3, repMax: 'MAX' },
-            { exercises: ['Incline Push-Up'],                                                   sets: 3, repMAX: 'MAX'},
+            { exercises: ['Incline Push-Up'],                                                   sets: 3, repMin: 8,  repMax: 15 },
             { exercises: ['Dumbbell Split Squat', 'Pistol Squat'],                             sets: 3, repMin: 10, repMax: 12 },
             { exercises: ['Cable Crunch'],                                                      sets: 3, repMin: 10, repMax: 12 },
           ]
@@ -486,7 +486,7 @@ const SEED = {
     this.exercises.forEach(ex => {
       if (!exMap[ex.name]) {
         const id = Date.now().toString(36) + Math.random().toString(36).slice(2,6);
-        exercises.push({ id, name: ex.name, category: ex.category || '', bodyweight: ex.bodyweight || false, barbell: ex.barbell || false });
+        exercises.push({ id, name: ex.name, category: ex.category || '', bodyweight: ex.bodyweight || false, barbell: ex.barbell || false, cable: ex.cable || false });
         exMap[ex.name] = id;
       } else {
         // Update existing exercise with flags if missing
@@ -494,6 +494,7 @@ const SEED = {
         if (existing) {
           if (ex.bodyweight) existing.bodyweight = true;
           if (ex.barbell) existing.barbell = true;
+          if (ex.cable) existing.cable = true;
         }
       }
     });
