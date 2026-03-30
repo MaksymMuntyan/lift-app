@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-03-27T17:48:22.063Z",
+  "exportDate": "2026-03-30T17:50:08.166Z",
   "exercises": [
     {
       "id": "mn5gy4vx6det",
@@ -2650,6 +2650,121 @@
           "bodyweight": 153
         }
       ]
+    },
+    {
+      "id": "mndfvrwiv0aq",
+      "date": "2026-03-30",
+      "routineId": "mn5gy4vxuitz",
+      "routineName": "Macky 4x Upper Lower",
+      "dayId": "mn5gy4vxfziw",
+      "dayName": "Day A (Upper 1)",
+      "bodyweight": 159.4,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxujmc",
+          "exerciseName": "Bench Press",
+          "setNum": 1,
+          "weight": 175,
+          "reps": 4,
+          "bodyweight": 159.4
+        },
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 14,
+          "bodyweight": 159.4
+        },
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 14,
+          "bodyweight": 159.4
+        },
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 14,
+          "bodyweight": 159.4
+        },
+        {
+          "exerciseId": "mn5gy4vxd95m",
+          "exerciseName": "Ring Fly",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": 159.4
+        },
+        {
+          "exerciseId": "mn5gy4vxd95m",
+          "exerciseName": "Ring Fly",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 8,
+          "bodyweight": 159.4
+        },
+        {
+          "exerciseId": "mn5gy4vxd95m",
+          "exerciseName": "Ring Fly",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 5,
+          "bodyweight": 159.4
+        },
+        {
+          "exerciseId": "mn5gy4vx4xe3",
+          "exerciseName": "Dumbbell Curl",
+          "setNum": 1,
+          "weight": 32,
+          "reps": 12,
+          "bodyweight": 159.4
+        },
+        {
+          "exerciseId": "mn5gy4vx4xe3",
+          "exerciseName": "Dumbbell Curl",
+          "setNum": 2,
+          "weight": 32,
+          "reps": 12,
+          "bodyweight": 159.4
+        },
+        {
+          "exerciseId": "mn5gy4vx4xe3",
+          "exerciseName": "Dumbbell Curl",
+          "setNum": 3,
+          "weight": 32,
+          "reps": 10,
+          "bodyweight": 159.4
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 1,
+          "weight": 125,
+          "reps": 10,
+          "bodyweight": 159.4
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 2,
+          "weight": 125,
+          "reps": 11,
+          "bodyweight": 159.4
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 3,
+          "weight": 125,
+          "reps": 11,
+          "bodyweight": 159.4
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -2716,6 +2831,11 @@
     {
       "date": "2026-03-27",
       "weight": 153
+    },
+    {
+      "date": "2026-03-30",
+      "weight": 159.4
     }
-  ]
+  ],
+  "cardio": []
 }
