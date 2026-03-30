@@ -1318,12 +1318,13 @@ document.querySelectorAll('.modal-backdrop').forEach(b => {
 // ── CARDIO ─────────────────────────────────────────────────
 
 const CARDIO_TYPES = [
-  { id: 'running',    label: 'Running',     icon: '🏃', hasDistance: true, hasTime: true  },
+  { id: 'running',    label: 'Running',     icon: '🏃', hasDistance: true,  hasTime: false },
   { id: 'bjj',        label: 'BJJ',         icon: '🥋', hasDistance: false, hasTime: false },
   { id: 'muaythai',   label: 'Muay Thai',   icon: '🥊', hasDistance: false, hasTime: false },
   { id: 'boxing',     label: 'Boxing',      icon: '🤜', hasDistance: false, hasTime: false },
   { id: 'powertrack', label: 'Power Track', icon: '⚡', hasDistance: false, hasTime: false },
   { id: 'fasttrack',  label: 'Fast Track',  icon: '🚀', hasDistance: false, hasTime: false },
+  { id: 'other',      label: 'Other',       icon: '➕', hasDistance: false, hasTime: false },
 ];
 
 function getCardioSessions()   { return load('cardio', []); }
@@ -1363,14 +1364,17 @@ function openCardioLog(typeId) {
   // Show/hide relevant fields
   const runFields = document.getElementById('cardio-running-fields');
   const otherFields = document.getElementById('cardio-other-fields');
-  if (currentCardioType.hasDistance) {
-    show('cardio-running-fields'); hide('cardio-other-fields');
+  const otherNameField = document.getElementById('cardio-other-name-field');
+  if (currentCardioType.id === 'other') {
+    hide('cardio-running-fields'); show('cardio-other-fields'); show('cardio-other-name-field');
+  } else if (currentCardioType.hasDistance) {
+    show('cardio-running-fields'); hide('cardio-other-fields'); hide('cardio-other-name-field');
   } else {
-    hide('cardio-running-fields'); show('cardio-other-fields');
+    hide('cardio-running-fields'); show('cardio-other-fields'); hide('cardio-other-name-field');
   }
 
   // Reset fields
-  ['cardio-distance','cardio-time','cardio-duration','cardio-notes'].forEach(id => {
+  ['cardio-distance','cardio-time','cardio-duration','cardio-notes','cardio-other-name'].forEach(id => {
     const el = document.getElementById(id); if (el) el.value = '';
   });
   document.getElementById('cardio-date').value = todayStr();
@@ -1382,12 +1386,15 @@ function saveCardioSession() {
   if (!currentCardioType) return;
   const date = document.getElementById('cardio-date').value || todayStr();
   const notes = document.getElementById('cardio-notes').value.trim();
+  const customName = currentCardioType.id === 'other'
+    ? (document.getElementById('cardio-other-name').value.trim() || 'Other')
+    : null;
 
   const session = {
     id: uid(),
     date,
     type: currentCardioType.id,
-    label: currentCardioType.label,
+    label: customName || currentCardioType.label,
     icon: currentCardioType.icon,
     notes: notes || null,
   };
