@@ -1757,7 +1757,17 @@ function importData(e) {
 
 // ── UTILS ──────────────────────────────────────────────────
 
-function show(id) { document.getElementById(id).classList.remove('hidden'); }
+function forceUpdate() {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then(regs => {
+      regs.forEach(r => r.unregister());
+    }).then(() => {
+      location.reload(true);
+    });
+  } else {
+    location.reload(true);
+  }
+}
 function hide(id) { document.getElementById(id).classList.add('hidden'); }
 
 function todayStr() {
