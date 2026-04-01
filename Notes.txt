@@ -1,7 +1,7 @@
 Notes
 
 git add .
-git commit -m "removed most info from seed.js, now found in github backup"
+git commit -m "backup only backs up one person"
 git pull --rebase
 git push
 

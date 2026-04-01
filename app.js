@@ -1653,14 +1653,11 @@ async function runManualBackup() {
   if (!token) { updateBackupStatus('No token saved yet. Enter your token first.', 'var(--red)'); return; }
   updateBackupStatus('Backing up...', 'var(--text2)');
   try {
-    // Sequential — not parallel — avoids SHA race conditions
-    const r1 = await pushBackupToGithub(1);
-    const r2 = await pushBackupToGithub(2);
-    if (r1.ok && r2.ok) {
-      updateBackupStatus('✓ Max and Laura both backed up to GitHub!', 'var(--green)');
+    const result = await pushBackupToGithub(currentUser);
+    if (result.ok) {
+      updateBackupStatus(`✓ ${USERS[currentUser].name} backed up to GitHub!`, 'var(--green)');
     } else {
-      const msg = (!r1.ok ? `Max: ${r1.msg} ` : '') + (!r2.ok ? `Laura: ${r2.msg}` : '');
-      updateBackupStatus('✗ ' + msg.trim(), 'var(--red)');
+      updateBackupStatus(`✗ ${result.msg}`, 'var(--red)');
     }
   } catch(e) { updateBackupStatus('✗ Error: ' + e.message, 'var(--red)'); }
 }
