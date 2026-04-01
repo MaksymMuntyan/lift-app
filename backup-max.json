@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-03-30T19:23:30.901Z",
+  "exportDate": "2026-04-01T17:34:59.847Z",
   "exercises": [
     {
       "id": "mn5gy4vx6det",
@@ -30,24 +30,21 @@
       "name": "Cable Crunch",
       "category": "Abs",
       "bodyweight": false,
-      "barbell": false,
-      "cable": true
+      "barbell": false
     },
     {
       "id": "mn5gy4vxkhya",
       "name": "Cable Forearm Curl",
       "category": "Forearms",
       "bodyweight": false,
-      "barbell": false,
-      "cable": true
+      "barbell": false
     },
     {
       "id": "mn5gy4vxska4",
       "name": "Cable Row",
       "category": "Back",
       "bodyweight": false,
-      "barbell": false,
-      "cable": true
+      "barbell": false
     },
     {
       "id": "mn5gy4vxd84s",
@@ -124,8 +121,7 @@
       "name": "Overhead Tricep Extension",
       "category": "Triceps",
       "bodyweight": false,
-      "barbell": false,
-      "cable": true
+      "barbell": false
     },
     {
       "id": "mn5gy4vx2p8a",
@@ -166,7 +162,7 @@
       "id": "mn5gy4vxd95m",
       "name": "Ring Fly",
       "category": "Chest",
-      "bodyweight": true,
+      "bodyweight": false,
       "barbell": false
     },
     {
@@ -174,8 +170,7 @@
       "name": "Single Cable Forearm Curl",
       "category": "Forearms",
       "bodyweight": false,
-      "barbell": false,
-      "cable": true
+      "barbell": false
     },
     {
       "id": "mn5gy4vxfboo",
@@ -196,8 +191,7 @@
       "name": "Tricep Pushdown",
       "category": "Triceps",
       "bodyweight": false,
-      "barbell": false,
-      "cable": true
+      "barbell": false
     },
     {
       "id": "mn5gy4vxxtfg",
@@ -445,7 +439,7 @@
               "choices": [
                 "mn5gy4vx02ya",
                 "mn5gy4vxjll8",
-                "mn5gy4vxkhya"
+                "mn5gy4vxdytb"
               ],
               "sets": 3,
               "repMin": 10,
@@ -2771,6 +2765,121 @@
           "bodyweight": 159.4
         }
       ]
+    },
+    {
+      "id": "mngaeolercpv",
+      "date": "2026-04-01",
+      "routineId": "mn5gy4vxuitz",
+      "routineName": "Macky 4x Upper Lower",
+      "dayId": "mn5gy4vxefzj",
+      "dayName": "Day B (Lower 1)",
+      "bodyweight": 155.4,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxd84s",
+          "exerciseName": "Deadlift",
+          "setNum": 1,
+          "weight": 255,
+          "reps": 3,
+          "bodyweight": 155.4
+        },
+        {
+          "exerciseId": "mn5gy4vxd84s",
+          "exerciseName": "Deadlift",
+          "setNum": 2,
+          "weight": 255,
+          "reps": 2,
+          "bodyweight": 155.4
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 1,
+          "weight": 160,
+          "reps": 15,
+          "bodyweight": 155.4
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 2,
+          "weight": 160,
+          "reps": 13,
+          "bodyweight": 155.4
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 3,
+          "weight": 160,
+          "reps": 12,
+          "bodyweight": 155.4
+        },
+        {
+          "exerciseId": "mn5gy4vx02ya",
+          "exerciseName": "Preacher Hammer Curl",
+          "setNum": 1,
+          "weight": 32,
+          "reps": 9,
+          "bodyweight": 155.4
+        },
+        {
+          "exerciseId": "mn5gy4vx02ya",
+          "exerciseName": "Preacher Hammer Curl",
+          "setNum": 2,
+          "weight": 32,
+          "reps": 7,
+          "bodyweight": 155.4
+        },
+        {
+          "exerciseId": "mn5gy4vx02ya",
+          "exerciseName": "Preacher Hammer Curl",
+          "setNum": 3,
+          "weight": 32,
+          "reps": 8,
+          "bodyweight": 155.4
+        },
+        {
+          "exerciseId": "mn5gy4vx2p8a",
+          "exerciseName": "Pistol Squat",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 8,
+          "bodyweight": 155.4
+        },
+        {
+          "exerciseId": "mn5gy4vx2p8a",
+          "exerciseName": "Pistol Squat",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 8,
+          "bodyweight": 155.4
+        },
+        {
+          "exerciseId": "mn5gy4vx2p8a",
+          "exerciseName": "Pistol Squat",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 8,
+          "bodyweight": 155.4
+        },
+        {
+          "exerciseId": "mn5gy4vxdytb",
+          "exerciseName": "Single Cable Forearm Curl",
+          "setNum": 1,
+          "weight": 70,
+          "reps": 10,
+          "bodyweight": 155.4
+        },
+        {
+          "exerciseId": "mn5gy4vxdytb",
+          "exerciseName": "Single Cable Forearm Curl",
+          "setNum": 2,
+          "weight": 70,
+          "reps": 10,
+          "bodyweight": 155.4
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -2841,7 +2950,21 @@
     {
       "date": "2026-03-30",
       "weight": 159.4
+    },
+    {
+      "date": "2026-04-01",
+      "weight": 155.4
     }
   ],
-  "cardio": []
+  "cardio": [
+    {
+      "id": "mnf9lpcx1jkc",
+      "date": "2026-03-31",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": "Did some jump rope after",
+      "distance": 2.5
+    }
+  ]
 }
