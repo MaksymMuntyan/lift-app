@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-04-01T17:34:59.847Z",
+  "exportDate": "2026-04-03T17:47:35.494Z",
   "exercises": [
     {
       "id": "mn5gy4vx6det",
@@ -30,21 +30,24 @@
       "name": "Cable Crunch",
       "category": "Abs",
       "bodyweight": false,
-      "barbell": false
+      "barbell": false,
+      "cable": true
     },
     {
       "id": "mn5gy4vxkhya",
       "name": "Cable Forearm Curl",
       "category": "Forearms",
       "bodyweight": false,
-      "barbell": false
+      "barbell": false,
+      "cable": true
     },
     {
       "id": "mn5gy4vxska4",
       "name": "Cable Row",
       "category": "Back",
       "bodyweight": false,
-      "barbell": false
+      "barbell": false,
+      "cable": true
     },
     {
       "id": "mn5gy4vxd84s",
@@ -121,7 +124,8 @@
       "name": "Overhead Tricep Extension",
       "category": "Triceps",
       "bodyweight": false,
-      "barbell": false
+      "barbell": false,
+      "cable": true
     },
     {
       "id": "mn5gy4vx2p8a",
@@ -162,7 +166,7 @@
       "id": "mn5gy4vxd95m",
       "name": "Ring Fly",
       "category": "Chest",
-      "bodyweight": false,
+      "bodyweight": true,
       "barbell": false
     },
     {
@@ -170,7 +174,8 @@
       "name": "Single Cable Forearm Curl",
       "category": "Forearms",
       "bodyweight": false,
-      "barbell": false
+      "barbell": false,
+      "cable": true
     },
     {
       "id": "mn5gy4vxfboo",
@@ -191,7 +196,8 @@
       "name": "Tricep Pushdown",
       "category": "Triceps",
       "bodyweight": false,
-      "barbell": false
+      "barbell": false,
+      "cable": true
     },
     {
       "id": "mn5gy4vxxtfg",
@@ -2880,6 +2886,137 @@
           "bodyweight": 155.4
         }
       ]
+    },
+    {
+      "id": "mnj5kdqh33mn",
+      "date": "2026-04-03",
+      "routineId": "mn5gy4vxuitz",
+      "routineName": "Macky 4x Upper Lower",
+      "dayId": "mn5gy4vxq9e0",
+      "dayName": "Day C (Upper 2)",
+      "bodyweight": 155.2,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vximn0",
+          "exerciseName": "Weighted Pull-Up",
+          "setNum": 1,
+          "weight": 75,
+          "reps": 5,
+          "bodyweight": 155.2
+        },
+        {
+          "exerciseId": "mn5gy4vximn0",
+          "exerciseName": "Weighted Pull-Up",
+          "setNum": 2,
+          "weight": 75,
+          "reps": 4,
+          "bodyweight": 155.2
+        },
+        {
+          "exerciseId": "mn5gy4vximn0",
+          "exerciseName": "Weighted Pull-Up",
+          "setNum": 3,
+          "weight": 75,
+          "reps": 3,
+          "bodyweight": 155.2
+        },
+        {
+          "exerciseId": "mn5gy4vxzw9a",
+          "exerciseName": "Weighted Dip",
+          "setNum": 1,
+          "weight": 80,
+          "reps": 7,
+          "bodyweight": 155.2
+        },
+        {
+          "exerciseId": "mn5gy4vxzw9a",
+          "exerciseName": "Weighted Dip",
+          "setNum": 2,
+          "weight": 80,
+          "reps": 5,
+          "bodyweight": 155.2
+        },
+        {
+          "exerciseId": "mn5gy4vxzw9a",
+          "exerciseName": "Weighted Dip",
+          "setNum": 3,
+          "weight": 80,
+          "reps": 5,
+          "bodyweight": 155.2
+        },
+        {
+          "exerciseId": "mn5gy4vxxtfg",
+          "exerciseName": "Weighted Body Row",
+          "setNum": 1,
+          "weight": 30.2,
+          "reps": 12,
+          "bodyweight": 155.2
+        },
+        {
+          "exerciseId": "mn5gy4vxxtfg",
+          "exerciseName": "Weighted Body Row",
+          "setNum": 2,
+          "weight": 30.2,
+          "reps": 10,
+          "bodyweight": 155.2
+        },
+        {
+          "exerciseId": "mn5gy4vxxtfg",
+          "exerciseName": "Weighted Body Row",
+          "setNum": 3,
+          "weight": 30.2,
+          "reps": 9,
+          "bodyweight": 155.2
+        },
+        {
+          "exerciseId": "mn5gy4vxuz63",
+          "exerciseName": "Overhead Tricep Extension",
+          "setNum": 1,
+          "weight": 65,
+          "reps": 9,
+          "bodyweight": 155.2
+        },
+        {
+          "exerciseId": "mn5gy4vxuz63",
+          "exerciseName": "Overhead Tricep Extension",
+          "setNum": 2,
+          "weight": 65,
+          "reps": 8,
+          "bodyweight": 155.2
+        },
+        {
+          "exerciseId": "mn5gy4vxuz63",
+          "exerciseName": "Overhead Tricep Extension",
+          "setNum": 3,
+          "weight": 65,
+          "reps": 7,
+          "bodyweight": 155.2
+        },
+        {
+          "exerciseId": "mn5gy4vxt91m",
+          "exerciseName": "Incline Dumbbell Curl",
+          "setNum": 1,
+          "weight": 25,
+          "reps": 12,
+          "bodyweight": 155.2
+        },
+        {
+          "exerciseId": "mn5gy4vxt91m",
+          "exerciseName": "Incline Dumbbell Curl",
+          "setNum": 2,
+          "weight": 25,
+          "reps": 9,
+          "bodyweight": 155.2
+        },
+        {
+          "exerciseId": "mn5gy4vxt91m",
+          "exerciseName": "Incline Dumbbell Curl",
+          "setNum": 3,
+          "weight": 25,
+          "reps": 6,
+          "bodyweight": 155.2
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -2954,6 +3091,14 @@
     {
       "date": "2026-04-01",
       "weight": 155.4
+    },
+    {
+      "date": "2026-04-02",
+      "weight": 154.6
+    },
+    {
+      "date": "2026-04-03",
+      "weight": 155.2
     }
   ],
   "cardio": [
@@ -2965,6 +3110,14 @@
       "icon": "🏃",
       "notes": "Did some jump rope after",
       "distance": 2.5
+    },
+    {
+      "id": "mnhgie4fh2du",
+      "date": "2026-04-01",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": null
     }
   ]
 }
