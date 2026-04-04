@@ -2,7 +2,7 @@
   "version": 2,
   "user": 2,
   "userName": "Laura",
-  "exportDate": "2026-03-30T19:23:31.924Z",
+  "exportDate": "2026-04-04T16:53:04.907Z",
   "exercises": [
     {
       "id": "mn5gy4wheajd",
@@ -233,6 +233,11 @@
       "category": "Forearms",
       "bodyweight": true,
       "barbell": false
+    },
+    {
+      "id": "mnkkiug32kmf",
+      "name": "Sit Up Bar",
+      "category": "Abs"
     }
   ],
   "routines": [
@@ -611,6 +616,14 @@
               "sets": 3,
               "repMin": 10,
               "repMax": 12
+            },
+            {
+              "choices": [
+                "mnkkiug32kmf"
+              ],
+              "sets": 3,
+              "repMin": null,
+              "repMax": "MAX"
             }
           ]
         },
@@ -918,13 +931,147 @@
           "bodyweight": 147
         }
       ]
+    },
+    {
+      "id": "mnkkk3g15jr6",
+      "date": "2026-04-04",
+      "routineId": "mn5gy4wh6zll",
+      "routineName": "Laura Full Body 3x Week",
+      "dayId": "mn5gy4whfcs6",
+      "dayName": "Day A (Push)",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4whhh4f",
+          "exerciseName": "Squat",
+          "setNum": 1,
+          "weight": 145,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whhh4f",
+          "exerciseName": "Squat",
+          "setNum": 2,
+          "weight": 145,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whhh4f",
+          "exerciseName": "Squat",
+          "setNum": 3,
+          "weight": 145,
+          "reps": 9,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpbhj",
+          "exerciseName": "Ring Dip",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 7,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpbhj",
+          "exerciseName": "Ring Dip",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 4,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpbhj",
+          "exerciseName": "Ring Dip",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 3,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whgv21",
+          "exerciseName": "Pull-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 11,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whgv21",
+          "exerciseName": "Pull-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whgv21",
+          "exerciseName": "Pull-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whj8vd",
+          "exerciseName": "RDL",
+          "setNum": 1,
+          "weight": 145,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whj8vd",
+          "exerciseName": "RDL",
+          "setNum": 2,
+          "weight": 145,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whj8vd",
+          "exerciseName": "RDL",
+          "setNum": 3,
+          "weight": 145,
+          "reps": 10,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
     {
       "date": "2026-03-30",
       "weight": 147
+    },
+    {
+      "date": "2026-04-01",
+      "weight": 145
+    },
+    {
+      "date": "2026-04-03",
+      "weight": 143.4
     }
   ],
-  "cardio": []
+  "cardio": [
+    {
+      "id": "mndpnpz52h54",
+      "date": "2026-03-30",
+      "type": "fasttrack",
+      "label": "Fast Track",
+      "icon": "🚀",
+      "notes": "Good but quick",
+      "duration": 34
+    },
+    {
+      "id": "mngwz0xx53yy",
+      "date": "2026-04-01",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": "Cardio wasn’t good, had to skip a roll",
+      "duration": 60
+    }
+  ]
 }
