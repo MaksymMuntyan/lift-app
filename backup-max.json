@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-04-04T16:54:11.118Z",
+  "exportDate": "2026-04-06T17:49:11.713Z",
   "exercises": [
     {
       "id": "mn5gy4vx6det",
@@ -3132,6 +3132,137 @@
           "bodyweight": 153.4
         }
       ]
+    },
+    {
+      "id": "mnnfwnxfzczv",
+      "date": "2026-04-06",
+      "routineId": "mn5gy4vxuitz",
+      "routineName": "Macky 4x Upper Lower",
+      "dayId": "mn5gy4vxfziw",
+      "dayName": "Day A (Upper 1)",
+      "bodyweight": 154.4,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxujmc",
+          "exerciseName": "Bench Press",
+          "setNum": 1,
+          "weight": 175,
+          "reps": 5,
+          "bodyweight": 154.4
+        },
+        {
+          "exerciseId": "mn5gy4vxujmc",
+          "exerciseName": "Bench Press",
+          "setNum": 2,
+          "weight": 175,
+          "reps": 3,
+          "bodyweight": 154.4
+        },
+        {
+          "exerciseId": "mn5gy4vxujmc",
+          "exerciseName": "Bench Press",
+          "setNum": 3,
+          "weight": 155,
+          "reps": 6,
+          "bodyweight": 154.4
+        },
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 15,
+          "bodyweight": 154.4
+        },
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 15,
+          "bodyweight": 154.4
+        },
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 15,
+          "bodyweight": 154.4
+        },
+        {
+          "exerciseId": "mn5gy4vxx4p2",
+          "exerciseName": "Dumbbell Incline Press",
+          "setNum": 1,
+          "weight": 53,
+          "reps": 12,
+          "bodyweight": 154.4
+        },
+        {
+          "exerciseId": "mn5gy4vxx4p2",
+          "exerciseName": "Dumbbell Incline Press",
+          "setNum": 2,
+          "weight": 53,
+          "reps": 9,
+          "bodyweight": 154.4
+        },
+        {
+          "exerciseId": "mn5gy4vxx4p2",
+          "exerciseName": "Dumbbell Incline Press",
+          "setNum": 3,
+          "weight": 53,
+          "reps": 7,
+          "bodyweight": 154.4
+        },
+        {
+          "exerciseId": "mn5gy4vx4xe3",
+          "exerciseName": "Dumbbell Curl",
+          "setNum": 1,
+          "weight": 39,
+          "reps": 8,
+          "bodyweight": 154.4
+        },
+        {
+          "exerciseId": "mn5gy4vx4xe3",
+          "exerciseName": "Dumbbell Curl",
+          "setNum": 2,
+          "weight": 39,
+          "reps": 7,
+          "bodyweight": 154.4
+        },
+        {
+          "exerciseId": "mn5gy4vx4xe3",
+          "exerciseName": "Dumbbell Curl",
+          "setNum": 3,
+          "weight": 39,
+          "reps": 6,
+          "bodyweight": 154.4
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 1,
+          "weight": 125,
+          "reps": 10,
+          "bodyweight": 154.4
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 2,
+          "weight": 100,
+          "reps": 12,
+          "bodyweight": 154.4
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 3,
+          "weight": 100,
+          "reps": 10,
+          "bodyweight": 154.4
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -3218,6 +3349,10 @@
     {
       "date": "2026-04-04",
       "weight": 153.4
+    },
+    {
+      "date": "2026-04-06",
+      "weight": 154.4
     }
   ],
   "cardio": [
@@ -3247,6 +3382,15 @@
       "notes": null,
       "distance": 2.5,
       "duration": 23
+    },
+    {
+      "id": "mnl5ujcb84uv",
+      "date": "2026-04-04",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": "Tough",
+      "distance": 2.5
     }
   ]
 }
