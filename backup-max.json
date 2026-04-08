@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-04-06T17:49:11.713Z",
+  "exportDate": "2026-04-08T17:46:52.875Z",
   "exercises": [
     {
       "id": "mn5gy4vx6det",
@@ -3263,6 +3263,121 @@
           "bodyweight": 154.4
         }
       ]
+    },
+    {
+      "id": "mnqayfh22bt4",
+      "date": "2026-04-08",
+      "routineId": "mn5gy4vxuitz",
+      "routineName": "Macky 4x Upper Lower",
+      "dayId": "mn5gy4vxefzj",
+      "dayName": "Day B (Lower 1)",
+      "bodyweight": 153.4,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxd84s",
+          "exerciseName": "Deadlift",
+          "setNum": 1,
+          "weight": 205,
+          "reps": 5,
+          "bodyweight": 153.4
+        },
+        {
+          "exerciseId": "mn5gy4vxd84s",
+          "exerciseName": "Deadlift",
+          "setNum": 2,
+          "weight": 225,
+          "reps": 3,
+          "bodyweight": 153.4
+        },
+        {
+          "exerciseId": "mn5gy4vx5udm",
+          "exerciseName": "Dumbbell Split Squat",
+          "setNum": 1,
+          "weight": 32,
+          "reps": 10,
+          "bodyweight": 153.4
+        },
+        {
+          "exerciseId": "mn5gy4vx5udm",
+          "exerciseName": "Dumbbell Split Squat",
+          "setNum": 2,
+          "weight": 32,
+          "reps": 10,
+          "bodyweight": 153.4
+        },
+        {
+          "exerciseId": "mn5gy4vx5udm",
+          "exerciseName": "Dumbbell Split Squat",
+          "setNum": 3,
+          "weight": 32,
+          "reps": 10,
+          "bodyweight": 153.4
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 1,
+          "weight": 170,
+          "reps": 12,
+          "bodyweight": 153.4
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 2,
+          "weight": 170,
+          "reps": 12,
+          "bodyweight": 153.4
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 3,
+          "weight": 170,
+          "reps": 10,
+          "bodyweight": 153.4
+        },
+        {
+          "exerciseId": "mn5gy4vx02ya",
+          "exerciseName": "Preacher Hammer Curl",
+          "setNum": 1,
+          "weight": 32,
+          "reps": 5,
+          "bodyweight": 153.4
+        },
+        {
+          "exerciseId": "mn5gy4vx02ya",
+          "exerciseName": "Preacher Hammer Curl",
+          "setNum": 2,
+          "weight": 32,
+          "reps": 3,
+          "bodyweight": 153.4
+        },
+        {
+          "exerciseId": "mn5gy4vx02ya",
+          "exerciseName": "Preacher Hammer Curl",
+          "setNum": 3,
+          "weight": 32,
+          "reps": 4,
+          "bodyweight": 153.4
+        },
+        {
+          "exerciseId": "mn5gy4vxdytb",
+          "exerciseName": "Single Cable Forearm Curl",
+          "setNum": 1,
+          "weight": 70,
+          "reps": 15,
+          "bodyweight": 153.4
+        },
+        {
+          "exerciseId": "mn5gy4vxdytb",
+          "exerciseName": "Single Cable Forearm Curl",
+          "setNum": 2,
+          "weight": 90,
+          "reps": 12,
+          "bodyweight": 153.4
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -3353,6 +3468,10 @@
     {
       "date": "2026-04-06",
       "weight": 154.4
+    },
+    {
+      "date": "2026-04-08",
+      "weight": 153.4
     }
   ],
   "cardio": [
@@ -3391,6 +3510,22 @@
       "icon": "🏃",
       "notes": "Tough",
       "distance": 2.5
+    },
+    {
+      "id": "mnp5desry5rz",
+      "date": "2026-04-06",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": null
+    },
+    {
+      "id": "mnpaimivzd8y",
+      "date": "2026-04-07",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": null
     }
   ]
 }
