@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-04-13T19:04:37.938Z",
+  "exportDate": "2026-04-15T21:25:35.754Z",
   "exercises": [
     {
       "id": "mn5gy4vx6det",
@@ -233,6 +233,16 @@
       "category": "Forearms",
       "bodyweight": true,
       "barbell": false
+    },
+    {
+      "id": "mnyuwrrpjgv9",
+      "name": "Standing Barbell Wrist Curl",
+      "category": "Forearms"
+    },
+    {
+      "id": "mo0juauc8d8h",
+      "name": "Hammer Curl",
+      "category": "Forearms"
     }
   ],
   "routines": [
@@ -444,8 +454,7 @@
             {
               "choices": [
                 "mn5gy4vx02ya",
-                "mn5gy4vxjll8",
-                "mn5gy4vxdytb"
+                "mn5gy4vxjll8"
               ],
               "sets": 3,
               "repMin": 10,
@@ -455,7 +464,8 @@
               "choices": [
                 "mn5gy4vx02ya",
                 "mn5gy4vxjll8",
-                "mn5gy4vxkhya"
+                "mn5gy4vxdytb",
+                "mnyuwrrpjgv9"
               ],
               "sets": 3,
               "repMin": 10,
@@ -551,7 +561,8 @@
               "choices": [
                 "mn5gy4vx02ya",
                 "mn5gy4vxjll8",
-                "mn5gy4vxkhya"
+                "mn5gy4vxdytb",
+                "mnyuwrrpjgv9"
               ],
               "sets": 3,
               "repMin": 10,
@@ -3723,6 +3734,129 @@
           "bodyweight": 152.8
         }
       ]
+    },
+    {
+      "id": "mo0iof7fhe5t",
+      "date": "2026-04-15",
+      "routineId": "mn5gy4vxuitz",
+      "routineName": "Macky 4x Upper Lower",
+      "dayId": "mn5gy4vxefzj",
+      "dayName": "Day B (Lower 1)",
+      "bodyweight": 152.2,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxd84s",
+          "exerciseName": "Deadlift",
+          "setNum": 1,
+          "weight": 225,
+          "reps": 5,
+          "bodyweight": 152.2
+        },
+        {
+          "exerciseId": "mn5gy4vxd84s",
+          "exerciseName": "Deadlift",
+          "setNum": 2,
+          "weight": 225,
+          "reps": 5,
+          "bodyweight": 152.2
+        },
+        {
+          "exerciseId": "mn5gy4vx2p8a",
+          "exerciseName": "Pistol Squat",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": 152.2
+        },
+        {
+          "exerciseId": "mn5gy4vx2p8a",
+          "exerciseName": "Pistol Squat",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": 152.2
+        },
+        {
+          "exerciseId": "mn5gy4vx2p8a",
+          "exerciseName": "Pistol Squat",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": 152.2
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 1,
+          "weight": 135,
+          "reps": 13,
+          "bodyweight": 152.2
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 2,
+          "weight": 135,
+          "reps": 10,
+          "bodyweight": 152.2
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 3,
+          "weight": 135,
+          "reps": 9,
+          "bodyweight": 152.2
+        },
+        {
+          "exerciseId": "mnyuwrrpjgv9",
+          "exerciseName": "Standing Barbell Wrist Curl",
+          "setNum": 1,
+          "weight": 155,
+          "reps": 10,
+          "bodyweight": 152.2
+        },
+        {
+          "exerciseId": "mnyuwrrpjgv9",
+          "exerciseName": "Standing Barbell Wrist Curl",
+          "setNum": 2,
+          "weight": 155,
+          "reps": 12,
+          "bodyweight": 152.2
+        },
+        {
+          "exerciseId": "mnyuwrrpjgv9",
+          "exerciseName": "Standing Barbell Wrist Curl",
+          "setNum": 3,
+          "weight": 155,
+          "reps": 11,
+          "bodyweight": 152.2
+        },
+        {
+          "exerciseId": "mo0juauc8d8h",
+          "exerciseName": "Hammer Curl",
+          "setNum": 1,
+          "weight": 39,
+          "reps": 10,
+          "bodyweight": 152.2
+        },
+        {
+          "exerciseId": "mo0juauc8d8h",
+          "exerciseName": "Hammer Curl",
+          "setNum": 2,
+          "weight": 39,
+          "reps": 12,
+          "bodyweight": 152.2
+        },
+        {
+          "exerciseId": "mo0juauc8d8h",
+          "exerciseName": "Hammer Curl",
+          "setNum": 3,
+          "weight": 39,
+          "reps": 12,
+          "bodyweight": 152.2
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -3833,6 +3967,14 @@
     {
       "date": "2026-04-13",
       "weight": 152.8
+    },
+    {
+      "date": "2026-04-14",
+      "weight": 152.2
+    },
+    {
+      "date": "2026-04-15",
+      "weight": 152.2
     }
   ],
   "cardio": [
@@ -3920,6 +4062,22 @@
       "icon": "🏃",
       "notes": null,
       "distance": 5
+    },
+    {
+      "id": "mny2xmuumhph",
+      "date": "2026-04-13",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": null
+    },
+    {
+      "id": "mnzc620kj2t3",
+      "date": "2026-04-14",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": null
     }
   ]
 }
