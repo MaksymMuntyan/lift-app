@@ -2,7 +2,7 @@
   "version": 2,
   "user": 2,
   "userName": "Laura",
-  "exportDate": "2026-04-16T21:51:00.649Z",
+  "exportDate": "2026-04-16T22:03:54.719Z",
   "exercises": [
     {
       "id": "mn5gy4wheajd",
@@ -1369,7 +1369,7 @@
       ]
     },
     {
-      "id": "mo1zmng9bjwu",
+      "id": "mo20kug9m078",
       "date": "2026-04-16",
       "routineId": "mn5gy4wh6zll",
       "routineName": "Laura Full Body 3x Week",
@@ -1431,6 +1431,46 @@
           "setNum": 1,
           "weight": 0,
           "reps": 11,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whgv21",
+          "exerciseName": "Pull-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 7,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whgv21",
+          "exerciseName": "Pull-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whj8vd",
+          "exerciseName": "RDL",
+          "setNum": 1,
+          "weight": 160,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whj8vd",
+          "exerciseName": "RDL",
+          "setNum": 2,
+          "weight": 160,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whj8vd",
+          "exerciseName": "RDL",
+          "setNum": 3,
+          "weight": 160,
+          "reps": 10,
           "bodyweight": null
         }
       ]
