@@ -2,7 +2,7 @@
   "version": 2,
   "user": 2,
   "userName": "Laura",
-  "exportDate": "2026-04-13T22:09:52.933Z",
+  "exportDate": "2026-04-16T21:51:00.649Z",
   "exercises": [
     {
       "id": "mn5gy4wheajd",
@@ -1367,6 +1367,73 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "mo1zmng9bjwu",
+      "date": "2026-04-16",
+      "routineId": "mn5gy4wh6zll",
+      "routineName": "Laura Full Body 3x Week",
+      "dayId": "mn5gy4whfcs6",
+      "dayName": "Day A (Push)",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4whhh4f",
+          "exerciseName": "Squat",
+          "setNum": 1,
+          "weight": 160,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whhh4f",
+          "exerciseName": "Squat",
+          "setNum": 2,
+          "weight": 160,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whhh4f",
+          "exerciseName": "Squat",
+          "setNum": 3,
+          "weight": 160,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpbhj",
+          "exerciseName": "Ring Dip",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 9,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpbhj",
+          "exerciseName": "Ring Dip",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpbhj",
+          "exerciseName": "Ring Dip",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whgv21",
+          "exerciseName": "Pull-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 11,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -1422,6 +1489,33 @@
       "label": "Jump rope",
       "icon": "➕",
       "notes": "Good",
+      "duration": 30
+    },
+    {
+      "id": "mny2x7n5u5ge",
+      "date": "2026-04-13",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": "Wanted to quit",
+      "duration": 60
+    },
+    {
+      "id": "mo0m0lr8gqao",
+      "date": "2026-04-14",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": "Better",
+      "duration": 60
+    },
+    {
+      "id": "mo0rvwu2mmv5",
+      "date": "2026-04-15",
+      "type": "other",
+      "label": "Jump roping",
+      "icon": "➕",
+      "notes": null,
       "duration": 30
     }
   ]
