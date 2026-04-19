@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-04-17T17:46:41.430Z",
+  "exportDate": "2026-04-19T03:33:15.496Z",
   "exercises": [
     {
       "id": "mn5gy4vx6det",
@@ -3956,6 +3956,137 @@
           "bodyweight": 150.4
         }
       ]
+    },
+    {
+      "id": "mo56csdn9y4l",
+      "date": "2026-04-18",
+      "routineId": "mn5gy4vxuitz",
+      "routineName": "Macky 4x Upper Lower",
+      "dayId": "mn5gy4vxpsuj",
+      "dayName": "Day D (Lower 2)",
+      "bodyweight": 152.4,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxfboo",
+          "exerciseName": "Squat",
+          "setNum": 1,
+          "weight": 190,
+          "reps": 5,
+          "bodyweight": 152.4
+        },
+        {
+          "exerciseId": "mn5gy4vxfboo",
+          "exerciseName": "Squat",
+          "setNum": 2,
+          "weight": 185,
+          "reps": 5,
+          "bodyweight": 152.4
+        },
+        {
+          "exerciseId": "mn5gy4vxfboo",
+          "exerciseName": "Squat",
+          "setNum": 3,
+          "weight": 185,
+          "reps": 2,
+          "bodyweight": 152.4
+        },
+        {
+          "exerciseId": "mn5gy4vx6rzi",
+          "exerciseName": "RDL",
+          "setNum": 1,
+          "weight": 185,
+          "reps": 12,
+          "bodyweight": 152.4
+        },
+        {
+          "exerciseId": "mn5gy4vx6rzi",
+          "exerciseName": "RDL",
+          "setNum": 2,
+          "weight": 185,
+          "reps": 12,
+          "bodyweight": 152.4
+        },
+        {
+          "exerciseId": "mn5gy4vx6rzi",
+          "exerciseName": "RDL",
+          "setNum": 3,
+          "weight": 185,
+          "reps": 9,
+          "bodyweight": 152.4
+        },
+        {
+          "exerciseId": "mn5gy4vx6det",
+          "exerciseName": "Barbell Shrug",
+          "setNum": 1,
+          "weight": 230,
+          "reps": 15,
+          "bodyweight": 152.4
+        },
+        {
+          "exerciseId": "mn5gy4vx6det",
+          "exerciseName": "Barbell Shrug",
+          "setNum": 2,
+          "weight": 230,
+          "reps": 11,
+          "bodyweight": 152.4
+        },
+        {
+          "exerciseId": "mn5gy4vx6det",
+          "exerciseName": "Barbell Shrug",
+          "setNum": 3,
+          "weight": 230,
+          "reps": 10,
+          "bodyweight": 152.4
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 1,
+          "weight": 125,
+          "reps": 25,
+          "bodyweight": 152.4
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 2,
+          "weight": 125,
+          "reps": 30,
+          "bodyweight": 152.4
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 3,
+          "weight": 125,
+          "reps": 36,
+          "bodyweight": 152.4
+        },
+        {
+          "exerciseId": "mnyuwrrpjgv9",
+          "exerciseName": "Standing Barbell Wrist Curl",
+          "setNum": 1,
+          "weight": 155,
+          "reps": 15,
+          "bodyweight": 152.4
+        },
+        {
+          "exerciseId": "mnyuwrrpjgv9",
+          "exerciseName": "Standing Barbell Wrist Curl",
+          "setNum": 2,
+          "weight": 155,
+          "reps": 15,
+          "bodyweight": 152.4
+        },
+        {
+          "exerciseId": "mnyuwrrpjgv9",
+          "exerciseName": "Standing Barbell Wrist Curl",
+          "setNum": 3,
+          "weight": 155,
+          "reps": 15,
+          "bodyweight": 152.4
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -4082,6 +4213,10 @@
     {
       "date": "2026-04-17",
       "weight": 150.4
+    },
+    {
+      "date": "2026-04-18",
+      "weight": 152.4
     }
   ],
   "cardio": [
