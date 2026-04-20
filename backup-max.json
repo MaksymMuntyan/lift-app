@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-04-19T03:33:15.496Z",
+  "exportDate": "2026-04-20T18:13:56.564Z",
   "exercises": [
     {
       "id": "mn5gy4vx6det",
@@ -4087,6 +4087,137 @@
           "bodyweight": 152.4
         }
       ]
+    },
+    {
+      "id": "mo7g4wope481",
+      "date": "2026-04-20",
+      "routineId": "mn5gy4vxuitz",
+      "routineName": "Macky 4x Upper Lower",
+      "dayId": "mn5gy4vxfziw",
+      "dayName": "Day A (Upper 1)",
+      "bodyweight": 151.8,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxujmc",
+          "exerciseName": "Bench Press",
+          "setNum": 1,
+          "weight": 155,
+          "reps": 8,
+          "bodyweight": 151.8
+        },
+        {
+          "exerciseId": "mn5gy4vxujmc",
+          "exerciseName": "Bench Press",
+          "setNum": 2,
+          "weight": 155,
+          "reps": 7,
+          "bodyweight": 151.8
+        },
+        {
+          "exerciseId": "mn5gy4vxujmc",
+          "exerciseName": "Bench Press",
+          "setNum": 3,
+          "weight": 155,
+          "reps": 5,
+          "bodyweight": 151.8
+        },
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 15,
+          "bodyweight": 151.8
+        },
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 15,
+          "bodyweight": 151.8
+        },
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 15,
+          "bodyweight": 151.8
+        },
+        {
+          "exerciseId": "mn5gy4vxd95m",
+          "exerciseName": "Ring Fly",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": 151.8
+        },
+        {
+          "exerciseId": "mn5gy4vxd95m",
+          "exerciseName": "Ring Fly",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 8,
+          "bodyweight": 151.8
+        },
+        {
+          "exerciseId": "mn5gy4vxd95m",
+          "exerciseName": "Ring Fly",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 8,
+          "bodyweight": 151.8
+        },
+        {
+          "exerciseId": "mn5gy4vx4xe3",
+          "exerciseName": "Dumbbell Curl",
+          "setNum": 1,
+          "weight": 39,
+          "reps": 8,
+          "bodyweight": 151.8
+        },
+        {
+          "exerciseId": "mn5gy4vx4xe3",
+          "exerciseName": "Dumbbell Curl",
+          "setNum": 2,
+          "weight": 39,
+          "reps": 7,
+          "bodyweight": 151.8
+        },
+        {
+          "exerciseId": "mn5gy4vx4xe3",
+          "exerciseName": "Dumbbell Curl",
+          "setNum": 3,
+          "weight": 39,
+          "reps": 6,
+          "bodyweight": 151.8
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 1,
+          "weight": 90,
+          "reps": 20,
+          "bodyweight": 151.8
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 2,
+          "weight": 90,
+          "reps": 20,
+          "bodyweight": 151.8
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 3,
+          "weight": 90,
+          "reps": 20,
+          "bodyweight": 151.8
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -4217,6 +4348,10 @@
     {
       "date": "2026-04-18",
       "weight": 152.4
+    },
+    {
+      "date": "2026-04-20",
+      "weight": 151.8
     }
   ],
   "cardio": [
@@ -4337,6 +4472,24 @@
       "label": "BJJ",
       "icon": "🥋",
       "notes": null
+    },
+    {
+      "id": "mo79wavjazb1",
+      "date": "2026-04-18",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": null,
+      "distance": 3.1
+    },
+    {
+      "id": "mo79wgpjboue",
+      "date": "2026-04-19",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": null,
+      "distance": 5
     }
   ]
 }
