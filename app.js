@@ -36,7 +36,7 @@ const KEY = k => `lift_u${currentUser}_${k}`;
 function load(k, def) { try { const v = localStorage.getItem(KEY(k)); return v !== null ? JSON.parse(v) : def; } catch { return def; } }
 function save(k, v)   { try { localStorage.setItem(KEY(k), JSON.stringify(v)); } catch(e) { console.error(e); } }
 
-function getExercises()   { return load('exercises', []); }
+function getExercises()   { return load('exercises', []).sort((a,b) => a.name.localeCompare(b.name)); }
 function getRoutines()    { return load('routines', []); }
 function getSessions()    { return load('sessions', []); }
 function getBodyweights() { return load('bodyweights', []); }

@@ -1,7 +1,7 @@
 Notes
 
 git add .
-git commit -m "1rp calculator for stats"
+git commit -m "alphabetical sorting"
 git pull --rebase
 git push
 
