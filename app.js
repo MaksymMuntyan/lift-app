@@ -434,7 +434,7 @@ function launchFireworks() {
   setTimeout(() => { cancelAnimationFrame(frame); canvas.remove(); }, 2800);
 }
 
-
+function renderExerciseBlock(ex, exIdx, pr) {
   // ── PENDING: OR choice not yet made ──
   if (ex.pending) {
     const exercises = getExercises();
