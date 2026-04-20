@@ -2,7 +2,7 @@
   "version": 2,
   "user": 2,
   "userName": "Laura",
-  "exportDate": "2026-04-19T03:32:40.099Z",
+  "exportDate": "2026-04-20T21:29:09.725Z",
   "exercises": [
     {
       "id": "mn5gy4wheajd",
@@ -1589,6 +1589,89 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "mo7oqjwk5kdu",
+      "date": "2026-04-20",
+      "routineId": "mn5gy4wh6zll",
+      "routineName": "Laura Full Body 3x Week",
+      "dayId": "mn5gy4whfcs6",
+      "dayName": "Day A (Push)",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4whhh4f",
+          "exerciseName": "Squat",
+          "setNum": 1,
+          "weight": 165,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whhh4f",
+          "exerciseName": "Squat",
+          "setNum": 2,
+          "weight": 165,
+          "reps": 4,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whhh4f",
+          "exerciseName": "Squat",
+          "setNum": 3,
+          "weight": 165,
+          "reps": 4,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpbhj",
+          "exerciseName": "Ring Dip",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 11,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpbhj",
+          "exerciseName": "Ring Dip",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 7,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpbhj",
+          "exerciseName": "Ring Dip",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 4,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whgv21",
+          "exerciseName": "Pull-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 11,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whgv21",
+          "exerciseName": "Pull-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whgv21",
+          "exerciseName": "Pull-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 5,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -1671,6 +1754,15 @@
       "label": "Jump roping",
       "icon": "➕",
       "notes": null,
+      "duration": 30
+    },
+    {
+      "id": "mo6hl3vif7ww",
+      "date": "2026-04-19",
+      "type": "other",
+      "label": "Jump rope",
+      "icon": "➕",
+      "notes": "Better, instead of 1 min off 2 min on, did 30 seconds off 2 min on",
       "duration": 30
     }
   ]
