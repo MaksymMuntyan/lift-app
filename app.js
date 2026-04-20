@@ -1064,10 +1064,12 @@ function toggleE1RM() {
   renderStats();
 }
 
-// Epley formula: estimated 1-rep max
-function epley(weight, reps) {
+// Smart e1RM: Brzycki for low reps (1-3), Mayhew for higher reps (4+)
+// Brzycki is more accurate near 1RM; Mayhew is better in the 5-12 range
+function e1rm(weight, reps) {
   if (reps === 1) return weight;
-  return Math.round(weight * (1 + reps / 30));
+  if (reps <= 3) return Math.round(weight * (36 / (37 - reps)));
+  return Math.round(weight / (0.522 + 0.419 * Math.exp(-0.055 * reps)));
 }
 
 function renderChart() {
@@ -1104,10 +1106,10 @@ function renderChart() {
     } else if (showE1RM) {
       sessions.forEach(s => {
         s.sets.filter(st => st.exerciseId === series.id && st.reps > 0).forEach(st => {
-          const e1rm = epley(st.weight, st.reps);
-          if (!map[s.date] || e1rm > map[s.date]) {
-            map[s.date] = e1rm;
-            detail[s.date] = { weight: st.weight, reps: st.reps, e1rm };
+          const est = e1rm(st.weight, st.reps);
+          if (!map[s.date] || est > map[s.date]) {
+            map[s.date] = est;
+            detail[s.date] = { weight: st.weight, reps: st.reps, e1rm: est };
           }
         });
       });
@@ -1176,7 +1178,7 @@ function renderChart() {
               }
 
               // Weighted exercise
-              const e1rmVal = epley(d.weight, d.reps);
+              const e1rmVal = e1rm(d.weight, d.reps);
               const bestSetStr = `${d.weight} lbs × ${d.reps}`;
               if (showE1RM) {
                 return ` e1RM: ${val} lbs  (${bestSetStr})`;
