@@ -1082,35 +1082,47 @@ function renderChart() {
   const isBodyweightChart = activeExerciseSeries.length > 0 && activeExerciseSeries[0].isBW;
   const yLabel = isBodyweightChart ? 'Reps' : (showE1RM ? 'e1RM (lbs)' : 'lbs');
 
-  // Build per-series data maps
-  const seriesData = activeSeries.map(series => {
+  // Build per-series data maps + detail maps (raw best set per date for tooltip)
+  const seriesData = [];
+  const seriesDetail = []; // parallel: date -> { weight, reps } for weighted exercises
+
+  activeSeries.forEach(series => {
     const map = {};
+    const detail = {}; // date -> { weight, reps } of the best set that day
+
     if (series.type === 'bodyweight') {
       bws.forEach(b => { map[b.date] = b.weight; });
     } else if (isBodyweightChart) {
-      // Bodyweight exercise — track MAX REPS per session
       sessions.forEach(s => {
         s.sets.filter(st => st.exerciseId === series.id).forEach(st => {
-          if (!map[s.date] || st.reps > map[s.date]) map[s.date] = st.reps;
+          if (!map[s.date] || st.reps > map[s.date]) {
+            map[s.date] = st.reps;
+            detail[s.date] = { weight: st.weight, reps: st.reps };
+          }
         });
       });
     } else if (showE1RM) {
-      // e1RM mode — compute best estimated 1RM per session using Epley formula
       sessions.forEach(s => {
         s.sets.filter(st => st.exerciseId === series.id && st.reps > 0).forEach(st => {
           const e1rm = epley(st.weight, st.reps);
-          if (!map[s.date] || e1rm > map[s.date]) map[s.date] = e1rm;
+          if (!map[s.date] || e1rm > map[s.date]) {
+            map[s.date] = e1rm;
+            detail[s.date] = { weight: st.weight, reps: st.reps, e1rm };
+          }
         });
       });
     } else {
-      // Weighted exercise — track max weight
       sessions.forEach(s => {
         s.sets.filter(st => st.exerciseId === series.id).forEach(st => {
-          if (!map[s.date] || st.weight > map[s.date]) map[s.date] = st.weight;
+          if (!map[s.date] || st.weight > map[s.date]) {
+            map[s.date] = st.weight;
+            detail[s.date] = { weight: st.weight, reps: st.reps };
+          }
         });
       });
     }
-    return map;
+    seriesData.push(map);
+    seriesDetail.push(detail);
   });
 
   const allDates = [...new Set(seriesData.flatMap(m => Object.keys(m)))].sort();
@@ -1141,7 +1153,39 @@ function renderChart() {
       interaction: { mode: 'index', intersect: false },
       plugins: {
         legend: { display: activeSeries.length > 1, labels: { color:'#888', font:{ family:'Barlow Condensed', size:13, weight:'700' }, boxWidth:12 } },
-        tooltip: { backgroundColor:'#ffffff', borderColor:'#d8d8d4', borderWidth:1, titleColor:'#2563eb', bodyColor:'#111111', padding:10 }
+        tooltip: {
+          backgroundColor:'#ffffff', borderColor:'#d8d8d4', borderWidth:1,
+          titleColor:'#2563eb', bodyColor:'#111111', padding:10,
+          callbacks: {
+            label: function(context) {
+              const seriesIdx = context.datasetIndex;
+              const series = activeSeries[seriesIdx];
+              const dateIdx = context.dataIndex;
+              const date = allDates[dateIdx];
+              const val = context.parsed.y;
+              if (val === null) return null;
+
+              // Bodyweight tracker — just show the weight
+              if (series.type === 'bodyweight') return ` BW: ${val} lbs`;
+
+              const d = seriesDetail[seriesIdx][date];
+              if (!d) return ` ${val}`;
+
+              if (isBodyweightChart) {
+                return ` ${d.reps} reps`;
+              }
+
+              // Weighted exercise
+              const e1rmVal = epley(d.weight, d.reps);
+              const bestSetStr = `${d.weight} lbs × ${d.reps}`;
+              if (showE1RM) {
+                return ` e1RM: ${val} lbs  (${bestSetStr})`;
+              } else {
+                return ` ${d.weight} lbs × ${d.reps} reps  |  e1RM: ${e1rmVal}`;
+              }
+            }
+          }
+        }
       },
       scales: {
         x: { ticks: { color:'#666666', font:{ family:'Barlow', size:11 }, maxRotation:45, autoSkip:true, maxTicksLimit:8 }, grid:{ color:'#ebebeb' } },
