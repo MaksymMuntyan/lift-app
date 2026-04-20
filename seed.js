@@ -1,16 +1,10 @@
 // ═══════════════════════════════════════════════════════════
 //  LIFT — Seed Data
 //
-//  The seed only manages the exercise library.
-//  Routines and sessions are owned by the user and backed
-//  up to GitHub — never touched by the seed.
-//
-//  To patch exercise flags after a code update:
-//    Manage tab → 🔄 Check for Updates
-//  (this reloads the app AND patches exercise flags)
-//
-//  To manually patch without reloading:
-//    Open console → SEED.patchExercises(1) then SEED.patchExercises(2)
+//  The seed runs ONCE per user on first install, populating
+//  the exercise library. After that it never touches data.
+//  All exercises (seeded or user-created) are identical —
+//  there is no distinction. Users own their exercise list.
 //
 //  To wipe all data (last resort):
 //    SEED.wipe(1) or SEED.wipe(2)
@@ -58,46 +52,39 @@ const SEED = {
     { name: 'Wide Towel Pull-Up',            category: 'Forearms',        bodyweight: true },
   ],
 
-  // ── PATCH EXERCISES ───────────────────────────────────
-  // Adds missing exercises and patches flags on existing ones.
-  // Never touches routines, sessions, or bodyweights.
-  patchExercises(userNum = 1) {
+  // ── SEED ONCE ─────────────────────────────────────────
+  // Runs only on first install (checks lift_seeded_v1 flag).
+  // After that, never touches exercises again — users own
+  // their library completely.
+  seedOnce(userNum = 1) {
+    const flagKey = `lift_u${userNum}_seeded_v1`;
+    if (localStorage.getItem(flagKey)) return; // already seeded
+
     const KEY = k => `lift_u${userNum}_${k}`;
     const get = k => { try { const v = localStorage.getItem(KEY(k)); return v ? JSON.parse(v) : null; } catch { return null; } };
     const set = (k, v) => localStorage.setItem(KEY(k), JSON.stringify(v));
 
+    // Only seed if exercise list is empty — never overwrite existing data
     const existing = get('exercises') || [];
-    const exMap = {};
-    existing.forEach(e => { exMap[e.name] = e; });
+    if (existing.length > 0) {
+      // User already has exercises (e.g. restored from backup) — just mark as seeded
+      localStorage.setItem(flagKey, '1');
+      return;
+    }
 
-    let added = 0, patched = 0;
+    const seeded = this.exercises.map(ex => ({
+      id: Date.now().toString(36) + Math.random().toString(36).slice(2,6),
+      name: ex.name,
+      category: ex.category || '',
+      bodyweight: ex.bodyweight || false,
+      barbell: ex.barbell || false,
+      cable: ex.cable || false
+    }));
 
-    this.exercises.forEach(ex => {
-      if (!exMap[ex.name]) {
-        // New exercise — add it
-        const id = Date.now().toString(36) + Math.random().toString(36).slice(2,6);
-        existing.push({
-          id, name: ex.name, category: ex.category || '',
-          bodyweight: ex.bodyweight || false,
-          barbell: ex.barbell || false,
-          cable: ex.cable || false
-        });
-        exMap[ex.name] = existing[existing.length - 1];
-        added++;
-      } else {
-        // Existing exercise — patch flags only, never rename or delete
-        const e = exMap[ex.name];
-        let changed = false;
-        if (ex.bodyweight && !e.bodyweight) { e.bodyweight = true; changed = true; }
-        if (ex.barbell   && !e.barbell)     { e.barbell = true;    changed = true; }
-        if (ex.cable     && !e.cable)       { e.cable = true;      changed = true; }
-        if (changed) patched++;
-      }
-    });
-
-    set('exercises', existing);
+    set('exercises', seeded);
+    localStorage.setItem(flagKey, '1');
     const name = userNum === 1 ? 'Max' : 'Laura';
-    console.log(`✓ ${name}: ${existing.length} exercises (${added} added, ${patched} flags patched)`);
+    console.log(`✓ Seeded ${seeded.length} exercises for ${name}`);
   },
 
   // ── WIPE (last resort only) ───────────────────────────

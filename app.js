@@ -55,6 +55,11 @@ function uid() { return Date.now().toString(36) + Math.random().toString(36).sli
 // ── INIT ───────────────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Seed exercise library on first install (no-op if already seeded or data exists)
+  if (typeof SEED !== 'undefined') {
+    SEED.seedOnce(1);
+    SEED.seedOnce(2);
+  }
   const now = new Date();
   document.getElementById('topbar-date').textContent =
     now.toLocaleDateString('en-US', { weekday:'long', month:'short', day:'numeric' });
@@ -1762,12 +1767,7 @@ function importData(e) {
 // ── UTILS ──────────────────────────────────────────────────
 
 function forceUpdate() {
-  // Patch exercise flags for both users first
-  if (typeof SEED !== 'undefined') {
-    SEED.patchExercises(1);
-    SEED.patchExercises(2);
-  }
-  // Then unregister service worker and reload fresh
+  // Unregister service worker and reload fresh
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.getRegistrations().then(regs => {
       regs.forEach(r => r.unregister());
