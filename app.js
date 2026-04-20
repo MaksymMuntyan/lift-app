@@ -573,9 +573,15 @@ function renderSetRow(exIdx, setIdx, set, targetWeight) {
     ${setNumHtml}
     <div class="set-weight">${wLabel}</div>
     <div class="reps-input-row">
-      <button class="reps-btn" onclick="adjustReps(${exIdx},${setIdx},-1)" ${set.skipped?'disabled':''}>−</button>
+      <button class="reps-btn"
+        onmousedown="startHoldReps(${exIdx},${setIdx},-1)" ontouchstart="startHoldReps(${exIdx},${setIdx},-1)"
+        onmouseup="stopHoldReps()" onmouseleave="stopHoldReps()" ontouchend="stopHoldReps()"
+        ${set.skipped?'disabled':''}>−</button>
       <div class="reps-display" onclick="openRepsNumpad(${exIdx},${setIdx})" style="color:${set.logged&&set.reps>0?repsColor:'var(--text)'};">${set.reps>0?set.reps:'—'}</div>
-      <button class="reps-btn" onclick="adjustReps(${exIdx},${setIdx},1)" ${set.skipped?'disabled':''}>+</button>
+      <button class="reps-btn"
+        onmousedown="startHoldReps(${exIdx},${setIdx},1)" ontouchstart="startHoldReps(${exIdx},${setIdx},1)"
+        onmouseup="stopHoldReps()" onmouseleave="stopHoldReps()" ontouchend="stopHoldReps()"
+        ${set.skipped?'disabled':''}>+</button>
       ${set.skipped
         ? `<button class="btn-inline" onclick="unskipSet(${exIdx},${setIdx})" style="font-size:12px;color:var(--text2);">Undo</button>`
         : `<button class="btn-inline" onclick="logSet(${exIdx},${setIdx})"
@@ -606,6 +612,22 @@ function openWeightNumpad(exIdx) {
     session.exercises[exIdx].sets.forEach(s => { if (!s.logged) s.weight = val; });
     refreshExerciseBlock(exIdx);
   });
+}
+
+// ── HOLD-TO-REPEAT FOR REPS BUTTONS ───────────────────────
+let _holdTimer = null, _holdInterval = null;
+
+function startHoldReps(exIdx, setIdx, delta) {
+  adjustReps(exIdx, setIdx, delta);
+  _holdTimer = setTimeout(() => {
+    _holdInterval = setInterval(() => adjustReps(exIdx, setIdx, delta), 80);
+  }, 400);
+}
+
+function stopHoldReps() {
+  clearTimeout(_holdTimer);
+  clearInterval(_holdInterval);
+  _holdTimer = null; _holdInterval = null;
 }
 
 function adjustReps(exIdx, setIdx, delta) {
