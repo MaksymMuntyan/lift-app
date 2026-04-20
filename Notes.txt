@@ -1,7 +1,7 @@
 Notes
 
 git add .
-git commit -m "backup only backs up one person"
+git commit -m "1rp calculator for stats"
 git pull --rebase
 git push
 

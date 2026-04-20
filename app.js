@@ -28,6 +28,7 @@ let chartSeries = [];
 // Plate math toggle
 let showPlateMath = localStorage.getItem('lift_plateMath') === 'true';
 let showPRPlateMath = localStorage.getItem('lift_prPlateMath') === 'true';
+let showE1RM = localStorage.getItem('lift_e1rm') === 'true';
 
 // ── STORAGE ────────────────────────────────────────────────
 
@@ -861,6 +862,13 @@ function renderStats() {
     btn.style.color = showPRPlateMath ? '#fff' : '';
     btn.style.borderColor = showPRPlateMath ? 'var(--accent)' : '';
   }
+  // Sync e1RM button state
+  const e1rmBtn = document.getElementById('e1rm-btn');
+  if (e1rmBtn) {
+    e1rmBtn.style.background = showE1RM ? 'var(--accent)' : '';
+    e1rmBtn.style.color = showE1RM ? '#fff' : '';
+    e1rmBtn.style.borderColor = showE1RM ? 'var(--accent)' : '';
+  }
 }
 
 function togglePRPlateMath() {
@@ -1050,6 +1058,18 @@ function toggleChartSeries(id) {
 
 const CHART_COLORS = ['#2563eb','#ea580c','#0891b2','#9333ea','#16a34a','#ca8a04'];
 
+function toggleE1RM() {
+  showE1RM = !showE1RM;
+  localStorage.setItem('lift_e1rm', showE1RM);
+  renderStats();
+}
+
+// Epley formula: estimated 1-rep max
+function epley(weight, reps) {
+  if (reps === 1) return weight;
+  return Math.round(weight * (1 + reps / 30));
+}
+
 function renderChart() {
   const ctx = document.getElementById('progress-chart').getContext('2d');
   if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
@@ -1060,7 +1080,7 @@ function renderChart() {
   const bws = getBodyweights().sort((a,b) => a.date.localeCompare(b.date));
   const activeExerciseSeries = activeSeries.filter(s => s.type !== 'bodyweight');
   const isBodyweightChart = activeExerciseSeries.length > 0 && activeExerciseSeries[0].isBW;
-  const yLabel = isBodyweightChart ? 'Reps' : 'lbs';
+  const yLabel = isBodyweightChart ? 'Reps' : (showE1RM ? 'e1RM (lbs)' : 'lbs');
 
   // Build per-series data maps
   const seriesData = activeSeries.map(series => {
@@ -1072,6 +1092,14 @@ function renderChart() {
       sessions.forEach(s => {
         s.sets.filter(st => st.exerciseId === series.id).forEach(st => {
           if (!map[s.date] || st.reps > map[s.date]) map[s.date] = st.reps;
+        });
+      });
+    } else if (showE1RM) {
+      // e1RM mode — compute best estimated 1RM per session using Epley formula
+      sessions.forEach(s => {
+        s.sets.filter(st => st.exerciseId === series.id && st.reps > 0).forEach(st => {
+          const e1rm = epley(st.weight, st.reps);
+          if (!map[s.date] || e1rm > map[s.date]) map[s.date] = e1rm;
         });
       });
     } else {
@@ -1166,14 +1194,15 @@ function renderExerciseManageList() {
 
 // ── EXERCISE CRUD ──────────────────────────────────────────
 
-let exerciseFlags = { barbell: false, cable: false, bodyweight: false };
+let exerciseFlags = { barbell: false, cable: false, bodyweight: false, dumbbell: false };
 
 function toggleExerciseFlag(flag) {
-  // barbell and cable are mutually exclusive
-  if (flag === 'barbell' && !exerciseFlags.barbell) {
-    exerciseFlags.barbell = true; exerciseFlags.cable = false;
-  } else if (flag === 'cable' && !exerciseFlags.cable) {
-    exerciseFlags.cable = true; exerciseFlags.barbell = false;
+  // barbell, cable, dumbbell are mutually exclusive (all affect weight display type)
+  if ((flag === 'barbell' || flag === 'cable' || flag === 'dumbbell') && !exerciseFlags[flag]) {
+    exerciseFlags.barbell = false;
+    exerciseFlags.cable = false;
+    exerciseFlags.dumbbell = false;
+    exerciseFlags[flag] = true;
   } else {
     exerciseFlags[flag] = !exerciseFlags[flag];
   }
@@ -1181,7 +1210,7 @@ function toggleExerciseFlag(flag) {
 }
 
 function syncFlagButtons() {
-  const flags = ['barbell', 'cable', 'bodyweight'];
+  const flags = ['barbell', 'cable', 'bodyweight', 'dumbbell'];
   flags.forEach(f => {
     const btn = document.getElementById(`flag-${f}`);
     if (!btn) return;
@@ -1193,7 +1222,7 @@ function syncFlagButtons() {
 
 function openAddExercise() {
   editingExerciseId = null;
-  exerciseFlags = { barbell: false, cable: false, bodyweight: false };
+  exerciseFlags = { barbell: false, cable: false, bodyweight: false, dumbbell: false };
   document.getElementById('modal-exercise-title').textContent = 'NEW EXERCISE';
   document.getElementById('exercise-name-input').value = '';
   document.getElementById('exercise-cat-input').value = '';
@@ -1205,7 +1234,7 @@ function openEditExercise(id) {
   const ex = getExercises().find(e => e.id === id);
   if (!ex) return;
   editingExerciseId = id;
-  exerciseFlags = { barbell: !!ex.barbell, cable: !!ex.cable, bodyweight: !!ex.bodyweight };
+  exerciseFlags = { barbell: !!ex.barbell, cable: !!ex.cable, bodyweight: !!ex.bodyweight, dumbbell: !!ex.dumbbell };
   document.getElementById('modal-exercise-title').textContent = 'EDIT EXERCISE';
   document.getElementById('exercise-name-input').value = ex.name;
   document.getElementById('exercise-cat-input').value = ex.category || '';
@@ -1226,12 +1255,14 @@ function saveExercise() {
       exercises[i].barbell = exerciseFlags.barbell;
       exercises[i].cable = exerciseFlags.cable;
       exercises[i].bodyweight = exerciseFlags.bodyweight;
+      exercises[i].dumbbell = exerciseFlags.dumbbell;
     }
   } else {
     exercises.push({ id: uid(), name, category,
       barbell: exerciseFlags.barbell,
       cable: exerciseFlags.cable,
-      bodyweight: exerciseFlags.bodyweight });
+      bodyweight: exerciseFlags.bodyweight,
+      dumbbell: exerciseFlags.dumbbell });
   }
   saveExercises(exercises);
   closeModal('modal-exercise');
