@@ -840,9 +840,11 @@
   <!-- ════════════════ HOME SCREEN ════════════════ -->
   <div class="screen active" id="screen-home">
     <div id="home-idle">
-      <div class="section-label">START A WORKOUT</div>
+      <div class="section-label">ROUTINES</div>
       <div id="routine-list" class="scroll-list px-16"></div>
-      <div class="section-label">RECENT PRs</div>
+      <div class="section-label" style="margin-top:8px;">PROGRAMS</div>
+      <div id="program-list" class="scroll-list px-16"></div>
+      <div class="section-label" style="margin-top:8px;">RECENT PRs</div>
       <div id="recent-prs" class="card mx-16" style="margin: 0 16px;"></div>
     </div>
     <div id="home-active" class="hidden">
@@ -904,7 +906,9 @@
 
   <!-- ════════════════ MANAGE SCREEN ════════════════ -->
   <div class="screen" id="screen-manage">
-    <div class="section-label">ROUTINES</div>
+    <div class="section-label">PROGRAMS</div>
+    <div id="program-manage-list" class="scroll-list" style="margin: 0 16px;"></div>
+    <div class="section-label" style="margin-top:24px;">ROUTINES</div>
     <div id="routine-manage-list" class="scroll-list" style="margin: 0 16px;"></div>
     <div class="px-16 mt-8">
       <button class="btn btn-secondary" onclick="openAddRoutine()">+ New Routine</button>
@@ -948,6 +952,19 @@
       </div>
     </div>
   </div>
+
+<!-- Program Setup Modal -->
+<div class="modal-backdrop" id="modal-program-setup">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="program-setup-title">SET UP 5/3/1</div>
+    <div class="modal-body" id="program-setup-body"></div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modal-program-setup')">Cancel</button>
+      <button class="btn btn-primary" id="setup-next-btn" onclick="setupNext()">Next →</button>
+    </div>
+  </div>
+</div>
 
 </div><!-- /#app -->
 

@@ -45,6 +45,11 @@ function saveRoutines(d)    { save('routines', d); }
 function saveSessions(d)    { save('sessions', d); }
 function saveBodyweights(d) { save('bodyweights', d); }
 
+function getPrograms()    { return load('programs', []); }
+function savePrograms(d)  { save('programs', d); }
+function getActiveProgram() { return load('activeProgram', null); }
+function saveActiveProgram(d) { save('activeProgram', d); }
+
 function getLastDayId(routineId)        { return load(`lastday_${routineId}`, null); }
 function setLastDayId(routineId, dayId) { save(`lastday_${routineId}`, dayId); }
 
@@ -53,7 +58,805 @@ function setLastRoutineId(id)    { save('lastroutine', id); }
 
 function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
 
-// ── INIT ───────────────────────────────────────────────────
+// ── 5/3/1 PROGRAM DEFINITION ──────────────────────────────
+// Template is hardcoded — only user instance (TMs, progress) is stored
+
+const PROGRAM_531 = {
+  id: '531',
+  name: '5/3/1 Strength',
+  description: 'Wendler\'s 5/3/1 — 4 days/week, 4-week cycles. Bench, Squat, Deadlift, Weighted Pull-Up.',
+
+  // Lift definitions: name must match exercise library exactly
+  lifts: [
+    { key: 'bench',   name: 'Bench Press',       increment: 5,  isUpper: true  },
+    { key: 'squat',   name: 'Squat',              increment: 10, isUpper: false },
+    { key: 'dead',    name: 'Deadlift',           increment: 10, isUpper: false },
+    { key: 'pullup',  name: 'Weighted Pull-Up',   increment: 5,  isUpper: true  },
+  ],
+
+  // Week wave: each week has working sets, deload flag
+  weeks: [
+    { label: 'Week 1 — 5s',    isDeload: false, sets: [{pct:0.65,reps:5},{pct:0.75,reps:5},{pct:0.85,reps:5,isAmrap:true}] },
+    { label: 'Week 2 — 3s',    isDeload: false, sets: [{pct:0.70,reps:3},{pct:0.80,reps:3},{pct:0.90,reps:3,isAmrap:true}] },
+    { label: 'Week 3 — 5/3/1', isDeload: false, sets: [{pct:0.75,reps:5},{pct:0.85,reps:3},{pct:0.95,reps:1,isAmrap:true}] },
+    { label: 'Week 4 — Deload', isDeload: true,  sets: [{pct:0.40,reps:5},{pct:0.50,reps:5},{pct:0.60,reps:5}] },
+  ],
+
+  // Warmup sets (% of TM)
+  warmups: [{pct:0.40,reps:5},{pct:0.50,reps:5},{pct:0.60,reps:3}],
+
+  // Days: mainLift key + accessories
+  days: [
+    {
+      key: 'A', label: 'Day A — Squat', mainLift: 'squat',
+      accessories: [
+        { name: 'RDL',                  sets: 3, repMin: 8,  repMax: 10 },
+        { name: 'Dumbbell Split Squat', sets: 3, repMin: 10, repMax: 10 },
+        { name: 'Cable Crunch',         sets: 3, repMin: 15, repMax: 15 },
+      ]
+    },
+    {
+      key: 'B', label: 'Day B — Bench', mainLift: 'bench',
+      accessories: [
+        { name: 'Weighted Dip',  sets: 3, repMin: 8,  repMax: 12 },
+        { name: 'Dumbbell Row',  sets: 3, repMin: 10, repMax: 12, orWith: 'Weighted Body Row' },
+        { name: 'Archer Pull-Up', sets: 3, repMin: 6, repMax: 8,  orWith: 'Pull-Up', orWith2: 'Muscle Up' },
+      ]
+    },
+    {
+      key: 'C', label: 'Day C — Deadlift', mainLift: 'dead',
+      accessories: [
+        { name: 'Pistol Squat',  sets: 3, repMin: 6,  repMax: 10 },
+        { name: 'Cable Crunch',  sets: 3, repMin: 15, repMax: 15 },
+      ]
+    },
+    {
+      key: 'D', label: 'Day D — Pull-Up', mainLift: 'pullup',
+      accessories: [
+        { name: 'Bench Press',              sets: 3, repMin: 10, repMax: 10, fixedPct: 0.50, fixedLift: 'bench' },
+        { name: 'Dumbbell Curl',            sets: 3, repMin: 10, repMax: 15 },
+        { name: 'Overhead Tricep Extension',sets: 3, repMin: 10, repMax: 15 },
+      ]
+    },
+  ],
+};
+
+// ── PROGRAM HELPERS ────────────────────────────────────────
+
+function roundToNearest(weight, nearest) {
+  return Math.round(weight / nearest) * nearest;
+}
+
+function calcWorkingWeight(tm, pct) {
+  // Round to nearest 5 lbs
+  return roundToNearest(tm * pct, 5);
+}
+
+function getProgram531() {
+  return getActiveProgram();
+}
+
+function saveProgram531(p) {
+  saveActiveProgram(p);
+}
+
+// Resolve exercise ID by name from user's library
+function resolveExerciseId(name) {
+  const ex = getExercises().find(e => e.name === name);
+  return ex ? ex.id : null;
+}
+
+// Get current day definition from program instance
+function getCurrentDayDef(prog) {
+  return PROGRAM_531.days[prog.currentDay];
+}
+
+function getCurrentWeekDef(prog) {
+  return PROGRAM_531.weeks[prog.currentWeek];
+}
+
+// Advance program to next day/week/cycle after completing a session
+function advanceProgram(prog) {
+  prog.currentDay++;
+  if (prog.currentDay >= PROGRAM_531.days.length) {
+    prog.currentDay = 0;
+    prog.currentWeek++;
+    if (prog.currentWeek >= PROGRAM_531.weeks.length) {
+      prog.currentWeek = 0;
+      prog.currentCycle++;
+      // Auto-increment TMs after completing a full cycle
+      PROGRAM_531.lifts.forEach(lift => {
+        prog.trainingMaxes[lift.key] = roundToNearest(
+          prog.trainingMaxes[lift.key] + lift.increment, 5
+        );
+      });
+      prog.pendingCycleComplete = true;
+    }
+  }
+  saveProgram531(prog);
+}
+
+// Check if AMRAP result suggests a bigger TM jump
+function checkAmrapSuggestion(prog, liftKey, weight, reps) {
+  if (reps <= 1) return null;
+  const implied1rm = e1rm(weight, reps);
+  const currentTM = prog.trainingMaxes[liftKey];
+  // If implied 1RM is >10% above current TM, suggest a bigger jump
+  if (implied1rm > currentTM * 1.10) {
+    const suggestedTM = roundToNearest(implied1rm * 0.90, 5);
+    const diff = suggestedTM - currentTM;
+    if (diff > PROGRAM_531.lifts.find(l=>l.key===liftKey).increment) {
+      return { suggestedTM, diff };
+    }
+  }
+  return null;
+}
+
+// ── PROGRAM SETUP (GUIDED) ─────────────────────────────────
+
+let setupState = null; // tracks guided setup progress
+
+function openProgramSetup() {
+  setupState = { step: 0, inputs: {} };
+  const btn = document.getElementById('setup-next-btn');
+  if (btn) btn.onclick = setupNext;
+  renderProgramSetupStep();
+  openModal('modal-program-setup');
+}
+
+function renderProgramSetupStep() {
+  const lift = PROGRAM_531.lifts[setupState.step];
+  const total = PROGRAM_531.lifts.length;
+  const el = document.getElementById('program-setup-body');
+  el.innerHTML = `
+    <div style="font-size:13px;color:var(--text2);margin-bottom:16px;">Step ${setupState.step+1} of ${total} — enter your best recent lift for <strong style="color:var(--text)">${lift.name}</strong>. You can enter a 1RM directly, or a weight × reps and we'll calculate it.</div>
+    <div class="field">
+      <label>Weight (lbs)</label>
+      <input class="input" type="number" id="setup-weight" placeholder="e.g. 185" inputmode="decimal" />
+    </div>
+    <div class="field">
+      <label>Reps (enter 1 if it was a 1RM)</label>
+      <input class="input" type="number" id="setup-reps" placeholder="e.g. 5" inputmode="decimal" value="1" />
+    </div>
+    <div id="setup-preview" style="margin-top:12px;padding:12px;background:var(--surface2);border-radius:8px;font-size:14px;color:var(--text2);min-height:48px;"></div>
+    <div style="font-size:12px;color:var(--text3);margin-top:8px;">Training Max = 90% of your e1RM, rounded to nearest 5 lbs.</div>
+  `;
+  document.getElementById('program-setup-title').textContent = `SET UP 5/3/1 (${setupState.step+1}/${total})`;
+  document.getElementById('setup-next-btn').textContent = setupState.step < total - 1 ? 'Next →' : 'Start Program';
+
+  // Live preview
+  ['setup-weight','setup-reps'].forEach(id => {
+    document.getElementById(id).addEventListener('input', updateSetupPreview);
+  });
+}
+
+function updateSetupPreview() {
+  const w = parseFloat(document.getElementById('setup-weight').value);
+  const r = parseInt(document.getElementById('setup-reps').value) || 1;
+  const el = document.getElementById('setup-preview');
+  if (!w || w <= 0) { el.textContent = ''; return; }
+  const est1rm = e1rm(w, r);
+  const tm = roundToNearest(est1rm * 0.90, 5);
+  el.innerHTML = `e1RM: <strong style="color:var(--text)">${est1rm} lbs</strong> &nbsp;·&nbsp; Training Max: <strong style="color:var(--accent)">${tm} lbs</strong>`;
+}
+
+function setupNext() {
+  const w = parseFloat(document.getElementById('setup-weight').value);
+  const r = parseInt(document.getElementById('setup-reps').value) || 1;
+  if (!w || w <= 0) { alert('Enter a weight.'); return; }
+  const lift = PROGRAM_531.lifts[setupState.step];
+  const est1rm = e1rm(w, r);
+  const tm = roundToNearest(est1rm * 0.90, 5);
+  setupState.inputs[lift.key] = tm;
+
+  setupState.step++;
+  if (setupState.step < PROGRAM_531.lifts.length) {
+    renderProgramSetupStep();
+  } else {
+    // All lifts entered — create program instance
+    const prog = {
+      id: uid(),
+      programId: '531',
+      name: PROGRAM_531.name,
+      startDate: todayStr(),
+      currentCycle: 1,
+      currentWeek: 0,
+      currentDay: 0,
+      trainingMaxes: setupState.inputs,
+      amrapLog: [],
+      pendingCycleComplete: false,
+      pendingAmrapSuggestions: [],
+    };
+    saveProgram531(prog);
+    closeModal('modal-program-setup');
+    renderIdleHome();
+    renderManage();
+  }
+}
+
+// ── PROGRAM WORKOUT ────────────────────────────────────────
+
+function startProgramDay() {
+  const prog = getProgram531();
+  if (!prog) { openProgramSetup(); return; }
+
+  const dayDef = getCurrentDayDef(prog);
+  const weekDef = getCurrentWeekDef(prog);
+  const lift = PROGRAM_531.lifts.find(l => l.key === dayDef.mainLift);
+  const tm = prog.trainingMaxes[dayDef.mainLift];
+  const exercises = getExercises();
+
+  const mainExId = resolveExerciseId(lift.name);
+  const mainEx = exercises.find(e => e.id === mainExId);
+
+  // Build warmup sets
+  const warmupSets = PROGRAM_531.warmups.map(w => ({
+    weight: calcWorkingWeight(tm, w.pct),
+    reps: w.reps, targetReps: w.reps,
+    logged: false, isWarmup: true, isAmrap: false
+  }));
+
+  // Build working sets
+  const workingSets = weekDef.sets.map(s => ({
+    weight: calcWorkingWeight(tm, s.pct),
+    reps: 0, targetReps: s.reps,
+    logged: false, isWarmup: false, isAmrap: !!s.isAmrap,
+    pct: s.pct
+  }));
+
+  // Build accessory exercises
+  const accessories = dayDef.accessories.map(acc => {
+    // Handle fixed % accessories (Day D bench)
+    let targetWeight = 0;
+    if (acc.fixedPct && acc.fixedLift) {
+      targetWeight = calcWorkingWeight(prog.trainingMaxes[acc.fixedLift], acc.fixedPct);
+    } else {
+      // Look up last session weight for this exercise
+      const exId = resolveExerciseId(acc.name);
+      if (exId) {
+        const allSessions = getSessions();
+        for (let i = allSessions.length - 1; i >= 0; i--) {
+          const match = allSessions[i].sets.filter(st => st.exerciseId === exId);
+          if (match.length > 0) {
+            targetWeight = match.reduce((a,b) => b.weight > a.weight ? b : a, match[0]).weight;
+            break;
+          }
+        }
+      }
+      if (!targetWeight) targetWeight = 45;
+    }
+
+    // OR choices
+    const choices = [acc.name];
+    if (acc.orWith)  choices.push(acc.orWith);
+    if (acc.orWith2) choices.push(acc.orWith2);
+
+    return {
+      name: acc.name,
+      choices: choices.map(n => ({ name: n, id: resolveExerciseId(n) })),
+      resolvedName: acc.name,
+      resolvedId: resolveExerciseId(acc.name),
+      sets: Array.from({length: acc.sets}, () => ({weight: targetWeight, reps: 0, logged: false})),
+      repMin: acc.repMin, repMax: acc.repMax,
+      targetWeight,
+      isBodyweight: !!(mainEx && mainEx.bodyweight),
+      isFixed: !!acc.fixedPct,
+      pending: choices.length > 1
+    };
+  });
+
+  session = {
+    id: uid(),
+    date: todayStr(),
+    isProgramSession: true,
+    programId: '531',
+    programName: PROGRAM_531.name,
+    cycle: prog.currentCycle,
+    week: prog.currentWeek,
+    weekLabel: weekDef.label,
+    dayKey: dayDef.key,
+    dayLabel: dayDef.label,
+    mainLiftKey: dayDef.mainLift,
+    mainLiftName: lift.name,
+    mainExId, tm,
+    warmupSets, workingSets,
+    accessories,
+    bodyweight: null,
+    amrapReps: null,
+  };
+
+  renderProgramWorkout();
+}
+
+function renderProgramWorkout() {
+  hide('home-idle'); show('home-active');
+  hide('home-bottom-idle'); show('home-bottom-active');
+
+  const prog = getProgram531();
+  const weekDef = getCurrentWeekDef(prog);
+  const isDeload = weekDef.isDeload;
+
+  let html = `<div style="padding:14px 16px 8px;">
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:var(--text);">${esc(session.dayLabel)}</div>
+    <div style="font-size:13px;color:var(--accent);font-weight:700;margin-top:2px;">${esc(session.weekLabel)} · Cycle ${session.cycle}${isDeload ? ' · <span style="color:var(--accent2)">DELOAD</span>' : ''}</div>
+    <div style="font-size:12px;color:var(--text2);margin-top:2px;">TM: ${session.tm} lbs</div>
+  </div>`;
+
+  // Main lift block
+  html += renderProgramMainLift();
+
+  // Accessories
+  session.accessories.forEach((acc, i) => {
+    html += renderProgramAccessory(acc, i);
+  });
+
+  html += `<div style="height:100px;"></div>`;
+  document.getElementById('home-active').innerHTML = html;
+}
+
+function renderProgramMainLift() {
+  const allSets = [...session.warmupSets, ...session.workingSets];
+  const prog = getProgram531();
+  const isDeload = getCurrentWeekDef(prog).isDeload;
+
+  let html = `<div class="exercise-block" id="program-main-block">
+    <div class="exercise-block-header">
+      <div>
+        <div class="exercise-name">${esc(session.mainLiftName)}</div>
+        <div style="font-size:13px;color:var(--text2);margin-top:1px;">TM: ${session.tm} lbs</div>
+      </div>
+    </div>`;
+
+  // Warmup sets
+  html += `<div style="padding:8px 14px 4px;font-size:11px;font-weight:700;color:var(--text3);letter-spacing:0.06em;">WARMUP</div>`;
+  session.warmupSets.forEach((s, i) => {
+    html += renderProgramSet(s, 'warmup', i);
+  });
+
+  // Working sets
+  html += `<div style="padding:8px 14px 4px;font-size:11px;font-weight:700;color:var(--text3);letter-spacing:0.06em;">WORKING SETS</div>`;
+  session.workingSets.forEach((s, i) => {
+    html += renderProgramSet(s, 'working', i);
+  });
+
+  html += `</div>`;
+  return html;
+}
+
+function renderProgramSet(set, type, idx) {
+  const isAmrap = set.isAmrap;
+  const isWarmup = set.isWarmup;
+  const isLogged = set.logged;
+
+  // Color logic for logged state
+  let statusColor = '';
+  let repsColor = 'var(--text)';
+  if (isLogged) {
+    if (isAmrap) {
+      statusColor = 'var(--green)';
+      repsColor = 'var(--green)';
+    } else if (!isWarmup) {
+      const hit = set.reps >= set.targetReps;
+      statusColor = hit ? 'var(--green)' : 'var(--red)';
+      repsColor = hit ? 'var(--green)' : 'var(--red)';
+    } else {
+      statusColor = 'var(--green)';
+      repsColor = 'var(--green)';
+    }
+  }
+
+  const rowStyle = isLogged ? 'opacity:0.75;' : '';
+  const label = isAmrap ? 'AMRAP' : isWarmup ? 'W'+(idx+1) : 'S'+(idx+1);
+  const labelStyle = isAmrap ? 'color:var(--accent2);font-weight:900;' : '';
+  const targetLabel = isAmrap ? `${set.targetReps}+ reps` : `${set.targetReps} reps`;
+
+  let actionArea;
+  if (isLogged) {
+    const failNote = (!isWarmup && !isAmrap && set.reps < set.targetReps)
+      ? ` <span style="font-size:11px;color:var(--red);">/${set.targetReps}</span>` : '';
+    actionArea = `<span style="color:${repsColor};font-weight:700;font-size:18px;">${set.reps}</span>${failNote}
+      <button class="btn-inline" onclick="${isAmrap?`logProgramAmrap(${idx})`:`logProgramWorking(${idx})`}"
+        style="font-size:12px;color:var(--text2);border-color:var(--border);background:var(--surface2);">Edit</button>`;
+  } else if (isWarmup) {
+    actionArea = `<button class="btn-inline" style="background:var(--accent);color:#fff;border-color:var(--accent);" onclick="logProgramSet('warmup',${idx})">✓ DONE</button>`;
+  } else if (isAmrap) {
+    actionArea = `<button class="btn-inline" style="background:var(--accent2);color:#fff;border-color:var(--accent2);" onclick="logProgramAmrap(${idx})">LOG REPS</button>`;
+  } else {
+    actionArea = `<span style="color:var(--text3);font-size:13px;">${targetLabel}</span>
+      <button class="btn-inline" style="background:var(--accent);color:#fff;border-color:var(--accent);" onclick="logProgramWorking(${idx})">LOG</button>`;
+  }
+
+  return `<div class="set-row" id="pset-${type}-${idx}" style="${rowStyle}">
+    <div class="set-num" style="${labelStyle}">${label}</div>
+    <div class="set-weight" style="font-weight:700;">${set.weight}<span style="font-size:11px;color:var(--text2);"> lbs</span></div>
+    <div class="reps-input-row">${actionArea}</div>
+    <div class="set-status" style="color:${statusColor}">${isLogged ? '✓' : ''}</div>
+  </div>`;
+}
+
+function logProgramSet(type, idx) {
+  // Warmup only — simple done, no rep tracking
+  const set = session.warmupSets[idx];
+  set.logged = true;
+  set.reps = set.targetReps;
+  refreshProgramMainBlock();
+}
+
+function logProgramWorking(idx) {
+  // Working sets S1/S2 — open numpad, color based on hit/miss
+  const set = session.workingSets[idx];
+  openNumpad(`REPS (target: ${set.targetReps})`, set.reps || '', false, val => {
+    set.logged = true;
+    set.reps = val;
+    refreshProgramMainBlock();
+  });
+}
+
+function logProgramAmrap(idx) {
+  const set = session.workingSets[idx];
+  openNumpad('AMRAP REPS', '', false, val => {
+    set.logged = true;
+    set.reps = val;
+    session.amrapReps = val;
+    refreshProgramMainBlock();
+  });
+}
+
+function refreshProgramMainBlock() {
+  const el = document.getElementById('program-main-block');
+  if (el) el.outerHTML = renderProgramMainLift();
+}
+
+function renderProgramAccessory(acc, accIdx) {
+  // Pending OR choice
+  if (acc.pending) {
+    const choiceButtons = acc.choices.map(c =>
+      `<button class="btn btn-secondary btn-sm" style="flex:1;" onclick="resolveProgramAccessory(${accIdx},'${c.name}')">${esc(c.name)}</button>`
+    ).join('');
+    return `<div class="exercise-block" id="pacc-block-${accIdx}" style="border-style:dashed;opacity:0.8;">
+      <div class="exercise-block-header">
+        <div class="exercise-name" style="color:var(--text2);">${acc.choices.map(c=>esc(c.name)).join(' / ')}</div>
+      </div>
+      <div style="padding:8px 14px;display:flex;gap:8px;flex-wrap:wrap;">${choiceButtons}</div>
+    </div>`;
+  }
+
+  const ex = getExercises().find(e => e.id === acc.resolvedId);
+  const isBW = ex ? !!ex.bodyweight : false;
+  const rangeLabel = acc.repMin === acc.repMax ? `${acc.repMin} reps` : `${acc.repMin}–${acc.repMax} reps`;
+
+  let html = `<div class="exercise-block" id="pacc-block-${accIdx}">
+    <div class="exercise-block-header">
+      <div>
+        <div class="exercise-name">${esc(acc.resolvedName)}</div>
+        <div style="font-size:13px;color:var(--text2);margin-top:1px;">${acc.sets.length} sets · ${rangeLabel}${acc.isFixed?' · Fixed weight':''}</div>
+      </div>
+    </div>`;
+
+  if (!isBW && !acc.isFixed) {
+    html += `<div class="weight-selector">
+      <span class="weight-label">Weight</span>
+      <div class="weight-stepper">
+        <button class="stepper-btn" onclick="adjustAccWeight(${accIdx},-5)">−</button>
+        <div class="weight-display" onclick="openAccWeightNumpad(${accIdx})">${acc.targetWeight}<span class="weight-unit">lbs</span></div>
+        <button class="stepper-btn" onclick="adjustAccWeight(${accIdx},5)">+</button>
+      </div>
+      <button class="btn-inline" onclick="adjustAccWeight(${accIdx},2.5)" style="padding:6px 10px;font-size:12px;">+2.5</button>
+    </div>`;
+  } else if (acc.isFixed) {
+    html += `<div style="padding:6px 14px 8px;font-size:14px;font-weight:700;color:var(--text2);">${acc.targetWeight} lbs <span style="font-size:12px;font-weight:400;">(~50% TM)</span></div>`;
+  } else {
+    html += `<div style="padding:6px 14px 8px;font-size:14px;font-weight:700;color:var(--text2);">Bodyweight</div>`;
+  }
+
+  html += `<div class="sets-area" id="pacc-sets-${accIdx}">`;
+  acc.sets.forEach((s, si) => { html += renderAccSet(accIdx, si, s, acc); });
+  html += `</div></div>`;
+  return html;
+}
+
+function renderAccSet(accIdx, setIdx, set, acc) {
+  const ex = getExercises().find(e => e.id === acc.resolvedId);
+  const isBW = ex ? !!ex.bodyweight : false;
+  const wLabel = isBW ? 'BW' : `${set.weight || acc.targetWeight} lbs`;
+  const statusColor = set.logged ? 'var(--green)' : '';
+
+  return `<div class="set-row" id="pacc-set-${accIdx}-${setIdx}">
+    <div class="set-num">S${setIdx+1}</div>
+    <div class="set-weight">${wLabel}</div>
+    <div class="reps-input-row">
+      <button class="reps-btn"
+        onmousedown="startHoldAccReps(${accIdx},${setIdx},-1)" ontouchstart="startHoldAccReps(${accIdx},${setIdx},-1)"
+        onmouseup="stopHoldReps()" onmouseleave="stopHoldReps()" ontouchend="stopHoldReps()">−</button>
+      <div class="reps-display" onclick="openAccRepsNumpad(${accIdx},${setIdx})">${set.reps > 0 ? set.reps : '—'}</div>
+      <button class="reps-btn"
+        onmousedown="startHoldAccReps(${accIdx},${setIdx},1)" ontouchstart="startHoldAccReps(${accIdx},${setIdx},1)"
+        onmouseup="stopHoldReps()" onmouseleave="stopHoldReps()" ontouchend="stopHoldReps()">+</button>
+      <button class="btn-inline" onclick="logAccSet(${accIdx},${setIdx})"
+        style="background:${set.logged?'var(--surface2)':'var(--accent)'};color:${set.logged?'var(--text2)':'#fff'};border-color:${set.logged?'var(--border)':'var(--accent)'};">
+        ${set.logged?'Edit':'LOG'}
+      </button>
+    </div>
+    <div class="set-status" style="color:${statusColor}">${set.logged?'✓':''}</div>
+  </div>`;
+}
+
+function resolveProgramAccessory(accIdx, name) {
+  const acc = session.accessories[accIdx];
+  const choice = acc.choices.find(c => c.name === name);
+  if (!choice) return;
+  acc.resolvedName = name;
+  acc.resolvedId = choice.id || resolveExerciseId(name);
+  acc.pending = false;
+  // Look up last weight for chosen exercise
+  if (!acc.isFixed) {
+    const allSessions = getSessions();
+    for (let i = allSessions.length - 1; i >= 0; i--) {
+      const match = allSessions[i].sets.filter(st => st.exerciseId === acc.resolvedId);
+      if (match.length > 0) {
+        acc.targetWeight = match.reduce((a,b) => b.weight > a.weight ? b : a, match[0]).weight;
+        acc.sets.forEach(s => s.weight = acc.targetWeight);
+        break;
+      }
+    }
+  }
+  refreshProgramAccBlock(accIdx);
+}
+
+function adjustAccWeight(accIdx, delta) {
+  const acc = session.accessories[accIdx];
+  acc.targetWeight = Math.max(0, Math.round((acc.targetWeight + delta) * 2) / 2);
+  acc.sets.forEach(s => { if (!s.logged) s.weight = acc.targetWeight; });
+  refreshProgramAccBlock(accIdx);
+}
+
+function openAccWeightNumpad(accIdx) {
+  openNumpad('WEIGHT (LBS)', session.accessories[accIdx].targetWeight, true, val => {
+    session.accessories[accIdx].targetWeight = val;
+    session.accessories[accIdx].sets.forEach(s => { if (!s.logged) s.weight = val; });
+    refreshProgramAccBlock(accIdx);
+  });
+}
+
+function startHoldAccReps(accIdx, setIdx, delta) {
+  adjustAccReps(accIdx, setIdx, delta);
+  _holdTimer = setTimeout(() => {
+    _holdInterval = setInterval(() => adjustAccReps(accIdx, setIdx, delta), 80);
+  }, 400);
+}
+
+function adjustAccReps(accIdx, setIdx, delta) {
+  const acc = session.accessories[accIdx];
+  acc.sets[setIdx].reps = Math.max(0, (acc.sets[setIdx].reps || 0) + delta);
+  const el = document.getElementById(`pacc-set-${accIdx}-${setIdx}`);
+  if (el) el.outerHTML = renderAccSet(accIdx, setIdx, acc.sets[setIdx], acc);
+}
+
+function openAccRepsNumpad(accIdx, setIdx) {
+  const acc = session.accessories[accIdx];
+  openNumpad('REPS', acc.sets[setIdx].reps || '', false, val => {
+    acc.sets[setIdx].reps = val;
+    const el = document.getElementById(`pacc-set-${accIdx}-${setIdx}`);
+    if (el) el.outerHTML = renderAccSet(accIdx, setIdx, acc.sets[setIdx], acc);
+  });
+}
+
+function logAccSet(accIdx, setIdx) {
+  const acc = session.accessories[accIdx];
+  acc.sets[setIdx].logged = true;
+  acc.sets[setIdx].weight = acc.targetWeight;
+  refreshProgramAccBlock(accIdx);
+}
+
+function refreshProgramAccBlock(accIdx) {
+  const el = document.getElementById(`pacc-block-${accIdx}`);
+  if (el) el.outerHTML = renderProgramAccessory(session.accessories[accIdx], accIdx);
+}
+
+// ── FINISH PROGRAM SESSION ─────────────────────────────────
+
+function finishProgramWorkout() {
+  const prog = getProgram531();
+
+  // Build sets array for history (same format as regular sessions)
+  const sets = [];
+  // Main lift working sets (skip warmups for session history)
+  session.workingSets.filter(s => s.logged && s.reps > 0).forEach((s, i) => {
+    sets.push({
+      exerciseId: session.mainExId, exerciseName: session.mainLiftName,
+      setNum: i+1, weight: s.weight, reps: s.reps, bodyweight: session.bodyweight
+    });
+  });
+  // Accessories
+  session.accessories.forEach(acc => {
+    if (!acc.resolvedId) return;
+    acc.sets.filter(s => s.logged && s.reps > 0).forEach((s, i) => {
+      sets.push({
+        exerciseId: acc.resolvedId, exerciseName: acc.resolvedName,
+        setNum: i+1, weight: s.weight, reps: s.reps, bodyweight: session.bodyweight
+      });
+    });
+  });
+
+  // Save to sessions history (same as regular workout)
+  const savedSession = {
+    id: session.id, date: session.date,
+    routineId: 'program-531', routineName: PROGRAM_531.name,
+    dayId: session.dayKey, dayName: session.dayLabel,
+    bodyweight: session.bodyweight, sets,
+    isProgramSession: true, cycle: session.cycle,
+    week: session.week, weekLabel: session.weekLabel,
+  };
+  const allSessions = getSessions();
+  allSessions.push(savedSession);
+  saveSessions(allSessions);
+
+  // Log AMRAP
+  if (session.amrapReps !== null) {
+    const amrapSet = session.workingSets.find(s => s.isAmrap);
+    if (amrapSet) {
+      prog.amrapLog.push({
+        date: session.date, liftKey: session.mainLiftKey,
+        weight: amrapSet.weight, reps: session.amrapReps,
+        tm: session.tm, cycle: session.cycle, week: session.week
+      });
+    }
+  }
+
+  // Check AMRAP suggestion
+  let amrapSuggestion = null;
+  if (session.amrapReps > 0) {
+    const amrapSet = session.workingSets.find(s => s.isAmrap);
+    if (amrapSet) {
+      amrapSuggestion = checkAmrapSuggestion(prog, session.mainLiftKey, amrapSet.weight, session.amrapReps);
+      if (amrapSuggestion) {
+        prog.pendingAmrapSuggestions = prog.pendingAmrapSuggestions || [];
+        prog.pendingAmrapSuggestions.push({
+          liftKey: session.mainLiftKey, liftName: session.mainLiftName,
+          currentTM: session.tm, suggestedTM: amrapSuggestion.suggestedTM,
+          diff: amrapSuggestion.diff, date: session.date
+        });
+      }
+    }
+  }
+
+  // Advance program state
+  advanceProgram(prog);
+  autoBackup();
+
+  // Show summary
+  showProgramSummary(savedSession, amrapSuggestion, prog);
+  session = null;
+  renderIdleHome();
+}
+
+function showProgramSummary(savedSession, amrapSuggestion, prog) {
+  let html = `<div style="padding:12px 0;color:var(--text2);font-size:14px;">${esc(savedSession.dayName)} · ${esc(savedSession.weekLabel)} · Cycle ${savedSession.cycle}</div>`;
+
+  // Group sets by exercise
+  const exMap = {};
+  savedSession.sets.forEach(s => {
+    if (!exMap[s.exerciseId]) exMap[s.exerciseId] = { name: s.exerciseName, sets: [] };
+    exMap[s.exerciseId].sets.push(s);
+  });
+  Object.values(exMap).forEach(ex => {
+    const bestW = Math.max(...ex.sets.map(s => s.weight));
+    const bestR = ex.sets.filter(s => s.weight === bestW).reduce((m,s) => Math.max(m,s.reps), 0);
+    html += `<div class="summary-exercise">
+      <div class="summary-ex-name">${esc(ex.name)}</div>
+      <div class="summary-ex-sets">${ex.sets.map(s=>`${s.weight}×${s.reps}`).join(', ')}</div>
+      <div class="summary-ex-best">Best: ${bestW} lbs × ${bestR} reps</div>
+    </div>`;
+  });
+
+  // AMRAP suggestion
+  if (amrapSuggestion) {
+    const liftKey = savedSession.dayId; // dayId stores the day key e.g. 'A','B','C','D'
+    // Find the actual lift key from pending suggestions
+    const pendingSugg = prog.pendingAmrapSuggestions && prog.pendingAmrapSuggestions[prog.pendingAmrapSuggestions.length-1];
+    const suggLiftKey = pendingSugg ? pendingSugg.liftKey : '';
+    html += `<div style="margin-top:12px;padding:12px;background:#fef3c7;border-radius:8px;border:1px solid #f59e0b;">
+      <div style="font-weight:700;color:#92400e;font-size:14px;">💪 Strong AMRAP Set!</div>
+      <div style="font-size:13px;color:#78350f;margin-top:4px;">Your performance suggests your Training Max for <strong>${esc(savedSession.sets[0]?.exerciseName||'')}</strong> could be <strong>${amrapSuggestion.suggestedTM} lbs</strong> (+${amrapSuggestion.diff} lbs). Update next cycle?</div>
+      <div style="display:flex;gap:8px;margin-top:10px;">
+        <button class="btn btn-secondary btn-sm" style="flex:1;" onclick="dismissAmrapSuggestion()">Keep Current</button>
+        <button class="btn btn-primary btn-sm" style="flex:1;" onclick="applyAmrapSuggestion('${suggLiftKey}',${amrapSuggestion.suggestedTM})">Update TM</button>
+      </div>
+    </div>`;
+  }
+
+  // Cycle complete
+  if (prog.pendingCycleComplete) {
+    prog.pendingCycleComplete = false;
+    saveProgram531(prog);
+    html += `<div style="margin-top:12px;padding:12px;background:#dcfce7;border-radius:8px;border:1px solid #16a34a;">
+      <div style="font-weight:700;color:#14532d;font-size:14px;">🎉 Cycle Complete!</div>
+      <div style="font-size:13px;color:#166534;margin-top:4px;">TMs have been increased automatically. New cycle starts now.</div>
+    </div>`;
+  }
+
+  html += '<div style="height:8px;"></div>';
+  document.getElementById('modal-summary-body').innerHTML = html;
+  document.querySelector('#modal-summary .modal-title').textContent = 'SESSION COMPLETE 💪';
+  openModal('modal-summary');
+}
+
+function dismissAmrapSuggestion() {
+  const prog = getProgram531();
+  if (prog) { prog.pendingAmrapSuggestions = []; saveProgram531(prog); }
+  closeModal('modal-summary');
+}
+
+function applyAmrapSuggestion(liftKey, newTM) {
+  const prog = getProgram531();
+  if (prog) {
+    prog.trainingMaxes[liftKey] = newTM;
+    prog.pendingAmrapSuggestions = prog.pendingAmrapSuggestions.filter(s => s.liftKey !== liftKey);
+    saveProgram531(prog);
+  }
+  closeModal('modal-summary');
+  renderIdleHome();
+}
+
+// ── PROGRAM MANAGE ─────────────────────────────────────────
+
+function renderProgramManageList() {
+  const prog = getProgram531();
+  const el = document.getElementById('program-manage-list');
+  if (!el) return;
+  if (!prog) {
+    el.innerHTML = `<div style="padding:12px 0;color:var(--text2);font-size:14px;">No active program.</div>`;
+    return;
+  }
+  const weekDef = PROGRAM_531.weeks[prog.currentWeek];
+  el.innerHTML = `<div class="slot-item">
+    <div style="flex:1;">
+      <div style="font-weight:700;font-size:16px;">${esc(prog.name)}</div>
+      <div style="font-size:12px;color:var(--text2);margin-top:3px;">Cycle ${prog.currentCycle} · ${esc(weekDef.label)} · Day ${PROGRAM_531.days[prog.currentDay].key}</div>
+      <div style="font-size:12px;color:var(--text3);margin-top:2px;">TMs: Bench ${prog.trainingMaxes.bench} · Squat ${prog.trainingMaxes.squat} · Dead ${prog.trainingMaxes.dead} · Pull-Up ${prog.trainingMaxes.pullup}</div>
+    </div>
+    <button class="btn-inline" onclick="openEditTMs()" style="margin-right:8px;">Edit TMs</button>
+    <div class="slot-remove" onclick="resetProgram()">🗑</div>
+  </div>`;
+}
+
+function openEditTMs() {
+  const prog = getProgram531();
+  if (!prog) return;
+  const el = document.getElementById('program-setup-body');
+  el.innerHTML = PROGRAM_531.lifts.map(l => `
+    <div class="field">
+      <label>${esc(l.name)} Training Max (lbs)</label>
+      <input class="input" type="number" id="tm-edit-${l.key}" value="${prog.trainingMaxes[l.key]}" inputmode="decimal" />
+    </div>
+  `).join('');
+  document.getElementById('program-setup-title').textContent = 'EDIT TRAINING MAXES';
+  document.getElementById('setup-next-btn').textContent = 'Save';
+  document.getElementById('setup-next-btn').onclick = saveEditedTMs;
+  openModal('modal-program-setup');
+}
+
+function saveEditedTMs() {
+  const prog = getProgram531();
+  if (!prog) return;
+  PROGRAM_531.lifts.forEach(l => {
+    const val = parseFloat(document.getElementById(`tm-edit-${l.key}`)?.value);
+    if (val && val > 0) prog.trainingMaxes[l.key] = roundToNearest(val, 5);
+  });
+  saveProgram531(prog);
+  closeModal('modal-program-setup');
+  renderManage();
+  renderIdleHome();
+}
+
+function resetProgram() {
+  if (!confirm('Reset program? This will delete all program progress and TMs. Your workout history is kept.')) return;
+  saveActiveProgram(null);
+  renderManage();
+  renderIdleHome();
+}
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
   // Seed exercise library on first install (no-op if already seeded or data exists)
@@ -86,6 +889,8 @@ function updateUserDisplay() {
 
 function renderAll() { renderHome(); renderHistory(); renderStats(); renderManage(); renderCardioScreen(); }
 
+function renderManage() { renderRoutineManageList(); renderExerciseManageList(); renderProgramManageList(); renderGithubToken(); }
+
 // ── TABS ───────────────────────────────────────────────────
 
 function showTab(name) {
@@ -102,7 +907,8 @@ function showTab(name) {
 // ── HOME ───────────────────────────────────────────────────
 
 function renderHome() {
-  session ? renderActiveWorkout() : renderIdleHome();
+  if (!session) { renderIdleHome(); return; }
+  session.isProgramSession ? renderProgramWorkout() : renderActiveWorkout();
 }
 
 function renderIdleHome() {
@@ -127,8 +933,31 @@ function renderIdleHome() {
         </div>
         <div style="font-size:24px;color:var(--text3)">›</div>
       </div>`;
-
     }).join('');
+  }
+
+  // Programs section
+  const prog = getProgram531();
+  const progEl = document.getElementById('program-list');
+  if (progEl) {
+    if (!prog) {
+      progEl.innerHTML = `<div class="list-item card" style="margin-bottom:8px;border-radius:8px;border-style:dashed;" onclick="openProgramSetup()">
+        <div class="list-item-main">
+          <div class="list-item-title" style="color:var(--accent);">+ Start 5/3/1 Program</div>
+          <div class="list-item-sub">Wendler's 5/3/1 — Bench, Squat, Deadlift, Pull-Up</div>
+        </div>
+      </div>`;
+    } else {
+      const weekDef = PROGRAM_531.weeks[prog.currentWeek];
+      const dayDef = PROGRAM_531.days[prog.currentDay];
+      progEl.innerHTML = `<div class="list-item card" style="margin-bottom:8px;border-radius:8px;${weekDef.isDeload?'border-color:var(--accent2);':''}" onclick="startProgramDay()">
+        <div class="list-item-main">
+          <div class="list-item-title">${esc(prog.name)} ${weekDef.isDeload?'<span style="font-size:11px;font-family:\'Barlow Condensed\',sans-serif;font-weight:700;color:var(--accent2);">DELOAD</span>':''}</div>
+          <div class="list-item-sub">Cycle ${prog.currentCycle} · ${esc(weekDef.label)} · <strong style="color:var(--accent)">${esc(dayDef.label)}</strong></div>
+        </div>
+        <div style="font-size:24px;color:var(--text3)">›</div>
+      </div>`;
+    }
   }
 
   const prEl = document.getElementById('recent-prs');
@@ -752,6 +1581,7 @@ function refreshExerciseBlock(exIdx) {
 
 function finishWorkout() {
   if (!session) return;
+  if (session.isProgramSession) { finishProgramWorkout(); return; }
   const sets = [];
   session.exercises.forEach(ex => {
     if (ex.skipped || ex.pending) return;
@@ -1821,11 +2651,12 @@ function buildBackupData(userNum) {
     version: 2, user: userNum,
     userName: USERS[userNum].name,
     exportDate: new Date().toISOString(),
-    exercises:   getExercises(),
-    routines:    getRoutines(),
-    sessions:    getSessions(),
-    bodyweights: getBodyweights(),
-    cardio:      getCardioSessions()
+    exercises:     getExercises(),
+    routines:      getRoutines(),
+    sessions:      getSessions(),
+    bodyweights:   getBodyweights(),
+    cardio:        getCardioSessions(),
+    activeProgram: getActiveProgram(),
   };
   currentUser = saved;
   return data;
@@ -1948,11 +2779,12 @@ async function restoreFromGithub() {
 
       const savedUser = currentUser;
       currentUser = userNum;
-      if (json.exercises)   saveExercises(json.exercises);
-      if (json.routines)    saveRoutines(json.routines);
-      if (json.sessions)    saveSessions(json.sessions);
-      if (json.bodyweights) saveBodyweights(json.bodyweights);
-      if (json.cardio)      saveCardioSessions(json.cardio);
+      if (json.exercises)     saveExercises(json.exercises);
+      if (json.routines)      saveRoutines(json.routines);
+      if (json.sessions)      saveSessions(json.sessions);
+      if (json.bodyweights)   saveBodyweights(json.bodyweights);
+      if (json.cardio)        saveCardioSessions(json.cardio);
+      if (json.activeProgram !== undefined) saveActiveProgram(json.activeProgram);
       currentUser = savedUser;
 
       restored++;
@@ -1995,7 +2827,7 @@ async function testGithubBackup() {
 function exportData() {
   const data = { version:2, user:currentUser, exportDate:new Date().toISOString(),
     exercises:getExercises(), routines:getRoutines(), sessions:getSessions(),
-    bodyweights:getBodyweights(), cardio:getCardioSessions() };
+    bodyweights:getBodyweights(), cardio:getCardioSessions(), activeProgram:getActiveProgram() };
   const blob = new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
   const a = Object.assign(document.createElement('a'),{href:URL.createObjectURL(blob),download:`lift-backup-u${currentUser}-${todayStr()}.json`});
   a.click(); URL.revokeObjectURL(a.href);
@@ -2013,6 +2845,7 @@ function importData(e) {
       if(data.sessions)saveSessions(data.sessions);
       if(data.bodyweights)saveBodyweights(data.bodyweights);
       if(data.cardio)saveCardioSessions(data.cardio);
+      if(data.activeProgram !== undefined)saveActiveProgram(data.activeProgram);
       renderAll(); alert('Import successful!');
     } catch { alert('Invalid file.'); }
   };
