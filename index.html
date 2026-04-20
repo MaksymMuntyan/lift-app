@@ -853,7 +853,7 @@
     </div>
     <div class="bottom-bar hidden" id="home-bottom-active">
       <div class="flex gap-8">
-        <button class="btn btn-danger" onclick="cancelWorkout()" style="flex:1">Discard</button>
+        <button class="btn btn-danger" onclick="cancelWorkout()" style="flex:1">Discard Workout</button>
         <button class="btn btn-primary" onclick="finishWorkout()" style="flex:2">Finish Workout ✓</button>
       </div>
     </div>
@@ -1033,6 +1033,24 @@
         <div class="field">
           <label>Category (optional)</label>
           <input class="input" type="text" id="exercise-cat-input" placeholder="e.g. Push, Pull, Legs" />
+        </div>
+        <div class="field">
+          <label>Type</label>
+          <div style="display:flex;gap:8px;margin-top:4px;">
+            <button type="button" id="flag-barbell" onclick="toggleExerciseFlag('barbell')"
+              style="flex:1;padding:10px 6px;border-radius:8px;border:1px solid var(--border);background:var(--surface2);font-size:13px;font-weight:600;cursor:pointer;">
+              🏋️ Barbell
+            </button>
+            <button type="button" id="flag-cable" onclick="toggleExerciseFlag('cable')"
+              style="flex:1;padding:10px 6px;border-radius:8px;border:1px solid var(--border);background:var(--surface2);font-size:13px;font-weight:600;cursor:pointer;">
+              🔵 Cable
+            </button>
+            <button type="button" id="flag-bodyweight" onclick="toggleExerciseFlag('bodyweight')"
+              style="flex:1;padding:10px 6px;border-radius:8px;border:1px solid var(--border);background:var(--surface2);font-size:13px;font-weight:600;cursor:pointer;">
+              🤸 Bodyweight
+            </button>
+          </div>
+          <div style="font-size:12px;color:var(--text3);margin-top:6px;">Tap to toggle. Barbell/cable enables plate math. Bodyweight hides weight selector.</div>
         </div>
       </div>
     </div>

@@ -237,7 +237,7 @@ function resolveInlineSlot(exIdx, choiceId) {
   const isBarbell = !!ex.barbell;
   const isCable = !!ex.cable;
   let lastWeight = isBodyweight ? 0 : 45, lastReps = 5, lastDate = null;
-  let lastSetReps = [];
+  let lastSetReps = [], lastSetWeights = [];
   for (let i = allSessions.length - 1; i >= 0; i--) {
     const s = allSessions[i];
     const match = s.sets.filter(st => st.exerciseId === choiceId);
@@ -245,6 +245,7 @@ function resolveInlineSlot(exIdx, choiceId) {
       const best = match.reduce((a, b) => b.weight > a.weight ? b : (b.weight === a.weight && b.reps > a.reps ? b : a), match[0]);
       lastWeight = best.weight; lastReps = best.reps; lastDate = s.date;
       lastSetReps = match.map(st => st.reps);
+      lastSetWeights = match.map(st => st.weight);
       break;
     }
   }
@@ -252,7 +253,7 @@ function resolveInlineSlot(exIdx, choiceId) {
   const targetSets = slot.sets || 3;
   session.exercises[exIdx] = {
     exerciseId: choiceId, name: ex.name, targetWeight: lastWeight,
-    lastWeight, lastReps, lastDate, lastSetReps, isBodyweight, isBarbell, isCable,
+    lastWeight, lastReps, lastDate, lastSetReps, lastSetWeights, isBodyweight, isBarbell, isCable,
     repMin: slot.repMin, repMax: slot.repMax, targetSets,
     sets: Array.from({ length: targetSets }, () => ({ weight: lastWeight, reps: 0, logged: false })),
     skipped: false
@@ -285,7 +286,7 @@ function buildSessionExercises() {
     const isBarbell = !!ex.barbell;
     const isCable = !!ex.cable;
     let lastWeight = isBodyweight ? 0 : 45, lastReps = 5, lastDate = null;
-    let lastSetReps = [];
+    let lastSetReps = [], lastSetWeights = [];
     for (let i = allSessions.length - 1; i >= 0; i--) {
       const s = allSessions[i];
       const match = s.sets.filter(st => st.exerciseId === exId);
@@ -293,6 +294,7 @@ function buildSessionExercises() {
         const best = match.reduce((a, b) => b.weight > a.weight ? b : (b.weight === a.weight && b.reps > a.reps ? b : a), match[0]);
         lastWeight = best.weight; lastReps = best.reps; lastDate = s.date;
         lastSetReps = match.map(st => st.reps);
+        lastSetWeights = match.map(st => st.weight);
         break;
       }
     }
@@ -300,7 +302,7 @@ function buildSessionExercises() {
     const targetSets = slot.sets || 3;
     return {
       exerciseId: exId, name: ex.name, targetWeight: lastWeight,
-      lastWeight, lastReps, lastDate, lastSetReps, isBodyweight, isBarbell, isCable,
+      lastWeight, lastReps, lastDate, lastSetReps, lastSetWeights, isBodyweight, isBarbell, isCable,
       repMin: slot.repMin, repMax: slot.repMax, targetSets,
       sets: Array.from({ length: targetSets }, () => ({ weight: lastWeight, reps: 0, logged: false })),
       skipped: false, pending: false
@@ -386,7 +388,53 @@ function renderActiveWorkout() {
   document.getElementById('home-active').innerHTML = html;
 }
 
-function renderExerciseBlock(ex, exIdx, pr) {
+// ── FIREWORKS ─────────────────────────────────────────────
+function launchFireworks() {
+  const canvas = document.createElement('canvas');
+  canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;';
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+
+  const particles = [];
+  const colors = ['#f59e0b','#3b82f6','#10b981','#ef4444','#8b5cf6','#ec4899'];
+  for (let b = 0; b < 4; b++) {
+    const x = canvas.width * (0.2 + Math.random() * 0.6);
+    const y = canvas.height * (0.2 + Math.random() * 0.4);
+    for (let i = 0; i < 28; i++) {
+      const angle = (Math.PI * 2 / 28) * i;
+      const speed = 2 + Math.random() * 4;
+      particles.push({ x, y, vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed - 1,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        life: 1, decay: 0.018 + Math.random() * 0.012, r: 3 + Math.random() * 2 });
+    }
+  }
+
+  let frame;
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let alive = false;
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy; p.vy += 0.08;
+      p.life -= p.decay;
+      if (p.life <= 0) return;
+      alive = true;
+      ctx.globalAlpha = p.life;
+      ctx.fillStyle = p.color;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+    if (alive) { frame = requestAnimationFrame(draw); }
+    else { canvas.remove(); }
+  }
+  draw();
+  setTimeout(() => { cancelAnimationFrame(frame); canvas.remove(); }, 2800);
+}
+
+
   // ── PENDING: OR choice not yet made ──
   if (ex.pending) {
     const exercises = getExercises();
@@ -419,7 +467,7 @@ function renderExerciseBlock(ex, exIdx, pr) {
   const loggedSets = ex.sets.filter(s => s.logged);
   const bestLoggedWeight = loggedSets.length ? Math.max(...loggedSets.map(s => s.weight)) : 0;
   const bestLoggedReps = loggedSets.filter(s => s.weight === bestLoggedWeight).reduce((m, s) => Math.max(m, s.reps), 0);
-  const isNewPR = pr && (bestLoggedWeight > pr.weight || (bestLoggedWeight === pr.weight && bestLoggedReps > pr.reps));
+  const isNewPR = isPerSetPR(ex, pr);
 
   const hasRange = ex.repMin || ex.repMax;
   const isMaxReps = ex.repMax === 'MAX';
@@ -503,8 +551,13 @@ function renderSetRow(exIdx, setIdx, set, targetWeight) {
   const wLabel = (ex && ex.isBodyweight) ? 'BW' : `${w} lbs`;
   const prevReps = ex && ex.lastSetReps && ex.lastSetReps[setIdx] !== undefined
     ? ex.lastSetReps[setIdx] : null;
-  const setNumHtml = `<div class="set-num">S${setIdx+1}${prevReps !== null
-    ? `<div style="font-size:10px;color:var(--text3);font-weight:400;letter-spacing:0;margin-top:1px;">${prevReps}</div>`
+  const prevWeight = ex && ex.lastSetWeights && ex.lastSetWeights[setIdx] !== undefined
+    ? ex.lastSetWeights[setIdx] : null;
+  const prevHint = prevReps !== null
+    ? (prevWeight !== null && !ex.isBodyweight ? `${prevWeight}×${prevReps}` : `${prevReps}`)
+    : '';
+  const setNumHtml = `<div class="set-num">S${setIdx+1}${prevHint
+    ? `<div style="font-size:10px;color:var(--text3);font-weight:400;letter-spacing:0;margin-top:1px;">${prevHint}</div>`
     : ''}</div>`;
   const statusIcon  = set.logged ? (set.reps > 0 ? '✓' : '✗') : '';
   const statusColor = set.logged ? (set.reps > 0 ? 'var(--green)' : 'var(--red)') : '';
@@ -665,7 +718,11 @@ function refreshExerciseBlock(exIdx) {
   if (!el) return;
   const prs = computeAllPRs(); const prMap = {};
   prs.forEach(p => { prMap[p.exerciseId] = p; });
-  el.outerHTML = renderExerciseBlock(session.exercises[exIdx], exIdx, prMap[session.exercises[exIdx].exerciseId]);
+  const ex = session.exercises[exIdx];
+  const wasPR = ex._prFired;
+  const nowPR = isPerSetPR(ex, prMap[ex.exerciseId]);
+  if (nowPR && !wasPR) { ex._prFired = true; launchFireworks(); }
+  el.outerHTML = renderExerciseBlock(ex, exIdx, prMap[ex.exerciseId]);
 }
 
 // ── FINISH / CANCEL ────────────────────────────────────────
@@ -705,7 +762,11 @@ function finishWorkout() {
   renderIdleHome();
 }
 
-function cancelWorkout() { session = null; renderIdleHome(); }
+function cancelWorkout() {
+  if (!confirm('Discard this workout? All logged sets will be lost.')) return;
+  session = null;
+  renderIdleHome();
+}
 
 function showSessionSummary(savedSession) {
   const prs = computeAllPRs(); const prMap = {};
@@ -809,21 +870,75 @@ function togglePRPlateMath() {
 }
 
 function computeAllPRs() {
-  const prMap = {};
+  // For each exercise, track the best ever performance per set position.
+  // A session counts as a PR if ANY set position improves over the previous best for that position.
+  // Also track the single best set (weight then reps) for the PR board display.
+  const prMap = {};       // exerciseId -> { weight, reps, bw, date, name, perSet: [{weight, reps}] }
+
   getSessions().forEach(s => {
+    // Group sets by exerciseId in order
+    const exSets = {};
     s.sets.forEach(st => {
-      const cur = prMap[st.exerciseId];
-      if (!cur || st.weight > cur.weight || (st.weight === cur.weight && st.reps > cur.reps))
-        prMap[st.exerciseId] = { exerciseId: st.exerciseId, name: st.exerciseName,
-          weight: st.weight, reps: st.reps, bw: st.bodyweight, date: s.date };
+      if (!exSets[st.exerciseId]) exSets[st.exerciseId] = [];
+      exSets[st.exerciseId].push(st);
+    });
+
+    Object.entries(exSets).forEach(([exId, sets]) => {
+      if (!prMap[exId]) {
+        // First session for this exercise — initialise
+        const bestSet = sets.reduce((a, b) => b.weight > a.weight ? b : (b.weight === a.weight && b.reps > a.reps ? b : a), sets[0]);
+        prMap[exId] = {
+          exerciseId: exId, name: sets[0].exerciseName,
+          weight: bestSet.weight, reps: bestSet.reps,
+          bw: s.bodyweight, date: s.date,
+          perSet: sets.map(st => ({ weight: st.weight, reps: st.reps }))
+        };
+      } else {
+        const cur = prMap[exId];
+        // Update best single set
+        const bestSet = sets.reduce((a, b) => b.weight > a.weight ? b : (b.weight === a.weight && b.reps > a.reps ? b : a), sets[0]);
+        if (bestSet.weight > cur.weight || (bestSet.weight === cur.weight && bestSet.reps > cur.reps)) {
+          cur.weight = bestSet.weight; cur.reps = bestSet.reps;
+          cur.bw = s.bodyweight; cur.date = s.date;
+        }
+        // Update per-set bests
+        sets.forEach((st, i) => {
+          if (!cur.perSet[i]) {
+            cur.perSet[i] = { weight: st.weight, reps: st.reps };
+          } else {
+            if (st.weight > cur.perSet[i].weight ||
+               (st.weight === cur.perSet[i].weight && st.reps > cur.perSet[i].reps)) {
+              cur.perSet[i] = { weight: st.weight, reps: st.reps };
+            }
+          }
+        });
+      }
     });
   });
-  // Sort: weighted exercises first (by weight desc), then bodyweight exercises (weight=0) by name
+
   return Object.values(prMap).sort((a, b) => {
     if (a.weight > 0 && b.weight === 0) return -1;
     if (a.weight === 0 && b.weight > 0) return 1;
     if (a.weight !== b.weight) return b.weight - a.weight;
     return a.name.localeCompare(b.name);
+  });
+}
+
+// Check if the current logged sets beat the historical per-set bests
+function isPerSetPR(ex, pr) {
+  if (!pr) return false;
+  const loggedSets = ex.sets.filter(s => s.logged && s.reps > 0 && !s.skipped);
+  if (loggedSets.length === 0) return false;
+  // Check single-best improvement first
+  const bestW = Math.max(...loggedSets.map(s => s.weight));
+  const bestR = loggedSets.filter(s => s.weight === bestW).reduce((m, s) => Math.max(m, s.reps), 0);
+  if (bestW > pr.weight || (bestW === pr.weight && bestR > pr.reps)) return true;
+  // Check per-set improvement
+  if (!pr.perSet) return false;
+  return loggedSets.some((s, i) => {
+    const prev = pr.perSet[i];
+    if (!prev) return true; // new set position — counts as PR
+    return s.weight > prev.weight || (s.weight === prev.weight && s.reps > prev.reps);
   });
 }
 
@@ -1049,11 +1164,40 @@ function renderExerciseManageList() {
 
 // ── EXERCISE CRUD ──────────────────────────────────────────
 
+// ── EXERCISE CRUD ──────────────────────────────────────────
+
+let exerciseFlags = { barbell: false, cable: false, bodyweight: false };
+
+function toggleExerciseFlag(flag) {
+  // barbell and cable are mutually exclusive
+  if (flag === 'barbell' && !exerciseFlags.barbell) {
+    exerciseFlags.barbell = true; exerciseFlags.cable = false;
+  } else if (flag === 'cable' && !exerciseFlags.cable) {
+    exerciseFlags.cable = true; exerciseFlags.barbell = false;
+  } else {
+    exerciseFlags[flag] = !exerciseFlags[flag];
+  }
+  syncFlagButtons();
+}
+
+function syncFlagButtons() {
+  const flags = ['barbell', 'cable', 'bodyweight'];
+  flags.forEach(f => {
+    const btn = document.getElementById(`flag-${f}`);
+    if (!btn) return;
+    btn.style.background = exerciseFlags[f] ? 'var(--accent)' : 'var(--surface2)';
+    btn.style.color = exerciseFlags[f] ? '#fff' : '';
+    btn.style.borderColor = exerciseFlags[f] ? 'var(--accent)' : 'var(--border)';
+  });
+}
+
 function openAddExercise() {
   editingExerciseId = null;
+  exerciseFlags = { barbell: false, cable: false, bodyweight: false };
   document.getElementById('modal-exercise-title').textContent = 'NEW EXERCISE';
   document.getElementById('exercise-name-input').value = '';
   document.getElementById('exercise-cat-input').value = '';
+  syncFlagButtons();
   openModal('modal-exercise');
 }
 
@@ -1061,9 +1205,11 @@ function openEditExercise(id) {
   const ex = getExercises().find(e => e.id === id);
   if (!ex) return;
   editingExerciseId = id;
+  exerciseFlags = { barbell: !!ex.barbell, cable: !!ex.cable, bodyweight: !!ex.bodyweight };
   document.getElementById('modal-exercise-title').textContent = 'EDIT EXERCISE';
   document.getElementById('exercise-name-input').value = ex.name;
   document.getElementById('exercise-cat-input').value = ex.category || '';
+  syncFlagButtons();
   openModal('modal-exercise');
 }
 
@@ -1074,9 +1220,18 @@ function saveExercise() {
   const exercises = getExercises();
   if (editingExerciseId) {
     const i = exercises.findIndex(e => e.id === editingExerciseId);
-    if (i >= 0) { exercises[i].name = name; exercises[i].category = category; }
+    if (i >= 0) {
+      exercises[i].name = name;
+      exercises[i].category = category;
+      exercises[i].barbell = exerciseFlags.barbell;
+      exercises[i].cable = exerciseFlags.cable;
+      exercises[i].bodyweight = exerciseFlags.bodyweight;
+    }
   } else {
-    exercises.push({ id: uid(), name, category });
+    exercises.push({ id: uid(), name, category,
+      barbell: exerciseFlags.barbell,
+      cable: exerciseFlags.cable,
+      bodyweight: exerciseFlags.bodyweight });
   }
   saveExercises(exercises);
   closeModal('modal-exercise');
@@ -1324,6 +1479,7 @@ document.querySelectorAll('.modal-backdrop').forEach(b => {
 
 const CARDIO_TYPES = [
   { id: 'running',    label: 'Running',     icon: '🏃', hasDistance: true,  hasTime: false },
+  { id: 'jumprope',   label: 'Jump Rope',   icon: '🪢', hasDistance: false, hasTime: false },
   { id: 'bjj',        label: 'BJJ',         icon: '🥋', hasDistance: false, hasTime: false },
   { id: 'muaythai',   label: 'Muay Thai',   icon: '🥊', hasDistance: false, hasTime: false },
   { id: 'boxing',     label: 'Boxing',      icon: '🤜', hasDistance: false, hasTime: false },
