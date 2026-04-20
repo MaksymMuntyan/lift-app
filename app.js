@@ -1861,8 +1861,9 @@ function buildChartSeriesList() {
   const exercises = getExercises();
   const wasActive = {};
   chartSeries.forEach(s => { wasActive[s.id] = s.active; });
+  const hadAnySeries = chartSeries.length > 0;
   chartSeries = [
-    { id:'bodyweight', label:'Bodyweight (lbs)', type:'bodyweight', isBW: true, active: wasActive['bodyweight']||false },
+    { id:'bodyweight', label:'Bodyweight (lbs)', type:'bodyweight', isBW: true, active: hadAnySeries ? (wasActive['bodyweight']||false) : true },
     ...exercises.map(ex => ({
       id: ex.id, label: ex.name,
       type: 'exercise',
@@ -1870,7 +1871,6 @@ function buildChartSeriesList() {
       active: wasActive[ex.id]||false
     }))
   ];
-  if (chartSeries.filter(s=>s.active).length === 0 && chartSeries.length > 1) chartSeries[1].active = true;
   renderChartSeriesChips();
 }
 
