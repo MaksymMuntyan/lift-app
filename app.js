@@ -64,33 +64,34 @@ function uid() { return Date.now().toString(36) + Math.random().toString(36).sli
 const PROGRAM_531 = {
   id: '531',
   name: '5/3/1 Strength',
-  description: 'Wendler\'s 5/3/1 — 4 days/week, 4-week cycles. Bench, Squat, Deadlift, Weighted Pull-Up.',
+  description: 'Wendler\'s 5/3/1 — 4 days/week, 4-week cycles. Bench, Squat, Deadlift.',
 
   // Lift definitions: name must match exercise library exactly
   lifts: [
-    { key: 'bench',   name: 'Bench Press',       increment: 5,  isUpper: true  },
-    { key: 'squat',   name: 'Squat',              increment: 10, isUpper: false },
-    { key: 'dead',    name: 'Deadlift',           increment: 10, isUpper: false },
-    { key: 'pullup',  name: 'Weighted Pull-Up',   increment: 5,  isUpper: true  },
+    { key: 'bench', name: 'Bench Press', increment: 5,  isUpper: true  },
+    { key: 'squat', name: 'Squat',       increment: 10, isUpper: false },
+    { key: 'dead',  name: 'Deadlift',    increment: 10, isUpper: false },
   ],
 
   // Week wave: each week has working sets, deload flag
   weeks: [
-    { label: 'Week 1 — 5s',    isDeload: false, sets: [{pct:0.65,reps:5},{pct:0.75,reps:5},{pct:0.85,reps:5,isAmrap:true}] },
-    { label: 'Week 2 — 3s',    isDeload: false, sets: [{pct:0.70,reps:3},{pct:0.80,reps:3},{pct:0.90,reps:3,isAmrap:true}] },
-    { label: 'Week 3 — 5/3/1', isDeload: false, sets: [{pct:0.75,reps:5},{pct:0.85,reps:3},{pct:0.95,reps:1,isAmrap:true}] },
+    { label: 'Week 1 — 5s',     isDeload: false, sets: [{pct:0.65,reps:5},{pct:0.75,reps:5},{pct:0.85,reps:5,isAmrap:true}] },
+    { label: 'Week 2 — 3s',     isDeload: false, sets: [{pct:0.70,reps:3},{pct:0.80,reps:3},{pct:0.90,reps:3,isAmrap:true}] },
+    { label: 'Week 3 — 5/3/1',  isDeload: false, sets: [{pct:0.75,reps:5},{pct:0.85,reps:3},{pct:0.95,reps:1,isAmrap:true}] },
     { label: 'Week 4 — Deload', isDeload: true,  sets: [{pct:0.40,reps:5},{pct:0.50,reps:5},{pct:0.60,reps:5}] },
   ],
 
   // Warmup sets (% of TM)
   warmups: [{pct:0.40,reps:5},{pct:0.50,reps:5},{pct:0.60,reps:3}],
 
-  // Days: mainLift key + accessories
+  // FSL sets for Day D bench — First Set Last: 3×5 @ 65% TM, no AMRAP
+  fslSets: [{pct:0.65,reps:5},{pct:0.65,reps:5},{pct:0.65,reps:5}],
+
   days: [
     {
       key: 'A', label: 'Day A — Squat', mainLift: 'squat',
       accessories: [
-        { name: 'RDL',                  sets: 3, repMin: 8,  repMax: 10 },
+        { name: 'RDL',                  sets: 3, repMin: 10, repMax: 10 },
         { name: 'Dumbbell Split Squat', sets: 3, repMin: 10, repMax: 10 },
         { name: 'Cable Crunch',         sets: 3, repMin: 15, repMax: 15 },
       ]
@@ -98,24 +99,25 @@ const PROGRAM_531 = {
     {
       key: 'B', label: 'Day B — Bench', mainLift: 'bench',
       accessories: [
-        { name: 'Weighted Dip',  sets: 3, repMin: 8,  repMax: 12 },
-        { name: 'Dumbbell Row',  sets: 3, repMin: 10, repMax: 12, orWith: 'Weighted Body Row' },
-        { name: 'Archer Pull-Up', sets: 3, repMin: 6, repMax: 8,  orWith: 'Pull-Up', orWith2: 'Muscle Up' },
+        { name: 'Weighted Dip',   sets: 3, repMin: 8,  repMax: 12 },
+        { name: 'Dumbbell Row',   sets: 3, repMin: 10, repMax: 12, orWith: 'Weighted Body Row' },
+        { name: 'Archer Pull-Up', sets: 3, repMin: 6,  repMax: 8,  orWith: 'Pull-Up', orWith2: 'Muscle Up' },
       ]
     },
     {
       key: 'C', label: 'Day C — Deadlift', mainLift: 'dead',
       accessories: [
-        { name: 'Pistol Squat',  sets: 3, repMin: 6,  repMax: 10 },
-        { name: 'Cable Crunch',  sets: 3, repMin: 15, repMax: 15 },
+        { name: 'Pistol Squat', sets: 3, repMin: 6,  repMax: 10 },
+        { name: 'Cable Crunch', sets: 3, repMin: 15, repMax: 15 },
       ]
     },
     {
-      key: 'D', label: 'Day D — Pull-Up', mainLift: 'pullup',
+      key: 'D', label: 'Day D — Bench (Volume) + Pull', mainLift: 'bench',
+      isFSL: true, // First Set Last — uses fslSets instead of wave, no AMRAP
       accessories: [
-        { name: 'Bench Press',              sets: 3, repMin: 10, repMax: 10, fixedPct: 0.50, fixedLift: 'bench' },
-        { name: 'Dumbbell Curl',            sets: 3, repMin: 10, repMax: 15 },
-        { name: 'Overhead Tricep Extension',sets: 3, repMin: 10, repMax: 15 },
+        { name: 'Weighted Pull-Up',          sets: 3, repMin: 6,  repMax: 8  },
+        { name: 'Dumbbell Curl',             sets: 3, repMin: 10, repMax: 15 },
+        { name: 'Overhead Tricep Extension', sets: 3, repMin: 10, repMax: 15 },
       ]
     },
   ],
@@ -296,11 +298,13 @@ function startProgramDay() {
     logged: false, isWarmup: true, isAmrap: false
   }));
 
-  // Build working sets
-  const workingSets = weekDef.sets.map(s => ({
+  // Build working sets — FSL days use fixed sets, wave days use week percentages
+  const isFSL = !!dayDef.isFSL;
+  const setDefs = isFSL ? PROGRAM_531.fslSets : weekDef.sets;
+  const workingSets = setDefs.map(s => ({
     weight: calcWorkingWeight(tm, s.pct),
     reps: 0, targetReps: s.reps,
-    logged: false, isWarmup: false, isAmrap: !!s.isAmrap,
+    logged: false, isWarmup: false, isAmrap: !isFSL && !!s.isAmrap,
     pct: s.pct
   }));
 
@@ -353,11 +357,12 @@ function startProgramDay() {
     programName: PROGRAM_531.name,
     cycle: prog.currentCycle,
     week: prog.currentWeek,
-    weekLabel: weekDef.label,
+    weekLabel: isFSL ? 'FSL — First Set Last' : weekDef.label,
     dayKey: dayDef.key,
     dayLabel: dayDef.label,
     mainLiftKey: dayDef.mainLift,
     mainLiftName: lift.name,
+    isFSL,
     mainExId, tm,
     warmupSets, workingSets,
     accessories,
@@ -691,31 +696,31 @@ function finishProgramWorkout() {
   allSessions.push(savedSession);
   saveSessions(allSessions);
 
-  // Log AMRAP
-  if (session.amrapReps !== null) {
-    const amrapSet = session.workingSets.find(s => s.isAmrap);
-    if (amrapSet) {
-      prog.amrapLog.push({
-        date: session.date, liftKey: session.mainLiftKey,
-        weight: amrapSet.weight, reps: session.amrapReps,
-        tm: session.tm, cycle: session.cycle, week: session.week
-      });
-    }
-  }
-
-  // Check AMRAP suggestion
+  // Log AMRAP and check suggestion (skip on FSL days — no AMRAP set)
   let amrapSuggestion = null;
-  if (session.amrapReps > 0) {
-    const amrapSet = session.workingSets.find(s => s.isAmrap);
-    if (amrapSet) {
-      amrapSuggestion = checkAmrapSuggestion(prog, session.mainLiftKey, amrapSet.weight, session.amrapReps);
-      if (amrapSuggestion) {
-        prog.pendingAmrapSuggestions = prog.pendingAmrapSuggestions || [];
-        prog.pendingAmrapSuggestions.push({
-          liftKey: session.mainLiftKey, liftName: session.mainLiftName,
-          currentTM: session.tm, suggestedTM: amrapSuggestion.suggestedTM,
-          diff: amrapSuggestion.diff, date: session.date
+  if (!session.isFSL) {
+    if (session.amrapReps !== null) {
+      const amrapSet = session.workingSets.find(s => s.isAmrap);
+      if (amrapSet) {
+        prog.amrapLog.push({
+          date: session.date, liftKey: session.mainLiftKey,
+          weight: amrapSet.weight, reps: session.amrapReps,
+          tm: session.tm, cycle: session.cycle, week: session.week
         });
+      }
+    }
+    if (session.amrapReps > 0) {
+      const amrapSet = session.workingSets.find(s => s.isAmrap);
+      if (amrapSet) {
+        amrapSuggestion = checkAmrapSuggestion(prog, session.mainLiftKey, amrapSet.weight, session.amrapReps);
+        if (amrapSuggestion) {
+          prog.pendingAmrapSuggestions = prog.pendingAmrapSuggestions || [];
+          prog.pendingAmrapSuggestions.push({
+            liftKey: session.mainLiftKey, liftName: session.mainLiftName,
+            currentTM: session.tm, suggestedTM: amrapSuggestion.suggestedTM,
+            diff: amrapSuggestion.diff, date: session.date
+          });
+        }
       }
     }
   }
@@ -813,7 +818,7 @@ function renderProgramManageList() {
     <div style="flex:1;">
       <div style="font-weight:700;font-size:16px;">${esc(prog.name)}</div>
       <div style="font-size:12px;color:var(--text2);margin-top:3px;">Cycle ${prog.currentCycle} · ${esc(weekDef.label)} · Day ${PROGRAM_531.days[prog.currentDay].key}</div>
-      <div style="font-size:12px;color:var(--text3);margin-top:2px;">TMs: Bench ${prog.trainingMaxes.bench} · Squat ${prog.trainingMaxes.squat} · Dead ${prog.trainingMaxes.dead} · Pull-Up ${prog.trainingMaxes.pullup}</div>
+      <div style="font-size:12px;color:var(--text3);margin-top:2px;">TMs: Bench ${prog.trainingMaxes.bench} · Squat ${prog.trainingMaxes.squat} · Dead ${prog.trainingMaxes.dead}</div>
     </div>
     <button class="btn-inline" onclick="openEditTMs()" style="margin-right:8px;">Edit TMs</button>
     <div class="slot-remove" onclick="resetProgram()">🗑</div>
