@@ -949,7 +949,7 @@ function renderIdleHome() {
       progEl.innerHTML = `<div class="list-item card" style="margin-bottom:8px;border-radius:8px;border-style:dashed;" onclick="openProgramSetup()">
         <div class="list-item-main">
           <div class="list-item-title" style="color:var(--accent);">+ Start 5/3/1 Program</div>
-          <div class="list-item-sub">Wendler's 5/3/1 — Bench, Squat, Deadlift, Pull-Up</div>
+          <div class="list-item-sub">Wendler's 5/3/1 — Bench, Squat, Deadlift</div>
         </div>
       </div>`;
     } else {
