@@ -2,8 +2,17 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-04-20T19:38:45.249Z",
+  "exportDate": "2026-04-22T16:43:18.188Z",
   "exercises": [
+    {
+      "id": "mo7op0hbqd0d",
+      "name": "Archer Pull-Up",
+      "category": "Back",
+      "barbell": false,
+      "cable": false,
+      "bodyweight": true,
+      "dumbbell": false
+    },
     {
       "id": "mn5gy4vx6det",
       "name": "Barbell Shrug",
@@ -99,6 +108,11 @@
       "barbell": false
     },
     {
+      "id": "mo0juauc8d8h",
+      "name": "Hammer Curl",
+      "category": "Forearms"
+    },
+    {
       "id": "mn5gy4vxzzjr",
       "name": "Hip Thrust",
       "category": "Posterior Chain",
@@ -118,6 +132,24 @@
       "category": "Chest",
       "bodyweight": true,
       "barbell": false
+    },
+    {
+      "id": "mo7opqjad27a",
+      "name": "L-Sit Pull-Up",
+      "category": "Back",
+      "barbell": false,
+      "cable": false,
+      "bodyweight": true,
+      "dumbbell": false
+    },
+    {
+      "id": "mo7opj8mkm78",
+      "name": "Muscle-Up",
+      "category": "Back",
+      "barbell": false,
+      "cable": false,
+      "bodyweight": true,
+      "dumbbell": false
     },
     {
       "id": "mn5gy4vxuz63",
@@ -185,6 +217,11 @@
       "barbell": true
     },
     {
+      "id": "mnyuwrrpjgv9",
+      "name": "Standing Barbell Wrist Curl",
+      "category": "Forearms"
+    },
+    {
       "id": "mn5gy4vxrdz3",
       "name": "Top Bar Deep Shoulder Push-Up",
       "category": "Shoulders",
@@ -233,16 +270,6 @@
       "category": "Forearms",
       "bodyweight": true,
       "barbell": false
-    },
-    {
-      "id": "mnyuwrrpjgv9",
-      "name": "Standing Barbell Wrist Curl",
-      "category": "Forearms"
-    },
-    {
-      "id": "mo0juauc8d8h",
-      "name": "Hammer Curl",
-      "category": "Forearms"
     }
   ],
   "routines": [
@@ -4218,6 +4245,81 @@
           "bodyweight": 151.8
         }
       ]
+    },
+    {
+      "id": "moa8oaiqd4hx",
+      "date": "2026-04-22",
+      "routineId": "mn5gy4vxuitz",
+      "routineName": "Macky 4x Upper Lower",
+      "dayId": "mn5gy4vxefzj",
+      "dayName": "Day B (Lower 1)",
+      "bodyweight": 150.2,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxd84s",
+          "exerciseName": "Deadlift",
+          "setNum": 1,
+          "weight": 235,
+          "reps": 4,
+          "bodyweight": 150.2
+        },
+        {
+          "exerciseId": "mn5gy4vxd84s",
+          "exerciseName": "Deadlift",
+          "setNum": 2,
+          "weight": 235,
+          "reps": 3,
+          "bodyweight": 150.2
+        },
+        {
+          "exerciseId": "mn5gy4vx2p8a",
+          "exerciseName": "Pistol Squat",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": 150.2
+        },
+        {
+          "exerciseId": "mn5gy4vx2p8a",
+          "exerciseName": "Pistol Squat",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": 150.2
+        },
+        {
+          "exerciseId": "mn5gy4vx2p8a",
+          "exerciseName": "Pistol Squat",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": 150.2
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 1,
+          "weight": 135,
+          "reps": 8,
+          "bodyweight": 150.2
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 2,
+          "weight": 135,
+          "reps": 10,
+          "bodyweight": 150.2
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 3,
+          "weight": 135,
+          "reps": 10,
+          "bodyweight": 150.2
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -4352,6 +4454,10 @@
     {
       "date": "2026-04-20",
       "weight": 151.8
+    },
+    {
+      "date": "2026-04-22",
+      "weight": 150.2
     }
   ],
   "cardio": [
@@ -4490,6 +4596,23 @@
       "icon": "🏃",
       "notes": null,
       "distance": 5
+    },
+    {
+      "id": "mo8pa96i5q7k",
+      "date": "2026-04-20",
+      "type": "boxing",
+      "label": "Boxing",
+      "icon": "🤜",
+      "notes": null
+    },
+    {
+      "id": "mo8pacoudn18",
+      "date": "2026-04-20",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": null
     }
-  ]
+  ],
+  "activeProgram": null
 }
