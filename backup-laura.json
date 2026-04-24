@@ -2,7 +2,7 @@
   "version": 2,
   "user": 2,
   "userName": "Laura",
-  "exportDate": "2026-04-20T21:29:09.725Z",
+  "exportDate": "2026-04-24T17:39:46.855Z",
   "exercises": [
     {
       "id": "mn5gy4wheajd",
@@ -178,6 +178,11 @@
       "cable": true
     },
     {
+      "id": "mnkkiug32kmf",
+      "name": "Sit Up Bar",
+      "category": "Abs"
+    },
+    {
       "id": "mn5gy4whhh4f",
       "name": "Squat",
       "category": "Quads",
@@ -233,11 +238,6 @@
       "category": "Forearms",
       "bodyweight": true,
       "barbell": false
-    },
-    {
-      "id": "mnkkiug32kmf",
-      "name": "Sit Up Bar",
-      "category": "Abs"
     }
   ],
   "routines": [
@@ -1672,6 +1672,105 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "mod517pecf5c",
+      "date": "2026-04-24",
+      "routineId": "mn5gy4wh6zll",
+      "routineName": "Laura Full Body 3x Week",
+      "dayId": "mn5gy4why6zu",
+      "dayName": "Day B (Pull)",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4whpi7b",
+          "exerciseName": "Deadlift",
+          "setNum": 1,
+          "weight": 225,
+          "reps": 3,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpi7b",
+          "exerciseName": "Deadlift",
+          "setNum": 2,
+          "weight": 225,
+          "reps": 3,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whtim6",
+          "exerciseName": "Weighted Pull-Up",
+          "setNum": 1,
+          "weight": 25,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whtim6",
+          "exerciseName": "Weighted Pull-Up",
+          "setNum": 2,
+          "weight": 10,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whtim6",
+          "exerciseName": "Weighted Pull-Up",
+          "setNum": 3,
+          "weight": 10,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whkme0",
+          "exerciseName": "Incline Push-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 17,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whkme0",
+          "exerciseName": "Incline Push-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 16,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whkme0",
+          "exerciseName": "Incline Push-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whvetd",
+          "exerciseName": "Dumbbell Split Squat",
+          "setNum": 1,
+          "weight": 50,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whvetd",
+          "exerciseName": "Dumbbell Split Squat",
+          "setNum": 2,
+          "weight": 50,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whvetd",
+          "exerciseName": "Dumbbell Split Squat",
+          "setNum": 3,
+          "weight": 50,
+          "reps": 10,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -1764,6 +1863,16 @@
       "icon": "➕",
       "notes": "Better, instead of 1 min off 2 min on, did 30 seconds off 2 min on",
       "duration": 30
+    },
+    {
+      "id": "moc5detgj4m3",
+      "date": "2026-04-23",
+      "type": "jumprope",
+      "label": "Jump Rope",
+      "icon": "🪢",
+      "notes": null,
+      "duration": 15
     }
-  ]
+  ],
+  "activeProgram": null
 }
