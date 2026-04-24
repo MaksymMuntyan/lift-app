@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-04-22T16:43:18.188Z",
+  "exportDate": "2026-04-24T18:34:39.384Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -4320,6 +4320,33 @@
           "bodyweight": 150.2
         }
       ]
+    },
+    {
+      "id": "mod91okqzb2u",
+      "date": "2026-04-24",
+      "routineId": "mn5gy4vxuitz",
+      "routineName": "Macky 4x Upper Lower",
+      "dayId": "mn5gy4vxq9e0",
+      "dayName": "Day C (Upper 2)",
+      "bodyweight": 149.6,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vximn0",
+          "exerciseName": "Weighted Pull-Up",
+          "setNum": 1,
+          "weight": 100,
+          "reps": 1,
+          "bodyweight": 149.6
+        },
+        {
+          "exerciseId": "mn5gy4vximn0",
+          "exerciseName": "Weighted Pull-Up",
+          "setNum": 2,
+          "weight": 90,
+          "reps": 3,
+          "bodyweight": 149.6
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -4458,6 +4485,14 @@
     {
       "date": "2026-04-22",
       "weight": 150.2
+    },
+    {
+      "date": "2026-04-23",
+      "weight": 149.4
+    },
+    {
+      "date": "2026-04-24",
+      "weight": 149.6
     }
   ],
   "cardio": [
@@ -4608,6 +4643,22 @@
     {
       "id": "mo8pacoudn18",
       "date": "2026-04-20",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": null
+    },
+    {
+      "id": "moanaoc2lek8",
+      "date": "2026-04-21",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": null
+    },
+    {
+      "id": "moc1wuxnzi4t",
+      "date": "2026-04-22",
       "type": "bjj",
       "label": "BJJ",
       "icon": "🥋",
