@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-04-24T18:34:39.384Z",
+  "exportDate": "2026-04-27T17:44:01.692Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -4347,6 +4347,129 @@
           "bodyweight": 149.6
         }
       ]
+    },
+    {
+      "id": "mohg8frckngd",
+      "date": "2026-04-27",
+      "routineId": "mn5gy4vxuitz",
+      "routineName": "Macky 4x Upper Lower",
+      "dayId": "mn5gy4vxfziw",
+      "dayName": "Day A (Upper 1)",
+      "bodyweight": 151.4,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxujmc",
+          "exerciseName": "Bench Press",
+          "setNum": 1,
+          "weight": 155,
+          "reps": 8,
+          "bodyweight": 151.4
+        },
+        {
+          "exerciseId": "mn5gy4vxujmc",
+          "exerciseName": "Bench Press",
+          "setNum": 2,
+          "weight": 155,
+          "reps": 5,
+          "bodyweight": 151.4
+        },
+        {
+          "exerciseId": "mn5gy4vxujmc",
+          "exerciseName": "Bench Press",
+          "setNum": 3,
+          "weight": 155,
+          "reps": 5,
+          "bodyweight": 151.4
+        },
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 15,
+          "bodyweight": 151.4
+        },
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": 151.4
+        },
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 14,
+          "bodyweight": 151.4
+        },
+        {
+          "exerciseId": "mn5gy4vxx4p2",
+          "exerciseName": "Dumbbell Incline Press",
+          "setNum": 1,
+          "weight": 53,
+          "reps": 8,
+          "bodyweight": 151.4
+        },
+        {
+          "exerciseId": "mn5gy4vxx4p2",
+          "exerciseName": "Dumbbell Incline Press",
+          "setNum": 2,
+          "weight": 53,
+          "reps": 8,
+          "bodyweight": 151.4
+        },
+        {
+          "exerciseId": "mn5gy4vx4xe3",
+          "exerciseName": "Dumbbell Curl",
+          "setNum": 1,
+          "weight": 39,
+          "reps": 7,
+          "bodyweight": 151.4
+        },
+        {
+          "exerciseId": "mn5gy4vx4xe3",
+          "exerciseName": "Dumbbell Curl",
+          "setNum": 2,
+          "weight": 39,
+          "reps": 7,
+          "bodyweight": 151.4
+        },
+        {
+          "exerciseId": "mn5gy4vx4xe3",
+          "exerciseName": "Dumbbell Curl",
+          "setNum": 3,
+          "weight": 39,
+          "reps": 7,
+          "bodyweight": 151.4
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 1,
+          "weight": 95,
+          "reps": 20,
+          "bodyweight": 151.4
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 2,
+          "weight": 95,
+          "reps": 20,
+          "bodyweight": 151.4
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 3,
+          "weight": 95,
+          "reps": 15,
+          "bodyweight": 151.4
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -4493,6 +4616,10 @@
     {
       "date": "2026-04-24",
       "weight": 149.6
+    },
+    {
+      "date": "2026-04-27",
+      "weight": 151.4
     }
   ],
   "cardio": [
@@ -4663,6 +4790,23 @@
       "label": "BJJ",
       "icon": "🥋",
       "notes": null
+    },
+    {
+      "id": "mog2o1ewtk22",
+      "date": "2026-04-25",
+      "type": "other",
+      "label": "Hot Yoga",
+      "icon": "➕",
+      "notes": null
+    },
+    {
+      "id": "mog2o9zg861q",
+      "date": "2026-04-26",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": "1 mile best - 8:10",
+      "distance": 4.5
     }
   ],
   "activeProgram": null
