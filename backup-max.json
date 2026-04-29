@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-04-27T17:44:01.692Z",
+  "exportDate": "2026-04-29T21:45:07.624Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -4470,6 +4470,121 @@
           "bodyweight": 151.4
         }
       ]
+    },
+    {
+      "id": "mokjliijti6y",
+      "date": "2026-04-29",
+      "routineId": "mn5gy4vxuitz",
+      "routineName": "Macky 4x Upper Lower",
+      "dayId": "mn5gy4vxefzj",
+      "dayName": "Day B (Lower 1)",
+      "bodyweight": 150.4,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxd84s",
+          "exerciseName": "Deadlift",
+          "setNum": 1,
+          "weight": 235,
+          "reps": 1,
+          "bodyweight": 150.4
+        },
+        {
+          "exerciseId": "mn5gy4vxm6ej",
+          "exerciseName": "Weighted Pistol Squat",
+          "setNum": 1,
+          "weight": 25,
+          "reps": 5,
+          "bodyweight": 150.4
+        },
+        {
+          "exerciseId": "mn5gy4vxm6ej",
+          "exerciseName": "Weighted Pistol Squat",
+          "setNum": 2,
+          "weight": 25,
+          "reps": 4,
+          "bodyweight": 150.4
+        },
+        {
+          "exerciseId": "mn5gy4vxm6ej",
+          "exerciseName": "Weighted Pistol Squat",
+          "setNum": 3,
+          "weight": 25,
+          "reps": 4,
+          "bodyweight": 150.4
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 1,
+          "weight": 135,
+          "reps": 11,
+          "bodyweight": 150.4
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 2,
+          "weight": 135,
+          "reps": 7,
+          "bodyweight": 150.4
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 3,
+          "weight": 135,
+          "reps": 3,
+          "bodyweight": 150.4
+        },
+        {
+          "exerciseId": "mn5gy4vxjll8",
+          "exerciseName": "Wide Towel Pull-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": 150.4
+        },
+        {
+          "exerciseId": "mn5gy4vxjll8",
+          "exerciseName": "Wide Towel Pull-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": 150.4
+        },
+        {
+          "exerciseId": "mn5gy4vxjll8",
+          "exerciseName": "Wide Towel Pull-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 8,
+          "bodyweight": 150.4
+        },
+        {
+          "exerciseId": "mnyuwrrpjgv9",
+          "exerciseName": "Standing Barbell Wrist Curl",
+          "setNum": 1,
+          "weight": 135,
+          "reps": 17,
+          "bodyweight": 150.4
+        },
+        {
+          "exerciseId": "mnyuwrrpjgv9",
+          "exerciseName": "Standing Barbell Wrist Curl",
+          "setNum": 2,
+          "weight": 135,
+          "reps": 17,
+          "bodyweight": 150.4
+        },
+        {
+          "exerciseId": "mnyuwrrpjgv9",
+          "exerciseName": "Standing Barbell Wrist Curl",
+          "setNum": 3,
+          "weight": 135,
+          "reps": 17,
+          "bodyweight": 150.4
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -4620,6 +4735,10 @@
     {
       "date": "2026-04-27",
       "weight": 151.4
+    },
+    {
+      "date": "2026-04-29",
+      "weight": 150.4
     }
   ],
   "cardio": [
@@ -4807,6 +4926,25 @@
       "icon": "🏃",
       "notes": "1 mile best - 8:10",
       "distance": 4.5
+    },
+    {
+      "id": "mohv10m5jtum",
+      "date": "2026-04-27",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": null,
+      "distance": 8.1
+    },
+    {
+      "id": "mojla9v6c7ps",
+      "date": "2026-04-29",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": null,
+      "distance": 6.3,
+      "duration": 58
     }
   ],
   "activeProgram": null
