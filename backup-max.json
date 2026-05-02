@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-04-29T21:45:07.624Z",
+  "exportDate": "2026-05-02T14:25:11.253Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -57,6 +57,15 @@
       "bodyweight": false,
       "barbell": false,
       "cable": true
+    },
+    {
+      "id": "mon6z1yk1e5z",
+      "name": "Chin-Up",
+      "category": "Back",
+      "barbell": false,
+      "cable": false,
+      "bodyweight": true,
+      "dumbbell": false
     },
     {
       "id": "mn5gy4vxd84s",
@@ -4585,6 +4594,105 @@
           "bodyweight": 150.4
         }
       ]
+    },
+    {
+      "id": "moofmtpwy451",
+      "date": "2026-05-02",
+      "routineId": "mn5gy4vxuitz",
+      "routineName": "Macky 4x Upper Lower",
+      "dayId": "mn5gy4vxq9e0",
+      "dayName": "Day C (Upper 2)",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 30,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mon6z1yk1e5z",
+          "exerciseName": "Chin-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mon6z1yk1e5z",
+          "exerciseName": "Chin-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mon6z1yk1e5z",
+          "exerciseName": "Chin-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mon6z1yk1e5z",
+          "exerciseName": "Chin-Up",
+          "setNum": 4,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mon6z1yk1e5z",
+          "exerciseName": "Chin-Up",
+          "setNum": 5,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 15,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 15,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 15,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 4,
+          "weight": 0,
+          "reps": 15,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 5,
+          "weight": 0,
+          "reps": 15,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -4739,6 +4847,10 @@
     {
       "date": "2026-04-29",
       "weight": 150.4
+    },
+    {
+      "date": "2026-04-30",
+      "weight": 149
     }
   ],
   "cardio": [
@@ -4937,14 +5049,40 @@
       "distance": 8.1
     },
     {
-      "id": "mojla9v6c7ps",
+      "id": "monre9kwgfv9",
+      "date": "2026-04-28",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": null,
+      "distance": 6.3
+    },
+    {
+      "id": "mokv2dejmylp",
       "date": "2026-04-29",
       "type": "running",
       "label": "Running",
       "icon": "🏃",
       "notes": null,
-      "distance": 6.3,
-      "duration": 58
+      "distance": 2.6
+    },
+    {
+      "id": "mom5a8ldtxl6",
+      "date": "2026-04-30",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": null,
+      "distance": 8.1
+    },
+    {
+      "id": "monkmdro6cks",
+      "date": "2026-05-01",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": "Run to publix",
+      "distance": 3.6
     }
   ],
   "activeProgram": null
