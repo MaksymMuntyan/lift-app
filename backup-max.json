@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-05-02T15:04:50.217Z",
+  "exportDate": "2026-05-04T17:45:32.190Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -82,6 +82,15 @@
       "barbell": false
     },
     {
+      "id": "morg30tq5q4n",
+      "name": "Dumbbell Bench Press",
+      "category": "Chest",
+      "barbell": false,
+      "cable": false,
+      "bodyweight": false,
+      "dumbbell": true
+    },
+    {
       "id": "mn5gy4vx4xe3",
       "name": "Dumbbell Curl",
       "category": "Biceps",
@@ -101,6 +110,15 @@
       "category": "Back",
       "bodyweight": false,
       "barbell": false
+    },
+    {
+      "id": "morg790a2nab",
+      "name": "Dumbbell Skullcrusher",
+      "category": "Tricep",
+      "barbell": false,
+      "cable": false,
+      "bodyweight": false,
+      "dumbbell": true
     },
     {
       "id": "mn5gy4vx5udm",
@@ -188,6 +206,15 @@
       "category": "Back",
       "bodyweight": true,
       "barbell": false
+    },
+    {
+      "id": "morh6n5m2wsk",
+      "name": "Push-Up",
+      "category": "Chest",
+      "barbell": false,
+      "cable": false,
+      "bodyweight": true,
+      "dumbbell": false
     },
     {
       "id": "mn5gy4vx6rzi",
@@ -4824,6 +4851,113 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "morh50rzou9m",
+      "date": "2026-05-04",
+      "routineId": "mn5gy4vxuitz",
+      "routineName": "Macky 4x Upper Lower",
+      "dayId": "mn5gy4vxfziw",
+      "dayName": "Day A (Upper 1)",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vx4xe3",
+          "exerciseName": "Dumbbell Curl",
+          "setNum": 1,
+          "weight": 39,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vx4xe3",
+          "exerciseName": "Dumbbell Curl",
+          "setNum": 2,
+          "weight": 39,
+          "reps": 7,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vx4xe3",
+          "exerciseName": "Dumbbell Curl",
+          "setNum": 3,
+          "weight": 39,
+          "reps": 7,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "morg30tq5q4n",
+          "exerciseName": "Dumbbell Bench Press",
+          "setNum": 1,
+          "weight": 67,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "morg30tq5q4n",
+          "exerciseName": "Dumbbell Bench Press",
+          "setNum": 2,
+          "weight": 67,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "morg30tq5q4n",
+          "exerciseName": "Dumbbell Bench Press",
+          "setNum": 3,
+          "weight": 67,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mo7op0hbqd0d",
+          "exerciseName": "Archer Pull-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 4,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mo7op0hbqd0d",
+          "exerciseName": "Archer Pull-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 4,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mo7op0hbqd0d",
+          "exerciseName": "Archer Pull-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 3,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "morh6n5m2wsk",
+          "exerciseName": "Push-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 30,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "morh6n5m2wsk",
+          "exerciseName": "Push-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 30,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "morh6n5m2wsk",
+          "exerciseName": "Push-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 21,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -5214,6 +5348,15 @@
       "icon": "🏃",
       "notes": "Run to publix",
       "distance": 3.6
+    },
+    {
+      "id": "mool55wecuxo",
+      "date": "2026-05-02",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": null,
+      "distance": 5
     }
   ],
   "activeProgram": null
