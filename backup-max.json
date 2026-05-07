@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-05-04T17:45:32.190Z",
+  "exportDate": "2026-05-07T17:30:35.915Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -4958,6 +4958,121 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "movqzwyj63t1",
+      "date": "2026-05-07",
+      "routineId": "mn5gy4vxuitz",
+      "routineName": "Macky 4x Upper Lower",
+      "dayId": "mn5gy4vxefzj",
+      "dayName": "Day B (Lower 1)",
+      "bodyweight": 149,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxbwt6",
+          "exerciseName": "Dip",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 20,
+          "bodyweight": 149
+        },
+        {
+          "exerciseId": "mn5gy4vxbwt6",
+          "exerciseName": "Dip",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 20,
+          "bodyweight": 149
+        },
+        {
+          "exerciseId": "mn5gy4vxbwt6",
+          "exerciseName": "Dip",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 20,
+          "bodyweight": 149
+        },
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": 149
+        },
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": 149
+        },
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": 149
+        },
+        {
+          "exerciseId": "morh6n5m2wsk",
+          "exerciseName": "Push-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 25,
+          "bodyweight": 149
+        },
+        {
+          "exerciseId": "morh6n5m2wsk",
+          "exerciseName": "Push-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 25,
+          "bodyweight": 149
+        },
+        {
+          "exerciseId": "morh6n5m2wsk",
+          "exerciseName": "Push-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 20,
+          "bodyweight": 149
+        },
+        {
+          "exerciseId": "mon6z1yk1e5z",
+          "exerciseName": "Chin-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": 149
+        },
+        {
+          "exerciseId": "mon6z1yk1e5z",
+          "exerciseName": "Chin-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": 149
+        },
+        {
+          "exerciseId": "mon6z1yk1e5z",
+          "exerciseName": "Chin-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 9,
+          "bodyweight": 149
+        },
+        {
+          "exerciseId": "mon6z1yk1e5z",
+          "exerciseName": "Chin-Up",
+          "setNum": 4,
+          "weight": 0,
+          "reps": 7,
+          "bodyweight": 149
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -5115,6 +5230,10 @@
     },
     {
       "date": "2026-04-30",
+      "weight": 149
+    },
+    {
+      "date": "2026-05-07",
       "weight": 149
     }
   ],
