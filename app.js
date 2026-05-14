@@ -23,6 +23,7 @@ let editingExerciseId = null;
 
 // Chart
 let chartInstance = null;
+let bwChartInstance = null;
 let chartSeries = [];
 
 // Plate math toggle
@@ -892,7 +893,7 @@ function updateUserDisplay() {
   document.getElementById('user-dot').className = 'user-dot' + (currentUser === 2 ? ' u2' : '');
 }
 
-function renderAll() { renderHome(); renderHistory(); renderStats(); renderManage(); renderCardioScreen(); }
+function renderAll() { renderHome(); renderHistory(); renderStats(); renderManage(); renderCardioScreen(); renderBodyScreen(); }
 
 function renderManage() { renderRoutineManageList(); renderExerciseManageList(); renderProgramManageList(); renderGithubToken(); }
 
@@ -907,6 +908,7 @@ function showTab(name) {
   if (name === 'history') renderHistory();
   if (name === 'manage')  renderManage();
   if (name === 'cardio')  renderCardioScreen();
+  if (name === 'body')   renderBodyScreen();
 }
 
 // ── HOME ───────────────────────────────────────────────────
@@ -2374,6 +2376,999 @@ function confirmBodyweight() {
   saveBodyweights(bws);
   if (session) { session.bodyweight=val; renderActiveWorkout(); }
   closeModal('modal-bodyweight');
+  // Refresh body tab if it's active (so chart/analysis update immediately)
+  const bodyScreen = document.getElementById('screen-body');
+  if (bodyScreen && bodyScreen.classList.contains('active')) renderBodyScreen();
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  MackyLift — BODY TAB ADDITION
+//  Drop this entire block into app.js, right after the BODYWEIGHT section
+//  (after the confirmBodyweight() function).
+//
+//  Also make these small edits elsewhere in app.js:
+//
+//  1) Add at top with other chart globals:
+//       let bwChartInstance = null;
+//
+//  2) renderAll() — add renderBodyScreen() call:
+//       function renderAll() { renderHome(); renderHistory(); renderStats(); renderManage(); renderCardioScreen(); renderBodyScreen(); }
+//
+//  3) showTab() — add body case:
+//       if (name === 'body') renderBodyScreen();
+//
+//  4) buildBackupData() — add to returned object:
+//       bwGoal: getBWGoal(),
+//
+//  5) importData() — after activeProgram line:
+//       if (data.bwGoal !== undefined) saveBWGoal(data.bwGoal);
+//
+//  6) restoreFromGithub() — after activeProgram line (inside per-user loop):
+//       if (json.bwGoal !== undefined) saveBWGoal(json.bwGoal);
+      if (json.bwGoalHistory !== undefined) saveBWGoalHistory(json.bwGoalHistory);
+// ═══════════════════════════════════════════════════════════════════════════
+
+// ── BW GOAL STORAGE ────────────────────────────────────────
+
+function getBWGoal()        { return load('bwgoal', null); }
+function saveBWGoal(d)      { save('bwgoal', d); }
+function getBWGoalHistory() { return load('bwgoalhistory', []); }
+function saveBWGoalHistory(d) { save('bwgoalhistory', d); }
+
+// ── BW GOAL MODAL STATE ────────────────────────────────────
+
+let bwGoalDir  = 'bulk'; // 'bulk' | 'cut'
+let bwGoalType = 'pace'; // 'pace' | 'date'
+
+function openBWGoalModal() {
+  const existing = getBWGoal();
+  bwGoalDir  = existing?.dir  || 'bulk';
+  bwGoalType = existing?.type || 'pace';
+
+  document.getElementById('bwgoal-target').value    = existing?.target    || '';
+  document.getElementById('bwgoal-pace').value      = existing?.pace      || '';
+  document.getElementById('bwgoal-deadline').value  = existing?.deadline  || '';
+  document.getElementById('bwgoal-startdate').value = existing?.startDate || todayStr();
+
+  applyBWGoalDirUI();
+  applyBWGoalTypeUI();
+  openModal('modal-bwgoal');
+}
+
+function setBWGoalDir(dir) {
+  bwGoalDir = dir;
+  applyBWGoalDirUI();
+}
+
+function setBWGoalType(type) {
+  bwGoalType = type;
+  applyBWGoalTypeUI();
+}
+
+function applyBWGoalDirUI() {
+  const bulk = document.getElementById('bwgoal-dir-bulk');
+  const cut  = document.getElementById('bwgoal-dir-cut');
+  if (!bulk || !cut) return;
+  const onStyle  = 'border-color:var(--accent);background:var(--accent);color:#fff;';
+  const offStyle = 'border-color:var(--border);background:var(--surface2);color:var(--text);';
+  bulk.setAttribute('style', bulk.getAttribute('style').replace(/border-color[^;]+;|background[^;]+;|color[^;]+;/g,'') + (bwGoalDir === 'bulk' ? onStyle : offStyle));
+  cut.setAttribute('style',  cut.getAttribute('style').replace(/border-color[^;]+;|background[^;]+;|color[^;]+;/g,'')  + (bwGoalDir === 'cut'  ? onStyle : offStyle));
+}
+
+function applyBWGoalTypeUI() {
+  const paceBtn   = document.getElementById('bwgoal-type-pace');
+  const dateBtn   = document.getElementById('bwgoal-type-date');
+  const paceField = document.getElementById('bwgoal-pace-field');
+  const dateField = document.getElementById('bwgoal-date-field');
+  if (!paceBtn || !dateBtn) return;
+  const onStyle  = 'border-color:var(--accent);background:var(--accent);color:#fff;';
+  const offStyle = 'border-color:var(--border);background:var(--surface2);color:var(--text);';
+  paceBtn.setAttribute('style', paceBtn.getAttribute('style').replace(/border-color[^;]+;|background[^;]+;|color[^;]+;/g,'') + (bwGoalType === 'pace' ? onStyle : offStyle));
+  dateBtn.setAttribute('style', dateBtn.getAttribute('style').replace(/border-color[^;]+;|background[^;]+;|color[^;]+;/g,'') + (bwGoalType === 'date' ? onStyle : offStyle));
+  if (paceField) paceField.classList.toggle('hidden', bwGoalType !== 'pace');
+  if (dateField) dateField.classList.toggle('hidden', bwGoalType !== 'date');
+}
+
+function saveBWGoalFromModal() {
+  const target = parseFloat(document.getElementById('bwgoal-target').value);
+  if (!target || target <= 0) { alert('Enter a valid goal weight.'); return; }
+
+  const goal = { dir: bwGoalDir, type: bwGoalType, target };
+
+  if (bwGoalType === 'pace') {
+    const pace = parseFloat(document.getElementById('bwgoal-pace').value);
+    if (!pace || pace <= 0) { alert('Enter a valid weekly pace (positive number).'); return; }
+    goal.pace = pace;
+  } else {
+    const deadline = document.getElementById('bwgoal-deadline').value;
+    if (!deadline) { alert('Pick a target date.'); return; }
+    goal.deadline = deadline;
+  }
+
+  goal.startDate = document.getElementById('bwgoal-startdate').value || todayStr();
+  saveBWGoal(goal);
+  closeModal('modal-bwgoal');
+  renderBodyScreen();
+}
+
+function completeGoal() {
+  const goal = getBWGoal();
+  if (!goal) return;
+  if (!confirm('Mark this goal as complete and archive it?')) return;
+  archiveBWGoal(goal, 'completed');
+}
+
+function abandonGoal() {
+  const goal = getBWGoal();
+  if (!goal) return;
+  if (!confirm('Abandon this goal? It will be saved to history.')) return;
+  archiveBWGoal(goal, 'abandoned');
+}
+
+function archiveBWGoal(goal, endReason) {
+  // Snapshot final weight from bodyweight log
+  const allBws = getBodyweights().sort((a, b) => a.date.localeCompare(b.date));
+  const goalBws = allBws.filter(b => b.date >= goal.startDate);
+  const startEntry = goalBws[0] || allBws[allBws.length - 1] || null;
+  const endEntry   = goalBws.length > 0 ? goalBws[goalBws.length - 1] : null;
+
+  // Compute actual pace over goal period via regression
+  const actualRate = goalBws.length >= 2 ? bwLinearRate(goalBws) : null;
+
+  // Compute achievement
+  let achieved = null; // null = not enough data
+  if (goal.type === 'pace' && actualRate !== null) {
+    const targetRate = goal.dir === 'cut' ? -goal.pace : goal.pace;
+    const pctDiff = targetRate !== 0 ? ((actualRate - targetRate) / Math.abs(targetRate)) * 100 : null;
+    // Peak 4-week rolling rate during the goal
+    let peakRate = null;
+    for (let i = 0; i < goalBws.length; i++) {
+      const cutoff = new Date(goalBws[i].date);
+      cutoff.setDate(cutoff.getDate() - 28);
+      const cutoffStr = cutoff.toISOString().slice(0, 10);
+      const window = goalBws.filter(e => e.date >= cutoffStr && e.date <= goalBws[i].date);
+      if (window.length >= 2) {
+        const r = bwLinearRate(window);
+        if (r !== null) {
+          if (peakRate === null) peakRate = r;
+          else if (targetRate >= 0 && r > peakRate) peakRate = r;
+          else if (targetRate < 0  && r < peakRate) peakRate = r;
+        }
+      }
+    }
+    achieved = { type: 'pace', actualRate, targetRate, pctDiff, peakRate };
+  } else if (goal.type === 'date' && endEntry) {
+    const hit = goal.dir === 'bulk'
+      ? endEntry.weight >= goal.target
+      : endEntry.weight <= goal.target;
+    achieved = { type: 'date', hit, finalWeight: endEntry.weight, targetWeight: goal.target };
+  }
+
+  const archived = {
+    ...goal,
+    endDate:     todayStr(),
+    endReason,
+    startWeight: startEntry?.weight ?? null,
+    endWeight:   endEntry?.weight   ?? null,
+    achieved,
+    archivedAt:  new Date().toISOString(),
+  };
+
+  const history = getBWGoalHistory();
+  history.unshift(archived); // newest first
+  saveBWGoalHistory(history);
+  saveBWGoal(null);
+  renderBodyScreen();
+}
+
+function deleteArchivedGoal(idx) {
+  if (!confirm('Delete this goal from history?')) return;
+  const history = getBWGoalHistory();
+  history.splice(idx, 1);
+  saveBWGoalHistory(history);
+  renderBodyScreen();
+}
+
+// ── BW MATH HELPERS ────────────────────────────────────────
+
+// Linear regression over entries array → lbs/week slope
+function bwLinearRate(entries) {
+  if (entries.length < 2) return null;
+  const t0 = new Date(entries[0].date).getTime();
+  const pts = entries.map(e => ({
+    x: (new Date(e.date).getTime() - t0) / 86400000,
+    y: e.weight
+  }));
+  const n = pts.length;
+  const sumX  = pts.reduce((a, p) => a + p.x, 0);
+  const sumY  = pts.reduce((a, p) => a + p.y, 0);
+  const sumXY = pts.reduce((a, p) => a + p.x * p.y, 0);
+  const sumX2 = pts.reduce((a, p) => a + p.x * p.x, 0);
+  const denom = n * sumX2 - sumX * sumX;
+  if (denom === 0) return 0;
+  return ((n * sumXY - sumX * sumY) / denom) * 7; // lbs/week
+}
+
+// Rolling average rate over last `days` days
+function bwRollingAvg(entries, days) {
+  if (entries.length < 2) return null;
+  const sorted = [...entries].sort((a, b) => a.date.localeCompare(b.date));
+  const cutoff = new Date();
+  cutoff.setDate(cutoff.getDate() - days);
+  const cutoffStr = cutoff.toISOString().slice(0, 10);
+  const recent = sorted.filter(e => e.date >= cutoffStr);
+  if (recent.length < 2) return null;
+  return bwLinearRate(recent);
+}
+
+// Actual change vs ~7 days ago
+function bwSevenDayChange(entries) {
+  if (entries.length < 2) return null;
+  const sorted = [...entries].sort((a, b) => a.date.localeCompare(b.date));
+  const latest = sorted[sorted.length - 1];
+  const sevenAgo = new Date();
+  sevenAgo.setDate(sevenAgo.getDate() - 7);
+  const sevenAgoStr = sevenAgo.toISOString().slice(0, 10);
+  const before = sorted.filter(e => e.date <= sevenAgoStr);
+  if (before.length === 0) return null;
+  const anchor = before[before.length - 1];
+  return {
+    change: latest.weight - anchor.weight,
+    days: Math.round((new Date(latest.date) - new Date(anchor.date)) / 86400000)
+  };
+}
+
+// Average absolute day-to-day swing
+function bwVariability(entries) {
+  if (entries.length < 3) return null;
+  const sorted = [...entries].sort((a, b) => a.date.localeCompare(b.date));
+  let total = 0, count = 0;
+  for (let i = 1; i < sorted.length; i++) {
+    const gap = (new Date(sorted[i].date) - new Date(sorted[i-1].date)) / 86400000;
+    if (gap <= 3) { total += Math.abs(sorted[i].weight - sorted[i-1].weight); count++; }
+  }
+  return count > 0 ? total / count : null;
+}
+
+// Project arrival date at given weekly rate
+function bwProjectDate(currentWeight, targetWeight, ratePerWeek) {
+  if (!ratePerWeek || ratePerWeek === 0) return null;
+  const diff = targetWeight - currentWeight;
+  if ((diff > 0 && ratePerWeek < 0) || (diff < 0 && ratePerWeek > 0)) return null;
+  const weeksNeeded = diff / ratePerWeek;
+  const arrival = new Date();
+  arrival.setDate(arrival.getDate() + Math.round(weeksNeeded * 7));
+  return arrival.toISOString().slice(0, 10);
+}
+
+// Required weekly rate to hit target by deadline
+function bwRequiredPace(currentWeight, targetWeight, deadlineStr) {
+  const daysLeft = Math.round((new Date(deadlineStr) - new Date()) / 86400000);
+  if (daysLeft <= 0) return null;
+  return ((targetWeight - currentWeight) / daysLeft) * 7;
+}
+
+// Status badge object
+function bwStatusLabel(goal, currentRate, currentWeight) {
+  const targetRate = goal.type === 'pace'
+    ? (goal.dir === 'cut' ? -goal.pace : goal.pace)
+    : bwRequiredPace(currentWeight, goal.target, goal.deadline);
+  if (targetRate === null) return { label: 'NO DATA', color: 'var(--text3)' };
+  const diff      = currentRate - targetRate;
+  const threshold = Math.abs(targetRate) * 0.25;
+  if (Math.abs(diff) <= threshold) return { label: 'ON TRACK', color: 'var(--green)' };
+  if (goal.dir === 'bulk') {
+    return diff > 0
+      ? { label: 'TOO FAST', color: 'var(--accent2)' }
+      : { label: 'TOO SLOW', color: 'var(--red)' };
+  } else {
+    // cut: more negative is faster
+    return currentRate < targetRate - threshold
+      ? { label: 'TOO FAST', color: 'var(--accent2)' }
+      : { label: 'TOO SLOW', color: 'var(--red)' };
+  }
+}
+
+// ── BODY SCREEN ENTRY POINT ────────────────────────────────
+
+
+// ── WEEKLY PACE BREAKDOWN ──────────────────────────────────
+// Returns one object per calendar week covering the goal period.
+// Each object: { label, startDate, endDate, change, hasData, pace, status }
+// status: 'on' | 'over' | 'under' | 'nodata'
+// "over" for bulk = gaining too fast; for cut = cutting too fast
+// "under" = not enough progress in right direction
+
+function bwWeeklyBreakdown(entries, startDate, endDate, targetRate) {
+  // targetRate is signed (negative for cut)
+  const sorted = [...entries]
+    .filter(e => e.date >= startDate && e.date <= endDate)
+    .sort((a, b) => a.date.localeCompare(b.date));
+
+  if (sorted.length < 2) return [];
+
+  const weeks = [];
+  // Walk in 7-day windows from startDate
+  let cursor = new Date(startDate);
+  const end  = new Date(endDate);
+
+  while (cursor <= end) {
+    const wStart = cursor.toISOString().slice(0, 10);
+    const wEndDate = new Date(cursor);
+    wEndDate.setDate(wEndDate.getDate() + 6);
+    const wEnd = (wEndDate > end ? end : wEndDate).toISOString().slice(0, 10);
+
+    // Find closest entry at or before wStart (anchor) and at or after wEnd (close)
+    // anchor = last entry at or before week start (for delta baseline)
+    // close  = last entry within the week window
+    const before = sorted.filter(e => e.date <= wStart);
+    const within = sorted.filter(e => e.date >= wStart && e.date <= wEnd);
+
+    const anchor = before.length > 0 ? before[before.length - 1] : null;
+    // If no entries within this week, use the last entry before or at wEnd as close
+    const fallback = sorted.filter(e => e.date <= wEnd);
+    const close = within.length > 0
+      ? within[within.length - 1]
+      : (fallback.length > 0 ? fallback[fallback.length - 1] : null);
+
+    // Need both an anchor and a close that are different entries
+    const hasData = anchor && close && anchor.date !== close.date;
+    let change = null, pace = null, status = 'nodata';
+
+    if (hasData) {
+      const days = Math.max(1,
+        (new Date(close.date) - new Date(anchor.date)) / 86400000);
+      change = close.weight - anchor.weight;
+      pace   = change / days * 7; // lbs/week
+
+      // Status: within 25% of target = on, beyond = over/under
+      const threshold = Math.abs(targetRate) * 0.25;
+      const diff = pace - targetRate;
+      if (Math.abs(diff) <= threshold) {
+        status = 'on';
+      } else if (targetRate >= 0) {
+        // bulk: over = gaining too fast, under = too slow
+        status = diff > 0 ? 'over' : 'under';
+      } else {
+        // cut: targetRate is negative; diff > 0 means pace less negative = too slow
+        status = diff > 0 ? 'under' : 'over';
+      }
+    }
+
+    const label = formatDate(wStart) + (wEnd !== wStart ? ' – ' + formatDate(wEnd) : '');
+    weeks.push({ label, wStart, wEnd, change, pace, hasData, status });
+
+    cursor.setDate(cursor.getDate() + 7);
+  }
+
+  return weeks;
+}
+
+// Render the weekly breakdown table as HTML
+function bwWeeklyBreakdownHtml(entries, startDate, endDate, targetRate) {
+  const weeks = bwWeeklyBreakdown(entries, startDate, endDate, targetRate);
+  if (weeks.length === 0) return '<div style="font-size:13px;color:var(--text3);">Not enough data for weekly breakdown.</div>';
+
+  const isBulk = targetRate >= 0;
+
+  const rows = weeks.map(w => {
+    if (!w.hasData) {
+      return `<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);">
+        <div style="flex:1;font-size:13px;color:var(--text3);">${w.label}</div>
+        <div style="font-size:12px;color:var(--text3);">no data</div>
+        <div style="width:52px;text-align:right;font-size:13px;color:var(--text3);">—</div>
+      </div>`;
+    }
+
+    const sign   = w.change >= 0 ? '+' : '';
+    const pSign  = w.pace   >= 0 ? '+' : '';
+    let dotColor, dotLabel;
+    switch (w.status) {
+      case 'on':    dotColor = 'var(--green)';   dotLabel = '●'; break;
+      case 'over':  dotColor = 'var(--accent2)'; dotLabel = '▲'; break;
+      case 'under': dotColor = 'var(--red)';     dotLabel = '▼'; break;
+      default:      dotColor = 'var(--text3)';   dotLabel = '–';
+    }
+
+    return `<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);">
+      <div style="font-size:15px;color:${dotColor};width:14px;flex-shrink:0;text-align:center;">${dotLabel}</div>
+      <div style="flex:1;font-size:13px;color:var(--text);">${w.label}</div>
+      <div style="font-size:12px;color:var(--text2);text-align:right;">
+        <span style="font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:${dotColor};">${sign}${w.change.toFixed(1)}</span>
+        <span style="color:var(--text3);"> lbs</span>
+      </div>
+      <div style="width:70px;text-align:right;font-size:12px;color:var(--text3);">${pSign}${w.pace.toFixed(2)}/wk</div>
+    </div>`;
+  }).join('');
+
+  // Summary legend
+  const legend = `<div style="display:flex;gap:12px;margin-top:8px;font-size:11px;color:var(--text3);font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:0.06em;">
+    <span style="color:var(--green);">● ON PACE</span>
+    <span style="color:var(--accent2);">▲ ${isBulk ? 'TOO FAST' : 'TOO FAST'}</span>
+    <span style="color:var(--red);">▼ ${isBulk ? 'TOO SLOW' : 'TOO SLOW'}</span>
+  </div>`;
+
+  return `<div style="padding-bottom:4px;">${rows}</div>${legend}`;
+}
+
+function renderBodyScreen() {
+  renderBWGoalCard();
+  renderBWAnalysis();
+  renderBWChart();
+  renderBWHistory();
+  renderBWGoalHistory();
+}
+
+// ── GOAL CARD ──────────────────────────────────────────────
+
+function renderBWGoalCard() {
+  const el = document.getElementById('bw-goal-card');
+  if (!el) return;
+  const goal = getBWGoal();
+
+  if (!goal) {
+    el.innerHTML = `
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:var(--text2);letter-spacing:0.05em;">NO ACTIVE GOAL</div>
+        <button class="btn-inline" onclick="openBWGoalModal()">+ Set Goal</button>
+      </div>`;
+    return;
+  }
+
+  const allBws = getBodyweights().sort((a,b) => a.date.localeCompare(b.date));
+  const goalBws = allBws.filter(b => b.date >= goal.startDate);
+  const latest  = goalBws.length > 0 ? goalBws[goalBws.length - 1] : (allBws.length > 0 ? allBws[allBws.length - 1] : null);
+  const currentWeight = latest?.weight ?? null;
+  const rate4wk = bwRollingAvg(goalBws.length >= 2 ? goalBws : allBws, 28);
+
+  const gap = currentWeight !== null ? goal.target - currentWeight : null;
+  const gapStr = gap !== null
+    ? (gap > 0 ? `+${gap.toFixed(1)}` : gap.toFixed(1)) + ' lbs to go'
+    : '—';
+
+  let statusObj = { label: 'NOT ENOUGH DATA', color: 'var(--text3)' };
+  if (rate4wk !== null && currentWeight !== null) {
+    statusObj = bwStatusLabel(goal, rate4wk, currentWeight);
+  }
+
+  const dirIcon  = goal.dir === 'bulk' ? '📈' : '📉';
+  const typeLabel = goal.type === 'pace'
+    ? `${goal.pace} lbs/wk target`
+    : `Deadline ${formatDate(goal.deadline)}`;
+
+  let projectionLine = '';
+  if (rate4wk !== null && currentWeight !== null) {
+    if (goal.type === 'date') {
+      const reqRate   = bwRequiredPace(currentWeight, goal.target, goal.deadline);
+      const projDate  = bwProjectDate(currentWeight, goal.target, rate4wk);
+      const daysLeft  = Math.round((new Date(goal.deadline) - new Date()) / 86400000);
+      if (projDate && daysLeft > 0) {
+        const late = projDate > goal.deadline;
+        projectionLine = `<div style="font-size:12px;color:${late ? 'var(--red)' : 'var(--green)'};margin-top:3px;">
+          Projected: <strong>${formatDate(projDate)}</strong>${late ? ` — ${Math.round((new Date(projDate)-new Date(goal.deadline))/86400000)}d late` : ' ✓'} · ${daysLeft}d left
+        </div>`;
+      }
+    } else {
+      const projDate = bwProjectDate(currentWeight, goal.target, rate4wk);
+      if (projDate) projectionLine = `<div style="font-size:12px;color:var(--text2);margin-top:3px;">Projected arrival: <strong style="color:var(--text);">${formatDate(projDate)}</strong></div>`;
+    }
+  }
+
+  el.innerHTML = `
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;">
+        <div style="flex:1;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.08em;color:var(--text2);margin-bottom:6px;">${dirIcon} ${goal.dir.toUpperCase()} · ${typeLabel.toUpperCase()}</div>
+          <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+            <div>
+              <span style="font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:900;">${currentWeight ?? '—'}</span>
+              <span style="font-size:13px;color:var(--text2);"> lbs now</span>
+            </div>
+            <div style="font-size:14px;color:var(--text2);">→ <strong style="color:var(--text);">${goal.target} lbs</strong></div>
+          </div>
+          <div style="font-size:13px;color:var(--text2);margin-top:2px;">${gapStr}</div>
+          ${projectionLine}
+        </div>
+        <div style="text-align:right;flex-shrink:0;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:900;letter-spacing:0.06em;color:${statusObj.color};padding:4px 10px;border:2px solid ${statusObj.color};border-radius:6px;white-space:nowrap;">${statusObj.label}</div>
+          <div style="font-size:12px;color:var(--text2);margin-top:6px;">${rate4wk !== null ? (rate4wk >= 0 ? '+' : '') + rate4wk.toFixed(2) + ' lbs/wk' : '—'}</div>
+          <div style="font-size:11px;color:var(--text3);">4-wk avg</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;">
+        <button class="btn-inline" onclick="openBWGoalModal()" style="flex:1;text-align:center;">Edit</button>
+        <button class="btn-inline" onclick="completeGoal()" style="flex:1;text-align:center;color:var(--green);border-color:var(--green);">Complete ✓</button>
+        <button class="btn-inline" onclick="abandonGoal()" style="color:var(--text3);border-color:var(--border);">Abandon</button>
+      </div>
+    </div>`;
+}
+
+// ── ANALYSIS SECTION ───────────────────────────────────────
+
+function bwAnalysisBlock(title, content) {
+  return `<div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;margin-bottom:10px;">
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.1em;color:var(--text2);text-transform:uppercase;margin-bottom:8px;">${title}</div>
+    ${content}
+  </div>`;
+}
+
+function renderBWAnalysis() {
+  const el = document.getElementById('bw-analysis');
+  if (!el) return;
+
+  const goal   = getBWGoal();
+  const allBws = getBodyweights().sort((a, b) => a.date.localeCompare(b.date));
+
+  if (allBws.length < 2) {
+    el.innerHTML = `<div style="color:var(--text3);font-size:13px;padding:4px 0 8px;">Log at least 2 weigh-ins to see analysis.</div>`;
+    return;
+  }
+
+  const goalBws      = goal ? allBws.filter(b => b.date >= goal.startDate) : allBws;
+  const latest       = allBws[allBws.length - 1];
+  const currentWeight = latest.weight;
+  let sections = '';
+
+  // ── THIS WEEK ─────────────────────────────────────────────
+  const weekChange = bwSevenDayChange(allBws);
+  if (weekChange) {
+    const sign        = weekChange.change >= 0 ? '+' : '';
+    const changeColor = weekChange.change === 0
+      ? 'var(--text2)'
+      : weekChange.change > 0 ? 'var(--green)' : 'var(--red)';
+
+    let weekFeedback = '';
+    if (goal && goalBws.length >= 2) {
+      const targetRate = goal.type === 'pace'
+        ? (goal.dir === 'cut' ? -goal.pace : goal.pace)
+        : bwRequiredPace(currentWeight, goal.target, goal.deadline);
+
+      if (targetRate !== null) {
+        if (goal.dir === 'cut' && goal.type === 'date') {
+          // Hard deadline cut — carry cumulative deficit forward
+          const neededTotal = bwRequiredPace(goalBws[0].weight, goal.target, goal.deadline)
+            * ((new Date(latest.date) - new Date(goalBws[0].date)) / 86400000 / 7);
+          const actualTotal  = currentWeight - goalBws[0].weight;
+          const deficit      = actualTotal - neededTotal;
+          const nextWeekNeed = targetRate - deficit;
+          if (Math.abs(deficit) > 0.1) {
+            weekFeedback = `<div style="margin-top:8px;padding:10px;background:${deficit < 0 ? '#fef2f2' : '#f0fdf4'};border-radius:6px;border-left:3px solid ${deficit < 0 ? 'var(--red)' : 'var(--green)'};font-size:13px;">
+              ${deficit < 0
+                ? `You're <strong>${Math.abs(deficit).toFixed(1)} lbs behind</strong> schedule. You need <strong>${Math.abs(nextWeekNeed).toFixed(1)} lbs</strong> loss next week to get back on track.`
+                : `You're <strong>${deficit.toFixed(1)} lbs ahead</strong> of schedule — you can ease up slightly this week.`}
+            </div>`;
+          } else {
+            weekFeedback = `<div style="margin-top:8px;font-size:13px;color:var(--green);">✓ Right on schedule.</div>`;
+          }
+        } else {
+          // Bulk or pace-only cut — informational, no catch-up
+          const diff      = weekChange.change - targetRate;
+          const threshold = Math.abs(targetRate) * 0.3;
+          if (Math.abs(diff) <= threshold) {
+            weekFeedback = `<div style="margin-top:8px;font-size:13px;color:var(--green);">✓ Tracking your target pace well.</div>`;
+          } else if (goal.dir === 'bulk' && diff < -threshold) {
+            weekFeedback = `<div style="margin-top:8px;font-size:13px;color:var(--text2);">Slightly under your +${goal.pace} lbs/wk target — no catch-up needed, just stay consistent.</div>`;
+          } else if (goal.dir === 'bulk' && diff > threshold) {
+            weekFeedback = `<div style="margin-top:8px;font-size:13px;color:var(--accent2);">Gaining faster than your +${goal.pace} lbs/wk target — consider dialing back slightly.</div>`;
+          } else if (goal.dir === 'cut') {
+            weekFeedback = `<div style="margin-top:8px;font-size:13px;color:var(--text2);">Slightly off your cut pace — no hard catch-up required, stay consistent.</div>`;
+          }
+        }
+      }
+    }
+
+    sections += bwAnalysisBlock('THIS WEEK',
+      `<div style="display:flex;align-items:baseline;gap:8px;">
+        <span style="font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;color:${changeColor};">${sign}${weekChange.change.toFixed(1)}</span>
+        <span style="font-size:13px;color:var(--text2);">lbs vs 7 days ago</span>
+      </div>
+      ${weekFeedback}`
+    );
+  }
+
+  // ── 4-WEEK TREND ──────────────────────────────────────────
+  const rate4wk = bwRollingAvg(goalBws.length >= 2 ? goalBws : allBws, 28);
+  const rate2wk = bwRollingAvg(allBws, 14);
+
+  if (rate4wk !== null) {
+    let trendArrow = '';
+    if (rate2wk !== null) {
+      const abs4 = Math.abs(rate4wk), abs2 = Math.abs(rate2wk);
+      trendArrow = abs2 > abs4 * 1.15 ? '↑ accelerating' : abs2 < abs4 * 0.85 ? '↓ decelerating' : '→ stable';
+    }
+
+    let trendNote = '';
+    if (goal) {
+      const targetRate = goal.type === 'pace'
+        ? (goal.dir === 'cut' ? -goal.pace : goal.pace)
+        : bwRequiredPace(currentWeight, goal.target, goal.deadline);
+      if (targetRate !== null) {
+        const diff = rate4wk - targetRate;
+        const sign = diff >= 0 ? '+' : '';
+        const ok   = Math.abs(diff) < Math.abs(targetRate) * 0.25;
+        trendNote = `<div style="margin-top:6px;font-size:13px;color:var(--text2);">Target: <strong>${targetRate >= 0 ? '+' : ''}${targetRate.toFixed(2)} lbs/wk</strong> · Deviation: <strong style="color:${ok ? 'var(--green)' : 'var(--accent2)'};">${sign}${diff.toFixed(2)}</strong></div>`;
+      }
+    }
+
+    sections += bwAnalysisBlock('4-WEEK TREND',
+      `<div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;">
+        <span style="font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;">${rate4wk >= 0 ? '+' : ''}${rate4wk.toFixed(2)}</span>
+        <span style="font-size:13px;color:var(--text2);">lbs/week</span>
+        ${trendArrow ? `<span style="font-size:12px;color:var(--text3);">${trendArrow}</span>` : ''}
+      </div>
+      ${trendNote}`
+    );
+  }
+
+  // ── PROJECTION ────────────────────────────────────────────
+  if (rate4wk !== null) {
+    const proj4  = +(currentWeight + rate4wk * 4).toFixed(1);
+    const proj8  = +(currentWeight + rate4wk * 8).toFixed(1);
+    const proj12 = +(currentWeight + rate4wk * 12).toFixed(1);
+
+    let goalArrival = '';
+    if (goal) {
+      const arrivalDate = bwProjectDate(currentWeight, goal.target, rate4wk);
+      if (arrivalDate && arrivalDate >= todayStr()) {
+        if (goal.type === 'date') {
+          const reqRate      = bwRequiredPace(currentWeight, goal.target, goal.deadline);
+          const deadlineMiss = arrivalDate > goal.deadline;
+          goalArrival = `<div style="margin-top:8px;padding:10px;background:${deadlineMiss ? '#fef2f2' : '#f0fdf4'};border-radius:6px;border-left:3px solid ${deadlineMiss ? 'var(--red)' : 'var(--green)'};font-size:13px;">
+            ${deadlineMiss
+              ? `At current pace: <strong>${goal.target} lbs on ${formatDate(arrivalDate)}</strong> — <strong style="color:var(--red);">after your ${formatDate(goal.deadline)} deadline</strong>. Need <strong>${reqRate !== null ? Math.abs(reqRate).toFixed(2) : '?'} lbs/wk</strong>.`
+              : `At current pace: <strong>${goal.target} lbs on ${formatDate(arrivalDate)}</strong> — before your ${formatDate(goal.deadline)} deadline ✓`}
+          </div>`;
+        } else {
+          goalArrival = `<div style="margin-top:8px;font-size:13px;color:var(--text2);">At current pace: <strong style="color:var(--text);">${goal.target} lbs by ${formatDate(arrivalDate)}</strong></div>`;
+        }
+      } else if (arrivalDate && arrivalDate < todayStr()) {
+        goalArrival = `<div style="margin-top:8px;font-size:13px;color:var(--text3);">Trend is moving away from goal weight.</div>`;
+      }
+    }
+
+    sections += bwAnalysisBlock('PROJECTION',
+      `<div style="display:flex;gap:20px;flex-wrap:wrap;">
+        <div>
+          <div style="font-size:11px;color:var(--text3);font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:0.08em;">4 WKS</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;">${proj4} lbs</div>
+        </div>
+        <div>
+          <div style="font-size:11px;color:var(--text3);font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:0.08em;">8 WKS</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;">${proj8} lbs</div>
+        </div>
+        <div>
+          <div style="font-size:11px;color:var(--text3);font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:0.08em;">12 WKS</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;">${proj12} lbs</div>
+        </div>
+      </div>
+      ${goalArrival}`
+    );
+  }
+
+  // ── VARIABILITY ───────────────────────────────────────────
+  const variability = bwVariability(allBws);
+  if (variability !== null) {
+    let varNote = '';
+    if (variability > 2)
+      varNote = `<div style="margin-top:6px;font-size:13px;color:var(--text2);">High day-to-day swing — a single weigh-in is unreliable. Trust the 4-week trend over any one number.</div>`;
+    else if (variability > 1)
+      varNote = `<div style="margin-top:6px;font-size:13px;color:var(--text2);">Moderate fluctuation — normal. The rolling average is more meaningful than daily readings.</div>`;
+    else
+      varNote = `<div style="margin-top:6px;font-size:13px;color:var(--green);">Low fluctuation — very consistent weigh-ins.</div>`;
+
+    sections += bwAnalysisBlock('DAILY VARIABILITY',
+      `<div style="display:flex;align-items:baseline;gap:8px;">
+        <span style="font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;">±${variability.toFixed(1)}</span>
+        <span style="font-size:13px;color:var(--text2);">lbs avg day-to-day</span>
+      </div>
+      ${varNote}`
+    );
+  }
+
+  // ── WEEKLY PACE BREAKDOWN (active goal only) ─────────────
+  if (goal && goalBws.length >= 2) {
+    const targetRate = goal.type === 'pace'
+      ? (goal.dir === 'cut' ? -goal.pace : goal.pace)
+      : bwRequiredPace(currentWeight, goal.target, goal.deadline);
+
+    if (targetRate !== null) {
+      const breakdownHtml = bwWeeklyBreakdownHtml(goalBws, goal.startDate, todayStr(), targetRate);
+      sections += bwAnalysisBlock('WEEKLY PACE BREAKDOWN', breakdownHtml);
+    }
+  }
+
+  el.innerHTML = sections || `<div style="color:var(--text3);font-size:13px;padding:4px 0 8px;">Not enough data yet.</div>`;
+}
+
+// ── BW CHART ───────────────────────────────────────────────
+
+function renderBWChart() {
+  const ctx = document.getElementById('bw-chart');
+  if (!ctx) return;
+  if (bwChartInstance) { bwChartInstance.destroy(); bwChartInstance = null; }
+
+  const bws = getBodyweights().sort((a, b) => a.date.localeCompare(b.date));
+  if (bws.length === 0) return;
+
+  const labels = bws.map(b => {
+    const [y, m, d] = b.date.split('-');
+    return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][parseInt(m)-1] + ' ' + parseInt(d);
+  });
+
+  const rawWeights = bws.map(b => b.weight);
+
+  // 7-day rolling average (window of all entries within prior 7 days)
+  const rollingAvg = bws.map((b) => {
+    const cutoff = new Date(b.date);
+    cutoff.setDate(cutoff.getDate() - 7);
+    const cutoffStr = cutoff.toISOString().slice(0, 10);
+    const window = bws.filter(x => x.date >= cutoffStr && x.date <= b.date);
+    return window.reduce((s, x) => s + x.weight, 0) / window.length;
+  });
+
+  const goal = getBWGoal();
+  const datasets = [
+    {
+      label: 'Daily weight',
+      data: rawWeights,
+      borderColor: '#2563eb55',
+      backgroundColor: 'transparent',
+      pointRadius: 3,
+      pointBackgroundColor: '#2563eb',
+      borderWidth: 1.5,
+      tension: 0.2,
+      order: 2,
+    },
+    {
+      label: '7-day avg',
+      data: rollingAvg,
+      borderColor: '#2563eb',
+      backgroundColor: '#2563eb0a',
+      pointRadius: 0,
+      borderWidth: 2.5,
+      tension: 0.4,
+      fill: false,
+      order: 1,
+    }
+  ];
+
+  if (goal) {
+    datasets.push({
+      label: `Goal (${goal.target} lbs)`,
+      data: bws.map(() => goal.target),
+      borderColor: '#ea580c',
+      borderDash: [5, 4],
+      pointRadius: 0,
+      borderWidth: 1.5,
+      fill: false,
+      order: 3,
+    });
+  }
+
+  bwChartInstance = new Chart(ctx, {
+    type: 'line',
+    data: { labels, datasets },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: {
+          display: true,
+          labels: { color: '#888', font: { family: 'Barlow Condensed', size: 12, weight: '700' }, boxWidth: 12 }
+        },
+        tooltip: {
+          backgroundColor: '#fff', borderColor: '#d8d8d4', borderWidth: 1,
+          titleColor: '#2563eb', bodyColor: '#111', padding: 10
+        }
+      },
+      scales: {
+        x: { ticks: { color:'#666', font:{ family:'Barlow', size:11 }, maxRotation:45, autoSkip:true, maxTicksLimit:8 }, grid:{ color:'#ebebeb' } },
+        y: { ticks: { color:'#666', font:{ family:'Barlow Condensed', size:13 } }, grid:{ color:'#ebebeb' } }
+      }
+    }
+  });
+}
+
+// ── BW HISTORY LIST ────────────────────────────────────────
+
+function renderBWHistory() {
+  const el = document.getElementById('bw-history-list');
+  if (!el) return;
+  const bws = getBodyweights().sort((a, b) => b.date.localeCompare(a.date));
+
+  if (bws.length === 0) {
+    el.innerHTML = `<div class="empty-state" style="padding:24px;"><div class="empty-icon">⚖️</div><div class="empty-title">No weigh-ins yet</div><p>Tap "Log Bodyweight" on the home screen to log your first entry.</p></div>`;
+    return;
+  }
+
+  // We need ascending order for delta calc, then reverse for display
+  const asc = [...bws].sort((a, b) => a.date.localeCompare(b.date));
+  const deltaMap = {};
+  for (let i = 1; i < asc.length; i++) {
+    deltaMap[asc[i].date] = +(asc[i].weight - asc[i-1].weight).toFixed(1);
+  }
+
+  el.innerHTML = bws.map(b => {
+    const delta = deltaMap[b.date];
+    const deltaStr   = delta !== undefined ? (delta >= 0 ? `+${delta}` : `${delta}`) : '';
+    const deltaColor = delta === undefined ? '' : delta > 0 ? 'var(--green)' : delta < 0 ? 'var(--red)' : 'var(--text3)';
+    return `<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:6px;">
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;">${b.weight} <span style="font-size:13px;font-weight:400;color:var(--text2);">lbs</span></div>
+        <div style="font-size:12px;color:var(--text3);">${formatDate(b.date)}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;">
+        ${deltaStr ? `<span style="font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:${deltaColor};">${deltaStr}</span>` : ''}
+        <span style="font-size:13px;color:var(--text3);cursor:pointer;padding:4px;" onclick="deleteBWEntry('${b.date}')">✕</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function deleteBWEntry(date) {
+  if (!confirm('Delete this weigh-in?')) return;
+  saveBodyweights(getBodyweights().filter(b => b.date !== date));
+  renderBodyScreen();
+}
+
+
+
+// ── GOAL HISTORY ───────────────────────────────────────────
+
+function toggleBWBreakdown(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+
+
+function renderBWGoalHistory() {
+  // Inject history section into body screen, creating container if needed
+  let el = document.getElementById('bw-goal-history');
+  if (!el) {
+    // Create container after bw-history-list
+    const ref = document.getElementById('bw-history-list');
+    if (!ref) return;
+    el = document.createElement('div');
+    el.id = 'bw-goal-history';
+    ref.parentNode.insertBefore(el, ref.nextSibling);
+  }
+
+  const history = getBWGoalHistory();
+  if (history.length === 0) { el.innerHTML = ''; return; }
+
+  const label = `<div class="section-label" style="margin-top:16px;">GOAL HISTORY</div>`;
+
+  const cards = history.map((g, idx) => {
+    const startStr  = formatDate(g.startDate);
+    const endStr    = formatDate(g.endDate);
+    const dirIcon   = g.dir === 'bulk' ? '📈' : '📉';
+    const typeLabel = g.type === 'pace'
+      ? `${g.pace} lbs/wk`
+      : `by ${formatDate(g.deadline)}`;
+    const reasonBadge = g.endReason === 'completed'
+      ? `<span style="font-size:11px;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:0.06em;color:var(--green);border:1px solid var(--green);border-radius:4px;padding:2px 7px;">COMPLETED</span>`
+      : `<span style="font-size:11px;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:0.06em;color:var(--text3);border:1px solid var(--border);border-radius:4px;padding:2px 7px;">ABANDONED</span>`;
+
+    const weightStr = (g.startWeight != null && g.endWeight != null)
+      ? `${g.startWeight} → ${g.endWeight} lbs`
+      : g.endWeight != null ? `Final: ${g.endWeight} lbs` : '';
+
+    // Achievement block
+    let achievementHtml = '';
+    if (g.achieved) {
+      if (g.achieved.type === 'pace') {
+        const actual   = g.achieved.actualRate;
+        const target   = g.achieved.targetRate;
+        const pctDiff  = g.achieved.pctDiff; // signed %
+        const absPct   = Math.abs(pctDiff);
+
+        // Rating band — direction-aware
+        // On a bulk: being over target pace is slightly bad (gaining too fast), under is bad too
+        // On a cut: being more negative than target is slightly bad (losing too fast), less negative is bad
+        // Within 10%: Nailed it; 10-25%: Close; 25-50%: Off pace; 50%+: Missed
+        let rating, ratingColor;
+        if (absPct <= 10) {
+          rating = '🎯 Nailed it'; ratingColor = 'var(--green)';
+        } else if (absPct <= 25) {
+          rating = '👍 Close'; ratingColor = 'var(--green)';
+        } else if (absPct <= 50) {
+          rating = '😐 Off pace'; ratingColor = 'var(--accent2)';
+        } else {
+          rating = '❌ Missed'; ratingColor = 'var(--red)';
+        }
+
+        // Direction note — was the miss in the right or wrong direction?
+        let dirNote = '';
+        if (absPct > 10) {
+          if (g.dir === 'bulk') {
+            dirNote = pctDiff > 0
+              ? ' (gained faster than target)'
+              : ' (gained slower than target)';
+          } else {
+            // cut: target is negative, actual closer to 0 means slower cut
+            dirNote = actual > target  // less negative = slower cut
+              ? ' (cut slower than target)'
+              : ' (cut faster than target)';
+          }
+        }
+
+        const sign = actual >= 0 ? '+' : '';
+        const tSign = target >= 0 ? '+' : '';
+
+        // Peak pace line (if meaningfully different from average)
+        const peakRate  = g.achieved.peakRate;
+        const peakSign  = peakRate != null ? (peakRate >= 0 ? '+' : '') : '';
+        const showPeak  = peakRate != null && Math.abs(peakRate - actual) >= Math.abs(actual) * 0.15;
+        const peakLine  = showPeak
+          ? `<div style="font-size:12px;color:var(--text3);margin-top:2px;">Peak 4-wk avg: <strong style="color:var(--text);">${peakSign}${peakRate.toFixed(2)} lbs/wk</strong></div>`
+          : '';
+
+        // Weekly breakdown for archived goal
+        const allBwsArchive = getBodyweights().sort((a, b) => a.date.localeCompare(b.date));
+        const goalBwsArchive = allBwsArchive.filter(e => e.date >= g.startDate && e.date <= (g.endDate || todayStr()));
+        const breakdownId = 'bw-breakdown-' + idx;
+        const breakdownHtmlArchive = goalBwsArchive.length >= 2
+          ? bwWeeklyBreakdownHtml(goalBwsArchive, g.startDate, g.endDate || todayStr(), target)
+          : '<div style="font-size:13px;color:var(--text3);">Not enough data.</div>';
+
+        achievementHtml = `
+          <div style="margin-top:10px;padding:10px;background:var(--surface2);border-radius:6px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;">
+              <div>
+                <div style="font-size:11px;color:var(--text3);font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:0.08em;margin-bottom:4px;">PACE ACHIEVEMENT</div>
+                <div style="font-size:13px;color:var(--text2);">Target: <strong style="color:var(--text);">${tSign}${target.toFixed(2)} lbs/wk</strong></div>
+                <div style="font-size:13px;color:var(--text2);">Actual: <strong style="color:var(--text);">${sign}${actual.toFixed(2)} lbs/wk</strong></div>
+                <div style="font-size:12px;color:var(--text3);margin-top:2px;">${absPct.toFixed(0)}% deviation${dirNote}</div>
+                ${peakLine}
+              </div>
+              <div style="font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:900;color:${ratingColor};text-align:right;">${rating}</div>
+            </div>
+            <div style="margin-top:10px;">
+              <button class="btn-inline" onclick="toggleBWBreakdown('${breakdownId}')" style="font-size:12px;padding:5px 10px;width:100%;justify-content:center;">
+                📅 Weekly Breakdown
+              </button>
+              <div id="${breakdownId}" style="display:none;margin-top:8px;">${breakdownHtmlArchive}</div>
+            </div>
+          </div>`;
+      } else if (g.achieved.type === 'date') {
+        const hit      = g.achieved.hit;
+        const finalW   = g.achieved.finalWeight;
+        const targetW  = g.achieved.targetWeight;
+        const diff     = finalW != null ? (finalW - targetW) : null;
+        const diffStr  = diff != null ? (Math.abs(diff).toFixed(1) + ' lbs ' + (diff > 0 ? 'over' : 'under') + ' target') : '';
+        achievementHtml = `
+          <div style="margin-top:10px;padding:10px;background:var(--surface2);border-radius:6px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+              <div>
+                <div style="font-size:11px;color:var(--text3);font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:0.08em;margin-bottom:4px;">TARGET ACHIEVEMENT</div>
+                <div style="font-size:13px;color:var(--text2);">Goal: <strong style="color:var(--text);">${targetW} lbs by ${formatDate(g.deadline)}</strong></div>
+                ${finalW != null ? `<div style="font-size:13px;color:var(--text2);">Final: <strong style="color:var(--text);">${finalW} lbs</strong>${diffStr ? ' · ' + diffStr : ''}</div>` : ''}
+              </div>
+              <div style="font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:900;color:${hit ? 'var(--green)' : 'var(--red)'};text-align:right;">${hit ? '✓ Hit it' : '✗ Missed'}</div>
+            </div>
+          </div>`;
+      }
+    }
+
+    return `<div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;margin-bottom:8px;">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;">
+        <div style="flex:1;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.08em;color:var(--text2);margin-bottom:4px;">
+            ${dirIcon} ${g.dir.toUpperCase()} · ${typeLabel.toUpperCase()} · Goal: ${g.target} lbs
+          </div>
+          <div style="font-size:12px;color:var(--text3);">${startStr} → ${endStr}${weightStr ? ' · ' + weightStr : ''}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+          ${reasonBadge}
+          <span style="font-size:16px;color:var(--text3);cursor:pointer;padding:4px;" onclick="deleteArchivedGoal(${idx})">✕</span>
+        </div>
+      </div>
+      ${achievementHtml}
+    </div>`;
+  }).join('');
+
+  el.innerHTML = label + `<div style="margin:0 16px 8px;">${cards}</div>`;
 }
 
 // ── NUMPAD ─────────────────────────────────────────────────
@@ -2662,6 +3657,8 @@ function buildBackupData(userNum) {
     bodyweights:   getBodyweights(),
     cardio:        getCardioSessions(),
     activeProgram: getActiveProgram(),
+    bwGoal:        getBWGoal(),
+    bwGoalHistory: getBWGoalHistory(),
   };
   currentUser = saved;
   return data;
@@ -2790,6 +3787,8 @@ async function restoreFromGithub() {
       if (json.bodyweights)   saveBodyweights(json.bodyweights);
       if (json.cardio)        saveCardioSessions(json.cardio);
       if (json.activeProgram !== undefined) saveActiveProgram(json.activeProgram);
+      if (json.bwGoal !== undefined) saveBWGoal(json.bwGoal);
+      if (json.bwGoalHistory !== undefined) saveBWGoalHistory(json.bwGoalHistory);
       currentUser = savedUser;
 
       restored++;
@@ -2851,6 +3850,8 @@ function importData(e) {
       if(data.bodyweights)saveBodyweights(data.bodyweights);
       if(data.cardio)saveCardioSessions(data.cardio);
       if(data.activeProgram !== undefined)saveActiveProgram(data.activeProgram);
+      if(data.bwGoal !== undefined)saveBWGoal(data.bwGoal);
+      if(data.bwGoalHistory !== undefined)saveBWGoalHistory(data.bwGoalHistory);
       renderAll(); alert('Import successful!');
     } catch { alert('Invalid file.'); }
   };

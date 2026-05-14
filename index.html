@@ -834,6 +834,7 @@
     <button class="nav-tab" onclick="showTab('history')" id="tab-history">HISTORY</button>
     <button class="nav-tab" onclick="showTab('stats')" id="tab-stats">STATS</button>
     <button class="nav-tab" onclick="showTab('cardio')" id="tab-cardio">CARDIO</button>
+    <button class="nav-tab" onclick="showTab('body')" id="tab-body">BODY</button>
     <button class="nav-tab" onclick="showTab('manage')" id="tab-manage">MANAGE</button>
   </div>
 
@@ -904,6 +905,28 @@
     <div style="height:20px;"></div>
   </div>
 
+  <!-- ════════════════ BODY SCREEN ════════════════ -->
+  <div class="screen" id="screen-body">
+    <!-- Goal Card -->
+    <div id="bw-goal-card" style="margin:16px 16px 0;"></div>
+    <!-- Analysis -->
+    <div class="section-label" style="margin-top:16px;">ANALYSIS</div>
+    <div id="bw-analysis" style="margin:0 16px;"></div>
+    <!-- Chart -->
+    <div class="section-label" style="margin-top:8px;">WEIGHT TREND</div>
+    <div style="margin:0 16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;">
+      <canvas id="bw-chart" height="200"></canvas>
+    </div>
+    <!-- Log button -->
+    <div style="padding:12px 16px 0;">
+      <button class="btn btn-secondary" onclick="openLogBodyweight()">⚖️ Log Bodyweight</button>
+    </div>
+    <!-- History list -->
+    <div class="section-label" style="margin-top:16px;">LOG</div>
+    <div id="bw-history-list" style="margin:0 16px;"></div>
+    <div style="height:20px;"></div>
+  </div>
+
   <!-- ════════════════ MANAGE SCREEN ════════════════ -->
   <div class="screen" id="screen-manage">
     <div class="section-label">PROGRAMS</div>
@@ -962,6 +985,65 @@
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('modal-program-setup')">Cancel</button>
       <button class="btn btn-primary" id="setup-next-btn" onclick="setupNext()">Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- BW Goal Setup Modal -->
+<div class="modal-backdrop" id="modal-bwgoal">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">SET WEIGHT GOAL</div>
+    <div class="modal-body">
+      <div style="padding-top:8px;">
+        <div class="field">
+          <label>Direction</label>
+          <div style="display:flex;gap:8px;margin-top:4px;">
+            <button type="button" id="bwgoal-dir-bulk" onclick="setBWGoalDir('bulk')"
+              style="flex:1;padding:12px 6px;border-radius:8px;border:2px solid var(--border);background:var(--surface2);font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;cursor:pointer;letter-spacing:0.05em;">
+              📈 BULK
+            </button>
+            <button type="button" id="bwgoal-dir-cut" onclick="setBWGoalDir('cut')"
+              style="flex:1;padding:12px 6px;border-radius:8px;border:2px solid var(--border);background:var(--surface2);font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;cursor:pointer;letter-spacing:0.05em;">
+              📉 CUT
+            </button>
+          </div>
+        </div>
+        <div class="field">
+          <label>Goal Weight (lbs)</label>
+          <input class="input" type="number" id="bwgoal-target" placeholder="e.g. 170" inputmode="decimal" step="0.1" />
+        </div>
+        <div class="field">
+          <label>Goal Type</label>
+          <div style="display:flex;gap:8px;margin-top:4px;">
+            <button type="button" id="bwgoal-type-pace" onclick="setBWGoalType('pace')"
+              style="flex:1;padding:10px 6px;border-radius:8px;border:2px solid var(--border);background:var(--surface2);font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:0.05em;">
+              WEEKLY PACE
+            </button>
+            <button type="button" id="bwgoal-type-date" onclick="setBWGoalType('date')"
+              style="flex:1;padding:10px 6px;border-radius:8px;border:2px solid var(--border);background:var(--surface2);font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:0.05em;">
+              TARGET DATE
+            </button>
+          </div>
+        </div>
+        <div id="bwgoal-pace-field" class="field">
+          <label>Target Pace (lbs/week)</label>
+          <input class="input" type="number" id="bwgoal-pace" placeholder="e.g. 0.5" inputmode="decimal" step="0.1" min="0.1" />
+          <div style="font-size:12px;color:var(--text3);margin-top:4px;">Enter a positive number — direction (bulk/cut) handles the sign.</div>
+        </div>
+        <div id="bwgoal-date-field" class="field hidden">
+          <label>Target Date</label>
+          <input class="input" type="date" id="bwgoal-deadline" />
+        </div>
+        <div class="field">
+          <label>Goal Start Date <span style="font-size:12px;color:var(--text3);font-weight:400;"> — analysis begins from this weigh-in</span></label>
+          <input class="input" type="date" id="bwgoal-startdate" />
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modal-bwgoal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveBWGoalFromModal()">Save Goal</button>
     </div>
   </div>
 </div>
