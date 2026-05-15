@@ -2,7 +2,7 @@
   "version": 2,
   "user": 2,
   "userName": "Laura",
-  "exportDate": "2026-05-11T23:30:28.640Z",
+  "exportDate": "2026-05-15T16:27:50.072Z",
   "exercises": [
     {
       "id": "mn5gy4wheajd",
@@ -2132,6 +2132,25 @@
           "setNum": 3,
           "weight": 0,
           "reps": 7,
+          "bodyweight": null
+        }
+      ]
+    },
+    {
+      "id": "mp74btj2bi6i",
+      "date": "2026-05-15",
+      "routineId": "mn5gy4wh6zll",
+      "routineName": "Laura Full Body 3x Week",
+      "dayId": "mn5gy4why6zu",
+      "dayName": "Day B (Pull)",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4whpi7b",
+          "exerciseName": "Deadlift",
+          "setNum": 1,
+          "weight": 230,
+          "reps": 4,
           "bodyweight": null
         }
       ]
