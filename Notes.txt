@@ -1,10 +1,11 @@
 Notes
 
 git add .
-git commit -m "alphabetical sorting"
+git commit -m "added bodyweight goals and tracking"
 git pull --rebase
 git push
 
 
 https://maksymmuntyan.github.io/lift-app
+
 

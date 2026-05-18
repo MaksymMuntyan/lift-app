@@ -2405,7 +2405,7 @@ function confirmBodyweight() {
 //
 //  6) restoreFromGithub() — after activeProgram line (inside per-user loop):
 //       if (json.bwGoal !== undefined) saveBWGoal(json.bwGoal);
-      if (json.bwGoalHistory !== undefined) saveBWGoalHistory(json.bwGoalHistory);
+//       if (json.bwGoalHistory !== undefined) saveBWGoalHistory(json.bwGoalHistory);
 // ═══════════════════════════════════════════════════════════════════════════
 
 // ── BW GOAL STORAGE ────────────────────────────────────────
