@@ -1715,6 +1715,7 @@ function renderStats() {
   renderPRBoard();
   buildChartSeriesList();
   renderChart();
+  renderActivityCalendar();
   // Sync plate button state
   const btn = document.getElementById('pr-plate-btn');
   if (btn) {
@@ -3432,7 +3433,7 @@ let cardioChartInstance = null;
 let calendarPopoverDate = null; // currently open popover date
 
 function renderActivityCalendar() {
-  const el = document.getElementById('cardio-calendar');
+  const el = document.getElementById('activity-calendar');
   if (!el) return;
 
   const cardioSessions = getCardioSessions();
@@ -3451,7 +3452,16 @@ function renderActivityCalendar() {
 
   // Build 8 weeks of days ending today
   const today = todayStr();
-  const todayDate = new Date(today);
+
+  // Local-date helper — avoids UTC shift bugs with toISOString()
+  function localDateStr(d) {
+    const yr = d.getFullYear();
+    const mo = String(d.getMonth()+1).padStart(2,'0');
+    const da = String(d.getDate()).padStart(2,'0');
+    return `${yr}-${mo}-${da}`;
+  }
+
+  const todayDate = new Date(today + 'T12:00:00'); // noon to avoid DST edge cases
 
   // Start on Monday 8 weeks ago
   const startDate = new Date(todayDate);
@@ -3467,14 +3477,14 @@ function renderActivityCalendar() {
     `<div style="text-align:center;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.06em;color:var(--text3);padding-bottom:4px;">${d}</div>`
   ).join('');
 
-  // Build cells
+  // Build cells — always render all days so grid is always visible
   const cells = [];
   const cur = new Date(startDate);
-  while (cur.toISOString().slice(0,10) <= today) {
-    const dateStr = cur.toISOString().slice(0,10);
+  while (localDateStr(cur) <= today) {
+    const dateStr = localDateStr(cur);
     const isToday  = dateStr === today;
     const isFuture = dateStr > today;
-    const data     = dayMap[dateStr];
+    const data     = dayMap[dateStr] || { cardio: [], lift: [] };
 
     let iconsHtml = '';
     let hasActivity = false;
@@ -3497,11 +3507,20 @@ function renderActivityCalendar() {
     const [yr, mo, da] = dateStr.split('-');
     const dayNum = parseInt(da);
 
-    // Show month label on 1st of month or first cell
+    // Show month name on 1st of month, otherwise show day number
     const isFirstOfMonth = dayNum === 1;
     const monthStr = isFirstOfMonth
       ? ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][parseInt(mo)-1]
       : '';
+    const dayDisplay = isFirstOfMonth ? monthStr : String(dayNum);
+
+    // Alternating month shading for readability
+    const monthIdx = parseInt(mo) - 1;
+    const isEvenMonth = monthIdx % 2 === 0;
+    const monthBg = isEvenMonth ? 'var(--surface)' : 'var(--surface2)';
+    const cellBg = isToday ? 'var(--accent)' : hasActivity ? 'var(--accent)22' : monthBg;
+    const cellBorder = isToday ? 'var(--accent)' : hasActivity ? 'var(--accent)' : 'var(--border)';
+    const dayColor = isToday ? '#fff' : isFirstOfMonth ? 'var(--accent)' : hasActivity ? 'var(--accent)' : 'var(--text3)';
 
     cells.push(`
       <div onclick="toggleCalendarPopover('${dateStr}')" style="
@@ -3509,15 +3528,15 @@ function renderActivityCalendar() {
         display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
         padding:3px 1px;
         border-radius:6px;
-        background:${isToday ? 'var(--accent)' : hasActivity ? 'var(--surface2)' : 'transparent'};
-        border:1px solid ${isToday ? 'var(--accent)' : hasActivity ? 'var(--border)' : 'transparent'};
+        background:${cellBg};
+        border:1px solid ${cellBorder};
         min-height:46px;
         position:relative;
       ">
         <div style="font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;
-          color:${isToday ? '#fff' : isFirstOfMonth ? 'var(--accent)' : 'var(--text3)'};
+          color:${dayColor};
           line-height:1.2;letter-spacing:0.04em;">
-          ${isFirstOfMonth ? monthStr : dayNum}
+          ${dayDisplay}
         </div>
         <div style="display:flex;flex-direction:column;align-items:center;margin-top:1px;">
           ${iconsHtml}
@@ -3602,8 +3621,6 @@ function buildCalendarPopover(dateStr, data) {
 function renderCardioScreen() {
   const sessions = getCardioSessions();
   const today = todayStr();
-
-  renderActivityCalendar();
 
   // Type grid
   const grid = document.getElementById('cardio-type-grid');

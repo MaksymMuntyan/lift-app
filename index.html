@@ -883,6 +883,8 @@
     <div style="margin: 8px 16px 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px;">
       <canvas id="progress-chart" height="200"></canvas>
     </div>
+    <div class="section-label" style="margin-top:16px;">ACTIVITY CALENDAR</div>
+    <div id="activity-calendar" style="margin:0 16px 8px;"></div>
     <div style="height: 20px;"></div>
   </div>
 
@@ -890,8 +892,6 @@
   <div class="screen" id="screen-cardio">
     <div class="section-label">LOG CARDIO</div>
     <div style="padding:0 16px 16px;display:grid;grid-template-columns:1fr 1fr;gap:10px;" id="cardio-type-grid"></div>
-    <div class="section-label" style="margin-top:8px;">ACTIVITY CALENDAR</div>
-    <div id="cardio-calendar" style="margin:0 16px 8px;"></div>
     <div class="section-label" style="margin-top:8px;">ACTIVITY LOG</div>
     <div style="display:flex;gap:8px;padding:0 16px 12px;align-items:center;">
       <select class="input" id="cardio-view-period" onchange="renderCardioScreen()" style="flex:1;">
