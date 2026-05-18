@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-05-11T17:44:12.238Z",
+  "exportDate": "2026-05-18T19:31:29.147Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -105,6 +105,15 @@
       "barbell": false
     },
     {
+      "id": "mp5v0q0cecza",
+      "name": "Dumbbell Rear Delt Fly",
+      "category": "Rear Delt",
+      "barbell": false,
+      "cable": false,
+      "bodyweight": false,
+      "dumbbell": true
+    },
+    {
       "id": "mn5gy4vxl6qf",
       "name": "Dumbbell Row",
       "category": "Back",
@@ -138,6 +147,24 @@
       "id": "mo0juauc8d8h",
       "name": "Hammer Curl",
       "category": "Forearms"
+    },
+    {
+      "id": "mp61xki3l6ps",
+      "name": "Hanging Leg Raise",
+      "category": "Abs",
+      "barbell": false,
+      "cable": false,
+      "bodyweight": true,
+      "dumbbell": false
+    },
+    {
+      "id": "mp4n1913vuj4",
+      "name": "High Pull",
+      "category": "Back",
+      "barbell": false,
+      "cable": false,
+      "bodyweight": true,
+      "dumbbell": false
     },
     {
       "id": "mn5gy4vxzzjr",
@@ -236,6 +263,15 @@
       "category": "Chest",
       "bodyweight": true,
       "barbell": false
+    },
+    {
+      "id": "mp5uyk85dp5a",
+      "name": "Seated Dumbbell Curl",
+      "category": "Bicep",
+      "barbell": false,
+      "cable": false,
+      "bodyweight": false,
+      "dumbbell": true
     },
     {
       "id": "mn5gy4vxdytb",
@@ -732,6 +768,255 @@
               "sets": 3,
               "repMin": 10,
               "repMax": 12
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mp5uvnh9vk1b",
+      "name": "4X / Week Bulk",
+      "days": [
+        {
+          "id": "mp5urmmc02fo",
+          "name": "Upper 1",
+          "slots": [
+            {
+              "choices": [
+                "mn5gy4vxujmc"
+              ],
+              "sets": 3,
+              "repMin": 4,
+              "repMax": 6
+            },
+            {
+              "choices": [
+                "mp4n1913vuj4",
+                "mo7op0hbqd0d",
+                "mo7opj8mkm78"
+              ],
+              "sets": 3,
+              "repMin": null,
+              "repMax": "MAX"
+            },
+            {
+              "choices": [
+                "mn5gy4vxx4p2",
+                "mn5gy4vxd95m",
+                "morh6n5m2wsk"
+              ],
+              "sets": 3,
+              "repMin": 8,
+              "repMax": 12
+            },
+            {
+              "choices": [
+                "mp5uyk85dp5a"
+              ],
+              "sets": 3,
+              "repMin": 8,
+              "repMax": 12
+            },
+            {
+              "choices": [
+                "mn5gy4vxbfkf"
+              ],
+              "sets": 3,
+              "repMin": 8,
+              "repMax": 12
+            }
+          ]
+        },
+        {
+          "id": "mp5uvw77vpc8",
+          "name": "Lower 1",
+          "slots": [
+            {
+              "choices": [
+                "mn5gy4vx6rzi"
+              ],
+              "sets": 3,
+              "repMin": 6,
+              "repMax": 8
+            },
+            {
+              "choices": [
+                "mn5gy4vx5udm",
+                "mn5gy4vx2p8a"
+              ],
+              "sets": 3,
+              "repMin": 8,
+              "repMax": 12
+            },
+            {
+              "choices": [
+                "mn5gy4vx38pt"
+              ],
+              "sets": 3,
+              "repMin": 8,
+              "repMax": 12
+            },
+            {
+              "choices": [
+                "mnyuwrrpjgv9"
+              ],
+              "sets": 3,
+              "repMin": 10,
+              "repMax": 15
+            },
+            {
+              "choices": [
+                "mp5v0q0cecza"
+              ],
+              "sets": 3,
+              "repMin": 10,
+              "repMax": 15
+            }
+          ]
+        },
+        {
+          "id": "mp5uwu697vnb",
+          "name": "Upper 2",
+          "slots": [
+            {
+              "choices": [
+                "mn5gy4vximn0"
+              ],
+              "sets": 3,
+              "repMin": 6,
+              "repMax": 8
+            },
+            {
+              "choices": [
+                "mn5gy4vxujmc"
+              ],
+              "sets": 3,
+              "repMin": 8,
+              "repMax": 12
+            },
+            {
+              "choices": [
+                "mn5gy4vxxtfg",
+                "mon6z1yk1e5z",
+                "mn5gy4vxska4"
+              ],
+              "sets": 3,
+              "repMin": null,
+              "repMax": "MAX"
+            },
+            {
+              "choices": [
+                "mn5gy4vxuz63"
+              ],
+              "sets": 3,
+              "repMin": 8,
+              "repMax": 12
+            },
+            {
+              "choices": [
+                "mo0juauc8d8h"
+              ],
+              "sets": 3,
+              "repMin": 8,
+              "repMax": 12
+            }
+          ]
+        },
+        {
+          "id": "mp5ux3vmkoq7",
+          "name": "Lower 2",
+          "slots": [
+            {
+              "choices": [
+                "mn5gy4vxfboo"
+              ],
+              "sets": 3,
+              "repMin": 4,
+              "repMax": 6
+            },
+            {
+              "choices": [
+                "mn5gy4vx6rzi"
+              ],
+              "sets": 3,
+              "repMin": 8,
+              "repMax": 12
+            },
+            {
+              "choices": [
+                "mn5gy4vx6det"
+              ],
+              "sets": 3,
+              "repMin": 8,
+              "repMax": 12
+            },
+            {
+              "choices": [
+                "mn5gy4vx38pt"
+              ],
+              "sets": 3,
+              "repMin": 8,
+              "repMax": 12
+            },
+            {
+              "choices": [
+                "mnyuwrrpjgv9"
+              ],
+              "sets": 3,
+              "repMin": 10,
+              "repMax": 15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mp61x7o1sfwh",
+      "name": "Calisthenics Day",
+      "days": [
+        {
+          "id": "mp61vjov4u4a",
+          "name": "A",
+          "slots": [
+            {
+              "choices": [
+                "mn5gy4vxadhn"
+              ],
+              "sets": 3,
+              "repMin": null,
+              "repMax": "MAX"
+            },
+            {
+              "choices": [
+                "mn5gy4vxvpro"
+              ],
+              "sets": 3,
+              "repMin": null,
+              "repMax": "MAX"
+            },
+            {
+              "choices": [
+                "mon6z1yk1e5z"
+              ],
+              "sets": 3,
+              "repMin": null,
+              "repMax": "MAX"
+            },
+            {
+              "choices": [
+                "morh6n5m2wsk"
+              ],
+              "sets": 3,
+              "repMin": null,
+              "repMax": "MAX"
+            },
+            {
+              "choices": [
+                "mp61xki3l6ps"
+              ],
+              "sets": 3,
+              "repMin": null,
+              "repMax": "MAX"
             }
           ]
         }
@@ -5196,6 +5481,220 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "mp8gyewwp3m2",
+      "date": "2026-05-16",
+      "routineId": "mp61x7o1sfwh",
+      "routineName": "Calisthenics Day",
+      "dayId": "mp61vjov4u4a",
+      "dayName": "A",
+      "bodyweight": 149.4,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 15,
+          "bodyweight": 149.4
+        },
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": 149.4
+        },
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": 149.4
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 15,
+          "bodyweight": 149.4
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": 149.4
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": 149.4
+        },
+        {
+          "exerciseId": "mon6z1yk1e5z",
+          "exerciseName": "Chin-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": 149.4
+        },
+        {
+          "exerciseId": "mon6z1yk1e5z",
+          "exerciseName": "Chin-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": 149.4
+        },
+        {
+          "exerciseId": "morh6n5m2wsk",
+          "exerciseName": "Push-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 25,
+          "bodyweight": 149.4
+        },
+        {
+          "exerciseId": "morh6n5m2wsk",
+          "exerciseName": "Push-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 20,
+          "bodyweight": 149.4
+        },
+        {
+          "exerciseId": "morh6n5m2wsk",
+          "exerciseName": "Push-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 18,
+          "bodyweight": 149.4
+        }
+      ]
+    },
+    {
+      "id": "mpbk0azpiw92",
+      "date": "2026-05-18",
+      "routineId": "mp61x7o1sfwh",
+      "routineName": "Calisthenics Day",
+      "dayId": "mp61vjov4u4a",
+      "dayName": "A",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 15,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 15,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 15,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 15,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 11,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mon6z1yk1e5z",
+          "exerciseName": "Chin-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mon6z1yk1e5z",
+          "exerciseName": "Chin-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mon6z1yk1e5z",
+          "exerciseName": "Chin-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "morh6n5m2wsk",
+          "exerciseName": "Push-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 30,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "morh6n5m2wsk",
+          "exerciseName": "Push-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 25,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "morh6n5m2wsk",
+          "exerciseName": "Push-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 22,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mp61xki3l6ps",
+          "exerciseName": "Hanging Leg Raise",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -5358,6 +5857,18 @@
     {
       "date": "2026-05-07",
       "weight": 149
+    },
+    {
+      "date": "2026-05-14",
+      "weight": 150
+    },
+    {
+      "date": "2026-05-15",
+      "weight": 149.8
+    },
+    {
+      "date": "2026-05-16",
+      "weight": 149.4
     }
   ],
   "cardio": [
@@ -5599,7 +6110,18 @@
       "icon": "🏃",
       "notes": null,
       "distance": 5
+    },
+    {
+      "id": "mpbc1loa20ec",
+      "date": "2026-05-17",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": null,
+      "distance": 5
     }
   ],
-  "activeProgram": null
+  "activeProgram": null,
+  "bwGoal": null,
+  "bwGoalHistory": []
 }
