@@ -111,18 +111,19 @@
     }
     .nav-tab {
       flex: 1;
-      padding: 12px 4px;
+      padding: 10px 2px;
       background: none;
       border: none;
       color: var(--text3);
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 13px;
+      font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       cursor: pointer;
       border-bottom: 2px solid transparent;
       transition: all 0.15s;
+      white-space: nowrap;
     }
     .nav-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
     .nav-tab:active { background: var(--surface); }
@@ -889,6 +890,8 @@
   <div class="screen" id="screen-cardio">
     <div class="section-label">LOG CARDIO</div>
     <div style="padding:0 16px 16px;display:grid;grid-template-columns:1fr 1fr;gap:10px;" id="cardio-type-grid"></div>
+    <div class="section-label" style="margin-top:8px;">ACTIVITY CALENDAR</div>
+    <div id="cardio-calendar" style="margin:0 16px 8px;"></div>
     <div class="section-label" style="margin-top:8px;">ACTIVITY LOG</div>
     <div style="display:flex;gap:8px;padding:0 16px 12px;align-items:center;">
       <select class="input" id="cardio-view-period" onchange="renderCardioScreen()" style="flex:1;">

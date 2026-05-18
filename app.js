@@ -900,6 +900,7 @@ function renderManage() { renderRoutineManageList(); renderExerciseManageList();
 // ── TABS ───────────────────────────────────────────────────
 
 function showTab(name) {
+  if (name !== 'cardio') calendarPopoverDate = null; // close any open day popover
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   document.getElementById('screen-' + name).classList.add('active');
@@ -3423,9 +3424,186 @@ function saveCardioSessions(d) { save('cardio', d); }
 let currentCardioType = null;
 let cardioChartInstance = null;
 
+
+// ── ACTIVITY CALENDAR ──────────────────────────────────────
+// 8-week rolling grid showing cardio icons + 🏋️ for lifting days.
+// Tapping a day opens a detail popover.
+
+let calendarPopoverDate = null; // currently open popover date
+
+function renderActivityCalendar() {
+  const el = document.getElementById('cardio-calendar');
+  if (!el) return;
+
+  const cardioSessions = getCardioSessions();
+  const liftSessions   = getSessions();
+
+  // Build lookup: date → { cardio: [session,...], lift: [session,...] }
+  const dayMap = {};
+  cardioSessions.forEach(s => {
+    if (!dayMap[s.date]) dayMap[s.date] = { cardio: [], lift: [] };
+    dayMap[s.date].cardio.push(s);
+  });
+  liftSessions.forEach(s => {
+    if (!dayMap[s.date]) dayMap[s.date] = { cardio: [], lift: [] };
+    dayMap[s.date].lift.push(s);
+  });
+
+  // Build 8 weeks of days ending today
+  const today = todayStr();
+  const todayDate = new Date(today);
+
+  // Start on Monday 8 weeks ago
+  const startDate = new Date(todayDate);
+  startDate.setDate(startDate.getDate() - 55); // 8 weeks back
+  // Snap to Monday
+  const dow = startDate.getDay();
+  const offset = (dow === 0) ? -6 : 1 - dow;
+  startDate.setDate(startDate.getDate() + offset);
+
+  // Day-of-week headers
+  const dayLabels = ['M','T','W','T','F','S','S'];
+  const headerHtml = dayLabels.map(d =>
+    `<div style="text-align:center;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.06em;color:var(--text3);padding-bottom:4px;">${d}</div>`
+  ).join('');
+
+  // Build cells
+  const cells = [];
+  const cur = new Date(startDate);
+  while (cur.toISOString().slice(0,10) <= today) {
+    const dateStr = cur.toISOString().slice(0,10);
+    const isToday  = dateStr === today;
+    const isFuture = dateStr > today;
+    const data     = dayMap[dateStr];
+
+    let iconsHtml = '';
+    let hasActivity = false;
+
+    if (data && !isFuture) {
+      hasActivity = data.cardio.length > 0 || data.lift.length > 0;
+      const icons = [];
+      // Dedupe cardio icons (one per type per day)
+      const seenTypes = new Set();
+      data.cardio.forEach(s => {
+        if (!seenTypes.has(s.type)) { icons.push(s.icon); seenTypes.add(s.type); }
+      });
+      if (data.lift.length > 0) icons.push('🏋️');
+      // Show up to 2 icons, stack them
+      iconsHtml = icons.slice(0,2).map(ic =>
+        `<div style="font-size:${icons.length > 1 ? '11px' : '14px'};line-height:1.1;">${ic}</div>`
+      ).join('');
+    }
+
+    const [yr, mo, da] = dateStr.split('-');
+    const dayNum = parseInt(da);
+
+    // Show month label on 1st of month or first cell
+    const isFirstOfMonth = dayNum === 1;
+    const monthStr = isFirstOfMonth
+      ? ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][parseInt(mo)-1]
+      : '';
+
+    cells.push(`
+      <div onclick="toggleCalendarPopover('${dateStr}')" style="
+        cursor:pointer;
+        display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+        padding:3px 1px;
+        border-radius:6px;
+        background:${isToday ? 'var(--accent)' : hasActivity ? 'var(--surface2)' : 'transparent'};
+        border:1px solid ${isToday ? 'var(--accent)' : hasActivity ? 'var(--border)' : 'transparent'};
+        min-height:46px;
+        position:relative;
+      ">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;
+          color:${isToday ? '#fff' : isFirstOfMonth ? 'var(--accent)' : 'var(--text3)'};
+          line-height:1.2;letter-spacing:0.04em;">
+          ${isFirstOfMonth ? monthStr : dayNum}
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;margin-top:1px;">
+          ${iconsHtml}
+        </div>
+      </div>`);
+
+    cur.setDate(cur.getDate() + 1);
+  }
+
+  // Pad to full weeks at end
+  const remainingDays = 7 - (cells.length % 7);
+  if (remainingDays < 7) {
+    for (let i = 0; i < remainingDays; i++) {
+      cells.push(`<div style="min-height:46px;"></div>`);
+    }
+  }
+
+  const gridHtml = `
+    <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;">
+      ${headerHtml}
+      ${cells.join('')}
+    </div>`;
+
+  // Popover (re-render below grid if a date is selected)
+  let popoverHtml = '';
+  if (calendarPopoverDate && dayMap[calendarPopoverDate]) {
+    popoverHtml = buildCalendarPopover(calendarPopoverDate, dayMap[calendarPopoverDate]);
+  }
+
+  el.innerHTML = `
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px;">
+      ${gridHtml}
+    </div>
+    ${popoverHtml}`;
+}
+
+function toggleCalendarPopover(dateStr) {
+  calendarPopoverDate = calendarPopoverDate === dateStr ? null : dateStr;
+  renderActivityCalendar();
+}
+
+function buildCalendarPopover(dateStr, data) {
+  if (data.cardio.length === 0 && data.lift.length === 0) return '';
+
+  const rows = [];
+
+  data.cardio.forEach(s => {
+    const details = [];
+    if (s.distance) details.push(`${s.distance} mi`);
+    if (s.duration) details.push(`${s.duration} min`);
+    if (s.notes) details.push(s.notes);
+    rows.push(`
+      <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);">
+        <div style="font-size:20px;width:24px;text-align:center;">${s.icon}</div>
+        <div style="flex:1;">
+          <div style="font-size:14px;font-weight:600;">${s.label}</div>
+          ${details.length ? `<div style="font-size:12px;color:var(--text2);">${details.join(' · ')}</div>` : ''}
+        </div>
+      </div>`);
+  });
+
+  data.lift.forEach(s => {
+    // Unique exercise names
+    const exNames = [...new Set(s.sets.map(st => st.exerciseName).filter(Boolean))];
+    rows.push(`
+      <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);">
+        <div style="font-size:20px;width:24px;text-align:center;">🏋️</div>
+        <div style="flex:1;">
+          <div style="font-size:14px;font-weight:600;">${esc(s.routineName || 'Lifting')}${s.dayName ? ' – ' + esc(s.dayName) : ''}</div>
+          ${exNames.length ? `<div style="font-size:12px;color:var(--text2);">${exNames.map(n => esc(n)).join(', ')}</div>` : ''}
+        </div>
+      </div>`);
+  });
+
+  return `
+    <div style="margin-top:8px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.1em;color:var(--text2);margin-bottom:4px;">${formatDate(dateStr).toUpperCase()}</div>
+      ${rows.join('')}
+    </div>`;
+}
+
 function renderCardioScreen() {
   const sessions = getCardioSessions();
   const today = todayStr();
+
+  renderActivityCalendar();
 
   // Type grid
   const grid = document.getElementById('cardio-type-grid');
