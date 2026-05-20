@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-05-18T19:31:29.147Z",
+  "exportDate": "2026-05-20T14:18:50.231Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -249,6 +249,15 @@
       "category": "Posterior Chain",
       "bodyweight": false,
       "barbell": true
+    },
+    {
+      "id": "mpe4l2javo45",
+      "name": "Ring Chin-Up",
+      "category": "Back",
+      "barbell": false,
+      "cable": false,
+      "bodyweight": true,
+      "dumbbell": false
     },
     {
       "id": "mn5gy4vxvpro",
@@ -5695,6 +5704,89 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "mpe40zgmgsvx",
+      "date": "2026-05-20",
+      "routineId": "mp61x7o1sfwh",
+      "routineName": "Calisthenics Day",
+      "dayId": "mp61vjov4u4a",
+      "dayName": "A",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 15,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 15,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 15,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "morh6n5m2wsk",
+          "exerciseName": "Push-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 27,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "morh6n5m2wsk",
+          "exerciseName": "Push-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 23,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "morh6n5m2wsk",
+          "exerciseName": "Push-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 20,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mpe4l2javo45",
+          "exerciseName": "Ring Chin-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mpe4l2javo45",
+          "exerciseName": "Ring Chin-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mpe4l2javo45",
+          "exerciseName": "Ring Chin-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 9,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -5869,6 +5961,10 @@
     {
       "date": "2026-05-16",
       "weight": 149.4
+    },
+    {
+      "date": "2026-05-19",
+      "weight": 148.8
     }
   ],
   "cardio": [
