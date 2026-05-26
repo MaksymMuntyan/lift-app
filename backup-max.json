@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-05-24T15:06:45.674Z",
+  "exportDate": "2026-05-26T17:48:43.922Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -214,6 +214,15 @@
       "cable": true
     },
     {
+      "id": "mpmx3h3px614",
+      "name": "Paralette Push-Up",
+      "category": "Chest",
+      "barbell": false,
+      "cable": false,
+      "bodyweight": true,
+      "dumbbell": false
+    },
+    {
       "id": "mn5gy4vx2p8a",
       "name": "Pistol Squat",
       "category": "Quads",
@@ -238,6 +247,15 @@
       "id": "morh6n5m2wsk",
       "name": "Push-Up",
       "category": "Chest",
+      "barbell": false,
+      "cable": false,
+      "bodyweight": true,
+      "dumbbell": false
+    },
+    {
+      "id": "mpmwdhx1yoj1",
+      "name": "Rack Chin-Up",
+      "category": "Back",
       "barbell": false,
       "cable": false,
       "bodyweight": true,
@@ -1026,6 +1044,26 @@
               "sets": 3,
               "repMin": null,
               "repMax": "MAX"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mpmw45xwh5mb",
+      "name": "Free",
+      "days": [
+        {
+          "id": "mpmw3y5ai7wg",
+          "name": "Day A",
+          "slots": [
+            {
+              "choices": [
+                "mn5gy4vxadhn"
+              ],
+              "sets": 3,
+              "repMin": null,
+              "repMax": null
             }
           ]
         }
@@ -5870,6 +5908,113 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "mpmw486i0bdv",
+      "date": "2026-05-26",
+      "routineId": "mpmw45xwh5mb",
+      "routineName": "Free",
+      "dayId": "mpmw3y5ai7wg",
+      "dayName": "Day A",
+      "bodyweight": 156,
+      "sets": [
+        {
+          "exerciseId": "morg30tq5q4n",
+          "exerciseName": "Dumbbell Bench Press",
+          "setNum": 1,
+          "weight": 67,
+          "reps": 8,
+          "bodyweight": 156
+        },
+        {
+          "exerciseId": "morg30tq5q4n",
+          "exerciseName": "Dumbbell Bench Press",
+          "setNum": 2,
+          "weight": 67,
+          "reps": 6,
+          "bodyweight": 156
+        },
+        {
+          "exerciseId": "morg30tq5q4n",
+          "exerciseName": "Dumbbell Bench Press",
+          "setNum": 3,
+          "weight": 67,
+          "reps": 6,
+          "bodyweight": 156
+        },
+        {
+          "exerciseId": "mpmwdhx1yoj1",
+          "exerciseName": "Rack Chin-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": 156
+        },
+        {
+          "exerciseId": "mpmwdhx1yoj1",
+          "exerciseName": "Rack Chin-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": 156
+        },
+        {
+          "exerciseId": "mpmwdhx1yoj1",
+          "exerciseName": "Rack Chin-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": 156
+        },
+        {
+          "exerciseId": "mn5gy4vxfboo",
+          "exerciseName": "Squat",
+          "setNum": 1,
+          "weight": 135,
+          "reps": 9,
+          "bodyweight": 156
+        },
+        {
+          "exerciseId": "mn5gy4vxfboo",
+          "exerciseName": "Squat",
+          "setNum": 2,
+          "weight": 135,
+          "reps": 9,
+          "bodyweight": 156
+        },
+        {
+          "exerciseId": "mn5gy4vxfboo",
+          "exerciseName": "Squat",
+          "setNum": 3,
+          "weight": 135,
+          "reps": 9,
+          "bodyweight": 156
+        },
+        {
+          "exerciseId": "mpmx3h3px614",
+          "exerciseName": "Paralette Push-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 30,
+          "bodyweight": 156
+        },
+        {
+          "exerciseId": "mpmx3h3px614",
+          "exerciseName": "Paralette Push-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 26,
+          "bodyweight": 156
+        },
+        {
+          "exerciseId": "mpmx3h3px614",
+          "exerciseName": "Paralette Push-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 25,
+          "bodyweight": 156
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -6048,6 +6193,10 @@
     {
       "date": "2026-05-19",
       "weight": 148.8
+    },
+    {
+      "date": "2026-05-26",
+      "weight": 156
     }
   ],
   "cardio": [
