@@ -2,8 +2,17 @@
   "version": 2,
   "user": 2,
   "userName": "Laura",
-  "exportDate": "2026-05-15T16:52:46.173Z",
+  "exportDate": "2026-05-28T21:54:51.648Z",
   "exercises": [
+    {
+      "id": "mpn6ru5l2mls",
+      "name": "Ab Crunch Machine",
+      "category": "Abs",
+      "barbell": false,
+      "cable": true,
+      "bodyweight": false,
+      "dumbbell": false
+    },
     {
       "id": "mn5gy4wheajd",
       "name": "Barbell Shrug",
@@ -616,14 +625,6 @@
               "sets": 3,
               "repMin": 10,
               "repMax": 12
-            },
-            {
-              "choices": [
-                "mnkkiug32kmf"
-              ],
-              "sets": 3,
-              "repMin": null,
-              "repMax": "MAX"
             }
           ]
         },
@@ -2226,6 +2227,89 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "mppzxbkrx3ra",
+      "date": "2026-05-28",
+      "routineId": "mn5gy4wh6zll",
+      "routineName": "Laura Full Body 3x Week",
+      "dayId": "mn5gy4why6zu",
+      "dayName": "Day B (Pull)",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4whpi7b",
+          "exerciseName": "Deadlift",
+          "setNum": 1,
+          "weight": 225,
+          "reps": 4,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpi7b",
+          "exerciseName": "Deadlift",
+          "setNum": 2,
+          "weight": 225,
+          "reps": 3,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whtim6",
+          "exerciseName": "Weighted Pull-Up",
+          "setNum": 1,
+          "weight": 25,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whtim6",
+          "exerciseName": "Weighted Pull-Up",
+          "setNum": 2,
+          "weight": 10,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whkme0",
+          "exerciseName": "Incline Push-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 15,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whkme0",
+          "exerciseName": "Incline Push-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whkme0",
+          "exerciseName": "Incline Push-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whvetd",
+          "exerciseName": "Dumbbell Split Squat",
+          "setNum": 1,
+          "weight": 64,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whvetd",
+          "exerciseName": "Dumbbell Split Squat",
+          "setNum": 2,
+          "weight": 64,
+          "reps": 8,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -2325,6 +2409,15 @@
       "type": "jumprope",
       "label": "Jump Rope",
       "icon": "🪢",
+      "notes": null,
+      "duration": 15
+    },
+    {
+      "id": "mpn7plqs28v4",
+      "date": "2026-05-26",
+      "type": "other",
+      "label": "Stair Master",
+      "icon": "➕",
       "notes": null,
       "duration": 15
     }
