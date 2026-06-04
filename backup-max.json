@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-05-30T14:17:34.455Z",
+  "exportDate": "2026-06-04T03:41:49.522Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -6123,6 +6123,113 @@
           "bodyweight": 151
         }
       ]
+    },
+    {
+      "id": "mpyy6mpduk09",
+      "date": "2026-06-03",
+      "routineId": "mpmw45xwh5mb",
+      "routineName": "Free",
+      "dayId": "mpmw3y5ai7wg",
+      "dayName": "Day A",
+      "bodyweight": 148.6,
+      "sets": [
+        {
+          "exerciseId": "morg30tq5q4n",
+          "exerciseName": "Dumbbell Bench Press",
+          "setNum": 1,
+          "weight": 67,
+          "reps": 9,
+          "bodyweight": 148.6
+        },
+        {
+          "exerciseId": "morg30tq5q4n",
+          "exerciseName": "Dumbbell Bench Press",
+          "setNum": 2,
+          "weight": 67,
+          "reps": 6,
+          "bodyweight": 148.6
+        },
+        {
+          "exerciseId": "morg30tq5q4n",
+          "exerciseName": "Dumbbell Bench Press",
+          "setNum": 3,
+          "weight": 67,
+          "reps": 5,
+          "bodyweight": 148.6
+        },
+        {
+          "exerciseId": "mpmwdhx1yoj1",
+          "exerciseName": "Rack Chin-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 13,
+          "bodyweight": 148.6
+        },
+        {
+          "exerciseId": "mpmwdhx1yoj1",
+          "exerciseName": "Rack Chin-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 13,
+          "bodyweight": 148.6
+        },
+        {
+          "exerciseId": "mpmwdhx1yoj1",
+          "exerciseName": "Rack Chin-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 14,
+          "bodyweight": 148.6
+        },
+        {
+          "exerciseId": "mpmx3h3px614",
+          "exerciseName": "Paralette Push-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 30,
+          "bodyweight": 148.6
+        },
+        {
+          "exerciseId": "mpmx3h3px614",
+          "exerciseName": "Paralette Push-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 24,
+          "bodyweight": 148.6
+        },
+        {
+          "exerciseId": "mpmx3h3px614",
+          "exerciseName": "Paralette Push-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 20,
+          "bodyweight": 148.6
+        },
+        {
+          "exerciseId": "mn5gy4vxfboo",
+          "exerciseName": "Squat",
+          "setNum": 1,
+          "weight": 175,
+          "reps": 5,
+          "bodyweight": 148.6
+        },
+        {
+          "exerciseId": "mn5gy4vxfboo",
+          "exerciseName": "Squat",
+          "setNum": 2,
+          "weight": 185,
+          "reps": 5,
+          "bodyweight": 148.6
+        },
+        {
+          "exerciseId": "mn5gy4vxfboo",
+          "exerciseName": "Squat",
+          "setNum": 3,
+          "weight": 185,
+          "reps": 2,
+          "bodyweight": 148.6
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -6317,6 +6424,18 @@
     {
       "date": "2026-05-30",
       "weight": 151
+    },
+    {
+      "date": "2026-05-31",
+      "weight": 151.8
+    },
+    {
+      "date": "2026-06-02",
+      "weight": 148.8
+    },
+    {
+      "date": "2026-06-03",
+      "weight": 148.6
     }
   ],
   "cardio": [
@@ -6576,6 +6695,58 @@
       "icon": "🏃",
       "notes": null,
       "distance": 2
+    },
+    {
+      "id": "mpsic963lv3g",
+      "date": "2026-05-30",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": "Tough",
+      "distance": 2.5
+    },
+    {
+      "id": "mpu3appuaqad",
+      "date": "2026-05-31",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": null,
+      "distance": 3.2
+    },
+    {
+      "id": "mpu3b5wjndq4",
+      "date": "2026-05-31",
+      "type": "other",
+      "label": "Bike",
+      "icon": "➕",
+      "notes": "4.5 mile",
+      "duration": 38
+    },
+    {
+      "id": "mpyc08z1qzs5",
+      "date": "2026-06-01",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": null
+    },
+    {
+      "id": "mpybzyrjypie",
+      "date": "2026-06-02",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": null
+    },
+    {
+      "id": "mpypz38m5i8j",
+      "date": "2026-06-03",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": null,
+      "distance": 5
     }
   ],
   "activeProgram": null,
