@@ -2,7 +2,7 @@
   "version": 2,
   "user": 2,
   "userName": "Laura",
-  "exportDate": "2026-06-02T21:44:23.077Z",
+  "exportDate": "2026-06-05T17:54:00.570Z",
   "exercises": [
     {
       "id": "mpn6ru5l2mls",
@@ -2492,6 +2492,113 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "mq16w4j390hy",
+      "date": "2026-06-05",
+      "routineId": "mn5gy4wh6zll",
+      "routineName": "Laura Full Body 3x Week",
+      "dayId": "mn5gy4whfcs6",
+      "dayName": "Day A (Push)",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4whhh4f",
+          "exerciseName": "Squat",
+          "setNum": 1,
+          "weight": 155,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whhh4f",
+          "exerciseName": "Squat",
+          "setNum": 2,
+          "weight": 155,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whhh4f",
+          "exerciseName": "Squat",
+          "setNum": 3,
+          "weight": 155,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpbhj",
+          "exerciseName": "Ring Dip",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpbhj",
+          "exerciseName": "Ring Dip",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpbhj",
+          "exerciseName": "Ring Dip",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 4,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whi1e9",
+          "exerciseName": "Cable Row",
+          "setNum": 1,
+          "weight": 130,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whi1e9",
+          "exerciseName": "Cable Row",
+          "setNum": 2,
+          "weight": 130,
+          "reps": 11,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whi1e9",
+          "exerciseName": "Cable Row",
+          "setNum": 3,
+          "weight": 130,
+          "reps": 9,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whj8vd",
+          "exerciseName": "RDL",
+          "setNum": 1,
+          "weight": 135,
+          "reps": 14,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whj8vd",
+          "exerciseName": "RDL",
+          "setNum": 2,
+          "weight": 135,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whj8vd",
+          "exerciseName": "RDL",
+          "setNum": 3,
+          "weight": 135,
+          "reps": 12,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -2602,6 +2709,24 @@
       "icon": "➕",
       "notes": null,
       "duration": 15
+    },
+    {
+      "id": "mpx63fzkwxr7",
+      "date": "2026-06-01",
+      "type": "other",
+      "label": "Soccer",
+      "icon": "➕",
+      "notes": "Didn’t do great !",
+      "duration": 60
+    },
+    {
+      "id": "mpywj15ta7qn",
+      "date": "2026-06-03",
+      "type": "other",
+      "label": "Soccer",
+      "icon": "➕",
+      "notes": "Went well! Scored a goal even though we lost",
+      "duration": 60
     }
   ],
   "activeProgram": null
