@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-06-04T03:41:49.522Z",
+  "exportDate": "2026-06-06T21:01:32.479Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -6230,6 +6230,97 @@
           "bodyweight": 148.6
         }
       ]
+    },
+    {
+      "id": "mq2sn7u6xhv8",
+      "date": "2026-06-06",
+      "routineId": "mpmw45xwh5mb",
+      "routineName": "Free",
+      "dayId": "mpmw3y5ai7wg",
+      "dayName": "Day A",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "morh6n5m2wsk",
+          "exerciseName": "Push-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 25,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "morh6n5m2wsk",
+          "exerciseName": "Push-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 25,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "morh6n5m2wsk",
+          "exerciseName": "Push-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 26,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "morh6n5m2wsk",
+          "exerciseName": "Push-Up",
+          "setNum": 4,
+          "weight": 0,
+          "reps": 25,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "morh6n5m2wsk",
+          "exerciseName": "Push-Up",
+          "setNum": 5,
+          "weight": 0,
+          "reps": 25,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "morh6n5m2wsk",
+          "exerciseName": "Push-Up",
+          "setNum": 6,
+          "weight": 0,
+          "reps": 25,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "morh6n5m2wsk",
+          "exerciseName": "Push-Up",
+          "setNum": 7,
+          "weight": 0,
+          "reps": 25,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "morh6n5m2wsk",
+          "exerciseName": "Push-Up",
+          "setNum": 8,
+          "weight": 0,
+          "reps": 25,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "morh6n5m2wsk",
+          "exerciseName": "Push-Up",
+          "setNum": 9,
+          "weight": 0,
+          "reps": 25,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "morh6n5m2wsk",
+          "exerciseName": "Push-Up",
+          "setNum": 10,
+          "weight": 0,
+          "reps": 26,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -6436,6 +6527,10 @@
     {
       "date": "2026-06-03",
       "weight": 148.6
+    },
+    {
+      "date": "2026-06-05",
+      "weight": 150.6
     }
   ],
   "cardio": [
