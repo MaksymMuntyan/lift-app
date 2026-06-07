@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-06-06T21:01:32.479Z",
+  "exportDate": "2026-06-07T17:43:35.056Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -308,6 +308,15 @@
       "cable": false,
       "bodyweight": false,
       "dumbbell": true
+    },
+    {
+      "id": "mq401kt4tzeb",
+      "name": "Shoulder Machine Press",
+      "category": "Delt",
+      "barbell": false,
+      "cable": true,
+      "bodyweight": false,
+      "dumbbell": false
     },
     {
       "id": "mn5gy4vxdytb",
@@ -6318,6 +6327,65 @@
           "setNum": 10,
           "weight": 0,
           "reps": 26,
+          "bodyweight": null
+        }
+      ]
+    },
+    {
+      "id": "mq3zvd9jz4wn",
+      "date": "2026-06-07",
+      "routineId": "mpmw45xwh5mb",
+      "routineName": "Free",
+      "dayId": "mpmw3y5ai7wg",
+      "dayName": "Day A",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 4,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mq401kt4tzeb",
+          "exerciseName": "Shoulder Machine Press",
+          "setNum": 1,
+          "weight": 70,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mq401kt4tzeb",
+          "exerciseName": "Shoulder Machine Press",
+          "setNum": 2,
+          "weight": 60,
+          "reps": 9,
           "bodyweight": null
         }
       ]
