@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-06-09T21:45:08.587Z",
+  "exportDate": "2026-06-13T18:20:31.907Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -6493,6 +6493,89 @@
           "setNum": 12,
           "weight": 0,
           "reps": 25,
+          "bodyweight": null
+        }
+      ]
+    },
+    {
+      "id": "mqcnsngzafyl",
+      "date": "2026-06-13",
+      "routineId": "mpmw45xwh5mb",
+      "routineName": "Free",
+      "dayId": "mpmw3y5ai7wg",
+      "dayName": "Day A",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 15,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 15,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxfboo",
+          "exerciseName": "Squat",
+          "setNum": 1,
+          "weight": 185,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxfboo",
+          "exerciseName": "Squat",
+          "setNum": 2,
+          "weight": 165,
+          "reps": 7,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxfboo",
+          "exerciseName": "Squat",
+          "setNum": 3,
+          "weight": 165,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxbwt6",
+          "exerciseName": "Dip",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 20,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxbwt6",
+          "exerciseName": "Dip",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 20,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxbwt6",
+          "exerciseName": "Dip",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 23,
           "bodyweight": null
         }
       ]
