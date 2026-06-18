@@ -2,7 +2,7 @@
   "version": 2,
   "user": 2,
   "userName": "Laura",
-  "exportDate": "2026-06-13T18:18:32.203Z",
+  "exportDate": "2026-06-18T21:55:28.077Z",
   "exercises": [
     {
       "id": "mpn6ru5l2mls",
@@ -2781,6 +2781,65 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "mqk0ok7w1cxw",
+      "date": "2026-06-18",
+      "routineId": "mn5gy4wh6zll",
+      "routineName": "Laura Full Body 3x Week",
+      "dayId": "mn5gy4why6zu",
+      "dayName": "Day B (Pull)",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4whpi7b",
+          "exerciseName": "Deadlift",
+          "setNum": 1,
+          "weight": 225,
+          "reps": 3,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whkme0",
+          "exerciseName": "Incline Push-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whkme0",
+          "exerciseName": "Incline Push-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whgv21",
+          "exerciseName": "Pull-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whgv21",
+          "exerciseName": "Pull-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whgv21",
+          "exerciseName": "Pull-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 5,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -2908,6 +2967,15 @@
       "label": "Soccer",
       "icon": "➕",
       "notes": "Went well! Scored a goal even though we lost",
+      "duration": 60
+    },
+    {
+      "id": "mqjhtagwq48b",
+      "date": "2026-06-17",
+      "type": "other",
+      "label": "Soccer",
+      "icon": "➕",
+      "notes": "Meh",
       "duration": 60
     }
   ],
