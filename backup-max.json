@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-06-17T23:24:46.753Z",
+  "exportDate": "2026-06-19T21:03:34.071Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -142,6 +142,15 @@
       "category": "Forearms",
       "bodyweight": false,
       "barbell": false
+    },
+    {
+      "id": "mqjk5j2ifwgs",
+      "name": "Farmer’s Walk",
+      "category": "Forearm",
+      "barbell": false,
+      "cable": false,
+      "bodyweight": false,
+      "dumbbell": true
     },
     {
       "id": "mo0juauc8d8h",
@@ -903,7 +912,8 @@
             },
             {
               "choices": [
-                "mnyuwrrpjgv9"
+                "mnyuwrrpjgv9",
+                "mqjk5j2ifwgs"
               ],
               "sets": 3,
               "repMin": 10,
@@ -943,7 +953,8 @@
               "choices": [
                 "mn5gy4vxxtfg",
                 "mon6z1yk1e5z",
-                "mn5gy4vxska4"
+                "mn5gy4vxska4",
+                "mn5gy4vxl6qf"
               ],
               "sets": 3,
               "repMin": null,
@@ -1005,7 +1016,8 @@
             },
             {
               "choices": [
-                "mnyuwrrpjgv9"
+                "mnyuwrrpjgv9",
+                "mqjk5j2ifwgs"
               ],
               "sets": 3,
               "repMin": 10,
@@ -6710,6 +6722,41 @@
           "bodyweight": 158.2
         }
       ]
+    },
+    {
+      "id": "mqlf0oq80i9x",
+      "date": "2026-06-19",
+      "routineId": "mp5uvnh9vk1b",
+      "routineName": "4X / Week Bulk",
+      "dayId": "mp5uwu697vnb",
+      "dayName": "Upper 2",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxujmc",
+          "exerciseName": "Bench Press",
+          "setNum": 1,
+          "weight": 135,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxujmc",
+          "exerciseName": "Bench Press",
+          "setNum": 2,
+          "weight": 145,
+          "reps": 9,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxujmc",
+          "exerciseName": "Bench Press",
+          "setNum": 3,
+          "weight": 145,
+          "reps": 8,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -7244,6 +7291,14 @@
       "icon": "🏃",
       "notes": null,
       "distance": 4.5
+    },
+    {
+      "id": "mqlds78xkrmw",
+      "date": "2026-06-18",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": null
     }
   ],
   "activeProgram": null,
