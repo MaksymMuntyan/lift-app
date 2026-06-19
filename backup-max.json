@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-06-19T21:03:34.071Z",
+  "exportDate": "2026-06-19T21:06:21.532Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -6724,7 +6724,7 @@
       ]
     },
     {
-      "id": "mqlf0oq80i9x",
+      "id": "mqlf1zndnbsk",
       "date": "2026-06-19",
       "routineId": "mp5uvnh9vk1b",
       "routineName": "4X / Week Bulk",
@@ -6732,6 +6732,30 @@
       "dayName": "Upper 2",
       "bodyweight": null,
       "sets": [
+        {
+          "exerciseId": "mn5gy4vximn0",
+          "exerciseName": "Weighted Pull-Up",
+          "setNum": 1,
+          "weight": 85,
+          "reps": 2,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vximn0",
+          "exerciseName": "Weighted Pull-Up",
+          "setNum": 2,
+          "weight": 85,
+          "reps": 1,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vximn0",
+          "exerciseName": "Weighted Pull-Up",
+          "setNum": 3,
+          "weight": 85,
+          "reps": 2,
+          "bodyweight": null
+        },
         {
           "exerciseId": "mn5gy4vxujmc",
           "exerciseName": "Bench Press",
@@ -6754,6 +6778,78 @@
           "setNum": 3,
           "weight": 145,
           "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mon6z1yk1e5z",
+          "exerciseName": "Chin-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mon6z1yk1e5z",
+          "exerciseName": "Chin-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mon6z1yk1e5z",
+          "exerciseName": "Chin-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxuz63",
+          "exerciseName": "Overhead Tricep Extension",
+          "setNum": 1,
+          "weight": 65,
+          "reps": 9,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxuz63",
+          "exerciseName": "Overhead Tricep Extension",
+          "setNum": 2,
+          "weight": 65,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxuz63",
+          "exerciseName": "Overhead Tricep Extension",
+          "setNum": 3,
+          "weight": 65,
+          "reps": 7,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mo0juauc8d8h",
+          "exerciseName": "Hammer Curl",
+          "setNum": 1,
+          "weight": 39,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mo0juauc8d8h",
+          "exerciseName": "Hammer Curl",
+          "setNum": 2,
+          "weight": 39,
+          "reps": 9,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mo0juauc8d8h",
+          "exerciseName": "Hammer Curl",
+          "setNum": 3,
+          "weight": 39,
+          "reps": 10,
           "bodyweight": null
         }
       ]
