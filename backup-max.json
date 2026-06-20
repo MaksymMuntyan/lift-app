@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-06-19T21:06:21.532Z",
+  "exportDate": "2026-06-20T17:23:40.715Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -6853,6 +6853,137 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "mqmfok67kz2h",
+      "date": "2026-06-20",
+      "routineId": "mp5uvnh9vk1b",
+      "routineName": "4X / Week Bulk",
+      "dayId": "mp5ux3vmkoq7",
+      "dayName": "Lower 2",
+      "bodyweight": 153.8,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxfboo",
+          "exerciseName": "Squat",
+          "setNum": 1,
+          "weight": 185,
+          "reps": 6,
+          "bodyweight": 153.8
+        },
+        {
+          "exerciseId": "mn5gy4vxfboo",
+          "exerciseName": "Squat",
+          "setNum": 2,
+          "weight": 185,
+          "reps": 6,
+          "bodyweight": 153.8
+        },
+        {
+          "exerciseId": "mn5gy4vxfboo",
+          "exerciseName": "Squat",
+          "setNum": 3,
+          "weight": 185,
+          "reps": 2,
+          "bodyweight": 153.8
+        },
+        {
+          "exerciseId": "mn5gy4vx6rzi",
+          "exerciseName": "RDL",
+          "setNum": 1,
+          "weight": 165,
+          "reps": 12,
+          "bodyweight": 153.8
+        },
+        {
+          "exerciseId": "mn5gy4vx6rzi",
+          "exerciseName": "RDL",
+          "setNum": 2,
+          "weight": 175,
+          "reps": 10,
+          "bodyweight": 153.8
+        },
+        {
+          "exerciseId": "mn5gy4vx6rzi",
+          "exerciseName": "RDL",
+          "setNum": 3,
+          "weight": 175,
+          "reps": 9,
+          "bodyweight": 153.8
+        },
+        {
+          "exerciseId": "mn5gy4vx6det",
+          "exerciseName": "Barbell Shrug",
+          "setNum": 1,
+          "weight": 205,
+          "reps": 12,
+          "bodyweight": 153.8
+        },
+        {
+          "exerciseId": "mn5gy4vx6det",
+          "exerciseName": "Barbell Shrug",
+          "setNum": 2,
+          "weight": 215,
+          "reps": 12,
+          "bodyweight": 153.8
+        },
+        {
+          "exerciseId": "mn5gy4vx6det",
+          "exerciseName": "Barbell Shrug",
+          "setNum": 3,
+          "weight": 215,
+          "reps": 12,
+          "bodyweight": 153.8
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 1,
+          "weight": 140,
+          "reps": 15,
+          "bodyweight": 153.8
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 2,
+          "weight": 145,
+          "reps": 12,
+          "bodyweight": 153.8
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 3,
+          "weight": 145,
+          "reps": 12,
+          "bodyweight": 153.8
+        },
+        {
+          "exerciseId": "mnyuwrrpjgv9",
+          "exerciseName": "Standing Barbell Wrist Curl",
+          "setNum": 1,
+          "weight": 155,
+          "reps": 15,
+          "bodyweight": 153.8
+        },
+        {
+          "exerciseId": "mnyuwrrpjgv9",
+          "exerciseName": "Standing Barbell Wrist Curl",
+          "setNum": 2,
+          "weight": 155,
+          "reps": 15,
+          "bodyweight": 153.8
+        },
+        {
+          "exerciseId": "mnyuwrrpjgv9",
+          "exerciseName": "Standing Barbell Wrist Curl",
+          "setNum": 3,
+          "weight": 155,
+          "reps": 15,
+          "bodyweight": 153.8
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -7067,6 +7198,10 @@
     {
       "date": "2026-06-17",
       "weight": 158.2
+    },
+    {
+      "date": "2026-06-20",
+      "weight": 153.8
     }
   ],
   "cardio": [
@@ -7389,12 +7524,37 @@
       "distance": 4.5
     },
     {
+      "id": "mqmfnwt76ogn",
+      "date": "2026-06-11",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": null
+    },
+    {
+      "id": "mqmfo1rmsvli",
+      "date": "2026-06-15",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": null
+    },
+    {
       "id": "mqlds78xkrmw",
       "date": "2026-06-18",
       "type": "bjj",
       "label": "BJJ",
       "icon": "🥋",
       "notes": null
+    },
+    {
+      "id": "mqlf7dg1k638",
+      "date": "2026-06-19",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": null,
+      "distance": 3.1
     }
   ],
   "activeProgram": null,
