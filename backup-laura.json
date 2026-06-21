@@ -2,7 +2,7 @@
   "version": 2,
   "user": 2,
   "userName": "Laura",
-  "exportDate": "2026-06-18T21:55:28.077Z",
+  "exportDate": "2026-06-21T02:37:48.597Z",
   "exercises": [
     {
       "id": "mpn6ru5l2mls",
@@ -2840,6 +2840,25 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "mqn6f85ea0ui",
+      "date": "2026-06-20",
+      "routineId": "mn5gy4wh6zll",
+      "routineName": "Laura Full Body 3x Week",
+      "dayId": "mn5gy4whfcs6",
+      "dayName": "Day A (Push)",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4whhh4f",
+          "exerciseName": "Squat",
+          "setNum": 1,
+          "weight": 160,
+          "reps": 1,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -2976,6 +2995,15 @@
       "label": "Soccer",
       "icon": "➕",
       "notes": "Meh",
+      "duration": 60
+    },
+    {
+      "id": "mqn6e8x2ow7d",
+      "date": "2026-06-20",
+      "type": "other",
+      "label": "Soccer",
+      "icon": "➕",
+      "notes": "Horrible",
       "duration": 60
     }
   ],
