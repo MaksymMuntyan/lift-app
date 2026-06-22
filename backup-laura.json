@@ -2,7 +2,7 @@
   "version": 2,
   "user": 2,
   "userName": "Laura",
-  "exportDate": "2026-06-21T02:37:48.597Z",
+  "exportDate": "2026-06-22T00:19:14.784Z",
   "exercises": [
     {
       "id": "mpn6ru5l2mls",
@@ -2842,8 +2842,8 @@
       ]
     },
     {
-      "id": "mqn6f85ea0ui",
-      "date": "2026-06-20",
+      "id": "mqog4v8qpapn",
+      "date": "2026-06-21",
       "routineId": "mn5gy4wh6zll",
       "routineName": "Laura Full Body 3x Week",
       "dayId": "mn5gy4whfcs6",
@@ -2851,11 +2851,75 @@
       "bodyweight": null,
       "sets": [
         {
-          "exerciseId": "mn5gy4whhh4f",
-          "exerciseName": "Squat",
+          "exerciseId": "mn5gy4whpbhj",
+          "exerciseName": "Ring Dip",
           "setNum": 1,
-          "weight": 160,
-          "reps": 1,
+          "weight": 0,
+          "reps": 7,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpbhj",
+          "exerciseName": "Ring Dip",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 4,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpbhj",
+          "exerciseName": "Ring Dip",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 3,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whgv21",
+          "exerciseName": "Pull-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whgv21",
+          "exerciseName": "Pull-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whgv21",
+          "exerciseName": "Pull-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4wh7cfu",
+          "exerciseName": "Pistol Squat",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4wh7cfu",
+          "exerciseName": "Pistol Squat",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4wh7cfu",
+          "exerciseName": "Pistol Squat",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 9,
           "bodyweight": null
         }
       ]
@@ -3004,6 +3068,15 @@
       "label": "Soccer",
       "icon": "➕",
       "notes": "Horrible",
+      "duration": 60
+    },
+    {
+      "id": "mqogketknhya",
+      "date": "2026-06-21",
+      "type": "other",
+      "label": "Soccer",
+      "icon": "➕",
+      "notes": "We won, did ok, didn’t shoot well",
       "duration": 60
     }
   ],
