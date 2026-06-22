@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-06-20T17:23:40.715Z",
+  "exportDate": "2026-06-22T17:48:07.846Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -6984,6 +6984,137 @@
           "bodyweight": 153.8
         }
       ]
+    },
+    {
+      "id": "mqpgxbq2tiy3",
+      "date": "2026-06-22",
+      "routineId": "mp5uvnh9vk1b",
+      "routineName": "4X / Week Bulk",
+      "dayId": "mp5urmmc02fo",
+      "dayName": "Upper 1",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxujmc",
+          "exerciseName": "Bench Press",
+          "setNum": 1,
+          "weight": 165,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxujmc",
+          "exerciseName": "Bench Press",
+          "setNum": 2,
+          "weight": 165,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxujmc",
+          "exerciseName": "Bench Press",
+          "setNum": 3,
+          "weight": 165,
+          "reps": 4,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mo7opj8mkm78",
+          "exerciseName": "Muscle-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 4,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mo7opj8mkm78",
+          "exerciseName": "Muscle-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 3,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mo7opj8mkm78",
+          "exerciseName": "Muscle-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 3,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mp5uyk85dp5a",
+          "exerciseName": "Seated Dumbbell Curl",
+          "setNum": 1,
+          "weight": 30,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mp5uyk85dp5a",
+          "exerciseName": "Seated Dumbbell Curl",
+          "setNum": 2,
+          "weight": 30,
+          "reps": 7,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mp5uyk85dp5a",
+          "exerciseName": "Seated Dumbbell Curl",
+          "setNum": 3,
+          "weight": 30,
+          "reps": 7,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 1,
+          "weight": 90,
+          "reps": 15,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 2,
+          "weight": 90,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 3,
+          "weight": 90,
+          "reps": 15,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mpmx3h3px614",
+          "exerciseName": "Paralette Push-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 25,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mpmx3h3px614",
+          "exerciseName": "Paralette Push-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 25,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mpmx3h3px614",
+          "exerciseName": "Paralette Push-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 25,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -7555,6 +7686,14 @@
       "icon": "🏃",
       "notes": null,
       "distance": 3.1
+    },
+    {
+      "id": "mqmmmx3mztu1",
+      "date": "2026-06-20",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": null
     }
   ],
   "activeProgram": null,
