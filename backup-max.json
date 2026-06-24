@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-06-22T17:48:07.846Z",
+  "exportDate": "2026-06-24T17:43:10.626Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -151,6 +151,15 @@
       "cable": false,
       "bodyweight": false,
       "dumbbell": true
+    },
+    {
+      "id": "mqsbw87tyuts",
+      "name": "Front Squat",
+      "category": "Quad",
+      "barbell": true,
+      "cable": false,
+      "bodyweight": false,
+      "dumbbell": false
     },
     {
       "id": "mo0juauc8d8h",
@@ -7115,6 +7124,137 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "mqsbo30c427n",
+      "date": "2026-06-24",
+      "routineId": "mp5uvnh9vk1b",
+      "routineName": "4X / Week Bulk",
+      "dayId": "mp5uvw77vpc8",
+      "dayName": "Lower 1",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vx6rzi",
+          "exerciseName": "RDL",
+          "setNum": 1,
+          "weight": 195,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vx6rzi",
+          "exerciseName": "RDL",
+          "setNum": 2,
+          "weight": 205,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vx6rzi",
+          "exerciseName": "RDL",
+          "setNum": 3,
+          "weight": 205,
+          "reps": 7,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 1,
+          "weight": 150,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 2,
+          "weight": 150,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 3,
+          "weight": 150,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mnyuwrrpjgv9",
+          "exerciseName": "Standing Barbell Wrist Curl",
+          "setNum": 1,
+          "weight": 160,
+          "reps": 15,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mnyuwrrpjgv9",
+          "exerciseName": "Standing Barbell Wrist Curl",
+          "setNum": 2,
+          "weight": 160,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mnyuwrrpjgv9",
+          "exerciseName": "Standing Barbell Wrist Curl",
+          "setNum": 3,
+          "weight": 160,
+          "reps": 15,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mp5v0q0cecza",
+          "exerciseName": "Dumbbell Rear Delt Fly",
+          "setNum": 1,
+          "weight": 32,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mp5v0q0cecza",
+          "exerciseName": "Dumbbell Rear Delt Fly",
+          "setNum": 2,
+          "weight": 32,
+          "reps": 11,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mp5v0q0cecza",
+          "exerciseName": "Dumbbell Rear Delt Fly",
+          "setNum": 3,
+          "weight": 32,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mqsbw87tyuts",
+          "exerciseName": "Front Squat",
+          "setNum": 1,
+          "weight": 95,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mqsbw87tyuts",
+          "exerciseName": "Front Squat",
+          "setNum": 2,
+          "weight": 95,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mqsbw87tyuts",
+          "exerciseName": "Front Squat",
+          "setNum": 3,
+          "weight": 105,
+          "reps": 7,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -7690,6 +7830,22 @@
     {
       "id": "mqmmmx3mztu1",
       "date": "2026-06-20",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": null
+    },
+    {
+      "id": "mqrj6z15u2qy",
+      "date": "2026-06-22",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": null
+    },
+    {
+      "id": "mqrj72emsond",
+      "date": "2026-06-23",
       "type": "bjj",
       "label": "BJJ",
       "icon": "🥋",
