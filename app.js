@@ -3484,125 +3484,123 @@ function renderActivityCalendar() {
     dayMap[s.date].lift.push(s);
   });
 
-  // Build 8 weeks of days ending today
   const today = todayStr();
+  const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const DAY_LABELS  = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
-  // Local-date helper — avoids UTC shift bugs with toISOString()
   function localDateStr(d) {
-    const yr = d.getFullYear();
-    const mo = String(d.getMonth()+1).padStart(2,'0');
-    const da = String(d.getDate()).padStart(2,'0');
-    return `${yr}-${mo}-${da}`;
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
   }
 
-  const todayDate = new Date(today + 'T12:00:00'); // noon to avoid DST edge cases
+  // Build the 3 months to show: 2 months ago, last month, current month
+  const now = new Date(today + 'T12:00:00');
+  const months = [];
+  for (let offset = 2; offset >= 0; offset--) {
+    const d = new Date(now.getFullYear(), now.getMonth() - offset, 1);
+    months.push({ year: d.getFullYear(), month: d.getMonth() }); // month is 0-based
+  }
 
-  // Start on Monday 8 weeks ago
-  const startDate = new Date(todayDate);
-  startDate.setDate(startDate.getDate() - 55); // 8 weeks back
-  // Snap to Monday
-  const dow = startDate.getDay();
-  const offset = (dow === 0) ? -6 : 1 - dow;
-  startDate.setDate(startDate.getDate() + offset);
-
-  // Day-of-week headers
-  const dayLabels = ['M','T','W','T','F','S','S'];
-  const headerHtml = dayLabels.map(d =>
+  // Day-of-week header (Sun–Sat)
+  const headerHtml = DAY_LABELS.map(d =>
     `<div style="text-align:center;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.06em;color:var(--text3);padding-bottom:4px;">${d}</div>`
   ).join('');
 
-  // Build cells — always render all days so grid is always visible
-  const cells = [];
-  const cur = new Date(startDate);
-  while (localDateStr(cur) <= today) {
-    const dateStr = localDateStr(cur);
-    const isToday  = dateStr === today;
-    const isFuture = dateStr > today;
-    const data     = dayMap[dateStr] || { cardio: [], lift: [] };
+  function buildCell(dateStr, isGhost) {
+    const [yr, mo, da] = dateStr.split('-').map(Number);
+    const dayNum = da;
+    const isToday   = dateStr === today;
+    const isFuture  = dateStr > today;
+    const data      = dayMap[dateStr] || { cardio: [], lift: [] };
+    const hasActivity = !isFuture && (data.cardio.length > 0 || data.lift.length > 0);
 
     let iconsHtml = '';
-    let hasActivity = false;
-
-    if (data && !isFuture) {
-      hasActivity = data.cardio.length > 0 || data.lift.length > 0;
+    if (hasActivity) {
       const icons = [];
-      // Dedupe cardio icons (one per type per day)
       const seenTypes = new Set();
       data.cardio.forEach(s => {
         if (!seenTypes.has(s.type)) { icons.push(s.icon); seenTypes.add(s.type); }
       });
       if (data.lift.length > 0) icons.push('🏋️');
-      // Show up to 2 icons, stack them
       iconsHtml = icons.slice(0,2).map(ic =>
         `<div style="font-size:${icons.length > 1 ? '11px' : '14px'};line-height:1.1;">${ic}</div>`
       ).join('');
     }
 
-    const [yr, mo, da] = dateStr.split('-');
-    const dayNum = parseInt(da);
-
-    // Show month name on 1st of month, otherwise show day number
-    const isFirstOfMonth = dayNum === 1;
-    const monthStr = isFirstOfMonth
-      ? ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][parseInt(mo)-1]
-      : '';
-    const dayDisplay = isFirstOfMonth ? monthStr : String(dayNum);
-
-    // Alternating month shading for readability
-    const monthIdx = parseInt(mo) - 1;
-    const isEvenMonth = monthIdx % 2 === 0;
-    const monthBg = isEvenMonth ? 'var(--surface)' : 'var(--surface2)';
-    const cellBg = isToday ? 'var(--accent)' : hasActivity ? 'var(--accent)22' : monthBg;
-    const cellBorder = isToday ? 'var(--accent)' : hasActivity ? 'var(--accent)' : 'var(--border)';
-    const dayColor = isToday ? '#fff' : isFirstOfMonth ? 'var(--accent)' : hasActivity ? 'var(--accent)' : 'var(--text3)';
-
-    cells.push(`
-      <div onclick="toggleCalendarPopover('${dateStr}')" style="
-        cursor:pointer;
+    if (isGhost) {
+      // Days from adjacent months — show dimmed, not tappable
+      return `<div style="
         display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
-        padding:3px 1px;
-        border-radius:6px;
-        background:${cellBg};
-        border:1px solid ${cellBorder};
-        min-height:46px;
-        position:relative;
+        padding:3px 1px;border-radius:6px;min-height:44px;opacity:0.2;
       ">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;
-          color:${dayColor};
-          line-height:1.2;letter-spacing:0.04em;">
-          ${dayDisplay}
-        </div>
-        <div style="display:flex;flex-direction:column;align-items:center;margin-top:1px;">
-          ${iconsHtml}
-        </div>
-      </div>`);
-
-    cur.setDate(cur.getDate() + 1);
-  }
-
-  // Pad to full weeks at end
-  const remainingDays = 7 - (cells.length % 7);
-  if (remainingDays < 7) {
-    for (let i = 0; i < remainingDays; i++) {
-      cells.push(`<div style="min-height:46px;"></div>`);
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;color:var(--text3);">${dayNum}</div>
+      </div>`;
     }
+
+    const cellBg     = isToday ? 'var(--accent)' : hasActivity ? 'var(--accent)22' : 'transparent';
+    const cellBorder = isToday ? 'var(--accent)' : hasActivity ? 'var(--accent)' : 'var(--border)';
+    const dayColor   = isToday ? '#fff' : hasActivity ? 'var(--accent)' : 'var(--text2)';
+    const opacity    = isFuture ? '0.3' : '1';
+
+    return `<div onclick="toggleCalendarPopover('${dateStr}')" style="
+      cursor:pointer;opacity:${opacity};
+      display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+      padding:3px 1px;border-radius:6px;
+      background:${cellBg};border:1px solid ${cellBorder};min-height:44px;
+    ">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:${dayColor};line-height:1.3;">${dayNum}</div>
+      <div style="display:flex;flex-direction:column;align-items:center;margin-top:1px;">${iconsHtml}</div>
+    </div>`;
   }
 
-  const gridHtml = `
-    <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;">
-      ${headerHtml}
-      ${cells.join('')}
-    </div>`;
+  // Build each month block
+  const monthBlocks = months.map(({ year, month }) => {
+    const monthLabel = `${MONTH_NAMES[month]} ${year}`;
+    const firstDay = new Date(year, month, 1);
+    const lastDay  = new Date(year, month + 1, 0); // last day of month
+    const startDow = firstDay.getDay(); // 0=Sun
+    const totalDays = lastDay.getDate();
 
-  // Popover (re-render below grid if a date is selected)
+    const cells = [];
+
+    // Leading ghost days from previous month
+    for (let i = 0; i < startDow; i++) {
+      const d = new Date(year, month, 1 - (startDow - i));
+      cells.push(buildCell(localDateStr(d), true));
+    }
+
+    // Real days
+    for (let day = 1; day <= totalDays; day++) {
+      const d = new Date(year, month, day);
+      cells.push(buildCell(localDateStr(d), false));
+    }
+
+    // Trailing ghost days to complete the last week
+    const endDow = lastDay.getDay();
+    const trailingDays = endDow === 6 ? 0 : 6 - endDow;
+    for (let i = 1; i <= trailingDays; i++) {
+      const d = new Date(year, month + 1, i);
+      cells.push(buildCell(localDateStr(d), true));
+    }
+
+    return `
+      <div style="margin-bottom:20px;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;letter-spacing:0.05em;color:var(--text);margin-bottom:8px;padding-left:2px;">${monthLabel}</div>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;">
+          ${headerHtml}
+          ${cells.join('')}
+        </div>
+      </div>`;
+  });
+
+  // Popover
   let popoverHtml = '';
   if (calendarPopoverDate && dayMap[calendarPopoverDate]) {
     popoverHtml = buildCalendarPopover(calendarPopoverDate, dayMap[calendarPopoverDate]);
   }
 
   el.innerHTML = `
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px;">
-      ${gridHtml}
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 12px 4px;">
+      ${monthBlocks.join('')}
     </div>
     ${popoverHtml}`;
 }
