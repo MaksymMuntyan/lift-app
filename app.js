@@ -3496,6 +3496,7 @@ const CARDIO_TYPES = [
   { id: 'running',    label: 'Running',     icon: '🏃', hasDistance: true,  hasTime: false },
   { id: 'jumprope',   label: 'Jump Rope',   icon: '🪢', hasDistance: false, hasTime: false },
   { id: 'soccer',     label: 'Soccer',      icon: '⚽', hasDistance: false, hasTime: false },
+  { id: 'biking',     label: 'Biking',      icon: '🚴', hasDistance: false, hasTime: false },
   { id: 'bjj',        label: 'BJJ',         icon: '🥋', hasDistance: false, hasTime: false },
   { id: 'muaythai',   label: 'Muay Thai',   icon: '🥊', hasDistance: false, hasTime: false },
   { id: 'boxing',     label: 'Boxing',      icon: '🤜', hasDistance: false, hasTime: false },

@@ -1,7 +1,7 @@
 Notes
 
 git add .
-git commit -m "added soccer as cardio"
+git commit -m "added biking as cardio"
 git pull --rebase
 git push
 
