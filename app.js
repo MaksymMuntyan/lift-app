@@ -1076,15 +1076,30 @@ function resolveInlineSlot(exIdx, choiceId) {
   const isCable = !!ex.cable;
   let lastWeight = isBodyweight ? 0 : 45, lastReps = 5, lastDate = null;
   let lastSetReps = [], lastSetWeights = [];
+
+  // First pass: same routine day
   for (let i = allSessions.length - 1; i >= 0; i--) {
     const s = allSessions[i];
+    if (s.routineId !== session.routineId || s.dayId !== session.dayId) continue;
     const match = s.sets.filter(st => st.exerciseId === choiceId);
     if (match.length > 0) {
       const best = match.reduce((a, b) => b.weight > a.weight ? b : (b.weight === a.weight && b.reps > a.reps ? b : a), match[0]);
       lastWeight = best.weight; lastReps = best.reps; lastDate = s.date;
-      lastSetReps = match.map(st => st.reps);
-      lastSetWeights = match.map(st => st.weight);
+      lastSetReps = match.map(st => st.reps); lastSetWeights = match.map(st => st.weight);
       break;
+    }
+  }
+  // Fallback: any session
+  if (!lastDate) {
+    for (let i = allSessions.length - 1; i >= 0; i--) {
+      const s = allSessions[i];
+      const match = s.sets.filter(st => st.exerciseId === choiceId);
+      if (match.length > 0) {
+        const best = match.reduce((a, b) => b.weight > a.weight ? b : (b.weight === a.weight && b.reps > a.reps ? b : a), match[0]);
+        lastWeight = best.weight; lastReps = best.reps; lastDate = s.date;
+        lastSetReps = match.map(st => st.reps); lastSetWeights = match.map(st => st.weight);
+        break;
+      }
     }
   }
 
@@ -1105,6 +1120,41 @@ function buildSessionExercises() {
   const exercises = getExercises();
   const allSessions = getSessions();
 
+  // Helper: find last weight/reps for an exercise, preferring same routine day
+  function findLastPerformance(exId, routineId, dayId, isBodyweight) {
+    let lastWeight = isBodyweight ? 0 : 45, lastReps = 5, lastDate = null;
+    let lastSetReps = [], lastSetWeights = [];
+
+    // First pass: same routine day
+    for (let i = allSessions.length - 1; i >= 0; i--) {
+      const s = allSessions[i];
+      if (s.routineId !== routineId || s.dayId !== dayId) continue;
+      const match = s.sets.filter(st => st.exerciseId === exId);
+      if (match.length > 0) {
+        const best = match.reduce((a, b) => b.weight > a.weight ? b : (b.weight === a.weight && b.reps > a.reps ? b : a), match[0]);
+        lastWeight = best.weight; lastReps = best.reps; lastDate = s.date;
+        lastSetReps = match.map(st => st.reps);
+        lastSetWeights = match.map(st => st.weight);
+        return { lastWeight, lastReps, lastDate, lastSetReps, lastSetWeights };
+      }
+    }
+
+    // Fallback: any session
+    for (let i = allSessions.length - 1; i >= 0; i--) {
+      const s = allSessions[i];
+      const match = s.sets.filter(st => st.exerciseId === exId);
+      if (match.length > 0) {
+        const best = match.reduce((a, b) => b.weight > a.weight ? b : (b.weight === a.weight && b.reps > a.reps ? b : a), match[0]);
+        lastWeight = best.weight; lastReps = best.reps; lastDate = s.date;
+        lastSetReps = match.map(st => st.reps);
+        lastSetWeights = match.map(st => st.weight);
+        return { lastWeight, lastReps, lastDate, lastSetReps, lastSetWeights };
+      }
+    }
+
+    return { lastWeight, lastReps, lastDate, lastSetReps, lastSetWeights };
+  }
+
   session.exercises = session.slots.map(slot => {
     // OR slot not yet resolved — create a pending placeholder
     if (!slot.resolved) {
@@ -1123,19 +1173,8 @@ function buildSessionExercises() {
     const isBodyweight = !!ex.bodyweight;
     const isBarbell = !!ex.barbell;
     const isCable = !!ex.cable;
-    let lastWeight = isBodyweight ? 0 : 45, lastReps = 5, lastDate = null;
-    let lastSetReps = [], lastSetWeights = [];
-    for (let i = allSessions.length - 1; i >= 0; i--) {
-      const s = allSessions[i];
-      const match = s.sets.filter(st => st.exerciseId === exId);
-      if (match.length > 0) {
-        const best = match.reduce((a, b) => b.weight > a.weight ? b : (b.weight === a.weight && b.reps > a.reps ? b : a), match[0]);
-        lastWeight = best.weight; lastReps = best.reps; lastDate = s.date;
-        lastSetReps = match.map(st => st.reps);
-        lastSetWeights = match.map(st => st.weight);
-        break;
-      }
-    }
+    const { lastWeight, lastReps, lastDate, lastSetReps, lastSetWeights } =
+      findLastPerformance(exId, session.routineId, session.dayId, isBodyweight);
 
     const targetSets = slot.sets || 3;
     return {
