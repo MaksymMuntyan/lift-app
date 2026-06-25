@@ -1261,6 +1261,22 @@
   </div>
 </div>
 
+<!-- Unconfirmed sets warning -->
+<div class="modal-backdrop" id="modal-unconfirmed-sets">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">UNCONFIRMED SETS</div>
+    <div class="modal-body" style="padding:16px;">
+      <div style="font-size:15px;color:var(--text);margin-bottom:8px;" id="unconfirmed-sets-count"></div>
+      <div style="font-size:13px;color:var(--text2);">Go back to confirm or remove them, or finish anyway and they won't be logged.</div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modal-unconfirmed-sets')">Go Back</button>
+      <button class="btn btn-primary" onclick="closeModal('modal-unconfirmed-sets');doFinishWorkout();">Finish Anyway</button>
+    </div>
+  </div>
+</div>
+
 <!-- Log cardio session -->
 <div class="modal-backdrop" id="modal-cardio-log">
   <div class="modal-sheet">

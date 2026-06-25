@@ -1621,18 +1621,30 @@ function refreshExerciseBlock(exIdx) {
 function finishWorkout() {
   if (!session) return;
   if (session.isProgramSession) { finishProgramWorkout(); return; }
-  const sets = [];
+
+  // Count unconfirmed sets (have a weight/rep value entered but not checked off)
+  let unconfirmedCount = 0;
   session.exercises.forEach(ex => {
     if (ex.skipped || ex.pending) return;
-    ex.sets.filter(s => s.logged && s.reps > 0 && !s.skipped).forEach((s, i) => {
-      sets.push({ exerciseId: ex.exerciseId, exerciseName: ex.name, setNum: i+1,
-                  weight: s.weight, reps: s.reps, bodyweight: session.bodyweight });
+    ex.sets.forEach(s => {
+      if (!s.logged && !s.skipped && s.reps > 0) unconfirmedCount++;
     });
   });
-  if (sets.length === 0) { if (!confirm('No sets logged. Discard workout?')) return; cancelWorkout(); return; }
 
-  if (!confirm('Finish workout and save?')) return;
+  if (unconfirmedCount > 0) {
+    // Show warning modal — user decides whether to go back or finish anyway
+    const modal = document.getElementById('modal-unconfirmed-sets');
+    document.getElementById('unconfirmed-sets-count').textContent =
+      `${unconfirmedCount} set${unconfirmedCount > 1 ? 's haven\'t' : ' hasn\'t'} been confirmed (no ✓ tapped).`;
+    openModal('modal-unconfirmed-sets');
+    return; // wait for user's choice in the modal
+  }
 
+  doFinishWorkout();
+}
+
+function doFinishWorkout() {
+  if (!session) return;
   const savedSession = { id: session.id, date: session.date, routineId: session.routineId,
     routineName: session.routineName, dayId: session.dayId, dayName: session.dayName,
     bodyweight: session.bodyweight, sets };
