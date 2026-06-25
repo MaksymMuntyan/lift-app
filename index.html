@@ -1239,6 +1239,28 @@
   </div>
 </div>
 
+<!-- Create new exercise during workout -->
+<div class="modal-backdrop" id="modal-wk-create-exercise">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">NEW EXERCISE</div>
+    <div class="modal-body">
+      <div class="field">
+        <label>Name</label>
+        <input class="input" id="wk-new-ex-name" type="text" placeholder="e.g. Incline Dumbbell Press" autocomplete="off" />
+      </div>
+      <div class="field">
+        <label>Category <span style="color:var(--text3);font-weight:400;">(optional)</span></label>
+        <input class="input" id="wk-new-ex-cat" type="text" placeholder="e.g. Chest" autocomplete="off" />
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modal-wk-create-exercise');openAddExtraExercise();">Back</button>
+      <button class="btn btn-primary" onclick="saveAndAddNewExercise()">Create &amp; Add</button>
+    </div>
+  </div>
+</div>
+
 <!-- Log cardio session -->
 <div class="modal-backdrop" id="modal-cardio-log">
   <div class="modal-sheet">

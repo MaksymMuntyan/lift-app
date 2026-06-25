@@ -1,7 +1,7 @@
 Notes
 
 git add .
-git commit -m "added bodyweight goals and tracking"
+git commit -m "added soccer as cardio"
 git pull --rebase
 git push
 

@@ -1522,15 +1522,46 @@ function unskipSet(exIdx, setIdx) {
 function openAddExtraExercise() {
   const exercises = getExercises();
   const list = document.getElementById('modal-extra-exercise-list');
-  list.innerHTML = exercises.map(ex => `
+  const createNewBtn = `<div class="list-item" onclick="openCreateExerciseInWorkout()" style="border-bottom:1px solid var(--border);">
+    <div class="list-item-main">
+      <div class="list-item-title" style="color:var(--accent);">+ Create New Exercise</div>
+      <div class="list-item-sub">Add a new exercise to your library</div>
+    </div>
+  </div>`;
+  list.innerHTML = createNewBtn + (exercises.map(ex => `
     <div class="list-item" onclick="addExtraExercise('${ex.id}')">
       <div class="list-item-main">
         <div class="list-item-title">${esc(ex.name)}</div>
         ${ex.category ? `<div class="list-item-sub">${esc(ex.category)}</div>` : ''}
       </div>
     </div>
-  `).join('') || `<div style="padding:20px;color:var(--text2);">No exercises in library yet.</div>`;
+  `).join('') || `<div style="padding:20px;color:var(--text2);">No exercises in library yet.</div>`);
   openModal('modal-extra-exercise');
+}
+
+function openCreateExerciseInWorkout() {
+  // Close picker, open inline create form
+  closeModal('modal-extra-exercise');
+  document.getElementById('wk-new-ex-name').value = '';
+  document.getElementById('wk-new-ex-cat').value = '';
+  openModal('modal-wk-create-exercise');
+}
+
+function saveAndAddNewExercise() {
+  const name = document.getElementById('wk-new-ex-name').value.trim();
+  const category = document.getElementById('wk-new-ex-cat').value.trim();
+  if (!name) { alert('Enter a name.'); return; }
+  const exercises = getExercises();
+  if (exercises.find(e => e.name.toLowerCase() === name.toLowerCase())) {
+    alert('An exercise with that name already exists.');
+    return;
+  }
+  const newEx = { id: uid(), name, category, barbell: false, cable: false, bodyweight: false, dumbbell: false };
+  exercises.push(newEx);
+  saveExercises(exercises);
+  closeModal('modal-wk-create-exercise');
+  // Immediately add it to the session
+  addExtraExercise(newEx.id);
 }
 
 function addExtraExercise(exId) {
@@ -1599,6 +1630,8 @@ function finishWorkout() {
     });
   });
   if (sets.length === 0) { if (!confirm('No sets logged. Discard workout?')) return; cancelWorkout(); return; }
+
+  if (!confirm('Finish workout and save?')) return;
 
   const savedSession = { id: session.id, date: session.date, routineId: session.routineId,
     routineName: session.routineName, dayId: session.dayId, dayName: session.dayName,
@@ -3411,6 +3444,7 @@ document.querySelectorAll('.modal-backdrop').forEach(b => {
 const CARDIO_TYPES = [
   { id: 'running',    label: 'Running',     icon: '🏃', hasDistance: true,  hasTime: false },
   { id: 'jumprope',   label: 'Jump Rope',   icon: '🪢', hasDistance: false, hasTime: false },
+  { id: 'soccer',     label: 'Soccer',      icon: '⚽', hasDistance: false, hasTime: false },
   { id: 'bjj',        label: 'BJJ',         icon: '🥋', hasDistance: false, hasTime: false },
   { id: 'muaythai',   label: 'Muay Thai',   icon: '🥊', hasDistance: false, hasTime: false },
   { id: 'boxing',     label: 'Boxing',      icon: '🤜', hasDistance: false, hasTime: false },
