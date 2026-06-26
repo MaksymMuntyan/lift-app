@@ -1684,6 +1684,16 @@ function finishWorkout() {
 
 function doFinishWorkout() {
   if (!session) return;
+  const sets = [];
+  session.exercises.forEach(ex => {
+    if (ex.skipped || ex.pending) return;
+    ex.sets.filter(s => s.logged && s.reps > 0 && !s.skipped).forEach((s, i) => {
+      sets.push({ exerciseId: ex.exerciseId, exerciseName: ex.name, setNum: i+1,
+                  weight: s.weight, reps: s.reps, bodyweight: session.bodyweight });
+    });
+  });
+  if (sets.length === 0) { if (!confirm('No sets logged. Discard workout?')) return; cancelWorkout(); return; }
+
   const savedSession = { id: session.id, date: session.date, routineId: session.routineId,
     routineName: session.routineName, dayId: session.dayId, dayName: session.dayName,
     bodyweight: session.bodyweight, sets };
