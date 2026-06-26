@@ -2,7 +2,7 @@
   "version": 2,
   "user": 2,
   "userName": "Laura",
-  "exportDate": "2026-06-22T00:19:14.784Z",
+  "exportDate": "2026-06-26T20:56:27.656Z",
   "exercises": [
     {
       "id": "mpn6ru5l2mls",
@@ -2923,6 +2923,81 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "mqveu6vlgyol",
+      "date": "2026-06-26",
+      "routineId": "mn5gy4wh6zll",
+      "routineName": "Laura Full Body 3x Week",
+      "dayId": "mn5gy4whfcs6",
+      "dayName": "Day A (Push)",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4whpbhj",
+          "exerciseName": "Ring Dip",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpbhj",
+          "exerciseName": "Ring Dip",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpbhj",
+          "exerciseName": "Ring Dip",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whi1e9",
+          "exerciseName": "Cable Row",
+          "setNum": 1,
+          "weight": 130,
+          "reps": 14,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whi1e9",
+          "exerciseName": "Cable Row",
+          "setNum": 2,
+          "weight": 130,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whi1e9",
+          "exerciseName": "Cable Row",
+          "setNum": 3,
+          "weight": 130,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpi7b",
+          "exerciseName": "Deadlift",
+          "setNum": 1,
+          "weight": 225,
+          "reps": 4,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpi7b",
+          "exerciseName": "Deadlift",
+          "setNum": 2,
+          "weight": 225,
+          "reps": 3,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -3078,7 +3153,18 @@
       "icon": "➕",
       "notes": "We won, did ok, didn’t shoot well",
       "duration": 60
+    },
+    {
+      "id": "mqq07v63py19",
+      "date": "2026-06-22",
+      "type": "other",
+      "label": "Soccer",
+      "icon": "➕",
+      "notes": "Good! Lost both games but cardio was better",
+      "duration": 120
     }
   ],
-  "activeProgram": null
+  "activeProgram": null,
+  "bwGoal": null,
+  "bwGoalHistory": []
 }
