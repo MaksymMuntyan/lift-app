@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-06-27T15:24:42.157Z",
+  "exportDate": "2026-06-30T12:41:22.446Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -7517,6 +7517,137 @@
           "bodyweight": 153
         }
       ]
+    },
+    {
+      "id": "mr0mwxc1x2jk",
+      "date": "2026-06-30",
+      "routineId": "mp5uvnh9vk1b",
+      "routineName": "4X / Week Bulk",
+      "dayId": "mp5urmmc02fo",
+      "dayName": "Upper 1",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxujmc",
+          "exerciseName": "Bench Press",
+          "setNum": 1,
+          "weight": 170,
+          "reps": 4,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxujmc",
+          "exerciseName": "Bench Press",
+          "setNum": 2,
+          "weight": 170,
+          "reps": 3,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxujmc",
+          "exerciseName": "Bench Press",
+          "setNum": 3,
+          "weight": 170,
+          "reps": 3,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mo7opj8mkm78",
+          "exerciseName": "Muscle-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mo7opj8mkm78",
+          "exerciseName": "Muscle-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 3,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mo7opj8mkm78",
+          "exerciseName": "Muscle-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 2,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "morh6n5m2wsk",
+          "exerciseName": "Push-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 30,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "morh6n5m2wsk",
+          "exerciseName": "Push-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 25,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "morh6n5m2wsk",
+          "exerciseName": "Push-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 25,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mp5uyk85dp5a",
+          "exerciseName": "Seated Dumbbell Curl",
+          "setNum": 1,
+          "weight": 32,
+          "reps": 9,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mp5uyk85dp5a",
+          "exerciseName": "Seated Dumbbell Curl",
+          "setNum": 2,
+          "weight": 32,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mp5uyk85dp5a",
+          "exerciseName": "Seated Dumbbell Curl",
+          "setNum": 3,
+          "weight": 32,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 1,
+          "weight": 95,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 2,
+          "weight": 95,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 3,
+          "weight": 95,
+          "reps": 10,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -8131,6 +8262,32 @@
       "type": "biking",
       "label": "Biking",
       "icon": "🚴",
+      "notes": null
+    },
+    {
+      "id": "mqwinl1cpoen",
+      "date": "2026-06-26",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": null,
+      "distance": 5
+    },
+    {
+      "id": "mqy3yl2ruvce",
+      "date": "2026-06-27",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": null,
+      "distance": 5
+    },
+    {
+      "id": "mr0mvqa5n66r",
+      "date": "2026-06-29",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
       "notes": null
     }
   ],
