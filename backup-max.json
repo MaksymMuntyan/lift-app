@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-07-09T15:48:58.721Z",
+  "exportDate": "2026-07-11T14:20:55.597Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -8041,6 +8041,89 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "mrggbkvrmjl7",
+      "date": "2026-07-11",
+      "routineId": "mp5uvnh9vk1b",
+      "routineName": "4X / Week Bulk",
+      "dayId": "mp5uwu697vnb",
+      "dayName": "Upper 2",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vximn0",
+          "exerciseName": "Weighted Pull-Up",
+          "setNum": 1,
+          "weight": 80,
+          "reps": 4,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vximn0",
+          "exerciseName": "Weighted Pull-Up",
+          "setNum": 2,
+          "weight": 80,
+          "reps": 3,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vximn0",
+          "exerciseName": "Weighted Pull-Up",
+          "setNum": 3,
+          "weight": 80,
+          "reps": 3,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxujmc",
+          "exerciseName": "Bench Press",
+          "setNum": 1,
+          "weight": 145,
+          "reps": 11,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mpmx3h3px614",
+          "exerciseName": "Paralette Push-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 18,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mpmx3h3px614",
+          "exerciseName": "Paralette Push-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 15,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mpmwdhx1yoj1",
+          "exerciseName": "Rack Chin-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 13,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mpmwdhx1yoj1",
+          "exerciseName": "Rack Chin-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 13,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mpmwdhx1yoj1",
+          "exerciseName": "Rack Chin-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 8,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -8694,6 +8777,22 @@
     {
       "id": "mrc2y6h00n4f",
       "date": "2026-07-07",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": null
+    },
+    {
+      "id": "mrdomh3474bo",
+      "date": "2026-07-08",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": null
+    },
+    {
+      "id": "mrexgb07s6hu",
+      "date": "2026-07-09",
       "type": "bjj",
       "label": "BJJ",
       "icon": "🥋",
