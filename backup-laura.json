@@ -2,7 +2,7 @@
   "version": 2,
   "user": 2,
   "userName": "Laura",
-  "exportDate": "2026-07-10T01:36:29.500Z",
+  "exportDate": "2026-07-14T21:17:40.726Z",
   "exercises": [
     {
       "id": "mpn6ru5l2mls",
@@ -3236,6 +3236,89 @@
           "setNum": 3,
           "weight": 0,
           "reps": 5,
+          "bodyweight": null
+        }
+      ]
+    },
+    {
+      "id": "mrl4pz8yptlt",
+      "date": "2026-07-14",
+      "routineId": "mn5gy4wh6zll",
+      "routineName": "Laura Full Body 3x Week",
+      "dayId": "mn5gy4whfcs6",
+      "dayName": "Day A (Push)",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4whhh4f",
+          "exerciseName": "Squat",
+          "setNum": 1,
+          "weight": 155,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whhh4f",
+          "exerciseName": "Squat",
+          "setNum": 2,
+          "weight": 155,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whhh4f",
+          "exerciseName": "Squat",
+          "setNum": 3,
+          "weight": 155,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpbhj",
+          "exerciseName": "Ring Dip",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpbhj",
+          "exerciseName": "Ring Dip",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 7,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpbhj",
+          "exerciseName": "Ring Dip",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 4,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whgv21",
+          "exerciseName": "Pull-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whgv21",
+          "exerciseName": "Pull-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whgv21",
+          "exerciseName": "Pull-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 6,
           "bodyweight": null
         }
       ]
