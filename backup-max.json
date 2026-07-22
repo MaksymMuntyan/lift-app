@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-07-18T15:25:16.707Z",
+  "exportDate": "2026-07-22T17:40:29.169Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -8755,6 +8755,113 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "mrwcjlwptpo6",
+      "date": "2026-07-22",
+      "routineId": "mp5uvnh9vk1b",
+      "routineName": "4X / Week Bulk",
+      "dayId": "mp5uvw77vpc8",
+      "dayName": "Lower 1",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vx6rzi",
+          "exerciseName": "RDL",
+          "setNum": 1,
+          "weight": 230,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vx6rzi",
+          "exerciseName": "RDL",
+          "setNum": 2,
+          "weight": 230,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vx6rzi",
+          "exerciseName": "RDL",
+          "setNum": 3,
+          "weight": 230,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 1,
+          "weight": 175,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 2,
+          "weight": 175,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 3,
+          "weight": 175,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mnyuwrrpjgv9",
+          "exerciseName": "Standing Barbell Wrist Curl",
+          "setNum": 1,
+          "weight": 140,
+          "reps": 15,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mnyuwrrpjgv9",
+          "exerciseName": "Standing Barbell Wrist Curl",
+          "setNum": 2,
+          "weight": 140,
+          "reps": 15,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mnyuwrrpjgv9",
+          "exerciseName": "Standing Barbell Wrist Curl",
+          "setNum": 3,
+          "weight": 140,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mqsbw87tyuts",
+          "exerciseName": "Front Squat",
+          "setNum": 1,
+          "weight": 135,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mqsbw87tyuts",
+          "exerciseName": "Front Squat",
+          "setNum": 2,
+          "weight": 135,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mqsbw87tyuts",
+          "exerciseName": "Front Squat",
+          "setNum": 3,
+          "weight": 135,
+          "reps": 6,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -9488,6 +9595,22 @@
     {
       "id": "mrodfy31ilfb",
       "date": "2026-07-16",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": null
+    },
+    {
+      "id": "mru0jor1e9en",
+      "date": "2026-07-20",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": null
+    },
+    {
+      "id": "mrvi15ark4sd",
+      "date": "2026-07-21",
       "type": "bjj",
       "label": "BJJ",
       "icon": "🥋",
