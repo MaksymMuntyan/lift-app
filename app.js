@@ -1105,14 +1105,23 @@ function resolveInlineSlot(exIdx, choiceId) {
     lastSetReps = match.map(st => st.reps); lastSetWeights = match.map(st => st.weight);
   }
   let slotFound = false;
-  // Pass 1: same day
+  // Pass 1: same routine + same day name
   for (let i = allSessions.length - 1; i >= 0 && !slotFound; i--) {
     const s = allSessions[i];
-    if (s.dayId !== session.dayId) continue;
+    if (s.routineId !== session.routineId || s.dayName !== session.dayName) continue;
     const match = s.sets.filter(st => st.exerciseId === choiceId);
     if (match.length > 0) { applySlotMatch(s, match); slotFound = true; }
   }
-  // Pass 2: global fallback
+  // Pass 2: same day name, any routine
+  if (!slotFound) {
+    for (let i = allSessions.length - 1; i >= 0 && !slotFound; i--) {
+      const s = allSessions[i];
+      if (s.dayName !== session.dayName) continue;
+      const match = s.sets.filter(st => st.exerciseId === choiceId);
+      if (match.length > 0) { applySlotMatch(s, match); slotFound = true; }
+    }
+  }
+  // Pass 3: global fallback
   if (!slotFound) {
     for (let i = allSessions.length - 1; i >= 0 && !slotFound; i--) {
       const s = allSessions[i];
@@ -1161,21 +1170,30 @@ function buildSessionExercises() {
     let lastWeight = isBodyweight ? 0 : 45, lastReps = 5, lastDate = null;
     let lastSetReps = [], lastSetWeights = [];
 
-    // Lookup: same day first, then any session as fallback
+    // Lookup: same routine+dayName first, then same dayName any routine, then global
     function applyMatch(s, match) {
       const best = match.reduce((a, b) => b.weight > a.weight ? b : (b.weight === a.weight && b.reps > a.reps ? b : a), match[0]);
       lastWeight = best.weight; lastReps = best.reps; lastDate = s.date;
       lastSetReps = match.map(st => st.reps); lastSetWeights = match.map(st => st.weight);
     }
     let found = false;
-    // Pass 1: same routine day only
+    // Pass 1: same routine + same day name
     for (let i = allSessions.length - 1; i >= 0 && !found; i--) {
       const s = allSessions[i];
-      if (s.dayId !== session.dayId) continue;
+      if (s.routineId !== session.routineId || s.dayName !== session.dayName) continue;
       const match = s.sets.filter(st => st.exerciseId === exId);
       if (match.length > 0) { applyMatch(s, match); found = true; }
     }
-    // Pass 2: any session (first time doing this day)
+    // Pass 2: same day name, any routine (handles routine switches)
+    if (!found) {
+      for (let i = allSessions.length - 1; i >= 0 && !found; i--) {
+        const s = allSessions[i];
+        if (s.dayName !== session.dayName) continue;
+        const match = s.sets.filter(st => st.exerciseId === exId);
+        if (match.length > 0) { applyMatch(s, match); found = true; }
+      }
+    }
+    // Pass 3: global fallback
     if (!found) {
       for (let i = allSessions.length - 1; i >= 0 && !found; i--) {
         const s = allSessions[i];
