@@ -38,6 +38,24 @@ function load(k, def) { try { const v = localStorage.getItem(KEY(k)); return v !
 function save(k, v)   { try { localStorage.setItem(KEY(k), JSON.stringify(v)); } catch(e) { console.error(e); } }
 
 function getExercises()   { return load('exercises', []).sort((a,b) => a.name.localeCompare(b.name)); }
+
+// ── SESSION DRAFT (persist active workout across app backgrounding) ──
+const SESSION_DRAFT_KEY = () => `lift_u${currentUser}_sessionDraft`;
+function saveSessionDraft() {
+  if (!session) return;
+  try { localStorage.setItem(SESSION_DRAFT_KEY(), JSON.stringify(session)); } catch(e) {}
+}
+function clearSessionDraft() {
+  localStorage.removeItem(SESSION_DRAFT_KEY());
+}
+function restoreSessionDraft() {
+  try {
+    const raw = localStorage.getItem(SESSION_DRAFT_KEY());
+    if (!raw) return false;
+    session = JSON.parse(raw);
+    return true;
+  } catch(e) { return false; }
+}
 function getRoutines()    { return load('routines', []); }
 function getSessions()    { return load('sessions', []); }
 function getBodyweights() { return load('bodyweights', []); }
@@ -874,7 +892,11 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('topbar-date').textContent =
     now.toLocaleDateString('en-US', { weekday:'long', month:'short', day:'numeric' });
   updateUserDisplay();
-  renderHome();
+  if (restoreSessionDraft()) {
+    renderHome(); // will render active workout
+  } else {
+    renderHome();
+  }
 });
 
 // ── USER SWITCH ────────────────────────────────────────────
@@ -1076,30 +1098,15 @@ function resolveInlineSlot(exIdx, choiceId) {
   const isCable = !!ex.cable;
   let lastWeight = isBodyweight ? 0 : 45, lastReps = 5, lastDate = null;
   let lastSetReps = [], lastSetWeights = [];
-
-  // First pass: same routine day
   for (let i = allSessions.length - 1; i >= 0; i--) {
     const s = allSessions[i];
-    if (s.routineId !== session.routineId || s.dayId !== session.dayId) continue;
     const match = s.sets.filter(st => st.exerciseId === choiceId);
     if (match.length > 0) {
       const best = match.reduce((a, b) => b.weight > a.weight ? b : (b.weight === a.weight && b.reps > a.reps ? b : a), match[0]);
       lastWeight = best.weight; lastReps = best.reps; lastDate = s.date;
-      lastSetReps = match.map(st => st.reps); lastSetWeights = match.map(st => st.weight);
+      lastSetReps = match.map(st => st.reps);
+      lastSetWeights = match.map(st => st.weight);
       break;
-    }
-  }
-  // Fallback: any session
-  if (!lastDate) {
-    for (let i = allSessions.length - 1; i >= 0; i--) {
-      const s = allSessions[i];
-      const match = s.sets.filter(st => st.exerciseId === choiceId);
-      if (match.length > 0) {
-        const best = match.reduce((a, b) => b.weight > a.weight ? b : (b.weight === a.weight && b.reps > a.reps ? b : a), match[0]);
-        lastWeight = best.weight; lastReps = best.reps; lastDate = s.date;
-        lastSetReps = match.map(st => st.reps); lastSetWeights = match.map(st => st.weight);
-        break;
-      }
     }
   }
 
@@ -1112,6 +1119,7 @@ function resolveInlineSlot(exIdx, choiceId) {
     skipped: false
   };
   refreshExerciseBlock(exIdx);
+  saveSessionDraft();
 }
 
 // ── BUILD SESSION EXERCISES ────────────────────────────────
@@ -1119,41 +1127,6 @@ function resolveInlineSlot(exIdx, choiceId) {
 function buildSessionExercises() {
   const exercises = getExercises();
   const allSessions = getSessions();
-
-  // Helper: find last weight/reps for an exercise, preferring same routine day
-  function findLastPerformance(exId, routineId, dayId, isBodyweight) {
-    let lastWeight = isBodyweight ? 0 : 45, lastReps = 5, lastDate = null;
-    let lastSetReps = [], lastSetWeights = [];
-
-    // First pass: same routine day
-    for (let i = allSessions.length - 1; i >= 0; i--) {
-      const s = allSessions[i];
-      if (s.routineId !== routineId || s.dayId !== dayId) continue;
-      const match = s.sets.filter(st => st.exerciseId === exId);
-      if (match.length > 0) {
-        const best = match.reduce((a, b) => b.weight > a.weight ? b : (b.weight === a.weight && b.reps > a.reps ? b : a), match[0]);
-        lastWeight = best.weight; lastReps = best.reps; lastDate = s.date;
-        lastSetReps = match.map(st => st.reps);
-        lastSetWeights = match.map(st => st.weight);
-        return { lastWeight, lastReps, lastDate, lastSetReps, lastSetWeights };
-      }
-    }
-
-    // Fallback: any session
-    for (let i = allSessions.length - 1; i >= 0; i--) {
-      const s = allSessions[i];
-      const match = s.sets.filter(st => st.exerciseId === exId);
-      if (match.length > 0) {
-        const best = match.reduce((a, b) => b.weight > a.weight ? b : (b.weight === a.weight && b.reps > a.reps ? b : a), match[0]);
-        lastWeight = best.weight; lastReps = best.reps; lastDate = s.date;
-        lastSetReps = match.map(st => st.reps);
-        lastSetWeights = match.map(st => st.weight);
-        return { lastWeight, lastReps, lastDate, lastSetReps, lastSetWeights };
-      }
-    }
-
-    return { lastWeight, lastReps, lastDate, lastSetReps, lastSetWeights };
-  }
 
   session.exercises = session.slots.map(slot => {
     // OR slot not yet resolved — create a pending placeholder
@@ -1173,8 +1146,52 @@ function buildSessionExercises() {
     const isBodyweight = !!ex.bodyweight;
     const isBarbell = !!ex.barbell;
     const isCable = !!ex.cable;
-    const { lastWeight, lastReps, lastDate, lastSetReps, lastSetWeights } =
-      findLastPerformance(exId, session.routineId, session.dayId, isBodyweight);
+    let lastWeight = isBodyweight ? 0 : 45, lastReps = 5, lastDate = null;
+    let lastSetReps = [], lastSetWeights = [];
+
+    // Lookup priority:
+    // 1. Same routineId + dayId (exact same workout day)
+    // 2. Any session where rep range matches (same exercise, same context)
+    // 3. Any session (global fallback)
+    const slotRepMin = slot.repMin, slotRepMax = slot.repMax;
+    function applyMatch(s, match) {
+      const best = match.reduce((a, b) => b.weight > a.weight ? b : (b.weight === a.weight && b.reps > a.reps ? b : a), match[0]);
+      lastWeight = best.weight; lastReps = best.reps; lastDate = s.date;
+      lastSetReps = match.map(st => st.reps); lastSetWeights = match.map(st => st.weight);
+    }
+    let found = false;
+    // Pass 1: same day
+    for (let i = allSessions.length - 1; i >= 0 && !found; i--) {
+      const s = allSessions[i];
+      if (s.routineId !== session.routineId || s.dayId !== session.dayId) continue;
+      const match = s.sets.filter(st => st.exerciseId === exId);
+      if (match.length > 0) { applyMatch(s, match); found = true; }
+    }
+    // Pass 2: any session with matching rep range
+    if (!found && (slotRepMin || slotRepMax)) {
+      for (let i = allSessions.length - 1; i >= 0 && !found; i--) {
+        const s = allSessions[i];
+        // find the slot rep range from that session's routine day (approximate: check if reps logged match range)
+        const match = s.sets.filter(st => st.exerciseId === exId);
+        if (match.length === 0) continue;
+        // Check if any reps logged are within this slot's rep range
+        const inRange = match.some(st => {
+          if (slotRepMin && slotRepMax) return st.reps >= slotRepMin && st.reps <= slotRepMax;
+          if (slotRepMin) return st.reps >= slotRepMin;
+          if (slotRepMax) return st.reps <= slotRepMax;
+          return true;
+        });
+        if (inRange) { applyMatch(s, match); found = true; }
+      }
+    }
+    // Pass 3: global fallback
+    if (!found) {
+      for (let i = allSessions.length - 1; i >= 0 && !found; i--) {
+        const s = allSessions[i];
+        const match = s.sets.filter(st => st.exerciseId === exId);
+        if (match.length > 0) { applyMatch(s, match); found = true; }
+      }
+    }
 
     const targetSets = slot.sets || 3;
     return {
@@ -1312,6 +1329,20 @@ function launchFireworks() {
 }
 
 function renderExerciseBlock(ex, exIdx, pr) {
+  // ── SKIPPED (check before pending — can skip without choosing) ──
+  if (ex.skipped) {
+    const exercises = getExercises();
+    const displayName = ex.pending
+      ? ex.choices.map(cid => (exercises.find(e => e.id === cid) || {}).name || '?').join(' / ')
+      : ex.name;
+    return `<div class="exercise-block" id="ex-block-${exIdx}" style="opacity:0.4;">
+      <div class="exercise-block-header">
+        <div class="exercise-name" style="text-decoration:line-through;color:var(--text3);">${esc(displayName)}</div>
+        <button class="btn-inline" onclick="unskipExercise(${exIdx})">Undo</button>
+      </div>
+    </div>`;
+  }
+
   // ── PENDING: OR choice not yet made ──
   if (ex.pending) {
     const exercises = getExercises();
@@ -1326,16 +1357,6 @@ function renderExerciseBlock(ex, exIdx, pr) {
       <div style="padding:12px 14px;display:flex;gap:8px;">
         <button class="btn btn-primary" style="flex:2;" onclick="pickOrChoice(${exIdx})">Choose Exercise</button>
         <button class="btn btn-secondary" style="flex:1;" onclick="skipExercise(${exIdx})">Skip</button>
-      </div>
-    </div>`;
-  }
-
-  // ── SKIPPED ──
-  if (ex.skipped) {
-    return `<div class="exercise-block" id="ex-block-${exIdx}" style="opacity:0.4;">
-      <div class="exercise-block-header">
-        <div class="exercise-name" style="text-decoration:line-through;color:var(--text3);">${esc(ex.name)}</div>
-        <button class="btn-inline" onclick="unskipExercise(${exIdx})">Undo</button>
       </div>
     </div>`;
   }
@@ -1528,79 +1549,54 @@ function logSet(exIdx, setIdx) {
   const set = ex.sets[setIdx];
   set.logged = true; set.weight = ex.targetWeight;
   refreshExerciseBlock(exIdx);
+  saveSessionDraft();
 }
 
 function addSet(exIdx) {
   const ex = session.exercises[exIdx];
   ex.sets.push({ weight: ex.targetWeight, reps: 0, logged: false, skipped: false });
   refreshExerciseBlock(exIdx);
+  saveSessionDraft();
 }
 
 function skipExercise(exIdx) {
   session.exercises[exIdx].skipped = true;
   refreshExerciseBlock(exIdx);
+  saveSessionDraft();
 }
 
 function unskipExercise(exIdx) {
   session.exercises[exIdx].skipped = false;
   refreshExerciseBlock(exIdx);
+  saveSessionDraft();
 }
 
 function skipSet(exIdx, setIdx) {
   session.exercises[exIdx].sets[setIdx].skipped = true;
   session.exercises[exIdx].sets[setIdx].logged = false;
   refreshExerciseBlock(exIdx);
+  saveSessionDraft();
 }
 
 function unskipSet(exIdx, setIdx) {
   session.exercises[exIdx].sets[setIdx].skipped = false;
   refreshExerciseBlock(exIdx);
+  saveSessionDraft();
 }
 
 // Add an extra exercise not in the routine
 function openAddExtraExercise() {
   const exercises = getExercises();
   const list = document.getElementById('modal-extra-exercise-list');
-  const createNewBtn = `<div class="list-item" onclick="openCreateExerciseInWorkout()" style="border-bottom:1px solid var(--border);">
-    <div class="list-item-main">
-      <div class="list-item-title" style="color:var(--accent);">+ Create New Exercise</div>
-      <div class="list-item-sub">Add a new exercise to your library</div>
-    </div>
-  </div>`;
-  list.innerHTML = createNewBtn + (exercises.map(ex => `
+  list.innerHTML = exercises.map(ex => `
     <div class="list-item" onclick="addExtraExercise('${ex.id}')">
       <div class="list-item-main">
         <div class="list-item-title">${esc(ex.name)}</div>
         ${ex.category ? `<div class="list-item-sub">${esc(ex.category)}</div>` : ''}
       </div>
     </div>
-  `).join('') || `<div style="padding:20px;color:var(--text2);">No exercises in library yet.</div>`);
+  `).join('') || `<div style="padding:20px;color:var(--text2);">No exercises in library yet.</div>`;
   openModal('modal-extra-exercise');
-}
-
-function openCreateExerciseInWorkout() {
-  // Close picker, open inline create form
-  closeModal('modal-extra-exercise');
-  document.getElementById('wk-new-ex-name').value = '';
-  document.getElementById('wk-new-ex-cat').value = '';
-  openModal('modal-wk-create-exercise');
-}
-
-function saveAndAddNewExercise() {
-  const name = document.getElementById('wk-new-ex-name').value.trim();
-  const category = document.getElementById('wk-new-ex-cat').value.trim();
-  if (!name) { alert('Enter a name.'); return; }
-  const exercises = getExercises();
-  if (exercises.find(e => e.name.toLowerCase() === name.toLowerCase())) {
-    alert('An exercise with that name already exists.');
-    return;
-  }
-  const newEx = { id: uid(), name, category, barbell: false, cable: false, bodyweight: false, dumbbell: false };
-  exercises.push(newEx);
-  saveExercises(exercises);
-  closeModal('modal-wk-create-exercise');
-  // Immediately add it to the session
-  addExtraExercise(newEx.id);
 }
 
 function addExtraExercise(exId) {
@@ -1660,30 +1656,6 @@ function refreshExerciseBlock(exIdx) {
 function finishWorkout() {
   if (!session) return;
   if (session.isProgramSession) { finishProgramWorkout(); return; }
-
-  // Count unconfirmed sets (have a weight/rep value entered but not checked off)
-  let unconfirmedCount = 0;
-  session.exercises.forEach(ex => {
-    if (ex.skipped || ex.pending) return;
-    ex.sets.forEach(s => {
-      if (!s.logged && !s.skipped && s.reps > 0) unconfirmedCount++;
-    });
-  });
-
-  if (unconfirmedCount > 0) {
-    // Show warning modal — user decides whether to go back or finish anyway
-    const modal = document.getElementById('modal-unconfirmed-sets');
-    document.getElementById('unconfirmed-sets-count').textContent =
-      `${unconfirmedCount} set${unconfirmedCount > 1 ? 's haven\'t' : ' hasn\'t'} been confirmed (no ✓ tapped).`;
-    openModal('modal-unconfirmed-sets');
-    return; // wait for user's choice in the modal
-  }
-
-  doFinishWorkout();
-}
-
-function doFinishWorkout() {
-  if (!session) return;
   const sets = [];
   session.exercises.forEach(ex => {
     if (ex.skipped || ex.pending) return;
@@ -1711,6 +1683,7 @@ function doFinishWorkout() {
 
   setLastDayId(session.routineId, session.dayId);
   setLastRoutineId(session.routineId);
+  clearSessionDraft();
   autoBackup(); // silent background backup to GitHub
   showSessionSummary(savedSession);
   session = null;
@@ -1719,6 +1692,7 @@ function doFinishWorkout() {
 
 function cancelWorkout() {
   if (!confirm('Discard this workout? All logged sets will be lost.')) return;
+  clearSessionDraft();
   session = null;
   renderIdleHome();
 }
@@ -3490,6 +3464,7 @@ function confirmNumpad() {
   // Allow 0 for bodyweight exercises, just not NaN or negative
   if (!isNaN(val) && val >= 0 && numpadCallback) numpadCallback(val);
   closeModal('modal-numpad');
+  if (session) saveSessionDraft();
 }
 
 // ── MODALS ─────────────────────────────────────────────────
@@ -3505,8 +3480,6 @@ document.querySelectorAll('.modal-backdrop').forEach(b => {
 const CARDIO_TYPES = [
   { id: 'running',    label: 'Running',     icon: '🏃', hasDistance: true,  hasTime: false },
   { id: 'jumprope',   label: 'Jump Rope',   icon: '🪢', hasDistance: false, hasTime: false },
-  { id: 'soccer',     label: 'Soccer',      icon: '⚽', hasDistance: false, hasTime: false },
-  { id: 'biking',     label: 'Biking',      icon: '🚴', hasDistance: false, hasTime: false },
   { id: 'bjj',        label: 'BJJ',         icon: '🥋', hasDistance: false, hasTime: false },
   { id: 'muaythai',   label: 'Muay Thai',   icon: '🥊', hasDistance: false, hasTime: false },
   { id: 'boxing',     label: 'Boxing',      icon: '🤜', hasDistance: false, hasTime: false },
@@ -3546,123 +3519,125 @@ function renderActivityCalendar() {
     dayMap[s.date].lift.push(s);
   });
 
+  // Build 8 weeks of days ending today
   const today = todayStr();
-  const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-  const DAY_LABELS  = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
+  // Local-date helper — avoids UTC shift bugs with toISOString()
   function localDateStr(d) {
-    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    const yr = d.getFullYear();
+    const mo = String(d.getMonth()+1).padStart(2,'0');
+    const da = String(d.getDate()).padStart(2,'0');
+    return `${yr}-${mo}-${da}`;
   }
 
-  // Build the 3 months to show: 2 months ago, last month, current month
-  const now = new Date(today + 'T12:00:00');
-  const months = [];
-  for (let offset = 2; offset >= 0; offset--) {
-    const d = new Date(now.getFullYear(), now.getMonth() - offset, 1);
-    months.push({ year: d.getFullYear(), month: d.getMonth() }); // month is 0-based
-  }
+  const todayDate = new Date(today + 'T12:00:00'); // noon to avoid DST edge cases
 
-  // Day-of-week header (Sun–Sat)
-  const headerHtml = DAY_LABELS.map(d =>
+  // Start on Monday 8 weeks ago
+  const startDate = new Date(todayDate);
+  startDate.setDate(startDate.getDate() - 55); // 8 weeks back
+  // Snap to Monday
+  const dow = startDate.getDay();
+  const offset = (dow === 0) ? -6 : 1 - dow;
+  startDate.setDate(startDate.getDate() + offset);
+
+  // Day-of-week headers
+  const dayLabels = ['M','T','W','T','F','S','S'];
+  const headerHtml = dayLabels.map(d =>
     `<div style="text-align:center;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.06em;color:var(--text3);padding-bottom:4px;">${d}</div>`
   ).join('');
 
-  function buildCell(dateStr, isGhost) {
-    const [yr, mo, da] = dateStr.split('-').map(Number);
-    const dayNum = da;
-    const isToday   = dateStr === today;
-    const isFuture  = dateStr > today;
-    const data      = dayMap[dateStr] || { cardio: [], lift: [] };
-    const hasActivity = !isFuture && (data.cardio.length > 0 || data.lift.length > 0);
+  // Build cells — always render all days so grid is always visible
+  const cells = [];
+  const cur = new Date(startDate);
+  while (localDateStr(cur) <= today) {
+    const dateStr = localDateStr(cur);
+    const isToday  = dateStr === today;
+    const isFuture = dateStr > today;
+    const data     = dayMap[dateStr] || { cardio: [], lift: [] };
 
     let iconsHtml = '';
-    if (hasActivity) {
+    let hasActivity = false;
+
+    if (data && !isFuture) {
+      hasActivity = data.cardio.length > 0 || data.lift.length > 0;
       const icons = [];
+      // Dedupe cardio icons (one per type per day)
       const seenTypes = new Set();
       data.cardio.forEach(s => {
         if (!seenTypes.has(s.type)) { icons.push(s.icon); seenTypes.add(s.type); }
       });
       if (data.lift.length > 0) icons.push('🏋️');
+      // Show up to 2 icons, stack them
       iconsHtml = icons.slice(0,2).map(ic =>
         `<div style="font-size:${icons.length > 1 ? '11px' : '14px'};line-height:1.1;">${ic}</div>`
       ).join('');
     }
 
-    if (isGhost) {
-      // Days from adjacent months — show dimmed, not tappable
-      return `<div style="
-        display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
-        padding:3px 1px;border-radius:6px;min-height:44px;opacity:0.2;
-      ">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;color:var(--text3);">${dayNum}</div>
-      </div>`;
-    }
+    const [yr, mo, da] = dateStr.split('-');
+    const dayNum = parseInt(da);
 
-    const cellBg     = isToday ? 'var(--accent)' : hasActivity ? 'var(--accent)22' : 'transparent';
+    // Show month name on 1st of month, otherwise show day number
+    const isFirstOfMonth = dayNum === 1;
+    const monthStr = isFirstOfMonth
+      ? ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][parseInt(mo)-1]
+      : '';
+    const dayDisplay = isFirstOfMonth ? monthStr : String(dayNum);
+
+    // Alternating month shading for readability
+    const monthIdx = parseInt(mo) - 1;
+    const isEvenMonth = monthIdx % 2 === 0;
+    const monthBg = isEvenMonth ? 'var(--surface)' : 'var(--surface2)';
+    const cellBg = isToday ? 'var(--accent)' : hasActivity ? 'var(--accent)22' : monthBg;
     const cellBorder = isToday ? 'var(--accent)' : hasActivity ? 'var(--accent)' : 'var(--border)';
-    const dayColor   = isToday ? '#fff' : hasActivity ? 'var(--accent)' : 'var(--text2)';
-    const opacity    = isFuture ? '0.3' : '1';
+    const dayColor = isToday ? '#fff' : isFirstOfMonth ? 'var(--accent)' : hasActivity ? 'var(--accent)' : 'var(--text3)';
 
-    return `<div onclick="toggleCalendarPopover('${dateStr}')" style="
-      cursor:pointer;opacity:${opacity};
-      display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
-      padding:3px 1px;border-radius:6px;
-      background:${cellBg};border:1px solid ${cellBorder};min-height:44px;
-    ">
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:${dayColor};line-height:1.3;">${dayNum}</div>
-      <div style="display:flex;flex-direction:column;align-items:center;margin-top:1px;">${iconsHtml}</div>
-    </div>`;
+    cells.push(`
+      <div onclick="toggleCalendarPopover('${dateStr}')" style="
+        cursor:pointer;
+        display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+        padding:3px 1px;
+        border-radius:6px;
+        background:${cellBg};
+        border:1px solid ${cellBorder};
+        min-height:46px;
+        position:relative;
+      ">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;
+          color:${dayColor};
+          line-height:1.2;letter-spacing:0.04em;">
+          ${dayDisplay}
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;margin-top:1px;">
+          ${iconsHtml}
+        </div>
+      </div>`);
+
+    cur.setDate(cur.getDate() + 1);
   }
 
-  // Build each month block
-  const monthBlocks = months.map(({ year, month }) => {
-    const monthLabel = `${MONTH_NAMES[month]} ${year}`;
-    const firstDay = new Date(year, month, 1);
-    const lastDay  = new Date(year, month + 1, 0); // last day of month
-    const startDow = firstDay.getDay(); // 0=Sun
-    const totalDays = lastDay.getDate();
-
-    const cells = [];
-
-    // Leading ghost days from previous month
-    for (let i = 0; i < startDow; i++) {
-      const d = new Date(year, month, 1 - (startDow - i));
-      cells.push(buildCell(localDateStr(d), true));
+  // Pad to full weeks at end
+  const remainingDays = 7 - (cells.length % 7);
+  if (remainingDays < 7) {
+    for (let i = 0; i < remainingDays; i++) {
+      cells.push(`<div style="min-height:46px;"></div>`);
     }
+  }
 
-    // Real days
-    for (let day = 1; day <= totalDays; day++) {
-      const d = new Date(year, month, day);
-      cells.push(buildCell(localDateStr(d), false));
-    }
+  const gridHtml = `
+    <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;">
+      ${headerHtml}
+      ${cells.join('')}
+    </div>`;
 
-    // Trailing ghost days to complete the last week
-    const endDow = lastDay.getDay();
-    const trailingDays = endDow === 6 ? 0 : 6 - endDow;
-    for (let i = 1; i <= trailingDays; i++) {
-      const d = new Date(year, month + 1, i);
-      cells.push(buildCell(localDateStr(d), true));
-    }
-
-    return `
-      <div style="margin-bottom:20px;">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;letter-spacing:0.05em;color:var(--text);margin-bottom:8px;padding-left:2px;">${monthLabel}</div>
-        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;">
-          ${headerHtml}
-          ${cells.join('')}
-        </div>
-      </div>`;
-  });
-
-  // Popover
+  // Popover (re-render below grid if a date is selected)
   let popoverHtml = '';
   if (calendarPopoverDate && dayMap[calendarPopoverDate]) {
     popoverHtml = buildCalendarPopover(calendarPopoverDate, dayMap[calendarPopoverDate]);
   }
 
   el.innerHTML = `
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 12px 4px;">
-      ${monthBlocks.join('')}
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px;">
+      ${gridHtml}
     </div>
     ${popoverHtml}`;
 }
