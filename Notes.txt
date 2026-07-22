@@ -1,7 +1,7 @@
 Notes
 
 git add .
-git commit -m "added biking as cardio"
+git commit -m "fixing previous rep range check"
 git pull --rebase
 git push
 

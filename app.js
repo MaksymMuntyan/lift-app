@@ -1089,7 +1089,7 @@ function resolveInlineSlot(exIdx, choiceId) {
 
   // Build this exercise now that we have a choice
   const exercises = getExercises();
-  const allSessions = getSessions();
+  const allSessions = getSessions().slice().sort((a, b) => a.date < b.date ? -1 : a.date > b.date ? 1 : 0);
   const ex = exercises.find(e => e.id === choiceId);
   if (!ex) return;
 
@@ -1098,15 +1098,26 @@ function resolveInlineSlot(exIdx, choiceId) {
   const isCable = !!ex.cable;
   let lastWeight = isBodyweight ? 0 : 45, lastReps = 5, lastDate = null;
   let lastSetReps = [], lastSetWeights = [];
-  for (let i = allSessions.length - 1; i >= 0; i--) {
+
+  function applySlotMatch(s, match) {
+    const best = match.reduce((a, b) => b.weight > a.weight ? b : (b.weight === a.weight && b.reps > a.reps ? b : a), match[0]);
+    lastWeight = best.weight; lastReps = best.reps; lastDate = s.date;
+    lastSetReps = match.map(st => st.reps); lastSetWeights = match.map(st => st.weight);
+  }
+  let slotFound = false;
+  // Pass 1: same day
+  for (let i = allSessions.length - 1; i >= 0 && !slotFound; i--) {
     const s = allSessions[i];
+    if (s.dayId !== session.dayId) continue;
     const match = s.sets.filter(st => st.exerciseId === choiceId);
-    if (match.length > 0) {
-      const best = match.reduce((a, b) => b.weight > a.weight ? b : (b.weight === a.weight && b.reps > a.reps ? b : a), match[0]);
-      lastWeight = best.weight; lastReps = best.reps; lastDate = s.date;
-      lastSetReps = match.map(st => st.reps);
-      lastSetWeights = match.map(st => st.weight);
-      break;
+    if (match.length > 0) { applySlotMatch(s, match); slotFound = true; }
+  }
+  // Pass 2: global fallback
+  if (!slotFound) {
+    for (let i = allSessions.length - 1; i >= 0 && !slotFound; i--) {
+      const s = allSessions[i];
+      const match = s.sets.filter(st => st.exerciseId === choiceId);
+      if (match.length > 0) { applySlotMatch(s, match); slotFound = true; }
     }
   }
 
@@ -1126,7 +1137,8 @@ function resolveInlineSlot(exIdx, choiceId) {
 
 function buildSessionExercises() {
   const exercises = getExercises();
-  const allSessions = getSessions();
+  // Sort by date ascending so the reverse loop always finds the most recent first
+  const allSessions = getSessions().slice().sort((a, b) => a.date < b.date ? -1 : a.date > b.date ? 1 : 0);
 
   session.exercises = session.slots.map(slot => {
     // OR slot not yet resolved — create a pending placeholder
@@ -1149,42 +1161,21 @@ function buildSessionExercises() {
     let lastWeight = isBodyweight ? 0 : 45, lastReps = 5, lastDate = null;
     let lastSetReps = [], lastSetWeights = [];
 
-    // Lookup priority:
-    // 1. Same routineId + dayId (exact same workout day)
-    // 2. Any session where rep range matches (same exercise, same context)
-    // 3. Any session (global fallback)
-    const slotRepMin = slot.repMin, slotRepMax = slot.repMax;
+    // Lookup: same day first, then any session as fallback
     function applyMatch(s, match) {
       const best = match.reduce((a, b) => b.weight > a.weight ? b : (b.weight === a.weight && b.reps > a.reps ? b : a), match[0]);
       lastWeight = best.weight; lastReps = best.reps; lastDate = s.date;
       lastSetReps = match.map(st => st.reps); lastSetWeights = match.map(st => st.weight);
     }
     let found = false;
-    // Pass 1: same day
+    // Pass 1: same routine day only
     for (let i = allSessions.length - 1; i >= 0 && !found; i--) {
       const s = allSessions[i];
-      if (s.routineId !== session.routineId || s.dayId !== session.dayId) continue;
+      if (s.dayId !== session.dayId) continue;
       const match = s.sets.filter(st => st.exerciseId === exId);
       if (match.length > 0) { applyMatch(s, match); found = true; }
     }
-    // Pass 2: any session with matching rep range
-    if (!found && (slotRepMin || slotRepMax)) {
-      for (let i = allSessions.length - 1; i >= 0 && !found; i--) {
-        const s = allSessions[i];
-        // find the slot rep range from that session's routine day (approximate: check if reps logged match range)
-        const match = s.sets.filter(st => st.exerciseId === exId);
-        if (match.length === 0) continue;
-        // Check if any reps logged are within this slot's rep range
-        const inRange = match.some(st => {
-          if (slotRepMin && slotRepMax) return st.reps >= slotRepMin && st.reps <= slotRepMax;
-          if (slotRepMin) return st.reps >= slotRepMin;
-          if (slotRepMax) return st.reps <= slotRepMax;
-          return true;
-        });
-        if (inRange) { applyMatch(s, match); found = true; }
-      }
-    }
-    // Pass 3: global fallback
+    // Pass 2: any session (first time doing this day)
     if (!found) {
       for (let i = allSessions.length - 1; i >= 0 && !found; i--) {
         const s = allSessions[i];
