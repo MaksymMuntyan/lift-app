@@ -1104,24 +1104,19 @@ function resolveInlineSlot(exIdx, choiceId) {
     lastWeight = best.weight; lastReps = best.reps; lastDate = s.date;
     lastSetReps = match.map(st => st.reps); lastSetWeights = match.map(st => st.weight);
   }
+  const sRMin = slot.repMin, sRMax = slot.repMax;
   let slotFound = false;
-  // Pass 1: same routine + same day name
-  for (let i = allSessions.length - 1; i >= 0 && !slotFound; i--) {
-    const s = allSessions[i];
-    if (s.routineId !== session.routineId || s.dayName !== session.dayName) continue;
-    const match = s.sets.filter(st => st.exerciseId === choiceId);
-    if (match.length > 0) { applySlotMatch(s, match); slotFound = true; }
-  }
-  // Pass 2: same day name, any routine
-  if (!slotFound) {
+  // Pass 1: most recent session where reps fall within this slot's rep range
+  if (sRMin || sRMax) {
     for (let i = allSessions.length - 1; i >= 0 && !slotFound; i--) {
       const s = allSessions[i];
-      if (s.dayName !== session.dayName) continue;
       const match = s.sets.filter(st => st.exerciseId === choiceId);
-      if (match.length > 0) { applySlotMatch(s, match); slotFound = true; }
+      if (!match.length) continue;
+      const inRange = match.filter(st => (!sRMin || st.reps >= sRMin) && (!sRMax || st.reps <= sRMax));
+      if (inRange.length >= Math.ceil(match.length / 2)) { applySlotMatch(s, match); slotFound = true; }
     }
   }
-  // Pass 3: global fallback
+  // Pass 2: global fallback
   if (!slotFound) {
     for (let i = allSessions.length - 1; i >= 0 && !slotFound; i--) {
       const s = allSessions[i];
@@ -1170,30 +1165,25 @@ function buildSessionExercises() {
     let lastWeight = isBodyweight ? 0 : 45, lastReps = 5, lastDate = null;
     let lastSetReps = [], lastSetWeights = [];
 
-    // Lookup: same routine+dayName first, then same dayName any routine, then global
+    // Lookup: most recent session where reps match this slot's range, then global fallback
     function applyMatch(s, match) {
       const best = match.reduce((a, b) => b.weight > a.weight ? b : (b.weight === a.weight && b.reps > a.reps ? b : a), match[0]);
       lastWeight = best.weight; lastReps = best.reps; lastDate = s.date;
       lastSetReps = match.map(st => st.reps); lastSetWeights = match.map(st => st.weight);
     }
+    const rMin = slot.repMin, rMax = slot.repMax;
     let found = false;
-    // Pass 1: same routine + same day name
-    for (let i = allSessions.length - 1; i >= 0 && !found; i--) {
-      const s = allSessions[i];
-      if (s.routineId !== session.routineId || s.dayName !== session.dayName) continue;
-      const match = s.sets.filter(st => st.exerciseId === exId);
-      if (match.length > 0) { applyMatch(s, match); found = true; }
-    }
-    // Pass 2: same day name, any routine (handles routine switches)
-    if (!found) {
+    // Pass 1: most recent session where reps logged fall within this slot's rep range
+    if (rMin || rMax) {
       for (let i = allSessions.length - 1; i >= 0 && !found; i--) {
         const s = allSessions[i];
-        if (s.dayName !== session.dayName) continue;
         const match = s.sets.filter(st => st.exerciseId === exId);
-        if (match.length > 0) { applyMatch(s, match); found = true; }
+        if (!match.length) continue;
+        const inRange = match.filter(st => (!rMin || st.reps >= rMin) && (!rMax || st.reps <= rMax));
+        if (inRange.length >= Math.ceil(match.length / 2)) { applyMatch(s, match); found = true; }
       }
     }
-    // Pass 3: global fallback
+    // Pass 2: global fallback (no rep range filter, or no range defined)
     if (!found) {
       for (let i = allSessions.length - 1; i >= 0 && !found; i--) {
         const s = allSessions[i];
