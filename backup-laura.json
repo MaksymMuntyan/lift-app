@@ -2,7 +2,7 @@
   "version": 2,
   "user": 2,
   "userName": "Laura",
-  "exportDate": "2026-07-21T21:29:34.655Z",
+  "exportDate": "2026-07-24T20:56:02.710Z",
   "exercises": [
     {
       "id": "mpn6ru5l2mls",
@@ -3525,6 +3525,129 @@
           "setNum": 3,
           "weight": 0,
           "reps": 4,
+          "bodyweight": null
+        }
+      ]
+    },
+    {
+      "id": "mrzdpqgp4blw",
+      "date": "2026-07-24",
+      "routineId": "mn5gy4wh6zll",
+      "routineName": "Laura Full Body 3x Week",
+      "dayId": "mn5gy4why6zu",
+      "dayName": "Day B (Pull)",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4whpi7b",
+          "exerciseName": "Deadlift",
+          "setNum": 1,
+          "weight": 230,
+          "reps": 3,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpi7b",
+          "exerciseName": "Deadlift",
+          "setNum": 2,
+          "weight": 230,
+          "reps": 3,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whtim6",
+          "exerciseName": "Weighted Pull-Up",
+          "setNum": 1,
+          "weight": 20,
+          "reps": 4,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whtim6",
+          "exerciseName": "Weighted Pull-Up",
+          "setNum": 2,
+          "weight": 20,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whtim6",
+          "exerciseName": "Weighted Pull-Up",
+          "setNum": 3,
+          "weight": 20,
+          "reps": 4,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whkme0",
+          "exerciseName": "Incline Push-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 17,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whkme0",
+          "exerciseName": "Incline Push-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 13,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whkme0",
+          "exerciseName": "Incline Push-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 9,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4wh7cfu",
+          "exerciseName": "Pistol Squat",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4wh7cfu",
+          "exerciseName": "Pistol Squat",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4wh7cfu",
+          "exerciseName": "Pistol Squat",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whh2c4",
+          "exerciseName": "Cable Crunch",
+          "setNum": 1,
+          "weight": 125,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whh2c4",
+          "exerciseName": "Cable Crunch",
+          "setNum": 2,
+          "weight": 125,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whh2c4",
+          "exerciseName": "Cable Crunch",
+          "setNum": 3,
+          "weight": 125,
+          "reps": 10,
           "bodyweight": null
         }
       ]
