@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-07-22T17:40:29.169Z",
+  "exportDate": "2026-07-24T19:54:08.084Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -11,6 +11,15 @@
       "barbell": false,
       "cable": false,
       "bodyweight": true,
+      "dumbbell": false
+    },
+    {
+      "id": "mrwixuduwbmk",
+      "name": "Barbell Row",
+      "category": "Back",
+      "barbell": true,
+      "cable": false,
+      "bodyweight": false,
       "dumbbell": false
     },
     {
@@ -377,6 +386,15 @@
       "category": "Back",
       "bodyweight": false,
       "barbell": false
+    },
+    {
+      "id": "mrxlwaodgo1d",
+      "name": "Weighted Chin-Up",
+      "category": "Back",
+      "barbell": false,
+      "cable": false,
+      "bodyweight": false,
+      "dumbbell": true
     },
     {
       "id": "mn5gy4vxzw9a",
@@ -905,7 +923,8 @@
             {
               "choices": [
                 "mn5gy4vx5udm",
-                "mn5gy4vx2p8a"
+                "mn5gy4vx2p8a",
+                "mqsbw87tyuts"
               ],
               "sets": 3,
               "repMin": 8,
@@ -944,7 +963,9 @@
           "slots": [
             {
               "choices": [
-                "mn5gy4vximn0"
+                "mn5gy4vximn0",
+                "mrwixuduwbmk",
+                "mrxlwaodgo1d"
               ],
               "sets": 3,
               "repMin": 6,
@@ -8862,6 +8883,105 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "mrz6w21085re",
+      "date": "2026-07-24",
+      "routineId": "mp5uvnh9vk1b",
+      "routineName": "4X / Week Bulk",
+      "dayId": "mp5uwu697vnb",
+      "dayName": "Upper 2",
+      "bodyweight": 151.6,
+      "sets": [
+        {
+          "exerciseId": "mrxlwaodgo1d",
+          "exerciseName": "Weighted Chin-Up",
+          "setNum": 1,
+          "weight": 70,
+          "reps": 5,
+          "bodyweight": 151.6
+        },
+        {
+          "exerciseId": "mrxlwaodgo1d",
+          "exerciseName": "Weighted Chin-Up",
+          "setNum": 2,
+          "weight": 70,
+          "reps": 4,
+          "bodyweight": 151.6
+        },
+        {
+          "exerciseId": "mrxlwaodgo1d",
+          "exerciseName": "Weighted Chin-Up",
+          "setNum": 3,
+          "weight": 70,
+          "reps": 3,
+          "bodyweight": 151.6
+        },
+        {
+          "exerciseId": "mn5gy4vxxtfg",
+          "exerciseName": "Weighted Body Row",
+          "setNum": 1,
+          "weight": 30.2,
+          "reps": 12,
+          "bodyweight": 151.6
+        },
+        {
+          "exerciseId": "mn5gy4vxxtfg",
+          "exerciseName": "Weighted Body Row",
+          "setNum": 2,
+          "weight": 30.2,
+          "reps": 11,
+          "bodyweight": 151.6
+        },
+        {
+          "exerciseId": "mn5gy4vxuz63",
+          "exerciseName": "Overhead Tricep Extension",
+          "setNum": 1,
+          "weight": 65,
+          "reps": 11,
+          "bodyweight": 151.6
+        },
+        {
+          "exerciseId": "mn5gy4vxuz63",
+          "exerciseName": "Overhead Tricep Extension",
+          "setNum": 2,
+          "weight": 65,
+          "reps": 10,
+          "bodyweight": 151.6
+        },
+        {
+          "exerciseId": "mn5gy4vxuz63",
+          "exerciseName": "Overhead Tricep Extension",
+          "setNum": 3,
+          "weight": 65,
+          "reps": 9,
+          "bodyweight": 151.6
+        },
+        {
+          "exerciseId": "mo0juauc8d8h",
+          "exerciseName": "Hammer Curl",
+          "setNum": 1,
+          "weight": 39,
+          "reps": 12,
+          "bodyweight": 151.6
+        },
+        {
+          "exerciseId": "mo0juauc8d8h",
+          "exerciseName": "Hammer Curl",
+          "setNum": 2,
+          "weight": 39,
+          "reps": 12,
+          "bodyweight": 151.6
+        },
+        {
+          "exerciseId": "mo0juauc8d8h",
+          "exerciseName": "Hammer Curl",
+          "setNum": 3,
+          "weight": 39,
+          "reps": 11,
+          "bodyweight": 151.6
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -9100,6 +9220,10 @@
     {
       "date": "2026-07-15",
       "weight": 150.6
+    },
+    {
+      "date": "2026-07-24",
+      "weight": 151.6
     }
   ],
   "cardio": [
@@ -9611,6 +9735,22 @@
     {
       "id": "mrvi15ark4sd",
       "date": "2026-07-21",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": null
+    },
+    {
+      "id": "mrxluulvcgav",
+      "date": "2026-07-22",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": null
+    },
+    {
+      "id": "mry77n8mf76e",
+      "date": "2026-07-23",
       "type": "bjj",
       "label": "BJJ",
       "icon": "🥋",
