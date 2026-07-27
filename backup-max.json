@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-07-25T15:14:35.234Z",
+  "exportDate": "2026-07-27T17:51:22.424Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -9105,6 +9105,121 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "ms3h9221h7la",
+      "date": "2026-07-27",
+      "routineId": "mp5uvnh9vk1b",
+      "routineName": "4X / Week Bulk",
+      "dayId": "mp5urmmc02fo",
+      "dayName": "Upper 1",
+      "bodyweight": 153,
+      "sets": [
+        {
+          "exerciseId": "mp4n1913vuj4",
+          "exerciseName": "High Pull",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 7,
+          "bodyweight": 153
+        },
+        {
+          "exerciseId": "mp4n1913vuj4",
+          "exerciseName": "High Pull",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 6,
+          "bodyweight": 153
+        },
+        {
+          "exerciseId": "mp4n1913vuj4",
+          "exerciseName": "High Pull",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 5,
+          "bodyweight": 153
+        },
+        {
+          "exerciseId": "mp5uyk85dp5a",
+          "exerciseName": "Seated Dumbbell Curl",
+          "setNum": 1,
+          "weight": 32,
+          "reps": 11,
+          "bodyweight": 153
+        },
+        {
+          "exerciseId": "mp5uyk85dp5a",
+          "exerciseName": "Seated Dumbbell Curl",
+          "setNum": 2,
+          "weight": 32,
+          "reps": 9,
+          "bodyweight": 153
+        },
+        {
+          "exerciseId": "mp5uyk85dp5a",
+          "exerciseName": "Seated Dumbbell Curl",
+          "setNum": 3,
+          "weight": 32,
+          "reps": 6,
+          "bodyweight": 153
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 1,
+          "weight": 100,
+          "reps": 12,
+          "bodyweight": 153
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 2,
+          "weight": 100,
+          "reps": 10,
+          "bodyweight": 153
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 3,
+          "weight": 100,
+          "reps": 10,
+          "bodyweight": 153
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": 153
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 7,
+          "bodyweight": 153
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 5,
+          "bodyweight": 153
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 4,
+          "weight": 0,
+          "reps": 5,
+          "bodyweight": 153
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -9347,6 +9462,10 @@
     {
       "date": "2026-07-24",
       "weight": 151.6
+    },
+    {
+      "date": "2026-07-27",
+      "weight": 153
     }
   ],
   "cardio": [
@@ -9874,6 +9993,14 @@
     {
       "id": "mry77n8mf76e",
       "date": "2026-07-23",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": null
+    },
+    {
+      "id": "ms0pbubigjmm",
+      "date": "2026-07-25",
       "type": "bjj",
       "label": "BJJ",
       "icon": "🥋",
