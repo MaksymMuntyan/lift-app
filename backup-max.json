@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-07-29T17:48:50.653Z",
+  "exportDate": "2026-08-01T12:58:32.581Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -9327,6 +9327,145 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "ms96y0vixet5",
+      "date": "2026-07-31",
+      "routineId": "mp5uvnh9vk1b",
+      "routineName": "4X / Week Bulk",
+      "dayId": "mp5uwu697vnb",
+      "dayName": "Upper 2",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mrxlwaodgo1d",
+          "exerciseName": "Weighted Chin-Up",
+          "setNum": 1,
+          "weight": 80,
+          "reps": 4,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mrxlwaodgo1d",
+          "exerciseName": "Weighted Chin-Up",
+          "setNum": 2,
+          "weight": 80,
+          "reps": 3,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mrxlwaodgo1d",
+          "exerciseName": "Weighted Chin-Up",
+          "setNum": 3,
+          "weight": 80,
+          "reps": 3,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxxtfg",
+          "exerciseName": "Weighted Body Row",
+          "setNum": 1,
+          "weight": 30.2,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxxtfg",
+          "exerciseName": "Weighted Body Row",
+          "setNum": 2,
+          "weight": 30.2,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxxtfg",
+          "exerciseName": "Weighted Body Row",
+          "setNum": 3,
+          "weight": 30.2,
+          "reps": 11,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxuz63",
+          "exerciseName": "Overhead Tricep Extension",
+          "setNum": 1,
+          "weight": 65,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxuz63",
+          "exerciseName": "Overhead Tricep Extension",
+          "setNum": 2,
+          "weight": 65,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxuz63",
+          "exerciseName": "Overhead Tricep Extension",
+          "setNum": 3,
+          "weight": 65,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mo0juauc8d8h",
+          "exerciseName": "Hammer Curl",
+          "setNum": 1,
+          "weight": 39,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mo0juauc8d8h",
+          "exerciseName": "Hammer Curl",
+          "setNum": 2,
+          "weight": 39,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mo0juauc8d8h",
+          "exerciseName": "Hammer Curl",
+          "setNum": 3,
+          "weight": 39,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 7,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 4,
+          "weight": 0,
+          "reps": 6,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -9573,6 +9712,10 @@
     {
       "date": "2026-07-27",
       "weight": 153
+    },
+    {
+      "date": "2026-07-30",
+      "weight": 152.6
     }
   ],
   "cardio": [
@@ -10116,6 +10259,14 @@
     {
       "id": "ms57rqrzkgi3",
       "date": "2026-07-27",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": null
+    },
+    {
+      "id": "ms86t4y9f6j2",
+      "date": "2026-07-30",
       "type": "bjj",
       "label": "BJJ",
       "icon": "🥋",
