@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-08-01T14:57:55.597Z",
+  "exportDate": "2026-08-03T17:58:17.831Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -9593,6 +9593,145 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "msdhk5ktj5rs",
+      "date": "2026-08-03",
+      "routineId": "mp5uvnh9vk1b",
+      "routineName": "4X / Week Bulk",
+      "dayId": "mp5urmmc02fo",
+      "dayName": "Upper 1",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mp4n1913vuj4",
+          "exerciseName": "High Pull",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mp4n1913vuj4",
+          "exerciseName": "High Pull",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mp4n1913vuj4",
+          "exerciseName": "High Pull",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mp5uyk85dp5a",
+          "exerciseName": "Seated Dumbbell Curl",
+          "setNum": 1,
+          "weight": 32,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mp5uyk85dp5a",
+          "exerciseName": "Seated Dumbbell Curl",
+          "setNum": 2,
+          "weight": 32,
+          "reps": 9,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mp5uyk85dp5a",
+          "exerciseName": "Seated Dumbbell Curl",
+          "setNum": 3,
+          "weight": 32,
+          "reps": 7,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 1,
+          "weight": 100,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 2,
+          "weight": 100,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 3,
+          "weight": 100,
+          "reps": 11,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 9,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 7,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 4,
+          "weight": 0,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 5,
+          "weight": 0,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 6,
+          "weight": 0,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 7,
+          "weight": 0,
+          "reps": 6,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -10397,6 +10536,14 @@
       "type": "bjj",
       "label": "BJJ",
       "icon": "🥋",
+      "notes": null
+    },
+    {
+      "id": "msaks47w8m46",
+      "date": "2026-08-01",
+      "type": "other",
+      "label": "Biking",
+      "icon": "➕",
       "notes": null
     }
   ],
