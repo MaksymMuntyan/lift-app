@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-08-03T17:58:17.831Z",
+  "exportDate": "2026-08-05T17:47:34.462Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -9732,6 +9732,113 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "msgc3j653w6k",
+      "date": "2026-08-05",
+      "routineId": "mp5uvnh9vk1b",
+      "routineName": "4X / Week Bulk",
+      "dayId": "mp5uvw77vpc8",
+      "dayName": "Lower 1",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vx6rzi",
+          "exerciseName": "RDL",
+          "setNum": 1,
+          "weight": 240,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vx6rzi",
+          "exerciseName": "RDL",
+          "setNum": 2,
+          "weight": 240,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vx6rzi",
+          "exerciseName": "RDL",
+          "setNum": 3,
+          "weight": 240,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mqsbw87tyuts",
+          "exerciseName": "Front Squat",
+          "setNum": 1,
+          "weight": 135,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mqsbw87tyuts",
+          "exerciseName": "Front Squat",
+          "setNum": 2,
+          "weight": 135,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mqsbw87tyuts",
+          "exerciseName": "Front Squat",
+          "setNum": 3,
+          "weight": 135,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 1,
+          "weight": 185,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 2,
+          "weight": 185,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 3,
+          "weight": 160,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mnyuwrrpjgv9",
+          "exerciseName": "Standing Barbell Wrist Curl",
+          "setNum": 1,
+          "weight": 145,
+          "reps": 15,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mnyuwrrpjgv9",
+          "exerciseName": "Standing Barbell Wrist Curl",
+          "setNum": 2,
+          "weight": 145,
+          "reps": 15,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mnyuwrrpjgv9",
+          "exerciseName": "Standing Barbell Wrist Curl",
+          "setNum": 3,
+          "weight": 145,
+          "reps": 12,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -9982,6 +10089,10 @@
     {
       "date": "2026-07-30",
       "weight": 152.6
+    },
+    {
+      "date": "2026-08-04",
+      "weight": 155
     }
   ],
   "cardio": [
@@ -10544,6 +10655,22 @@
       "type": "other",
       "label": "Biking",
       "icon": "➕",
+      "notes": null
+    },
+    {
+      "id": "msdxslcewp4q",
+      "date": "2026-08-03",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": null
+    },
+    {
+      "id": "msgbd3nza3pr",
+      "date": "2026-08-04",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
       "notes": null
     }
   ],
