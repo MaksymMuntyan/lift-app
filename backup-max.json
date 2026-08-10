@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-08-10T17:05:05.935Z",
+  "exportDate": "2026-08-10T21:42:45.501Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -9943,6 +9943,121 @@
           "setNum": 3,
           "weight": 0,
           "reps": 12,
+          "bodyweight": null
+        }
+      ]
+    },
+    {
+      "id": "msnhfjugy8n9",
+      "date": "2026-08-10",
+      "routineId": "mp5uvnh9vk1b",
+      "routineName": "4X / Week Bulk",
+      "dayId": "mp5urmmc02fo",
+      "dayName": "Upper 1",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mp5uyk85dp5a",
+          "exerciseName": "Seated Dumbbell Curl",
+          "setNum": 1,
+          "weight": 25,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mp5uyk85dp5a",
+          "exerciseName": "Seated Dumbbell Curl",
+          "setNum": 2,
+          "weight": 25,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 1,
+          "weight": 100,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 2,
+          "weight": 100,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 3,
+          "weight": 100,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 9,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 4,
+          "weight": 0,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 5,
+          "weight": 0,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mrxlwaodgo1d",
+          "exerciseName": "Weighted Chin-Up",
+          "setNum": 1,
+          "weight": 70,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mrxlwaodgo1d",
+          "exerciseName": "Weighted Chin-Up",
+          "setNum": 2,
+          "weight": 70,
+          "reps": 2,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mrxlwaodgo1d",
+          "exerciseName": "Weighted Chin-Up",
+          "setNum": 3,
+          "weight": 70,
+          "reps": 3,
           "bodyweight": null
         }
       ]
