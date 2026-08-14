@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-08-10T21:42:45.501Z",
+  "exportDate": "2026-08-14T03:18:28.772Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -10061,6 +10061,57 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "msqc8k51v9fj",
+      "date": "2026-08-12",
+      "routineId": "mp5uvnh9vk1b",
+      "routineName": "4X / Week Bulk",
+      "dayId": "mp5uvw77vpc8",
+      "dayName": "Lower 1",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vx6rzi",
+          "exerciseName": "RDL",
+          "setNum": 1,
+          "weight": 245,
+          "reps": 7,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mqsbw87tyuts",
+          "exerciseName": "Front Squat",
+          "setNum": 1,
+          "weight": 135,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mqsbw87tyuts",
+          "exerciseName": "Front Squat",
+          "setNum": 2,
+          "weight": 135,
+          "reps": 1,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 1,
+          "weight": 160,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 2,
+          "weight": 160,
+          "reps": 8,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -10890,6 +10941,22 @@
     {
       "id": "msgbd3nza3pr",
       "date": "2026-08-04",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": null
+    },
+    {
+      "id": "msnxbot4at29",
+      "date": "2026-08-10",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": null
+    },
+    {
+      "id": "mspc2rxm9467",
+      "date": "2026-08-11",
       "type": "bjj",
       "label": "BJJ",
       "icon": "🥋",
