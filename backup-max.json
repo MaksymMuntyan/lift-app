@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-08-14T17:36:50.692Z",
+  "exportDate": "2026-08-21T12:40:20.017Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -168,6 +168,15 @@
       "barbell": true,
       "cable": false,
       "bodyweight": false,
+      "dumbbell": false
+    },
+    {
+      "id": "mt2xiryx1z47",
+      "name": "Half Push-Up",
+      "category": "Chest",
+      "barbell": false,
+      "cable": false,
+      "bodyweight": true,
       "dumbbell": false
     },
     {
@@ -10240,6 +10249,145 @@
           "setNum": 3,
           "weight": 0,
           "reps": 13,
+          "bodyweight": null
+        }
+      ]
+    },
+    {
+      "id": "mt2wu279g6q3",
+      "date": "2026-08-21",
+      "routineId": "mp5uvnh9vk1b",
+      "routineName": "4X / Week Bulk",
+      "dayId": "mp5urmmc02fo",
+      "dayName": "Upper 1",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxvpro",
+          "exerciseName": "Ring Dip",
+          "setNum": 4,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 11,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 4,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxf1sd",
+          "exerciseName": "Body Row",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 15,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxf1sd",
+          "exerciseName": "Body Row",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 15,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxf1sd",
+          "exerciseName": "Body Row",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 15,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxf1sd",
+          "exerciseName": "Body Row",
+          "setNum": 4,
+          "weight": 0,
+          "reps": 15,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mt2xiryx1z47",
+          "exerciseName": "Half Push-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 30,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mt2xiryx1z47",
+          "exerciseName": "Half Push-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 30,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mt2xiryx1z47",
+          "exerciseName": "Half Push-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 30,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mt2xiryx1z47",
+          "exerciseName": "Half Push-Up",
+          "setNum": 4,
+          "weight": 0,
+          "reps": 30,
           "bodyweight": null
         }
       ]
