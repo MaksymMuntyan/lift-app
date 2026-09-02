@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-08-21T12:40:20.017Z",
+  "exportDate": "2026-09-02T23:22:29.581Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -10391,6 +10391,49 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "mtht9pag8h1a",
+      "date": "2026-08-31",
+      "routineId": "mpmw45xwh5mb",
+      "routineName": "Free",
+      "dayId": "mpmw3y5ai7wg",
+      "dayName": "Day A",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 4,
+          "weight": 0,
+          "reps": 9,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -11244,6 +11287,14 @@
     {
       "id": "mssdntdk1h2b",
       "date": "2026-08-13",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": null
+    },
+    {
+      "id": "mthtniuyu5ei",
+      "date": "2026-08-30",
       "type": "bjj",
       "label": "BJJ",
       "icon": "🥋",
