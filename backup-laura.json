@@ -2,7 +2,7 @@
   "version": 2,
   "user": 2,
   "userName": "Laura",
-  "exportDate": "2026-09-09T20:31:59.350Z",
+  "exportDate": "2026-09-11T17:47:46.216Z",
   "exercises": [
     {
       "id": "mpn6ru5l2mls",
@@ -4464,6 +4464,113 @@
           "setNum": 3,
           "weight": 0,
           "reps": 5,
+          "bodyweight": null
+        }
+      ]
+    },
+    {
+      "id": "mtx7tans3fho",
+      "date": "2026-09-11",
+      "routineId": "mn5gy4wh6zll",
+      "routineName": "Laura Full Body 3x Week",
+      "dayId": "mn5gy4whfcs6",
+      "dayName": "Day A (Push)",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4whhh4f",
+          "exerciseName": "Squat",
+          "setNum": 1,
+          "weight": 155,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whhh4f",
+          "exerciseName": "Squat",
+          "setNum": 2,
+          "weight": 155,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whhh4f",
+          "exerciseName": "Squat",
+          "setNum": 3,
+          "weight": 155,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpbhj",
+          "exerciseName": "Ring Dip",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 7,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpbhj",
+          "exerciseName": "Ring Dip",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 7,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpbhj",
+          "exerciseName": "Ring Dip",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whi1e9",
+          "exerciseName": "Cable Row",
+          "setNum": 1,
+          "weight": 125,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whi1e9",
+          "exerciseName": "Cable Row",
+          "setNum": 2,
+          "weight": 145,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whi1e9",
+          "exerciseName": "Cable Row",
+          "setNum": 3,
+          "weight": 145,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whj8vd",
+          "exerciseName": "RDL",
+          "setNum": 1,
+          "weight": 145,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whj8vd",
+          "exerciseName": "RDL",
+          "setNum": 2,
+          "weight": 145,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whj8vd",
+          "exerciseName": "RDL",
+          "setNum": 3,
+          "weight": 145,
+          "reps": 10,
           "bodyweight": null
         }
       ]
