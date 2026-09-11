@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-09-09T17:38:18.728Z",
+  "exportDate": "2026-09-11T17:48:15.336Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -10739,6 +10739,89 @@
           "bodyweight": 155.6
         }
       ]
+    },
+    {
+      "id": "mtx811gf4bm3",
+      "date": "2026-09-11",
+      "routineId": "mp5uvnh9vk1b",
+      "routineName": "4X / Week Bulk",
+      "dayId": "mp5uwu697vnb",
+      "dayName": "Upper 2",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mon6z1yk1e5z",
+          "exerciseName": "Chin-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 13,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mon6z1yk1e5z",
+          "exerciseName": "Chin-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 13,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mon6z1yk1e5z",
+          "exerciseName": "Chin-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 13,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxska4",
+          "exerciseName": "Cable Row",
+          "setNum": 1,
+          "weight": 210,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxska4",
+          "exerciseName": "Cable Row",
+          "setNum": 2,
+          "weight": 210,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxska4",
+          "exerciseName": "Cable Row",
+          "setNum": 3,
+          "weight": 210,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxx4p2",
+          "exerciseName": "Dumbbell Incline Press",
+          "setNum": 1,
+          "weight": 53,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxx4p2",
+          "exerciseName": "Dumbbell Incline Press",
+          "setNum": 2,
+          "weight": 53,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxx4p2",
+          "exerciseName": "Dumbbell Incline Press",
+          "setNum": 3,
+          "weight": 53,
+          "reps": 7,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -11612,6 +11695,14 @@
     {
       "id": "mtkq27bp06i7",
       "date": "2026-08-31",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": null
+    },
+    {
+      "id": "mtx85cw6lsaz",
+      "date": "2026-09-10",
       "type": "bjj",
       "label": "BJJ",
       "icon": "🥋",
