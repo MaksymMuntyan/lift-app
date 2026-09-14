@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-09-12T16:58:56.633Z",
+  "exportDate": "2026-09-14T17:50:30.667Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -10926,6 +10926,137 @@
           "setNum": 3,
           "weight": 145,
           "reps": 15,
+          "bodyweight": null
+        }
+      ]
+    },
+    {
+      "id": "mu1htwhejvdp",
+      "date": "2026-09-14",
+      "routineId": "mp5uvnh9vk1b",
+      "routineName": "4X / Week Bulk",
+      "dayId": "mp5urmmc02fo",
+      "dayName": "Upper 1",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxujmc",
+          "exerciseName": "Bench Press",
+          "setNum": 1,
+          "weight": 170,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxujmc",
+          "exerciseName": "Bench Press",
+          "setNum": 2,
+          "weight": 170,
+          "reps": 4,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxujmc",
+          "exerciseName": "Bench Press",
+          "setNum": 3,
+          "weight": 170,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxd95m",
+          "exerciseName": "Ring Fly",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxd95m",
+          "exerciseName": "Ring Fly",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxd95m",
+          "exerciseName": "Ring Fly",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mp5uyk85dp5a",
+          "exerciseName": "Seated Dumbbell Curl",
+          "setNum": 1,
+          "weight": 32,
+          "reps": 9,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mp5uyk85dp5a",
+          "exerciseName": "Seated Dumbbell Curl",
+          "setNum": 2,
+          "weight": 32,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mp5uyk85dp5a",
+          "exerciseName": "Seated Dumbbell Curl",
+          "setNum": 3,
+          "weight": 32,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 1,
+          "weight": 102.5,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 2,
+          "weight": 102.5,
+          "reps": 11,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 3,
+          "weight": 102.5,
+          "reps": 9,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mrxlwaodgo1d",
+          "exerciseName": "Weighted Chin-Up",
+          "setNum": 1,
+          "weight": 60,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mrxlwaodgo1d",
+          "exerciseName": "Weighted Chin-Up",
+          "setNum": 2,
+          "weight": 60,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mrxlwaodgo1d",
+          "exerciseName": "Weighted Chin-Up",
+          "setNum": 3,
+          "weight": 60,
+          "reps": 5,
           "bodyweight": null
         }
       ]
