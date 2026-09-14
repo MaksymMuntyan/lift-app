@@ -2,7 +2,7 @@
   "version": 2,
   "user": 2,
   "userName": "Laura",
-  "exportDate": "2026-09-11T17:47:46.216Z",
+  "exportDate": "2026-09-14T21:31:12.492Z",
   "exercises": [
     {
       "id": "mpn6ru5l2mls",
@@ -4571,6 +4571,113 @@
           "setNum": 3,
           "weight": 145,
           "reps": 10,
+          "bodyweight": null
+        }
+      ]
+    },
+    {
+      "id": "mu1qcve3vyfs",
+      "date": "2026-09-14",
+      "routineId": "mn5gy4wh6zll",
+      "routineName": "Laura Full Body 3x Week",
+      "dayId": "mn5gy4why6zu",
+      "dayName": "Day B (Pull)",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4whtim6",
+          "exerciseName": "Weighted Pull-Up",
+          "setNum": 1,
+          "weight": 10,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whtim6",
+          "exerciseName": "Weighted Pull-Up",
+          "setNum": 2,
+          "weight": 10,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whtim6",
+          "exerciseName": "Weighted Pull-Up",
+          "setNum": 3,
+          "weight": 10,
+          "reps": 3,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whkme0",
+          "exerciseName": "Incline Push-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whkme0",
+          "exerciseName": "Incline Push-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whkme0",
+          "exerciseName": "Incline Push-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whh2c4",
+          "exerciseName": "Cable Crunch",
+          "setNum": 1,
+          "weight": 125,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whh2c4",
+          "exerciseName": "Cable Crunch",
+          "setNum": 2,
+          "weight": 125,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whh2c4",
+          "exerciseName": "Cable Crunch",
+          "setNum": 3,
+          "weight": 125,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpbhj",
+          "exerciseName": "Ring Dip",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpbhj",
+          "exerciseName": "Ring Dip",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpbhj",
+          "exerciseName": "Ring Dip",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 6,
           "bodyweight": null
         }
       ]
