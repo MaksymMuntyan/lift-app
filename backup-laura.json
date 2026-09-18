@@ -2,7 +2,7 @@
   "version": 2,
   "user": 2,
   "userName": "Laura",
-  "exportDate": "2026-09-14T21:31:12.492Z",
+  "exportDate": "2026-09-18T18:41:11.029Z",
   "exercises": [
     {
       "id": "mpn6ru5l2mls",
@@ -4681,6 +4681,89 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "mu7a718b3v0s",
+      "date": "2026-09-18",
+      "routineId": "mn5gy4wh6zll",
+      "routineName": "Laura Full Body 3x Week",
+      "dayId": "mn5gy4whfcs6",
+      "dayName": "Day A (Push)",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4whhh4f",
+          "exerciseName": "Squat",
+          "setNum": 1,
+          "weight": 165,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whhh4f",
+          "exerciseName": "Squat",
+          "setNum": 2,
+          "weight": 165,
+          "reps": 4,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whhh4f",
+          "exerciseName": "Squat",
+          "setNum": 3,
+          "weight": 165,
+          "reps": 4,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpbhj",
+          "exerciseName": "Ring Dip",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 7,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpbhj",
+          "exerciseName": "Ring Dip",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 7,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpbhj",
+          "exerciseName": "Ring Dip",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 7,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whgv21",
+          "exerciseName": "Pull-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whgv21",
+          "exerciseName": "Pull-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whgv21",
+          "exerciseName": "Pull-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 6,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -4845,6 +4928,35 @@
       "icon": "➕",
       "notes": "Good! Lost both games but cardio was better",
       "duration": 120
+    },
+    {
+      "id": "mu3doiexaekg",
+      "date": "2026-09-15",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": null,
+      "distance": 2,
+      "duration": 25
+    },
+    {
+      "id": "mu6a3rhdag79",
+      "date": "2026-09-16",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": null,
+      "duration": 90
+    },
+    {
+      "id": "mu67ujtd0q6a",
+      "date": "2026-09-17",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": null,
+      "distance": 1.5,
+      "duration": 17.5
     }
   ],
   "activeProgram": null,
