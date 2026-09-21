@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-09-16T17:42:57.273Z",
+  "exportDate": "2026-09-21T17:04:22.491Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -11143,6 +11143,129 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "mu77jqlj8lqm",
+      "date": "2026-09-18",
+      "routineId": "mp5uvnh9vk1b",
+      "routineName": "4X / Week Bulk",
+      "dayId": "mp5uwu697vnb",
+      "dayName": "Upper 2",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mon6z1yk1e5z",
+          "exerciseName": "Chin-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 13,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mon6z1yk1e5z",
+          "exerciseName": "Chin-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 13,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mon6z1yk1e5z",
+          "exerciseName": "Chin-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 14,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxuz63",
+          "exerciseName": "Overhead Tricep Extension",
+          "setNum": 1,
+          "weight": 70,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxuz63",
+          "exerciseName": "Overhead Tricep Extension",
+          "setNum": 2,
+          "weight": 70,
+          "reps": 9,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxuz63",
+          "exerciseName": "Overhead Tricep Extension",
+          "setNum": 3,
+          "weight": 70,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mo0juauc8d8h",
+          "exerciseName": "Hammer Curl",
+          "setNum": 1,
+          "weight": 39,
+          "reps": 9,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mo0juauc8d8h",
+          "exerciseName": "Hammer Curl",
+          "setNum": 2,
+          "weight": 39,
+          "reps": 9,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxska4",
+          "exerciseName": "Cable Row",
+          "setNum": 1,
+          "weight": 210,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxska4",
+          "exerciseName": "Cable Row",
+          "setNum": 2,
+          "weight": 215,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxska4",
+          "exerciseName": "Cable Row",
+          "setNum": 3,
+          "weight": 215,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxzw9a",
+          "exerciseName": "Weighted Dip",
+          "setNum": 1,
+          "weight": 80,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxzw9a",
+          "exerciseName": "Weighted Dip",
+          "setNum": 2,
+          "weight": 80,
+          "reps": 7,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxzw9a",
+          "exerciseName": "Weighted Dip",
+          "setNum": 3,
+          "weight": 80,
+          "reps": 3,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -12045,6 +12168,23 @@
       "icon": "🏃",
       "notes": null,
       "distance": 2
+    },
+    {
+      "id": "mu6a4vrehlxl",
+      "date": "2026-09-16",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": null
+    },
+    {
+      "id": "mu6a4p12hb5o",
+      "date": "2026-09-17",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": null,
+      "distance": 1.5
     }
   ],
   "activeProgram": null,
