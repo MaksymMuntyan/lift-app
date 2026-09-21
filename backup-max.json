@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-09-21T17:04:22.491Z",
+  "exportDate": "2026-09-21T17:48:03.544Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -265,6 +265,15 @@
       "barbell": false,
       "cable": false,
       "bodyweight": true,
+      "dumbbell": false
+    },
+    {
+      "id": "mubia2y5jnu9",
+      "name": "Pause Bench Press",
+      "category": "Chest",
+      "barbell": true,
+      "cable": false,
+      "bodyweight": false,
       "dumbbell": false
     },
     {
@@ -11263,6 +11272,121 @@
           "setNum": 3,
           "weight": 80,
           "reps": 3,
+          "bodyweight": null
+        }
+      ]
+    },
+    {
+      "id": "mubhwcslcm99",
+      "date": "2026-09-21",
+      "routineId": "mp5uvnh9vk1b",
+      "routineName": "4X / Week Bulk",
+      "dayId": "mp5urmmc02fo",
+      "dayName": "Upper 1",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxujmc",
+          "exerciseName": "Bench Press",
+          "setNum": 1,
+          "weight": 170,
+          "reps": 7,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mp5uyk85dp5a",
+          "exerciseName": "Seated Dumbbell Curl",
+          "setNum": 1,
+          "weight": 32,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mp5uyk85dp5a",
+          "exerciseName": "Seated Dumbbell Curl",
+          "setNum": 2,
+          "weight": 32,
+          "reps": 7,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mp5uyk85dp5a",
+          "exerciseName": "Seated Dumbbell Curl",
+          "setNum": 3,
+          "weight": 32,
+          "reps": 7,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 1,
+          "weight": 102.5,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 2,
+          "weight": 102.5,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 3,
+          "weight": 102.5,
+          "reps": 11,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mrxlwaodgo1d",
+          "exerciseName": "Weighted Chin-Up",
+          "setNum": 1,
+          "weight": 70,
+          "reps": 4,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mrxlwaodgo1d",
+          "exerciseName": "Weighted Chin-Up",
+          "setNum": 2,
+          "weight": 70,
+          "reps": 4,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mrxlwaodgo1d",
+          "exerciseName": "Weighted Chin-Up",
+          "setNum": 3,
+          "weight": 70,
+          "reps": 3,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mubia2y5jnu9",
+          "exerciseName": "Pause Bench Press",
+          "setNum": 1,
+          "weight": 155,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mubia2y5jnu9",
+          "exerciseName": "Pause Bench Press",
+          "setNum": 2,
+          "weight": 155,
+          "reps": 4,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mubia2y5jnu9",
+          "exerciseName": "Pause Bench Press",
+          "setNum": 3,
+          "weight": 155,
+          "reps": 4,
           "bodyweight": null
         }
       ]
