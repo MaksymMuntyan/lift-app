@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-09-26T14:37:36.362Z",
+  "exportDate": "2026-09-28T17:53:33.757Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -370,6 +370,24 @@
       "bodyweight": false,
       "barbell": false,
       "cable": true
+    },
+    {
+      "id": "mulii1j8wrlr",
+      "name": "Slow Chin-Up",
+      "category": "Back",
+      "barbell": false,
+      "cable": false,
+      "bodyweight": true,
+      "dumbbell": false
+    },
+    {
+      "id": "muliokua2qlo",
+      "name": "Slow Ring Dip",
+      "category": "Chest",
+      "barbell": false,
+      "cable": false,
+      "bodyweight": true,
+      "dumbbell": false
     },
     {
       "id": "mn5gy4vxfboo",
@@ -11727,6 +11745,137 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "mulger3jkfnd",
+      "date": "2026-09-28",
+      "routineId": "mp5uvnh9vk1b",
+      "routineName": "4X / Week Bulk",
+      "dayId": "mp5urmmc02fo",
+      "dayName": "Upper 1",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxujmc",
+          "exerciseName": "Bench Press",
+          "setNum": 1,
+          "weight": 175,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxujmc",
+          "exerciseName": "Bench Press",
+          "setNum": 2,
+          "weight": 175,
+          "reps": 3,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxujmc",
+          "exerciseName": "Bench Press",
+          "setNum": 3,
+          "weight": 175,
+          "reps": 3,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mp5uyk85dp5a",
+          "exerciseName": "Seated Dumbbell Curl",
+          "setNum": 1,
+          "weight": 32,
+          "reps": 9,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mp5uyk85dp5a",
+          "exerciseName": "Seated Dumbbell Curl",
+          "setNum": 2,
+          "weight": 32,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mp5uyk85dp5a",
+          "exerciseName": "Seated Dumbbell Curl",
+          "setNum": 3,
+          "weight": 32,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 1,
+          "weight": 105,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 2,
+          "weight": 105,
+          "reps": 9,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 3,
+          "weight": 105,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mulii1j8wrlr",
+          "exerciseName": "Slow Chin-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mulii1j8wrlr",
+          "exerciseName": "Slow Chin-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 9,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mulii1j8wrlr",
+          "exerciseName": "Slow Chin-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 9,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "muliokua2qlo",
+          "exerciseName": "Slow Ring Dip",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "muliokua2qlo",
+          "exerciseName": "Slow Ring Dip",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "muliokua2qlo",
+          "exerciseName": "Slow Ring Dip",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 6,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -11985,6 +12134,10 @@
     {
       "date": "2026-09-09",
       "weight": 155.6
+    },
+    {
+      "date": "2026-09-27",
+      "weight": 157
     }
   ],
   "cardio": [
