@@ -2,7 +2,7 @@
   "version": 2,
   "user": 2,
   "userName": "Laura",
-  "exportDate": "2026-09-23T23:21:29.035Z",
+  "exportDate": "2026-09-29T20:48:51.413Z",
   "exercises": [
     {
       "id": "mpn6ru5l2mls",
@@ -4887,6 +4887,89 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "mun4izrnwuh0",
+      "date": "2026-09-29",
+      "routineId": "mn5gy4wh6zll",
+      "routineName": "Laura Full Body 3x Week",
+      "dayId": "mn5gy4whfcs6",
+      "dayName": "Day A (Push)",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4whhh4f",
+          "exerciseName": "Squat",
+          "setNum": 1,
+          "weight": 165,
+          "reps": 4,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whhh4f",
+          "exerciseName": "Squat",
+          "setNum": 2,
+          "weight": 165,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whhh4f",
+          "exerciseName": "Squat",
+          "setNum": 3,
+          "weight": 165,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpbhj",
+          "exerciseName": "Ring Dip",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 7,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpbhj",
+          "exerciseName": "Ring Dip",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 7,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpbhj",
+          "exerciseName": "Ring Dip",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whgv21",
+          "exerciseName": "Pull-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whgv21",
+          "exerciseName": "Pull-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whgv21",
+          "exerciseName": "Pull-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 5,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -5109,6 +5192,54 @@
       "notes": null,
       "distance": 3,
       "duration": 36
+    },
+    {
+      "id": "mug66yl6yon4",
+      "date": "2026-09-24",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": null,
+      "distance": 2,
+      "duration": 24
+    },
+    {
+      "id": "muj0kpjbobnv",
+      "date": "2026-09-26",
+      "type": "other",
+      "label": "Soccer",
+      "icon": "➕",
+      "notes": "Helped score a goal",
+      "duration": 40
+    },
+    {
+      "id": "mujwcnf5994m",
+      "date": "2026-09-27",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": null,
+      "distance": 1.5,
+      "duration": 18
+    },
+    {
+      "id": "mukcg0m0wa28",
+      "date": "2026-09-27",
+      "type": "other",
+      "label": "Biking",
+      "icon": "➕",
+      "notes": null,
+      "duration": 60
+    },
+    {
+      "id": "mulsc80ip9tm",
+      "date": "2026-09-28",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": null,
+      "distance": 2.5,
+      "duration": 29
     }
   ],
   "activeProgram": null,
