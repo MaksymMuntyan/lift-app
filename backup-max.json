@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-09-28T17:53:33.757Z",
+  "exportDate": "2026-09-30T20:25:31.726Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -11876,6 +11876,81 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "muocu3pnu4d6",
+      "date": "2026-09-30",
+      "routineId": "mp5uvnh9vk1b",
+      "routineName": "4X / Week Bulk",
+      "dayId": "mp5uvw77vpc8",
+      "dayName": "Lower 1",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vx6rzi",
+          "exerciseName": "RDL",
+          "setNum": 1,
+          "weight": 250,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vx6rzi",
+          "exerciseName": "RDL",
+          "setNum": 2,
+          "weight": 255,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 1,
+          "weight": 170,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 2,
+          "weight": 170,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vx38pt",
+          "exerciseName": "Cable Crunch",
+          "setNum": 3,
+          "weight": 170,
+          "reps": 11,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mnyuwrrpjgv9",
+          "exerciseName": "Standing Barbell Wrist Curl",
+          "setNum": 1,
+          "weight": 135,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mnyuwrrpjgv9",
+          "exerciseName": "Standing Barbell Wrist Curl",
+          "setNum": 2,
+          "weight": 135,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mnyuwrrpjgv9",
+          "exerciseName": "Standing Barbell Wrist Curl",
+          "setNum": 3,
+          "weight": 135,
+          "reps": 10,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -12819,6 +12894,22 @@
     {
       "id": "mugdft5s6hee",
       "date": "2026-09-24",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": null
+    },
+    {
+      "id": "muo4tmn3v85d",
+      "date": "2026-09-28",
+      "type": "bjj",
+      "label": "BJJ",
+      "icon": "🥋",
+      "notes": null
+    },
+    {
+      "id": "muo4tqgvpxu4",
+      "date": "2026-09-29",
       "type": "bjj",
       "label": "BJJ",
       "icon": "🥋",
