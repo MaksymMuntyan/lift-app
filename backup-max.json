@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-09-30T20:25:31.726Z",
+  "exportDate": "2026-10-03T15:52:34.201Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -11951,6 +11951,129 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "musi7mjxh7lj",
+      "date": "2026-10-03",
+      "routineId": "mp5uvnh9vk1b",
+      "routineName": "4X / Week Bulk",
+      "dayId": "mp5uwu697vnb",
+      "dayName": "Upper 2",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mo0juauc8d8h",
+          "exerciseName": "Hammer Curl",
+          "setNum": 1,
+          "weight": 39,
+          "reps": 11,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mo0juauc8d8h",
+          "exerciseName": "Hammer Curl",
+          "setNum": 2,
+          "weight": 39,
+          "reps": 11,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mo0juauc8d8h",
+          "exerciseName": "Hammer Curl",
+          "setNum": 3,
+          "weight": 39,
+          "reps": 11,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxska4",
+          "exerciseName": "Cable Row",
+          "setNum": 1,
+          "weight": 225,
+          "reps": 11,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxska4",
+          "exerciseName": "Cable Row",
+          "setNum": 2,
+          "weight": 225,
+          "reps": 9,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxska4",
+          "exerciseName": "Cable Row",
+          "setNum": 3,
+          "weight": 225,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxzw9a",
+          "exerciseName": "Weighted Dip",
+          "setNum": 1,
+          "weight": 90,
+          "reps": 7,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mulii1j8wrlr",
+          "exerciseName": "Slow Chin-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 11,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mulii1j8wrlr",
+          "exerciseName": "Slow Chin-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mulii1j8wrlr",
+          "exerciseName": "Slow Chin-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxfboo",
+          "exerciseName": "Squat",
+          "setNum": 1,
+          "weight": 215,
+          "reps": 4,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vx6det",
+          "exerciseName": "Barbell Shrug",
+          "setNum": 1,
+          "weight": 270,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vx6det",
+          "exerciseName": "Barbell Shrug",
+          "setNum": 2,
+          "weight": 270,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vx6det",
+          "exerciseName": "Barbell Shrug",
+          "setNum": 3,
+          "weight": 270,
+          "reps": 12,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -12914,6 +13037,15 @@
       "label": "BJJ",
       "icon": "🥋",
       "notes": null
+    },
+    {
+      "id": "muq4dgxe1bny",
+      "date": "2026-09-30",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": null,
+      "distance": 3.5
     }
   ],
   "activeProgram": null,
