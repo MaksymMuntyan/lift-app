@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-10-03T15:52:34.201Z",
+  "exportDate": "2026-10-05T17:08:37.665Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -12071,6 +12071,25 @@
           "setNum": 3,
           "weight": 270,
           "reps": 12,
+          "bodyweight": null
+        }
+      ]
+    },
+    {
+      "id": "muvi1yuz9jo2",
+      "date": "2026-10-05",
+      "routineId": "mp5uvnh9vk1b",
+      "routineName": "4X / Week Bulk",
+      "dayId": "mp5urmmc02fo",
+      "dayName": "Upper 1",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxujmc",
+          "exerciseName": "Bench Press",
+          "setNum": 1,
+          "weight": 175,
+          "reps": 4,
           "bodyweight": null
         }
       ]
