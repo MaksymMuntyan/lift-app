@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-10-05T17:08:37.665Z",
+  "exportDate": "2026-10-12T17:27:36.217Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -12093,6 +12093,57 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "mv5i7ztoaxv4",
+      "date": "2026-10-12",
+      "routineId": "mpmw45xwh5mb",
+      "routineName": "Free",
+      "dayId": "mpmw3y5ai7wg",
+      "dayName": "Day A",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxzw9a",
+          "exerciseName": "Weighted Dip",
+          "setNum": 1,
+          "weight": 90,
+          "reps": 7,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxzw9a",
+          "exerciseName": "Weighted Dip",
+          "setNum": 2,
+          "weight": 90,
+          "reps": 2,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxzw9a",
+          "exerciseName": "Weighted Dip",
+          "setNum": 3,
+          "weight": 45,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxzw9a",
+          "exerciseName": "Weighted Dip",
+          "setNum": 4,
+          "weight": 45,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mulii1j8wrlr",
+          "exerciseName": "Slow Chin-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 11,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -13065,6 +13116,15 @@
       "icon": "🏃",
       "notes": null,
       "distance": 3.5
+    },
+    {
+      "id": "muys2aj8z9jl",
+      "date": "2026-10-05",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": null,
+      "distance": 2.5
     }
   ],
   "activeProgram": null,
