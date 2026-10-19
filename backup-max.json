@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-10-17T14:16:50.712Z",
+  "exportDate": "2026-10-19T17:49:16.169Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -12441,6 +12441,121 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "mvfiirvznybn",
+      "date": "2026-10-19",
+      "routineId": "mp5uvnh9vk1b",
+      "routineName": "4X / Week Bulk",
+      "dayId": "mp5urmmc02fo",
+      "dayName": "Upper 1",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxzw9a",
+          "exerciseName": "Weighted Dip",
+          "setNum": 1,
+          "weight": 90,
+          "reps": 7,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxzw9a",
+          "exerciseName": "Weighted Dip",
+          "setNum": 2,
+          "weight": 90,
+          "reps": 6,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxzw9a",
+          "exerciseName": "Weighted Dip",
+          "setNum": 3,
+          "weight": 90,
+          "reps": 2,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxzw9a",
+          "exerciseName": "Weighted Dip",
+          "setNum": 4,
+          "weight": 45,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mulii1j8wrlr",
+          "exerciseName": "Slow Chin-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mulii1j8wrlr",
+          "exerciseName": "Slow Chin-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 9,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mulii1j8wrlr",
+          "exerciseName": "Slow Chin-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 9,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mpmx3h3px614",
+          "exerciseName": "Paralette Push-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 16,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mpmx3h3px614",
+          "exerciseName": "Paralette Push-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 14,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mpmx3h3px614",
+          "exerciseName": "Paralette Push-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 14,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxuz63",
+          "exerciseName": "Overhead Tricep Extension",
+          "setNum": 1,
+          "weight": 70,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxuz63",
+          "exerciseName": "Overhead Tricep Extension",
+          "setNum": 2,
+          "weight": 70,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxuz63",
+          "exerciseName": "Overhead Tricep Extension",
+          "setNum": 3,
+          "weight": 70,
+          "reps": 11,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -13458,6 +13573,24 @@
       "icon": "🏃",
       "notes": null,
       "distance": 5
+    },
+    {
+      "id": "mvdbon0k9s7h",
+      "date": "2026-10-18",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": null,
+      "distance": 3.2
+    },
+    {
+      "id": "mvee4vqo33at",
+      "date": "2026-10-18",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": null,
+      "distance": 3.46
     }
   ],
   "activeProgram": null,
