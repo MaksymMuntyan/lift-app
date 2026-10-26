@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-10-24T00:30:25.377Z",
+  "exportDate": "2026-10-26T03:44:56.020Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -12591,6 +12591,121 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "mvmizgn5nr78",
+      "date": "2026-10-24",
+      "routineId": "mp5uvnh9vk1b",
+      "routineName": "4X / Week Bulk",
+      "dayId": "mp5uwu697vnb",
+      "dayName": "Upper 2",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxuz63",
+          "exerciseName": "Overhead Tricep Extension",
+          "setNum": 1,
+          "weight": 75,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxuz63",
+          "exerciseName": "Overhead Tricep Extension",
+          "setNum": 2,
+          "weight": 75,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxuz63",
+          "exerciseName": "Overhead Tricep Extension",
+          "setNum": 3,
+          "weight": 75,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxska4",
+          "exerciseName": "Cable Row",
+          "setNum": 1,
+          "weight": 230,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxska4",
+          "exerciseName": "Cable Row",
+          "setNum": 2,
+          "weight": 230,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxska4",
+          "exerciseName": "Cable Row",
+          "setNum": 3,
+          "weight": 230,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxska4",
+          "exerciseName": "Cable Row",
+          "setNum": 4,
+          "weight": 225,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxzw9a",
+          "exerciseName": "Weighted Dip",
+          "setNum": 1,
+          "weight": 70,
+          "reps": 13,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxzw9a",
+          "exerciseName": "Weighted Dip",
+          "setNum": 2,
+          "weight": 70,
+          "reps": 9,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxzw9a",
+          "exerciseName": "Weighted Dip",
+          "setNum": 3,
+          "weight": 70,
+          "reps": 9,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mulii1j8wrlr",
+          "exerciseName": "Slow Chin-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mulii1j8wrlr",
+          "exerciseName": "Slow Chin-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mulii1j8wrlr",
+          "exerciseName": "Slow Chin-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -13635,6 +13750,15 @@
       "icon": "🏃",
       "notes": null,
       "distance": 5.1
+    },
+    {
+      "id": "mvlnxasuimie",
+      "date": "2026-10-23",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": null,
+      "distance": 6.2
     }
   ],
   "activeProgram": null,
