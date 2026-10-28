@@ -2,7 +2,7 @@
   "version": 2,
   "user": 2,
   "userName": "Laura",
-  "exportDate": "2026-10-16T17:58:15.504Z",
+  "exportDate": "2026-10-28T17:30:13.841Z",
   "exercises": [
     {
       "id": "mpn6ru5l2mls",
@@ -5192,6 +5192,81 @@
           "bodyweight": null
         }
       ]
+    },
+    {
+      "id": "mvsdd6q2kfq1",
+      "date": "2026-10-28",
+      "routineId": "mn5gy4wh6zll",
+      "routineName": "Laura Full Body 3x Week",
+      "dayId": "mn5gy4why6zu",
+      "dayName": "Day B (Pull)",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4whpi7b",
+          "exerciseName": "Deadlift",
+          "setNum": 1,
+          "weight": 205,
+          "reps": 4,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpi7b",
+          "exerciseName": "Deadlift",
+          "setNum": 2,
+          "weight": 205,
+          "reps": 4,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whtim6",
+          "exerciseName": "Weighted Pull-Up",
+          "setNum": 1,
+          "weight": 10,
+          "reps": 4,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whtim6",
+          "exerciseName": "Weighted Pull-Up",
+          "setNum": 2,
+          "weight": 10,
+          "reps": 3,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whtim6",
+          "exerciseName": "Weighted Pull-Up",
+          "setNum": 3,
+          "weight": 10,
+          "reps": 3,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whkme0",
+          "exerciseName": "Incline Push-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 11,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whkme0",
+          "exerciseName": "Incline Push-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whkme0",
+          "exerciseName": "Incline Push-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        }
+      ]
     }
   ],
   "bodyweights": [
@@ -5559,6 +5634,64 @@
       "notes": null,
       "distance": 5,
       "duration": 60
+    },
+    {
+      "id": "mvdbp7zsdx5h",
+      "date": "2026-10-17",
+      "type": "other",
+      "label": "Soccer",
+      "icon": "➕",
+      "notes": null,
+      "duration": 45
+    },
+    {
+      "id": "mved36z7o35j",
+      "date": "2026-10-18",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": "My legs were so freaking sore so tough",
+      "distance": 2,
+      "duration": 24
+    },
+    {
+      "id": "mvhapsekpigw",
+      "date": "2026-10-20",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": null,
+      "distance": 3,
+      "duration": 34
+    },
+    {
+      "id": "mvlnzz8kdt38",
+      "date": "2026-10-23",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": "Good!!",
+      "distance": 6,
+      "duration": 72
+    },
+    {
+      "id": "mvnuq1siosf9",
+      "date": "2026-10-24",
+      "type": "other",
+      "label": "Soccer",
+      "icon": "➕",
+      "notes": null,
+      "duration": 45
+    },
+    {
+      "id": "mvo222klxsqp",
+      "date": "2026-10-25",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": "Really hard, got 5 hours of sleep",
+      "distance": 2.45,
+      "duration": 25
     }
   ],
   "activeProgram": null,
