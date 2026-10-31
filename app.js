@@ -7,7 +7,7 @@
 //    Bodyweight { date, weight }
 // ═══════════════════════════════════════════════════════════
 
-let currentUser = parseInt(localStorage.getItem('lift_activeUser') || '1');
+let currentUser = pickStartupUser();
 const USERS = { 1: { name: 'Max' }, 2: { name: 'Laura' } };
 
 let session = null;
@@ -37,6 +37,24 @@ const KEY = k => `lift_u${currentUser}_${k}`;
 function load(k, def) { try { const v = localStorage.getItem(KEY(k)); return v !== null ? JSON.parse(v) : def; } catch { return def; } }
 function save(k, v)   { try { localStorage.setItem(KEY(k), JSON.stringify(v)); } catch(e) { console.error(e); } }
 
+// ── STARTUP USER ───────────────────────────────────────────
+// lift_activeUser alone doesn't reliably survive iOS home-screen relaunches,
+// so open as whichever profile was most recently active on this device.
+function lastActiveAt(u) { return parseInt(localStorage.getItem(`lift_u${u}_lastActive`) || '0'); }
+function touchActive()   { try { localStorage.setItem(`lift_u${currentUser}_lastActive`, Date.now()); } catch(e) {} }
+function pickStartupUser() {
+  const t1 = lastActiveAt(1), t2 = lastActiveAt(2);
+  if (t1 || t2) return t2 > t1 ? 2 : 1;
+  // No activity stamps yet (first run of this version): use most recent logged session
+  const lastDate = u => {
+    try { return (JSON.parse(localStorage.getItem(`lift_u${u}_sessions`)) || []).reduce((m, s) => s.date > m ? s.date : m, ''); }
+    catch { return ''; }
+  };
+  const d1 = lastDate(1), d2 = lastDate(2);
+  if (d1 || d2) return d2 > d1 ? 2 : 1;
+  return parseInt(localStorage.getItem('lift_activeUser') || '1');
+}
+
 function getExercises()   { return load('exercises', []).sort((a,b) => a.name.localeCompare(b.name)); }
 
 // ── SESSION DRAFT (persist active workout across app backgrounding) ──
@@ -44,6 +62,7 @@ const SESSION_DRAFT_KEY = () => `lift_u${currentUser}_sessionDraft`;
 function saveSessionDraft() {
   if (!session) return;
   try { localStorage.setItem(SESSION_DRAFT_KEY(), JSON.stringify(session)); } catch(e) {}
+  touchActive();
 }
 function clearSessionDraft() {
   localStorage.removeItem(SESSION_DRAFT_KEY());
@@ -61,8 +80,8 @@ function getSessions()    { return load('sessions', []); }
 function getBodyweights() { return load('bodyweights', []); }
 function saveExercises(d)   { save('exercises', d); }
 function saveRoutines(d)    { save('routines', d); }
-function saveSessions(d)    { save('sessions', d); }
-function saveBodyweights(d) { save('bodyweights', d); }
+function saveSessions(d)    { save('sessions', d); touchActive(); }
+function saveBodyweights(d) { save('bodyweights', d); touchActive(); }
 
 function getPrograms()    { return load('programs', []); }
 function savePrograms(d)  { save('programs', d); }
@@ -906,6 +925,7 @@ function switchUser() {
   session = null;
   currentUser = currentUser === 1 ? 2 : 1;
   localStorage.setItem('lift_activeUser', currentUser);
+  touchActive();
   updateUserDisplay();
   renderAll();
 }
@@ -3484,11 +3504,12 @@ const CARDIO_TYPES = [
   { id: 'boxing',     label: 'Boxing',      icon: '🤜', hasDistance: false, hasTime: false },
   { id: 'powertrack', label: 'Power Track', icon: '⚡', hasDistance: false, hasTime: false },
   { id: 'fasttrack',  label: 'Fast Track',  icon: '🚀', hasDistance: false, hasTime: false },
+  { id: 'soccer',     label: 'Soccer',      icon: '⚽', hasDistance: false, hasTime: false },
   { id: 'other',      label: 'Other',       icon: '➕', hasDistance: false, hasTime: false },
 ];
 
 function getCardioSessions()   { return load('cardio', []); }
-function saveCardioSessions(d) { save('cardio', d); }
+function saveCardioSessions(d) { save('cardio', d); touchActive(); }
 
 let currentCardioType = null;
 let cardioChartInstance = null;
@@ -4059,6 +4080,7 @@ async function restoreFromGithub() {
       errors.push(`${USERS[userNum].name}: ${e.message}`);
     }
   }
+  touchActive(); // restore wrote both profiles — keep this device on the current one
 
   if (restored === 2) {
     updateBackupStatus('✓ Both Max and Laura restored! Reloading...', 'var(--green)');
