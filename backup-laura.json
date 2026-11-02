@@ -2,7 +2,7 @@
   "version": 2,
   "user": 2,
   "userName": "Laura",
-  "exportDate": "2026-10-30T21:32:17.287Z",
+  "exportDate": "2026-11-02T23:08:20.322Z",
   "exercises": [
     {
       "id": "mpn6ru5l2mls",
@@ -5783,6 +5783,657 @@
       "notes": "Really hard, got 5 hours of sleep",
       "distance": 2.45,
       "duration": 25
+    },
+    {
+      "id": "mvy1o9um9ulq",
+      "date": "2026-10-26",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": "Good",
+      "distance": 3.5,
+      "duration": 41
+    },
+    {
+      "id": "mvy1p5rzj8i2",
+      "date": "2026-10-28",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": "Awesome but tough at the beginning",
+      "distance": 7,
+      "duration": 82
+    },
+    {
+      "id": "mvy1ne8iii2b",
+      "date": "2026-10-31",
+      "type": "soccer",
+      "label": "Soccer",
+      "icon": "⚽",
+      "notes": "Good, scored a goal and did great",
+      "duration": 50
+    },
+    {
+      "id": "mvy1mnnw0978",
+      "date": "2026-11-01",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": "Honestly tough",
+      "distance": 2,
+      "duration": 22
+    },
+    {
+      "id": "mvzvdxxh0zi4",
+      "date": "2026-11-02",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": "Medium (recovery week)",
+      "distance": 3,
+      "duration": 33
+    }
+  ],
+  "runplan": [
+    {
+      "id": "mvztiia7ja5f",
+      "date": "2026-09-14",
+      "distance": 1.5,
+      "notes": "Medium",
+      "status": "done",
+      "sessionId": null
+    },
+    {
+      "id": "mvztiia825gb",
+      "date": "2026-09-16",
+      "distance": 2,
+      "notes": "Long run",
+      "status": "done",
+      "sessionId": null
+    },
+    {
+      "id": "mvztiia8wg5y",
+      "date": "2026-09-20",
+      "distance": 1,
+      "notes": "Easy",
+      "status": "done",
+      "sessionId": null
+    },
+    {
+      "id": "mvztiia8y6w5",
+      "date": "2026-09-21",
+      "distance": 2,
+      "notes": "Medium",
+      "status": "done",
+      "sessionId": null
+    },
+    {
+      "id": "mvztiia87d4c",
+      "date": "2026-09-23",
+      "distance": 3,
+      "notes": "Long run",
+      "status": "done",
+      "sessionId": null
+    },
+    {
+      "id": "mvztiia8rp30",
+      "date": "2026-09-27",
+      "distance": 1.5,
+      "notes": "Easy",
+      "status": "done",
+      "sessionId": null
+    },
+    {
+      "id": "mvztiia8w2m8",
+      "date": "2026-09-28",
+      "distance": 2.5,
+      "notes": "Medium",
+      "status": "done",
+      "sessionId": null
+    },
+    {
+      "id": "mvztiia85rwr",
+      "date": "2026-09-30",
+      "distance": 3.5,
+      "notes": "Long run",
+      "status": "done",
+      "sessionId": null
+    },
+    {
+      "id": "mvztiia8lrqd",
+      "date": "2026-10-04",
+      "distance": 1.5,
+      "notes": "Easy",
+      "status": "done",
+      "sessionId": null
+    },
+    {
+      "id": "mvztiia8g8k4",
+      "date": "2026-10-05",
+      "distance": 2.5,
+      "notes": "Medium",
+      "status": "done",
+      "sessionId": null
+    },
+    {
+      "id": "mvztiia8pmfo",
+      "date": "2026-10-07",
+      "distance": 4,
+      "notes": "Long run",
+      "status": "done",
+      "sessionId": null
+    },
+    {
+      "id": "mvztiia8w0bq",
+      "date": "2026-10-11",
+      "distance": 1.5,
+      "notes": "Easy",
+      "status": "done",
+      "sessionId": null
+    },
+    {
+      "id": "mvztiia8snwr",
+      "date": "2026-10-12",
+      "distance": 3,
+      "notes": "Medium",
+      "status": "done",
+      "sessionId": null
+    },
+    {
+      "id": "mvztiia8i3uy",
+      "date": "2026-10-14",
+      "distance": 5,
+      "notes": "Long run",
+      "status": "done",
+      "sessionId": null
+    },
+    {
+      "id": "mvztiia8ljd8",
+      "date": "2026-10-18",
+      "distance": 2,
+      "notes": "Easy",
+      "status": "done",
+      "sessionId": null
+    },
+    {
+      "id": "mvztiia8j8x8",
+      "date": "2026-10-19",
+      "distance": 3,
+      "notes": "Medium",
+      "status": "done",
+      "sessionId": null
+    },
+    {
+      "id": "mvztiia8komn",
+      "date": "2026-10-21",
+      "distance": 6,
+      "notes": "Long run",
+      "status": "done",
+      "sessionId": null
+    },
+    {
+      "id": "mvztiia8xr9g",
+      "date": "2026-10-25",
+      "distance": 2,
+      "notes": "Easy",
+      "status": "done",
+      "sessionId": null
+    },
+    {
+      "id": "mvztiia88kv3",
+      "date": "2026-10-26",
+      "distance": 3.5,
+      "notes": "Medium",
+      "status": "done",
+      "sessionId": null
+    },
+    {
+      "id": "mvztiia8cslo",
+      "date": "2026-10-28",
+      "distance": 7,
+      "notes": "Long run",
+      "status": "done",
+      "sessionId": null
+    },
+    {
+      "id": "mvztiia87pid",
+      "date": "2026-11-01",
+      "distance": 2,
+      "notes": "Easy",
+      "status": "done",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6luuw",
+      "date": "2026-11-02",
+      "distance": 3,
+      "notes": "Medium (recovery week)",
+      "status": "done",
+      "sessionId": "mvzvdxxh0zi4"
+    },
+    {
+      "id": "mvzszuf6vr96",
+      "date": "2026-11-04",
+      "distance": 5,
+      "notes": "Long run (recovery week)",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf672lx",
+      "date": "2026-11-08",
+      "distance": 1.5,
+      "notes": "Easy (recovery week)",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6tjjl",
+      "date": "2026-11-09",
+      "distance": 4,
+      "notes": "Medium",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6wn84",
+      "date": "2026-11-11",
+      "distance": 8,
+      "notes": "Long run",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6gvrh",
+      "date": "2026-11-15",
+      "distance": 2,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6k7cq",
+      "date": "2026-11-16",
+      "distance": 4,
+      "notes": "Medium",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6sl7k",
+      "date": "2026-11-18",
+      "distance": 9,
+      "notes": "Long run",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf69s1y",
+      "date": "2026-11-22",
+      "distance": 2,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6ply1",
+      "date": "2026-11-23",
+      "distance": 4.5,
+      "notes": "Medium",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6j3h4",
+      "date": "2026-11-25",
+      "distance": 10,
+      "notes": "Long run",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf69fby",
+      "date": "2026-11-29",
+      "distance": 2,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf643yh",
+      "date": "2026-11-30",
+      "distance": 4,
+      "notes": "Medium (recovery week)",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf60zjw",
+      "date": "2026-12-02",
+      "distance": 8,
+      "notes": "Long run (recovery week)",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6uctj",
+      "date": "2026-12-06",
+      "distance": 1.5,
+      "notes": "Easy (recovery week)",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf64y9g",
+      "date": "2026-12-07",
+      "distance": 5,
+      "notes": "Medium",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6jt95",
+      "date": "2026-12-09",
+      "distance": 11,
+      "notes": "Long run",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6b15m",
+      "date": "2026-12-13",
+      "distance": 2,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6aweh",
+      "date": "2026-12-14",
+      "distance": 5,
+      "notes": "Medium",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf67a4i",
+      "date": "2026-12-16",
+      "distance": 12,
+      "notes": "Long run",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6b8mr",
+      "date": "2026-12-20",
+      "distance": 2,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6ernj",
+      "date": "2026-12-21",
+      "distance": 5,
+      "notes": "Medium (recovery week)",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf65nde",
+      "date": "2026-12-23",
+      "distance": 10,
+      "notes": "Long run (recovery week)",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6a5zx",
+      "date": "2026-12-27",
+      "distance": 1.5,
+      "notes": "Easy (recovery week)",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf67mxb",
+      "date": "2026-12-28",
+      "distance": 5.5,
+      "notes": "Medium",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6inyw",
+      "date": "2026-12-30",
+      "distance": 13,
+      "notes": "Long run",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6diba",
+      "date": "2027-01-03",
+      "distance": 2,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6oyr4",
+      "date": "2027-01-04",
+      "distance": 5.5,
+      "notes": "Medium",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6tfje",
+      "date": "2027-01-06",
+      "distance": 14,
+      "notes": "Long run",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf653n2",
+      "date": "2027-01-10",
+      "distance": 2,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6ah18",
+      "date": "2027-01-11",
+      "distance": 5,
+      "notes": "Medium (recovery week)",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6gxb3",
+      "date": "2027-01-13",
+      "distance": 11,
+      "notes": "Long run (recovery week)",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6ijrd",
+      "date": "2027-01-17",
+      "distance": 1.5,
+      "notes": "Easy (recovery week)",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6eeuj",
+      "date": "2027-01-18",
+      "distance": 6,
+      "notes": "Medium",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6dqds",
+      "date": "2027-01-20",
+      "distance": 15,
+      "notes": "Long run",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf64g75",
+      "date": "2027-01-24",
+      "distance": 2,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6xl2z",
+      "date": "2027-01-25",
+      "distance": 6,
+      "notes": "Medium",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6zla5",
+      "date": "2027-01-27",
+      "distance": 16,
+      "notes": "Long run",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6n0ul",
+      "date": "2027-01-31",
+      "distance": 2,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6ah6v",
+      "date": "2027-02-01",
+      "distance": 5,
+      "notes": "Medium (recovery week)",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6nfk9",
+      "date": "2027-02-03",
+      "distance": 12,
+      "notes": "Long run (recovery week)",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf63a9j",
+      "date": "2027-02-07",
+      "distance": 2,
+      "notes": "Easy (recovery week)",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6r9xg",
+      "date": "2027-02-08",
+      "distance": 6,
+      "notes": "Medium",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6rbid",
+      "date": "2027-02-10",
+      "distance": 18,
+      "notes": "Long run — PEAK",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6rd07",
+      "date": "2027-02-14",
+      "distance": 2,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6eqm8",
+      "date": "2027-02-15",
+      "distance": 4,
+      "notes": "Medium",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6hzy1",
+      "date": "2027-02-17",
+      "distance": 10,
+      "notes": "Long run",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6e2x5",
+      "date": "2027-02-21",
+      "distance": 1,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6r8vd",
+      "date": "2027-02-22",
+      "distance": 3,
+      "notes": "Medium",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6xuy4",
+      "date": "2027-02-24",
+      "distance": 6,
+      "notes": "Long run",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6nb2v",
+      "date": "2027-02-28",
+      "distance": 1,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6immv",
+      "date": "2027-03-01",
+      "distance": 2,
+      "notes": "Medium",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6zmxd",
+      "date": "2027-03-03",
+      "distance": 3,
+      "notes": "Long run",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzszuf6rl45",
+      "date": "2027-03-06",
+      "distance": 26.2,
+      "notes": "🏁 MARATHON",
+      "status": "planned",
+      "sessionId": null
     }
   ],
   "activeProgram": null,
