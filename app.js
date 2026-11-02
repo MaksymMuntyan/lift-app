@@ -906,6 +906,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (typeof SEED !== 'undefined') {
     SEED.seedOnce(1);
     SEED.seedOnce(2);
+    SEED.seedRunPlanOnce(1);
+    SEED.seedRunPlanOnce(2);
   }
   const now = new Date();
   document.getElementById('topbar-date').textContent =
@@ -3707,9 +3709,208 @@ function buildCalendarPopover(dateStr, data) {
     </div>`;
 }
 
+// ── RUNNING PLAN ───────────────────────────────────────────
+// Planned runs live in 'runplan': { id, date, distance, notes, status, sessionId }.
+// status: 'planned' | 'done' | 'skipped'. Marking a run done logs a real
+// running session to 'cardio' and links it back via sessionId.
+
+function getRunPlan()   { return load('runplan', []); }
+function saveRunPlan(d) { save('runplan', d); touchActive(); }
+
+let runPlanShowAll = false;
+let editingPlanRunId = null;
+let completingPlanRunId = null;
+
+function shiftDateStr(dateStr, days) {
+  const [y,m,d] = dateStr.split('-').map(Number);
+  const dt = new Date(y, m-1, d + days);
+  return `${dt.getFullYear()}-${String(dt.getMonth()+1).padStart(2,'0')}-${String(dt.getDate()).padStart(2,'0')}`;
+}
+
+function planDayLabel(dateStr) {
+  const today = todayStr();
+  if (dateStr === today) return 'Today';
+  if (dateStr === shiftDateStr(today, 1)) return 'Tomorrow';
+  if (dateStr === shiftDateStr(today, -1)) return 'Yesterday';
+  const [y,m,d] = dateStr.split('-').map(Number);
+  const wd = new Date(y, m-1, d).toLocaleDateString('en-US', { weekday:'short' });
+  return `${wd} ${formatDate(dateStr)}`;
+}
+
+function toggleRunPlanView() {
+  runPlanShowAll = !runPlanShowAll;
+  renderRunPlan();
+}
+
+function renderRunPlan() {
+  const el = document.getElementById('run-plan-list');
+  if (!el) return;
+  const plan = getRunPlan().slice().sort((a,b) => a.date.localeCompare(b.date));
+  const today = todayStr();
+
+  const toggle = document.getElementById('run-plan-toggle');
+  if (toggle) {
+    toggle.textContent = runPlanShowAll ? 'Next 7 Days' : 'Show All';
+    toggle.classList.toggle('hidden', plan.length === 0);
+  }
+
+  // Summary: this week's (Mon–Sun) planned vs completed miles + days to the final run
+  const summary = document.getElementById('run-plan-summary');
+  if (summary) {
+    const [y,m,d] = today.split('-').map(Number);
+    const dow = new Date(y, m-1, d).getDay();
+    const weekStart = shiftDateStr(today, dow === 0 ? -6 : 1 - dow);
+    const weekEnd = shiftDateStr(weekStart, 6);
+    const thisWeek = plan.filter(r => r.date >= weekStart && r.date <= weekEnd);
+    const planned = thisWeek.reduce((sum, r) => sum + (r.distance || 0), 0);
+    const doneMi = thisWeek.filter(r => r.status === 'done').reduce((sum, r) => {
+      const s = r.sessionId && getCardioSessions().find(c => c.id === r.sessionId);
+      return sum + ((s && s.distance) || r.distance || 0);
+    }, 0);
+    const last = plan[plan.length - 1];
+    const parts = [];
+    if (thisWeek.length) parts.push(`This week: <b>${+doneMi.toFixed(1)} / ${+planned.toFixed(1)} mi</b>`);
+    if (last && last.date >= today) {
+      const [ly,lm,ld] = last.date.split('-').map(Number);
+      const days = Math.round((new Date(ly, lm-1, ld) - new Date(y, m-1, d)) / 86400000);
+      parts.push(`${days} day${days === 1 ? '' : 's'} to final run`);
+    }
+    summary.innerHTML = parts.join(' · ');
+  }
+
+  // Default view: missed runs not yet marked + the next 7 days
+  const weekOut = shiftDateStr(today, 7);
+  const visible = runPlanShowAll
+    ? plan
+    : plan.filter(r => (r.status === 'planned' && r.date < today) || (r.date >= today && r.date <= weekOut));
+
+  if (plan.length === 0) {
+    el.innerHTML = `<div style="margin:0 16px;padding:16px;text-align:center;font-size:14px;color:var(--text2);background:var(--surface);border:1px dashed var(--border);border-radius:var(--radius);">No planned runs yet — tap + Add</div>`;
+    return;
+  }
+  if (visible.length === 0) {
+    el.innerHTML = `<div style="margin:0 16px;padding:16px;text-align:center;font-size:14px;color:var(--text2);background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);">Nothing planned in the next 7 days</div>`;
+    return;
+  }
+
+  const rows = visible.map(r => {
+    const isToday = r.date === today;
+    const overdue = r.status === 'planned' && r.date < today;
+    const session = r.status === 'done' && r.sessionId ? getCardioSessions().find(c => c.id === r.sessionId) : null;
+    const dist = r.distance ? `${r.distance} mi` : 'Run';
+    let detail = r.notes ? esc(r.notes) : '';
+    if (session) {
+      const actual = [];
+      if (session.distance) actual.push(`${session.distance} mi`);
+      if (session.duration) actual.push(`${session.duration} min`);
+      if (actual.length) detail = `Ran ${actual.join(' in ')}` + (detail ? ` · ${detail}` : '');
+    }
+
+    let actions;
+    if (r.status === 'done') {
+      actions = `<div onclick="undoPlannedRun('${r.id}')" style="padding:6px 10px;border-radius:6px;background:var(--green);color:#fff;font-weight:700;font-size:13px;cursor:pointer;">✓ Done</div>`;
+    } else if (r.status === 'skipped') {
+      actions = `<div onclick="undoPlannedRun('${r.id}')" style="padding:6px 10px;border-radius:6px;background:var(--surface2);color:var(--text2);font-weight:700;font-size:13px;cursor:pointer;">Skipped</div>`;
+    } else {
+      actions = `<div style="display:flex;gap:6px;">
+        <div onclick="skipPlannedRun('${r.id}')" style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:6px;border:1px solid var(--border);color:var(--text2);font-size:16px;cursor:pointer;">✕</div>
+        <div onclick="completePlannedRun('${r.id}')" style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:6px;background:var(--accent);color:#fff;font-size:18px;font-weight:700;cursor:pointer;">✓</div>
+      </div>`;
+    }
+
+    const labelColor = overdue ? 'var(--red)' : isToday ? 'var(--accent)' : 'var(--text2)';
+    const faded = r.status === 'skipped' ? 'opacity:0.5;text-decoration:line-through;' : '';
+    return `<div style="display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--border);${isToday ? 'background:var(--surface2);' : ''}">
+      <div style="flex:1;cursor:pointer;${faded}" onclick="openPlanRunModal('${r.id}')">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:${labelColor};">${planDayLabel(r.date)}${overdue ? ' · missed?' : ''}</div>
+        <div style="font-weight:600;font-size:16px;">🏃 ${dist}</div>
+        ${detail ? `<div style="font-size:13px;color:var(--text2);">${detail}</div>` : ''}
+      </div>
+      ${actions}
+    </div>`;
+  }).join('');
+
+  el.innerHTML = `<div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin:0 16px;overflow:hidden;">${rows}</div>`;
+}
+
+function openPlanRunModal(id) {
+  const run = id ? getRunPlan().find(r => r.id === id) : null;
+  editingPlanRunId = run ? run.id : null;
+  document.getElementById('plan-run-modal-title').textContent = run ? 'EDIT PLANNED RUN' : 'PLAN A RUN';
+  document.getElementById('plan-run-date').value = run ? run.date : todayStr();
+  document.getElementById('plan-run-distance').value = run && run.distance ? run.distance : '';
+  document.getElementById('plan-run-notes').value = run && run.notes ? run.notes : '';
+  document.getElementById('plan-run-delete').classList.toggle('hidden', !run);
+  openModal('modal-plan-run');
+}
+
+function savePlannedRun() {
+  const date = document.getElementById('plan-run-date').value || todayStr();
+  const dist = parseFloat(document.getElementById('plan-run-distance').value);
+  const notes = document.getElementById('plan-run-notes').value.trim();
+  const plan = getRunPlan();
+  const existing = editingPlanRunId && plan.find(r => r.id === editingPlanRunId);
+  if (existing) {
+    existing.date = date;
+    existing.distance = dist > 0 ? dist : null;
+    existing.notes = notes || null;
+  } else {
+    plan.push({ id: uid(), date, distance: dist > 0 ? dist : null, notes: notes || null, status: 'planned', sessionId: null });
+  }
+  plan.sort((a,b) => a.date.localeCompare(b.date));
+  saveRunPlan(plan);
+  closeModal('modal-plan-run');
+  renderRunPlan();
+}
+
+function deletePlannedRun() {
+  if (!editingPlanRunId) return;
+  if (!confirm('Delete this planned run? (Any logged run stays in your cardio history.)')) return;
+  saveRunPlan(getRunPlan().filter(r => r.id !== editingPlanRunId));
+  closeModal('modal-plan-run');
+  renderRunPlan();
+}
+
+// Opens the normal running log prefilled with the plan, so actual distance/time can be adjusted
+function completePlannedRun(id) {
+  const run = getRunPlan().find(r => r.id === id);
+  if (!run) return;
+  openCardioLog('running');
+  completingPlanRunId = run.id;
+  document.getElementById('cardio-modal-title').textContent = 'LOG PLANNED RUN';
+  if (run.distance) document.getElementById('cardio-distance').value = run.distance;
+  if (run.notes) document.getElementById('cardio-notes').value = run.notes;
+  document.getElementById('cardio-date').value = run.date;
+}
+
+function skipPlannedRun(id) {
+  const plan = getRunPlan();
+  const run = plan.find(r => r.id === id);
+  if (!run) return;
+  run.status = 'skipped';
+  saveRunPlan(plan);
+  renderRunPlan();
+}
+
+function undoPlannedRun(id) {
+  const plan = getRunPlan();
+  const run = plan.find(r => r.id === id);
+  if (!run) return;
+  if (run.status === 'done') {
+    if (!confirm('Mark as not done? This also removes the logged run from your cardio history.')) return;
+    if (run.sessionId) saveCardioSessions(getCardioSessions().filter(s => s.id !== run.sessionId));
+  }
+  run.status = 'planned';
+  run.sessionId = null;
+  saveRunPlan(plan);
+  renderCardioScreen();
+}
+
 function renderCardioScreen() {
   const sessions = getCardioSessions();
   const today = todayStr();
+
+  renderRunPlan();
 
   // Type grid
   const grid = document.getElementById('cardio-type-grid');
@@ -3730,6 +3931,7 @@ function renderCardioScreen() {
 }
 
 function openCardioLog(typeId) {
+  completingPlanRunId = null;
   currentCardioType = CARDIO_TYPES.find(t => t.id === typeId);
   if (!currentCardioType) return;
 
@@ -3788,6 +3990,14 @@ function saveCardioSession() {
   sessions.sort((a,b) => a.date.localeCompare(b.date));
   saveCardioSessions(sessions);
 
+  // Logged from the running plan → mark that planned run done
+  if (completingPlanRunId) {
+    const plan = getRunPlan();
+    const run = plan.find(r => r.id === completingPlanRunId);
+    if (run) { run.status = 'done'; run.sessionId = session.id; saveRunPlan(plan); }
+    completingPlanRunId = null;
+  }
+
   closeModal('modal-cardio-log');
   renderCardioScreen();
 }
@@ -3836,6 +4046,10 @@ function renderCardioHistory() {
 function deleteCardioSession(id) {
   if (!confirm('Delete this session?')) return;
   saveCardioSessions(getCardioSessions().filter(s => s.id !== id));
+  // If this was a planned run, put it back to planned
+  const plan = getRunPlan();
+  const linked = plan.find(r => r.sessionId === id);
+  if (linked) { linked.status = 'planned'; linked.sessionId = null; saveRunPlan(plan); }
   renderCardioScreen();
 }
 
@@ -3940,6 +4154,7 @@ function buildBackupData(userNum) {
     sessions:      getSessions(),
     bodyweights:   getBodyweights(),
     cardio:        getCardioSessions(),
+    runplan:       getRunPlan(),
     activeProgram: getActiveProgram(),
     bwGoal:        getBWGoal(),
     bwGoalHistory: getBWGoalHistory(),
@@ -4070,6 +4285,7 @@ async function restoreFromGithub() {
       if (json.sessions)      saveSessions(json.sessions);
       if (json.bodyweights)   saveBodyweights(json.bodyweights);
       if (json.cardio)        saveCardioSessions(json.cardio);
+      if (json.runplan)       saveRunPlan(json.runplan);
       if (json.activeProgram !== undefined) saveActiveProgram(json.activeProgram);
       if (json.bwGoal !== undefined) saveBWGoal(json.bwGoal);
       if (json.bwGoalHistory !== undefined) saveBWGoalHistory(json.bwGoalHistory);
@@ -4116,7 +4332,7 @@ async function testGithubBackup() {
 function exportData() {
   const data = { version:2, user:currentUser, exportDate:new Date().toISOString(),
     exercises:getExercises(), routines:getRoutines(), sessions:getSessions(),
-    bodyweights:getBodyweights(), cardio:getCardioSessions(), activeProgram:getActiveProgram() };
+    bodyweights:getBodyweights(), cardio:getCardioSessions(), runplan:getRunPlan(), activeProgram:getActiveProgram() };
   const blob = new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
   const a = Object.assign(document.createElement('a'),{href:URL.createObjectURL(blob),download:`lift-backup-u${currentUser}-${todayStr()}.json`});
   a.click(); URL.revokeObjectURL(a.href);
@@ -4134,6 +4350,7 @@ function importData(e) {
       if(data.sessions)saveSessions(data.sessions);
       if(data.bodyweights)saveBodyweights(data.bodyweights);
       if(data.cardio)saveCardioSessions(data.cardio);
+      if(data.runplan)saveRunPlan(data.runplan);
       if(data.activeProgram !== undefined)saveActiveProgram(data.activeProgram);
       if(data.bwGoal !== undefined)saveBWGoal(data.bwGoal);
       if(data.bwGoalHistory !== undefined)saveBWGoalHistory(data.bwGoalHistory);

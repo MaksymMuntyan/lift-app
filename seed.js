@@ -87,12 +87,130 @@ const SEED = {
     console.log(`✓ Seeded ${seeded.length} exercises for ${name}`);
   },
 
+  // ── RUNNING PLANS ─────────────────────────────────────
+  // Hardcoded marathon plans per user (1 = Max, 2 = Laura).
+  // Each entry: { date: 'YYYY-MM-DD', distance: miles, notes: '...' }
+  runPlans: {
+    1: [ // Max — marathon Mar 6, 2027
+      { date: '2026-10-26', distance: 3   , notes: 'Easy' },
+      { date: '2026-10-28', distance: 6   , notes: 'Long run' },
+      { date: '2026-10-31', distance: 3   , notes: 'Easy' },
+      { date: '2026-11-01', distance: 4   , notes: 'Easy' },
+      { date: '2026-11-02', distance: 3   , notes: 'Easy' },
+      { date: '2026-11-04', distance: 7   , notes: 'Long run' },
+      { date: '2026-11-07', distance: 3   , notes: 'Easy + strides' },
+      { date: '2026-11-08', distance: 4   , notes: 'Easy' },
+      { date: '2026-11-09', distance: 4   , notes: 'Easy' },
+      { date: '2026-11-11', distance: 8   , notes: 'Long run' },
+      { date: '2026-11-14', distance: 4   , notes: 'Easy' },
+      { date: '2026-11-15', distance: 5   , notes: 'Easy' },
+      { date: '2026-11-16', distance: 3   , notes: 'Easy' },
+      { date: '2026-11-18', distance: 6   , notes: 'Long run' },
+      { date: '2026-11-21', distance: 4   , notes: 'Easy + strides' },
+      { date: '2026-11-22', distance: 4   , notes: 'Easy' },
+      { date: '2026-11-23', distance: 4   , notes: 'Easy' },
+      { date: '2026-11-25', distance: 9   , notes: 'Long run' },
+      { date: '2026-11-28', distance: 5   , notes: '10 min tempo' },
+      { date: '2026-11-29', distance: 5   , notes: 'Easy' },
+      { date: '2026-11-30', distance: 4   , notes: 'Easy' },
+      { date: '2026-12-02', distance: 10  , notes: 'Long run' },
+      { date: '2026-12-05', distance: 5   , notes: '15 min tempo' },
+      { date: '2026-12-06', distance: 5   , notes: 'Easy' },
+      { date: '2026-12-07', distance: 4   , notes: 'Easy' },
+      { date: '2026-12-09', distance: 8   , notes: 'Long run' },
+      { date: '2026-12-12', distance: 4   , notes: 'Easy + strides' },
+      { date: '2026-12-13', distance: 5   , notes: 'Easy' },
+      { date: '2026-12-14', distance: 4   , notes: 'Easy' },
+      { date: '2026-12-16', distance: 11  , notes: 'Long run' },
+      { date: '2026-12-19', distance: 5   , notes: '20 min tempo' },
+      { date: '2026-12-20', distance: 5   , notes: 'Easy' },
+      { date: '2026-12-21', distance: 4   , notes: 'Easy' },
+      { date: '2026-12-23', distance: 12  , notes: 'Long run' },
+      { date: '2026-12-26', distance: 5   , notes: 'Easy' },
+      { date: '2026-12-27', distance: 6   , notes: 'Easy' },
+      { date: '2026-12-28', distance: 4   , notes: 'Easy' },
+      { date: '2026-12-30', distance: 9   , notes: 'Long run' },
+      { date: '2027-01-02', distance: 5   , notes: '20 min tempo' },
+      { date: '2027-01-03', distance: 5   , notes: 'Easy' },
+      { date: '2027-01-04', distance: 5   , notes: 'Easy' },
+      { date: '2027-01-06', distance: 13  , notes: 'Long run' },
+      { date: '2027-01-09', distance: 6   , notes: '2 × 10 min tempo' },
+      { date: '2027-01-10', distance: 6   , notes: 'Easy' },
+      { date: '2027-01-11', distance: 5   , notes: 'Easy' },
+      { date: '2027-01-13', distance: 14  , notes: 'Long run' },
+      { date: '2027-01-16', distance: 5   , notes: 'Easy + strides' },
+      { date: '2027-01-17', distance: 6   , notes: 'Easy' },
+      { date: '2027-01-18', distance: 4   , notes: 'Easy' },
+      { date: '2027-01-20', distance: 10  , notes: 'Long run' },
+      { date: '2027-01-23', distance: 5   , notes: '25 min tempo' },
+      { date: '2027-01-24', distance: 5   , notes: 'Easy' },
+      { date: '2027-01-25', distance: 5   , notes: 'Easy' },
+      { date: '2027-01-27', distance: 16  , notes: 'Long run' },
+      { date: '2027-01-30', distance: 6   , notes: '2 × 12 min tempo' },
+      { date: '2027-01-31', distance: 6   , notes: 'Easy' },
+      { date: '2027-02-01', distance: 5   , notes: 'Easy' },
+      { date: '2027-02-03', distance: 18  , notes: 'Long run' },
+      { date: '2027-02-06', distance: 5   , notes: 'Easy' },
+      { date: '2027-02-07', distance: 7   , notes: 'Easy' },
+      { date: '2027-02-08', distance: 5   , notes: 'Easy' },
+      { date: '2027-02-10', distance: 20  , notes: 'Long run' },
+      { date: '2027-02-13', distance: 6   , notes: 'Including 3 mi at marathon pace' },
+      { date: '2027-02-14', distance: 7   , notes: 'Easy' },
+      { date: '2027-02-15', distance: 4   , notes: 'Easy' },
+      { date: '2027-02-17', distance: 14  , notes: 'Long run' },
+      { date: '2027-02-20', distance: 5   , notes: 'Easy' },
+      { date: '2027-02-21', distance: 6   , notes: 'Easy' },
+      { date: '2027-02-22', distance: 4   , notes: 'Easy' },
+      { date: '2027-02-24', distance: 10  , notes: 'Long run' },
+      { date: '2027-02-27', distance: 4   , notes: 'Including 2 mi at marathon pace' },
+      { date: '2027-02-28', distance: 4   , notes: 'Easy' },
+      { date: '2027-03-01', distance: 3   , notes: 'Easy' },
+      { date: '2027-03-03', distance: 4   , notes: 'Easy' },
+      { date: '2027-03-06', distance: 26.2, notes: '🏁 MARATHON' },
+    ],
+    2: [],
+  },
+
+  // Loads the hardcoded plan once, and only if the user has no plan yet
+  // (never overwrites runs added/edited in the app or restored from backup).
+  seedRunPlanOnce(userNum = 1) {
+    const plan = this.runPlans[userNum] || [];
+    const flagKey = `lift_u${userNum}_runplan_seeded_v1`;
+    if (plan.length === 0 || localStorage.getItem(flagKey)) return;
+
+    const KEY = `lift_u${userNum}_runplan`;
+    let existing = [];
+    try { existing = JSON.parse(localStorage.getItem(KEY)) || []; } catch {}
+    if (existing.length === 0) {
+      // Runs already logged on a planned day count as that day's run being done
+      let cardio = [];
+      try { cardio = JSON.parse(localStorage.getItem(`lift_u${userNum}_cardio`)) || []; } catch {}
+      const used = new Set();
+      const seeded = plan.map(r => {
+        const match = cardio.find(s => s.type === 'running' && s.date === r.date && !used.has(s.id));
+        if (match) used.add(match.id);
+        return {
+          id: Date.now().toString(36) + Math.random().toString(36).slice(2,6),
+          date: r.date,
+          distance: r.distance || null,
+          notes: r.notes || null,
+          status: match ? 'done' : 'planned',
+          sessionId: match ? match.id : null
+        };
+      }).sort((a,b) => a.date.localeCompare(b.date));
+      localStorage.setItem(KEY, JSON.stringify(seeded));
+      const name = userNum === 1 ? 'Max' : 'Laura';
+      console.log(`✓ Seeded ${seeded.length} planned runs for ${name}`);
+    }
+    localStorage.setItem(flagKey, '1');
+  },
+
   // ── WIPE (last resort only) ───────────────────────────
   wipe(userNum = 1) {
     const name = userNum === 1 ? 'Max' : 'Laura';
     if (!confirm(`Wipe ALL data for ${name} (User ${userNum})? This cannot be undone.`)) return;
     const KEY = k => `lift_u${userNum}_${k}`;
-    ['exercises','routines','sessions','bodyweights','cardio','lastroutine'].forEach(k => localStorage.removeItem(KEY(k)));
+    ['exercises','routines','sessions','bodyweights','cardio','runplan','lastroutine'].forEach(k => localStorage.removeItem(KEY(k)));
     console.log('Data wiped. Reload the page.');
     location.reload();
   }
