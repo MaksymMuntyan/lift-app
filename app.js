@@ -908,6 +908,7 @@ document.addEventListener('DOMContentLoaded', () => {
     SEED.seedOnce(2);
     SEED.seedRunPlanOnce(1);
     SEED.seedRunPlanOnce(2);
+    SEED.applyRunPlanLabelsOnce(1);
   }
   const now = new Date();
   document.getElementById('topbar-date').textContent =
@@ -3770,6 +3771,7 @@ function renderRunPlan() {
     const last = plan[plan.length - 1];
     const parts = [];
     if (thisWeek.length) parts.push(`This week: <b>${+doneMi.toFixed(1)} / ${+planned.toFixed(1)} mi</b>`);
+    if (plan.length) parts.push(`${plan.filter(r => r.status === 'done').length} / ${plan.length} runs done`);
     if (last && last.date >= today) {
       const [ly,lm,ld] = last.date.split('-').map(Number);
       const days = Math.round((new Date(ly, lm-1, ld) - new Date(y, m-1, d)) / 86400000);
@@ -3825,6 +3827,8 @@ function renderRunPlan() {
         <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:${labelColor};">${planDayLabel(r.date)}${overdue ? ' · missed?' : ''}</div>
         <div style="font-weight:600;font-size:16px;">🏃 ${dist}</div>
         ${detail ? `<div style="font-size:13px;color:var(--text2);">${detail}</div>` : ''}
+        ${isToday && r.status === 'planned' && currentUser === 2
+          ? `<div style="font-size:13px;color:#db2777;font-style:italic;margin-top:2px;">💌 ${LOVE_NOTES.today[parseInt(today.replace(/-/g,'')) % LOVE_NOTES.today.length]} — M</div>` : ''}
       </div>
       ${actions}
     </div>`;
@@ -3904,6 +3908,79 @@ function undoPlannedRun(id) {
   run.sessionId = null;
   saveRunPlan(plan);
   renderCardioScreen();
+}
+
+// ── LOVE NOTES (Laura only) ─────────────────────────────────
+// Shown when Laura completes a planned run. {d} = miles run.
+
+const LOVE_NOTES = {
+  general: [
+    "Another one done! I'm so proud of you 🥰",
+    "Look at you go!! Every mile gets you closer to that finish line 💕",
+    "You're literally amazing. Go drink some water and put your feet up ❤️",
+    "Done and dusted! You make this look easy (I know it's not) 💪",
+    "Another step closer to 26.2. I love watching you do this 😍",
+    "{d} miles in the bank! You're unstoppable 🏃‍♀️💨",
+  ],
+  long: [
+    "{d} MILES!!! That's huge babe. Go refuel, you earned every carb 🍝❤️",
+    "Long run DONE. You are so tough and I'm so proud of you 🥹",
+    "{d} miles on your own two feet. Unbelievable. Love you so much 💕",
+    "The long run is in the books! Couch, snacks, and cuddles are waiting 🛋️",
+  ],
+  recovery: [
+    "Recovery week still counts! Rest those legs, you've earned it 💕",
+    "Easy miles, happy legs. Proud of you for listening to the plan ❤️",
+  ],
+  peak: [
+    "{d} MILES. THE PEAK. The hardest run of the whole plan is DONE and it's all taper from here. I'm so ridiculously proud of you 😭❤️",
+  ],
+  marathon: [
+    "YOU'RE A MARATHONER!!! 26.2 miles!!! Months of hard work and you DID IT. I'm so so so proud of you and I love you more than anything ❤️❤️❤️",
+  ],
+  today: [
+    "You've got this babe 💕",
+    "Go get 'em! 💪💕",
+    "Can't wait to hear how it goes 🥰",
+    "Proud of you already ❤️",
+    "One run at a time. You're doing amazing 💖",
+  ],
+};
+
+function pickNote(list) { return list[Math.floor(Math.random() * list.length)]; }
+
+function showLoveNote(run, session, prevLongest) {
+  const notes = (run.notes || '').toLowerCase();
+  const miles = session.distance || run.distance || 0;
+  const isMarathon = notes.includes('marathon') && miles >= 26;
+  let title = 'GOOD JOB! 💕';
+  let list = LOVE_NOTES.general;
+  if (isMarathon) { title = '🏁 26.2 🏁'; list = LOVE_NOTES.marathon; }
+  else if (notes.includes('peak')) { title = '🔥 PEAK RUN DONE 🔥'; list = LOVE_NOTES.peak; }
+  else if (notes.includes('recovery')) list = LOVE_NOTES.recovery;
+  else if (notes.includes('long')) { title = 'LONG RUN DONE! 💪'; list = LOVE_NOTES.long; }
+  if (!isMarathon && prevLongest > 0 && miles > prevLongest) title = '🎉 NEW LONGEST RUN EVER 🎉';
+
+  const plan = getRunPlan();
+  const done = plan.filter(r => r.status === 'done').length;
+  const msg = pickNote(list).replace(/\{d\}/g, +(+miles).toFixed(2));
+
+  const overlay = document.createElement('div');
+  overlay.className = 'love-note-overlay';
+  overlay.onclick = () => overlay.remove();
+  const hearts = Array.from({ length: isMarathon ? 40 : 18 }, () => {
+    const h = pickNote(['❤️','💕','💖','💗','🥰']);
+    return `<span class="love-heart" style="left:${Math.random()*100}%;animation-delay:${(Math.random()*2.5).toFixed(2)}s;font-size:${18 + Math.random()*22}px;">${h}</span>`;
+  }).join('');
+  overlay.innerHTML = `${hearts}
+    <div class="love-note-card">
+      <div class="love-note-title">${title}</div>
+      <div class="love-note-msg">${esc(msg)}</div>
+      <div class="love-note-sig">Love you! — Macky</div>
+      <div class="love-note-progress">${done} of ${plan.length} training runs done</div>
+      <div class="love-note-dismiss">tap to close</div>
+    </div>`;
+  document.body.appendChild(overlay);
 }
 
 function renderCardioScreen() {
@@ -3986,20 +4063,22 @@ function saveCardioSession() {
   }
 
   const sessions = getCardioSessions();
+  const prevLongest = Math.max(0, ...sessions.filter(s => s.type === 'running').map(s => s.distance || 0));
   sessions.push(session);
   sessions.sort((a,b) => a.date.localeCompare(b.date));
   saveCardioSessions(sessions);
 
-  // Logged from the running plan → mark that planned run done
-  if (completingPlanRunId) {
-    const plan = getRunPlan();
-    const run = plan.find(r => r.id === completingPlanRunId);
-    if (run) { run.status = 'done'; run.sessionId = session.id; saveRunPlan(plan); }
-    completingPlanRunId = null;
-  }
+  // Logged from the running plan (or a run logged on a planned day) → mark that planned run done
+  const plan = getRunPlan();
+  const run = completingPlanRunId
+    ? plan.find(r => r.id === completingPlanRunId)
+    : session.type === 'running' && plan.find(r => r.date === session.date && r.status === 'planned');
+  if (run) { run.status = 'done'; run.sessionId = session.id; saveRunPlan(plan); }
+  completingPlanRunId = null;
 
   closeModal('modal-cardio-log');
   renderCardioScreen();
+  if (run && currentUser === 2) showLoveNote(run, session, prevLongest);
 }
 
 function renderCardioHistory() {

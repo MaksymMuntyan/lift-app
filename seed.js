@@ -104,10 +104,10 @@ const SEED = {
       { date: '2026-11-11', distance: 8   , notes: 'Long run' },
       { date: '2026-11-14', distance: 4   , notes: 'Easy' },
       { date: '2026-11-15', distance: 5   , notes: 'Easy' },
-      { date: '2026-11-16', distance: 3   , notes: 'Easy' },
-      { date: '2026-11-18', distance: 6   , notes: 'Long run' },
-      { date: '2026-11-21', distance: 4   , notes: 'Easy + strides' },
-      { date: '2026-11-22', distance: 4   , notes: 'Easy' },
+      { date: '2026-11-16', distance: 3   , notes: 'Easy (recovery week)' },
+      { date: '2026-11-18', distance: 6   , notes: 'Long run (recovery week)' },
+      { date: '2026-11-21', distance: 4   , notes: 'Easy + strides (recovery week)' },
+      { date: '2026-11-22', distance: 4   , notes: 'Easy (recovery week)' },
       { date: '2026-11-23', distance: 4   , notes: 'Easy' },
       { date: '2026-11-25', distance: 9   , notes: 'Long run' },
       { date: '2026-11-28', distance: 5   , notes: '10 min tempo' },
@@ -116,10 +116,10 @@ const SEED = {
       { date: '2026-12-02', distance: 10  , notes: 'Long run' },
       { date: '2026-12-05', distance: 5   , notes: '15 min tempo' },
       { date: '2026-12-06', distance: 5   , notes: 'Easy' },
-      { date: '2026-12-07', distance: 4   , notes: 'Easy' },
-      { date: '2026-12-09', distance: 8   , notes: 'Long run' },
-      { date: '2026-12-12', distance: 4   , notes: 'Easy + strides' },
-      { date: '2026-12-13', distance: 5   , notes: 'Easy' },
+      { date: '2026-12-07', distance: 4   , notes: 'Easy (recovery week)' },
+      { date: '2026-12-09', distance: 8   , notes: 'Long run (recovery week)' },
+      { date: '2026-12-12', distance: 4   , notes: 'Easy + strides (recovery week)' },
+      { date: '2026-12-13', distance: 5   , notes: 'Easy (recovery week)' },
       { date: '2026-12-14', distance: 4   , notes: 'Easy' },
       { date: '2026-12-16', distance: 11  , notes: 'Long run' },
       { date: '2026-12-19', distance: 5   , notes: '20 min tempo' },
@@ -128,10 +128,10 @@ const SEED = {
       { date: '2026-12-23', distance: 12  , notes: 'Long run' },
       { date: '2026-12-26', distance: 5   , notes: 'Easy' },
       { date: '2026-12-27', distance: 6   , notes: 'Easy' },
-      { date: '2026-12-28', distance: 4   , notes: 'Easy' },
-      { date: '2026-12-30', distance: 9   , notes: 'Long run' },
-      { date: '2027-01-02', distance: 5   , notes: '20 min tempo' },
-      { date: '2027-01-03', distance: 5   , notes: 'Easy' },
+      { date: '2026-12-28', distance: 4   , notes: 'Easy (recovery week)' },
+      { date: '2026-12-30', distance: 9   , notes: 'Long run (recovery week)' },
+      { date: '2027-01-02', distance: 5   , notes: '20 min tempo (recovery week)' },
+      { date: '2027-01-03', distance: 5   , notes: 'Easy (recovery week)' },
       { date: '2027-01-04', distance: 5   , notes: 'Easy' },
       { date: '2027-01-06', distance: 13  , notes: 'Long run' },
       { date: '2027-01-09', distance: 6   , notes: '2 × 10 min tempo' },
@@ -140,10 +140,10 @@ const SEED = {
       { date: '2027-01-13', distance: 14  , notes: 'Long run' },
       { date: '2027-01-16', distance: 5   , notes: 'Easy + strides' },
       { date: '2027-01-17', distance: 6   , notes: 'Easy' },
-      { date: '2027-01-18', distance: 4   , notes: 'Easy' },
-      { date: '2027-01-20', distance: 10  , notes: 'Long run' },
-      { date: '2027-01-23', distance: 5   , notes: '25 min tempo' },
-      { date: '2027-01-24', distance: 5   , notes: 'Easy' },
+      { date: '2027-01-18', distance: 4   , notes: 'Easy (recovery week)' },
+      { date: '2027-01-20', distance: 10  , notes: 'Long run (recovery week)' },
+      { date: '2027-01-23', distance: 5   , notes: '25 min tempo (recovery week)' },
+      { date: '2027-01-24', distance: 5   , notes: 'Easy (recovery week)' },
       { date: '2027-01-25', distance: 5   , notes: 'Easy' },
       { date: '2027-01-27', distance: 16  , notes: 'Long run' },
       { date: '2027-01-30', distance: 6   , notes: '2 × 12 min tempo' },
@@ -153,7 +153,7 @@ const SEED = {
       { date: '2027-02-06', distance: 5   , notes: 'Easy' },
       { date: '2027-02-07', distance: 7   , notes: 'Easy' },
       { date: '2027-02-08', distance: 5   , notes: 'Easy' },
-      { date: '2027-02-10', distance: 20  , notes: 'Long run' },
+      { date: '2027-02-10', distance: 20  , notes: 'Long run — PEAK' },
       { date: '2027-02-13', distance: 6   , notes: 'Including 3 mi at marathon pace' },
       { date: '2027-02-14', distance: 7   , notes: 'Easy' },
       { date: '2027-02-15', distance: 4   , notes: 'Easy' },
@@ -257,6 +257,24 @@ const SEED = {
       const name = userNum === 1 ? 'Max' : 'Laura';
       console.log(`✓ Seeded ${seeded.length} planned runs for ${name}`);
     }
+    localStorage.setItem(flagKey, '1');
+  },
+
+  // One-time update of labels (recovery week, PEAK) on an already-loaded plan.
+  // Only touches runs whose note is still the original, un-labelled text.
+  applyRunPlanLabelsOnce(userNum = 1) {
+    const flagKey = `lift_u${userNum}_runplan_labels_v1`;
+    if (localStorage.getItem(flagKey)) return;
+    const KEY = `lift_u${userNum}_runplan`;
+    let stored = [];
+    try { stored = JSON.parse(localStorage.getItem(KEY)) || []; } catch {}
+    const plan = this.runPlans[userNum] || [];
+    let changed = 0;
+    stored.forEach(r => {
+      const src = plan.find(p => p.date === r.date && p.distance === r.distance);
+      if (src && r.notes && src.notes !== r.notes && src.notes.startsWith(r.notes)) { r.notes = src.notes; changed++; }
+    });
+    if (changed) localStorage.setItem(KEY, JSON.stringify(stored));
     localStorage.setItem(flagKey, '1');
   },
 
