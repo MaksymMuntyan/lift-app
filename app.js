@@ -3828,7 +3828,7 @@ function renderRunPlan() {
         <div style="font-weight:600;font-size:16px;">🏃 ${dist}</div>
         ${detail ? `<div style="font-size:13px;color:var(--text2);">${detail}</div>` : ''}
         ${isToday && r.status === 'planned' && currentUser === 2
-          ? `<div style="font-size:13px;color:#db2777;font-style:italic;margin-top:2px;">💌 ${LOVE_NOTES.today[parseInt(today.replace(/-/g,'')) % LOVE_NOTES.today.length]} — M</div>` : ''}
+          ? `<div style="font-size:13px;color:#db2777;font-style:italic;margin-top:2px;">💌 ${LOVE_NOTES.today[parseInt(today.replace(/-/g,'')) % LOVE_NOTES.today.length]} - M</div>` : ''}
       </div>
       ${actions}
     </div>`;
@@ -3915,35 +3915,31 @@ function undoPlannedRun(id) {
 
 const LOVE_NOTES = {
   general: [
-    "Another one done! I'm so proud of you 🥰",
-    "Look at you go!! Every mile gets you closer to that finish line 💕",
-    "You're literally amazing. Go drink some water and put your feet up ❤️",
-    "Done and dusted! You make this look easy (I know it's not) 💪",
-    "Another step closer to 26.2. I love watching you do this 😍",
-    "{d} miles in the bank! You're unstoppable 🏃‍♀️💨",
+    "Good job!",
+    "Nice work!",
+    "Another one done!",
+    "{d} miles done!",
+    "Way to go!",
   ],
   long: [
-    "{d} MILES!!! That's huge babe. Go refuel, you earned every carb 🍝❤️",
-    "Long run DONE. You are so tough and I'm so proud of you 🥹",
-    "{d} miles on your own two feet. Unbelievable. Love you so much 💕",
-    "The long run is in the books! Couch, snacks, and cuddles are waiting 🛋️",
+    "{d} miles!",
+    "Great job!",
+    "Nice long run!",
   ],
   recovery: [
-    "Recovery week still counts! Rest those legs, you've earned it 💕",
-    "Easy miles, happy legs. Proud of you for listening to the plan ❤️",
+    "Good job!",
+    "Nice easy run!",
   ],
   peak: [
-    "{d} MILES. THE PEAK. The hardest run of the whole plan is DONE and it's all taper from here. I'm so ridiculously proud of you 😭❤️",
+    "{d} miles! Hardest one's done!",
   ],
   marathon: [
-    "YOU'RE A MARATHONER!!! 26.2 miles!!! Months of hard work and you DID IT. I'm so so so proud of you and I love you more than anything ❤️❤️❤️",
+    "You ran a marathon!!",
   ],
   today: [
-    "You've got this babe 💕",
-    "Go get 'em! 💪💕",
-    "Can't wait to hear how it goes 🥰",
-    "Proud of you already ❤️",
-    "One run at a time. You're doing amazing 💖",
+    "You got this!",
+    "Have a good run!",
+    "Good luck today!",
   ],
 };
 
@@ -3953,13 +3949,13 @@ function showLoveNote(run, session, prevLongest) {
   const notes = (run.notes || '').toLowerCase();
   const miles = session.distance || run.distance || 0;
   const isMarathon = notes.includes('marathon') && miles >= 26;
-  let title = 'GOOD JOB! 💕';
+  let title = 'NICE RUN! 💕';
   let list = LOVE_NOTES.general;
   if (isMarathon) { title = '🏁 26.2 🏁'; list = LOVE_NOTES.marathon; }
-  else if (notes.includes('peak')) { title = '🔥 PEAK RUN DONE 🔥'; list = LOVE_NOTES.peak; }
+  else if (notes.includes('peak')) { title = 'PEAK RUN DONE!'; list = LOVE_NOTES.peak; }
   else if (notes.includes('recovery')) list = LOVE_NOTES.recovery;
-  else if (notes.includes('long')) { title = 'LONG RUN DONE! 💪'; list = LOVE_NOTES.long; }
-  if (!isMarathon && prevLongest > 0 && miles > prevLongest) title = '🎉 NEW LONGEST RUN EVER 🎉';
+  else if (notes.includes('long')) { title = 'LONG RUN DONE!'; list = LOVE_NOTES.long; }
+  if (!isMarathon && prevLongest > 0 && miles > prevLongest) title = 'LONGEST RUN EVER! 🎉';
 
   const plan = getRunPlan();
   const done = plan.filter(r => r.status === 'done').length;
@@ -3976,7 +3972,7 @@ function showLoveNote(run, session, prevLongest) {
     <div class="love-note-card">
       <div class="love-note-title">${title}</div>
       <div class="love-note-msg">${esc(msg)}</div>
-      <div class="love-note-sig">Love you! — Macky</div>
+      <div class="love-note-sig">Love you! - Macky</div>
       <div class="love-note-progress">${done} of ${plan.length} training runs done</div>
       <div class="love-note-dismiss">tap to close</div>
     </div>`;
