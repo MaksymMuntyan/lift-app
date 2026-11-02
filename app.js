@@ -3743,6 +3743,8 @@ function planDayLabel(dateStr) {
 function toggleRunPlanView() {
   runPlanShowAll = !runPlanShowAll;
   renderRunPlan();
+  // Collapsing from the bottom of a long list → jump back up to the plan
+  if (!runPlanShowAll) document.getElementById('run-plan-toggle')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
 function renderRunPlan() {
@@ -3753,7 +3755,7 @@ function renderRunPlan() {
 
   const toggle = document.getElementById('run-plan-toggle');
   if (toggle) {
-    toggle.textContent = runPlanShowAll ? 'Next 7 Days' : 'Show All';
+    toggle.textContent = runPlanShowAll ? 'Hide' : 'Show All';
     toggle.classList.toggle('hidden', plan.length === 0);
   }
 
@@ -3836,7 +3838,8 @@ function renderRunPlan() {
     </div>`;
   }).join('');
 
-  el.innerHTML = `<div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin:0 16px;overflow:hidden;">${rows}</div>`;
+  el.innerHTML = `<div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin:0 16px;overflow:hidden;">${rows}</div>`
+    + (runPlanShowAll ? `<div style="padding:10px 16px 0;"><button class="btn btn-secondary" style="width:100%;" onclick="toggleRunPlanView()">Hide</button></div>` : "");
 }
 
 function openPlanRunModal(id) {
