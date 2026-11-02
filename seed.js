@@ -168,7 +168,28 @@ const SEED = {
       { date: '2027-03-03', distance: 4   , notes: 'Easy' },
       { date: '2027-03-06', distance: 26.2, notes: '🏁 MARATHON' },
     ],
-    2: [ // Laura — marathon Mar 6, 2027 (plan starts at week 8)
+    2: [ // Laura — marathon Mar 6, 2027
+      { date: '2026-09-14', distance: 1.5 , notes: 'Medium' },
+      { date: '2026-09-16', distance: 2   , notes: 'Long run' },
+      { date: '2026-09-20', distance: 1   , notes: 'Easy' },
+      { date: '2026-09-21', distance: 2   , notes: 'Medium' },
+      { date: '2026-09-23', distance: 3   , notes: 'Long run' },
+      { date: '2026-09-27', distance: 1.5 , notes: 'Easy' },
+      { date: '2026-09-28', distance: 2.5 , notes: 'Medium' },
+      { date: '2026-09-30', distance: 3.5 , notes: 'Long run' },
+      { date: '2026-10-04', distance: 1.5 , notes: 'Easy' },
+      { date: '2026-10-05', distance: 2.5 , notes: 'Medium' },
+      { date: '2026-10-07', distance: 4   , notes: 'Long run' },
+      { date: '2026-10-11', distance: 1.5 , notes: 'Easy' },
+      { date: '2026-10-12', distance: 3   , notes: 'Medium' },
+      { date: '2026-10-14', distance: 5   , notes: 'Long run' },
+      { date: '2026-10-18', distance: 2   , notes: 'Easy' },
+      { date: '2026-10-19', distance: 3   , notes: 'Medium' },
+      { date: '2026-10-21', distance: 6   , notes: 'Long run' },
+      { date: '2026-10-25', distance: 2   , notes: 'Easy' },
+      { date: '2026-10-26', distance: 3.5 , notes: 'Medium' },
+      { date: '2026-10-28', distance: 7   , notes: 'Long run' },
+      { date: '2026-11-01', distance: 2   , notes: 'Easy' },
       { date: '2026-11-02', distance: 3   , notes: 'Medium (recovery week)' },
       { date: '2026-11-04', distance: 5   , notes: 'Long run (recovery week)' },
       { date: '2026-11-08', distance: 1.5 , notes: 'Easy (recovery week)' },
@@ -275,6 +296,32 @@ const SEED = {
       if (src && r.notes && src.notes !== r.notes && src.notes.startsWith(r.notes)) { r.notes = src.notes; changed++; }
     });
     if (changed) localStorage.setItem(KEY, JSON.stringify(stored));
+    localStorage.setItem(flagKey, '1');
+  },
+
+  // One-time: everything planned before Nov 2, 2026 was actually run, so count it as done.
+  // Adds any earlier hardcoded runs missing from the stored plan (Laura's weeks 1–7).
+  markRunsBeforeNov2DoneOnce(userNum = 1) {
+    const CUTOFF = '2026-11-02';
+    const flagKey = `lift_u${userNum}_runplan_pre_nov2_done_v1`;
+    if (localStorage.getItem(flagKey)) return;
+    const KEY = `lift_u${userNum}_runplan`;
+    let stored = [];
+    try { stored = JSON.parse(localStorage.getItem(KEY)) || []; } catch {}
+    if (stored.length === 0) return; // plan not loaded yet — try again next launch
+
+    (this.runPlans[userNum] || []).forEach(p => {
+      if (p.date < CUTOFF && !stored.some(r => r.date === p.date)) {
+        stored.push({
+          id: Date.now().toString(36) + Math.random().toString(36).slice(2,6),
+          date: p.date, distance: p.distance || null, notes: p.notes || null,
+          status: 'done', sessionId: null
+        });
+      }
+    });
+    stored.forEach(r => { if (r.date < CUTOFF && r.status === 'planned') r.status = 'done'; });
+    stored.sort((a,b) => a.date.localeCompare(b.date));
+    localStorage.setItem(KEY, JSON.stringify(stored));
     localStorage.setItem(flagKey, '1');
   },
 

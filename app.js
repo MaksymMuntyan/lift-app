@@ -909,6 +909,8 @@ document.addEventListener('DOMContentLoaded', () => {
     SEED.seedRunPlanOnce(1);
     SEED.seedRunPlanOnce(2);
     SEED.applyRunPlanLabelsOnce(1);
+    SEED.markRunsBeforeNov2DoneOnce(1);
+    SEED.markRunsBeforeNov2DoneOnce(2);
   }
   const now = new Date();
   document.getElementById('topbar-date').textContent =
