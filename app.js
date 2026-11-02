@@ -3865,6 +3865,7 @@ function savePlannedRun() {
   saveRunPlan(plan);
   closeModal('modal-plan-run');
   renderRunPlan();
+  scheduleBackup();
 }
 
 function deletePlannedRun() {
@@ -3873,6 +3874,7 @@ function deletePlannedRun() {
   saveRunPlan(getRunPlan().filter(r => r.id !== editingPlanRunId));
   closeModal('modal-plan-run');
   renderRunPlan();
+  scheduleBackup();
 }
 
 // Opens the normal running log prefilled with the plan, so actual distance/time can be adjusted
@@ -3894,6 +3896,7 @@ function skipPlannedRun(id) {
   run.status = 'skipped';
   saveRunPlan(plan);
   renderRunPlan();
+  scheduleBackup();
 }
 
 function undoPlannedRun(id) {
@@ -3908,6 +3911,7 @@ function undoPlannedRun(id) {
   run.sessionId = null;
   saveRunPlan(plan);
   renderCardioScreen();
+  scheduleBackup();
 }
 
 // ── LOVE NOTES (Laura only) ─────────────────────────────────
@@ -4074,6 +4078,7 @@ function saveCardioSession() {
 
   closeModal('modal-cardio-log');
   renderCardioScreen();
+  scheduleBackup();
   if (run && currentUser === 2) showLoveNote(run, session, prevLongest);
 }
 
@@ -4126,6 +4131,7 @@ function deleteCardioSession(id) {
   const linked = plan.find(r => r.sessionId === id);
   if (linked) { linked.status = 'planned'; linked.sessionId = null; saveRunPlan(plan); }
   renderCardioScreen();
+  scheduleBackup();
 }
 
 function filterCardioByPeriod(sessions, period) {
@@ -4313,6 +4319,22 @@ async function autoBackup() {
     if (result.ok) console.log(`✓ Auto backup complete for ${USERS[currentUser].name}`);
     else console.warn('Auto backup failed:', result.msg);
   } catch(e) { console.warn('Auto backup error:', e); }
+}
+
+// Backup after cardio / running plan changes. Debounced so a burst of taps
+// (e.g. log run + mark plan done) becomes one GitHub write instead of racing.
+const backupTimers = {};
+function scheduleBackup() {
+  if (!getGithubToken()) return;
+  const userNum = currentUser;
+  clearTimeout(backupTimers[userNum]);
+  backupTimers[userNum] = setTimeout(async () => {
+    try {
+      const result = await pushBackupToGithub(userNum);
+      if (result.ok) console.log(`✓ Auto backup complete for ${USERS[userNum].name}`);
+      else console.warn('Auto backup failed:', result.msg);
+    } catch(e) { console.warn('Auto backup error:', e); }
+  }, 3000);
 }
 
 async function runManualBackup() {
