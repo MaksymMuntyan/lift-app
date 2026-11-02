@@ -3828,7 +3828,7 @@ function renderRunPlan() {
         <div style="font-weight:600;font-size:16px;">🏃 ${dist}</div>
         ${detail ? `<div style="font-size:13px;color:var(--text2);">${detail}</div>` : ''}
         ${isToday && r.status === 'planned' && currentUser === 2
-          ? `<div style="font-size:13px;color:#db2777;font-style:italic;margin-top:2px;">💌 ${LOVE_NOTES.today[parseInt(today.replace(/-/g,'')) % LOVE_NOTES.today.length]} - M</div>` : ''}
+          ? `<div style="font-size:13px;color:#db2777;font-style:italic;margin-top:2px;">💌 ${LOVE_NOTES.today[parseInt(today.replace(/-/g,'')) % LOVE_NOTES.today.length]}</div>` : ''}
       </div>
       ${actions}
     </div>`;
