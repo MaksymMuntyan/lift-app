@@ -4363,14 +4363,14 @@ function importData(e) {
 // ── UTILS ──────────────────────────────────────────────────
 
 function forceUpdate() {
-  // Unregister service worker and reload fresh
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.getRegistrations().then(regs => {
-      regs.forEach(r => r.unregister());
-    }).then(() => location.reload(true));
-  } else {
-    location.reload(true);
-  }
+  // Unregister service worker, clear cached files, and reload fresh
+  const unregister = 'serviceWorker' in navigator
+    ? navigator.serviceWorker.getRegistrations().then(regs => Promise.all(regs.map(r => r.unregister())))
+    : Promise.resolve();
+  const clearCaches = 'caches' in window
+    ? caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k))))
+    : Promise.resolve();
+  Promise.all([unregister, clearCaches]).catch(() => {}).then(() => location.reload());
 }
 function hide(id) { document.getElementById(id).classList.add('hidden'); }
 function show(id) { document.getElementById(id).classList.remove('hidden'); }
