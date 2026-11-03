@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-11-02T18:29:56.208Z",
+  "exportDate": "2026-11-03T00:26:13.819Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -14231,6 +14231,626 @@
       "icon": "🏃",
       "notes": null,
       "distance": 3.2
+    },
+    {
+      "id": "mvzrlo4zdua6",
+      "date": "2026-11-01",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": "Easy",
+      "distance": 4
+    },
+    {
+      "id": "mvzy640o5ece",
+      "date": "2026-11-02",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": "Easy",
+      "distance": 3
+    }
+  ],
+  "runplan": [
+    {
+      "id": "mvzrkzp3tr9c",
+      "date": "2026-10-26",
+      "distance": 3,
+      "notes": "Easy",
+      "status": "done",
+      "sessionId": "mvsfxifgywh0"
+    },
+    {
+      "id": "mvzrkzp3jy9j",
+      "date": "2026-10-28",
+      "distance": 6,
+      "notes": "Long run",
+      "status": "done",
+      "sessionId": "mvwkvc8kvwzk"
+    },
+    {
+      "id": "mvzrkzp3p0of",
+      "date": "2026-10-31",
+      "distance": 3,
+      "notes": "Easy",
+      "status": "done",
+      "sessionId": "mvwkvgq456or"
+    },
+    {
+      "id": "mvzrkzp3p8h8",
+      "date": "2026-11-01",
+      "distance": 4,
+      "notes": "Easy",
+      "status": "done",
+      "sessionId": "mvzrlo4zdua6"
+    },
+    {
+      "id": "mvzrkzp3gql4",
+      "date": "2026-11-02",
+      "distance": 3,
+      "notes": "Easy",
+      "status": "done",
+      "sessionId": "mvzy640o5ece"
+    },
+    {
+      "id": "mvzrkzp3uil4",
+      "date": "2026-11-04",
+      "distance": 7,
+      "notes": "Long run",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3yi87",
+      "date": "2026-11-07",
+      "distance": 3,
+      "notes": "Easy + strides",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp378xz",
+      "date": "2026-11-08",
+      "distance": 4,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3j2pv",
+      "date": "2026-11-09",
+      "distance": 4,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3xh7w",
+      "date": "2026-11-11",
+      "distance": 8,
+      "notes": "Long run",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3v34t",
+      "date": "2026-11-14",
+      "distance": 4,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3zmgo",
+      "date": "2026-11-15",
+      "distance": 5,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3pryi",
+      "date": "2026-11-16",
+      "distance": 3,
+      "notes": "Easy (recovery week)",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3rshb",
+      "date": "2026-11-18",
+      "distance": 6,
+      "notes": "Long run (recovery week)",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3jj3a",
+      "date": "2026-11-21",
+      "distance": 4,
+      "notes": "Easy + strides (recovery week)",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3tu8s",
+      "date": "2026-11-22",
+      "distance": 4,
+      "notes": "Easy (recovery week)",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp39qbe",
+      "date": "2026-11-23",
+      "distance": 4,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3gjoq",
+      "date": "2026-11-25",
+      "distance": 9,
+      "notes": "Long run",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3vuam",
+      "date": "2026-11-28",
+      "distance": 5,
+      "notes": "10 min tempo",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3ri4t",
+      "date": "2026-11-29",
+      "distance": 5,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3bf27",
+      "date": "2026-11-30",
+      "distance": 4,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3of2n",
+      "date": "2026-12-02",
+      "distance": 10,
+      "notes": "Long run",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp34jde",
+      "date": "2026-12-05",
+      "distance": 5,
+      "notes": "15 min tempo",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp39862",
+      "date": "2026-12-06",
+      "distance": 5,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3iivk",
+      "date": "2026-12-07",
+      "distance": 4,
+      "notes": "Easy (recovery week)",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3pwrl",
+      "date": "2026-12-09",
+      "distance": 8,
+      "notes": "Long run (recovery week)",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp360c9",
+      "date": "2026-12-12",
+      "distance": 4,
+      "notes": "Easy + strides (recovery week)",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3tpw7",
+      "date": "2026-12-13",
+      "distance": 5,
+      "notes": "Easy (recovery week)",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3o6x1",
+      "date": "2026-12-14",
+      "distance": 4,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3g5v2",
+      "date": "2026-12-16",
+      "distance": 11,
+      "notes": "Long run",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3pdbc",
+      "date": "2026-12-19",
+      "distance": 5,
+      "notes": "20 min tempo",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp32o6i",
+      "date": "2026-12-20",
+      "distance": 5,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3y81y",
+      "date": "2026-12-21",
+      "distance": 4,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3wtlp",
+      "date": "2026-12-23",
+      "distance": 12,
+      "notes": "Long run",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3vgtc",
+      "date": "2026-12-26",
+      "distance": 5,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3jl9a",
+      "date": "2026-12-27",
+      "distance": 6,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3t289",
+      "date": "2026-12-28",
+      "distance": 4,
+      "notes": "Easy (recovery week)",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3m1c3",
+      "date": "2026-12-30",
+      "distance": 9,
+      "notes": "Long run (recovery week)",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3a7dr",
+      "date": "2027-01-02",
+      "distance": 5,
+      "notes": "20 min tempo (recovery week)",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp32y9q",
+      "date": "2027-01-03",
+      "distance": 5,
+      "notes": "Easy (recovery week)",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3i6wz",
+      "date": "2027-01-04",
+      "distance": 5,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3b7qe",
+      "date": "2027-01-06",
+      "distance": 13,
+      "notes": "Long run",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3tfhc",
+      "date": "2027-01-09",
+      "distance": 6,
+      "notes": "2 × 10 min tempo",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3y6ez",
+      "date": "2027-01-10",
+      "distance": 6,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3m02o",
+      "date": "2027-01-11",
+      "distance": 5,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3kt78",
+      "date": "2027-01-13",
+      "distance": 14,
+      "notes": "Long run",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3ep42",
+      "date": "2027-01-16",
+      "distance": 5,
+      "notes": "Easy + strides",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3uqmt",
+      "date": "2027-01-17",
+      "distance": 6,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp30ik1",
+      "date": "2027-01-18",
+      "distance": 4,
+      "notes": "Easy (recovery week)",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3ti6a",
+      "date": "2027-01-20",
+      "distance": 10,
+      "notes": "Long run (recovery week)",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3x710",
+      "date": "2027-01-23",
+      "distance": 5,
+      "notes": "25 min tempo (recovery week)",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp30b6v",
+      "date": "2027-01-24",
+      "distance": 5,
+      "notes": "Easy (recovery week)",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3xgvc",
+      "date": "2027-01-25",
+      "distance": 5,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3m59s",
+      "date": "2027-01-27",
+      "distance": 16,
+      "notes": "Long run",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3hkah",
+      "date": "2027-01-30",
+      "distance": 6,
+      "notes": "2 × 12 min tempo",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3vyp1",
+      "date": "2027-01-31",
+      "distance": 6,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp38ppj",
+      "date": "2027-02-01",
+      "distance": 5,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp373ba",
+      "date": "2027-02-03",
+      "distance": 18,
+      "notes": "Long run",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3rr1n",
+      "date": "2027-02-06",
+      "distance": 5,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp38bhn",
+      "date": "2027-02-07",
+      "distance": 7,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp392ct",
+      "date": "2027-02-08",
+      "distance": 5,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3q906",
+      "date": "2027-02-10",
+      "distance": 20,
+      "notes": "Long run — PEAK",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3vi07",
+      "date": "2027-02-13",
+      "distance": 6,
+      "notes": "Including 3 mi at marathon pace",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3cud2",
+      "date": "2027-02-14",
+      "distance": 7,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3pin8",
+      "date": "2027-02-15",
+      "distance": 4,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3wj1b",
+      "date": "2027-02-17",
+      "distance": 14,
+      "notes": "Long run",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3nz21",
+      "date": "2027-02-20",
+      "distance": 5,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3jbzv",
+      "date": "2027-02-21",
+      "distance": 6,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3rxsm",
+      "date": "2027-02-22",
+      "distance": 4,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp322j2",
+      "date": "2027-02-24",
+      "distance": 10,
+      "notes": "Long run",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp37i1w",
+      "date": "2027-02-27",
+      "distance": 4,
+      "notes": "Including 2 mi at marathon pace",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3iei3",
+      "date": "2027-02-28",
+      "distance": 4,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3hdjh",
+      "date": "2027-03-01",
+      "distance": 3,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3uuj7",
+      "date": "2027-03-03",
+      "distance": 4,
+      "notes": "Easy",
+      "status": "planned",
+      "sessionId": null
+    },
+    {
+      "id": "mvzrkzp3ye24",
+      "date": "2027-03-06",
+      "distance": 26.2,
+      "notes": "🏁 MARATHON",
+      "status": "planned",
+      "sessionId": null
     }
   ],
   "activeProgram": null,
