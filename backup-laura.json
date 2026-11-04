@@ -2,7 +2,7 @@
   "version": 2,
   "user": 2,
   "userName": "Laura",
-  "exportDate": "2026-11-02T23:08:20.322Z",
+  "exportDate": "2026-11-04T22:15:54.717Z",
   "exercises": [
     {
       "id": "mpn6ru5l2mls",
@@ -156,6 +156,15 @@
       "category": "Back",
       "bodyweight": true,
       "barbell": false
+    },
+    {
+      "id": "mw2o5fmo7faq",
+      "name": "Push-up",
+      "category": "Triceps, chest",
+      "barbell": false,
+      "cable": false,
+      "bodyweight": true,
+      "dumbbell": false
     },
     {
       "id": "mn5gy4whj8vd",
@@ -5355,6 +5364,81 @@
           "setNum": 2,
           "weight": 125,
           "reps": 10,
+          "bodyweight": null
+        }
+      ]
+    },
+    {
+      "id": "mw2njeys2n7t",
+      "date": "2026-11-04",
+      "routineId": "mn5gy4wh6zll",
+      "routineName": "Laura Full Body 3x Week",
+      "dayId": "mn5gy4why6zu",
+      "dayName": "Day B (Pull)",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4whpi7b",
+          "exerciseName": "Deadlift",
+          "setNum": 1,
+          "weight": 205,
+          "reps": 4,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whpi7b",
+          "exerciseName": "Deadlift",
+          "setNum": 2,
+          "weight": 205,
+          "reps": 4,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whtim6",
+          "exerciseName": "Weighted Pull-Up",
+          "setNum": 1,
+          "weight": 5,
+          "reps": 3,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whtim6",
+          "exerciseName": "Weighted Pull-Up",
+          "setNum": 2,
+          "weight": 5,
+          "reps": 3,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4whtim6",
+          "exerciseName": "Weighted Pull-Up",
+          "setNum": 3,
+          "weight": 5,
+          "reps": 3,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mw2o5fmo7faq",
+          "exerciseName": "Push-up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 20,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mw2o5fmo7faq",
+          "exerciseName": "Push-up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 20,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mw2o5fmo7faq",
+          "exerciseName": "Push-up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 20,
           "bodyweight": null
         }
       ]
