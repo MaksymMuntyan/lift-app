@@ -2,7 +2,7 @@
   "version": 2,
   "user": 2,
   "userName": "Laura",
-  "exportDate": "2026-11-04T22:15:54.717Z",
+  "exportDate": "2026-11-05T23:11:48.697Z",
   "exercises": [
     {
       "id": "mpn6ru5l2mls",
@@ -5916,6 +5916,16 @@
       "notes": "Medium (recovery week)",
       "distance": 3,
       "duration": 33
+    },
+    {
+      "id": "mw45tyq6hom0",
+      "date": "2026-11-05",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": "Long run (recovery week)",
+      "distance": 5,
+      "duration": 60
     }
   ],
   "runplan": [
@@ -6100,8 +6110,8 @@
       "date": "2026-11-04",
       "distance": 5,
       "notes": "Long run (recovery week)",
-      "status": "planned",
-      "sessionId": null
+      "status": "done",
+      "sessionId": "mw45tyq6hom0"
     },
     {
       "id": "mvzszuf672lx",
