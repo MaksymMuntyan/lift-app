@@ -2,7 +2,7 @@
   "version": 2,
   "user": 2,
   "userName": "Laura",
-  "exportDate": "2026-11-05T23:11:48.697Z",
+  "exportDate": "2026-11-08T22:14:07.651Z",
   "exercises": [
     {
       "id": "mpn6ru5l2mls",
@@ -5926,6 +5926,14 @@
       "notes": "Long run (recovery week)",
       "distance": 5,
       "duration": 60
+    },
+    {
+      "id": "mw8e3c5zfo3p",
+      "date": "2026-11-08",
+      "type": "jumprope",
+      "label": "Jump Rope",
+      "icon": "🪢",
+      "notes": null
     }
   ],
   "runplan": [
