@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-11-04T18:39:18.605Z",
+  "exportDate": "2026-11-08T22:11:12.835Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -13201,6 +13201,73 @@
           "setNum": 3,
           "weight": 175,
           "reps": 6,
+          "bodyweight": null
+        }
+      ]
+    },
+    {
+      "id": "mw5abvydylha",
+      "date": "2026-11-06",
+      "routineId": "mpmw45xwh5mb",
+      "routineName": "Free",
+      "dayId": "mpmw3y5ai7wg",
+      "dayName": "Day A",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxska4",
+          "exerciseName": "Cable Row",
+          "setNum": 1,
+          "weight": 225,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxska4",
+          "exerciseName": "Cable Row",
+          "setNum": 2,
+          "weight": 225,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxska4",
+          "exerciseName": "Cable Row",
+          "setNum": 3,
+          "weight": 225,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxzw9a",
+          "exerciseName": "Weighted Dip",
+          "setNum": 1,
+          "weight": 80,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxzw9a",
+          "exerciseName": "Weighted Dip",
+          "setNum": 2,
+          "weight": 105,
+          "reps": 1,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxzw9a",
+          "exerciseName": "Weighted Dip",
+          "setNum": 3,
+          "weight": 115,
+          "reps": 1,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxzw9a",
+          "exerciseName": "Weighted Dip",
+          "setNum": 4,
+          "weight": 125,
+          "reps": 1,
           "bodyweight": null
         }
       ]
