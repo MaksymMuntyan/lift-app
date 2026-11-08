@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-11-08T22:11:26.704Z",
+  "exportDate": "2026-11-08T22:11:29.980Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -14456,7 +14456,7 @@
       "date": "2026-11-07",
       "distance": 3,
       "notes": "Easy + strides",
-      "status": "planned",
+      "status": "skipped",
       "sessionId": null
     },
     {
