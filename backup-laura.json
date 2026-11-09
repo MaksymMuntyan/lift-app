@@ -2,7 +2,7 @@
   "version": 2,
   "user": 2,
   "userName": "Laura",
-  "exportDate": "2026-11-08T22:14:07.651Z",
+  "exportDate": "2026-11-09T22:10:51.925Z",
   "exercises": [
     {
       "id": "mpn6ru5l2mls",
@@ -6126,7 +6126,7 @@
       "date": "2026-11-08",
       "distance": 1.5,
       "notes": "Easy (recovery week)",
-      "status": "planned",
+      "status": "skipped",
       "sessionId": null
     },
     {
