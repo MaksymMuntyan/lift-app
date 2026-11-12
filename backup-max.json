@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-11-09T17:31:49.506Z",
+  "exportDate": "2026-11-12T04:23:52.898Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -13268,6 +13268,33 @@
           "setNum": 4,
           "weight": 125,
           "reps": 1,
+          "bodyweight": null
+        }
+      ]
+    },
+    {
+      "id": "mw9kqa1bhk8m",
+      "date": "2026-11-09",
+      "routineId": "mpmw45xwh5mb",
+      "routineName": "Free",
+      "dayId": "mpmw3y5ai7wg",
+      "dayName": "Day A",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxzw9a",
+          "exerciseName": "Weighted Dip",
+          "setNum": 1,
+          "weight": 100,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxzw9a",
+          "exerciseName": "Weighted Dip",
+          "setNum": 2,
+          "weight": 100,
+          "reps": 2,
           "bodyweight": null
         }
       ]
