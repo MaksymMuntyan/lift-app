@@ -2,7 +2,7 @@
   "version": 2,
   "user": 2,
   "userName": "Laura",
-  "exportDate": "2026-11-09T22:10:51.925Z",
+  "exportDate": "2026-11-12T20:00:28.507Z",
   "exercises": [
     {
       "id": "mpn6ru5l2mls",
@@ -5934,6 +5934,16 @@
       "label": "Jump Rope",
       "icon": "🪢",
       "notes": null
+    },
+    {
+      "id": "mwdz2v7d4bzm",
+      "date": "2026-11-09",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": "Medium",
+      "distance": 4,
+      "duration": 48
     }
   ],
   "runplan": [
@@ -6134,8 +6144,8 @@
       "date": "2026-11-09",
       "distance": 4,
       "notes": "Medium",
-      "status": "planned",
-      "sessionId": null
+      "status": "done",
+      "sessionId": "mwdz2v7d4bzm"
     },
     {
       "id": "mvzszuf6wn84",
