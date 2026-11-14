@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-11-12T04:24:21.608Z",
+  "exportDate": "2026-11-14T16:20:30.337Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -13295,6 +13295,41 @@
           "setNum": 2,
           "weight": 100,
           "reps": 2,
+          "bodyweight": null
+        }
+      ]
+    },
+    {
+      "id": "mwgm3ha2w29l",
+      "date": "2026-11-14",
+      "routineId": "mpmw45xwh5mb",
+      "routineName": "Free",
+      "dayId": "mpmw3y5ai7wg",
+      "dayName": "Day A",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxadhn",
+          "exerciseName": "Pull-Up",
+          "setNum": 3,
+          "weight": 0,
+          "reps": 12,
           "bodyweight": null
         }
       ]
