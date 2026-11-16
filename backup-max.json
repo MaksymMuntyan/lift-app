@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-11-14T16:20:30.337Z",
+  "exportDate": "2026-11-16T18:41:16.974Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -355,6 +355,15 @@
       "dumbbell": true
     },
     {
+      "id": "mwjkqwcl49kh",
+      "name": "Seated Dumbbell Shoulder Press",
+      "category": "Delt",
+      "barbell": false,
+      "cable": false,
+      "bodyweight": false,
+      "dumbbell": true
+    },
+    {
       "id": "mq401kt4tzeb",
       "name": "Shoulder Machine Press",
       "category": "Delt",
@@ -374,6 +383,15 @@
     {
       "id": "mulii1j8wrlr",
       "name": "Slow Chin-Up",
+      "category": "Back",
+      "barbell": false,
+      "cable": false,
+      "bodyweight": true,
+      "dumbbell": false
+    },
+    {
+      "id": "mwjl0bt9gu3g",
+      "name": "Slow Pull-Up",
       "category": "Back",
       "barbell": false,
       "cable": false,
@@ -13330,6 +13348,89 @@
           "setNum": 3,
           "weight": 0,
           "reps": 12,
+          "bodyweight": null
+        }
+      ]
+    },
+    {
+      "id": "mwjkq7z1ez0l",
+      "date": "2026-11-16",
+      "routineId": "mpmw45xwh5mb",
+      "routineName": "Free",
+      "dayId": "mpmw3y5ai7wg",
+      "dayName": "Day A",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mwjkqwcl49kh",
+          "exerciseName": "Seated Dumbbell Shoulder Press",
+          "setNum": 1,
+          "weight": 46,
+          "reps": 8,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mwjkqwcl49kh",
+          "exerciseName": "Seated Dumbbell Shoulder Press",
+          "setNum": 2,
+          "weight": 46,
+          "reps": 5,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mwjkqwcl49kh",
+          "exerciseName": "Seated Dumbbell Shoulder Press",
+          "setNum": 3,
+          "weight": 46,
+          "reps": 4,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mwjkqwcl49kh",
+          "exerciseName": "Seated Dumbbell Shoulder Press",
+          "setNum": 4,
+          "weight": 46,
+          "reps": 4,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mwjl0bt9gu3g",
+          "exerciseName": "Slow Pull-Up",
+          "setNum": 1,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mwjl0bt9gu3g",
+          "exerciseName": "Slow Pull-Up",
+          "setNum": 2,
+          "weight": 0,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 1,
+          "weight": 105,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 2,
+          "weight": 110,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxbfkf",
+          "exerciseName": "Tricep Pushdown",
+          "setNum": 3,
+          "weight": 110,
+          "reps": 8,
           "bodyweight": null
         }
       ]
