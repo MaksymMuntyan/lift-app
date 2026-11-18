@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-11-18T18:00:55.375Z",
+  "exportDate": "2026-11-18T18:27:30.024Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -13431,6 +13431,41 @@
           "setNum": 3,
           "weight": 110,
           "reps": 8,
+          "bodyweight": null
+        }
+      ]
+    },
+    {
+      "id": "mwmfg3f2ggg0",
+      "date": "2026-11-18",
+      "routineId": "mpmw45xwh5mb",
+      "routineName": "Free",
+      "dayId": "mpmw3y5ai7wg",
+      "dayName": "Day A",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vx6det",
+          "exerciseName": "Barbell Shrug",
+          "setNum": 1,
+          "weight": 300,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vx6det",
+          "exerciseName": "Barbell Shrug",
+          "setNum": 2,
+          "weight": 300,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vx6det",
+          "exerciseName": "Barbell Shrug",
+          "setNum": 3,
+          "weight": 300,
+          "reps": 12,
           "bodyweight": null
         }
       ]
