@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-11-16T23:12:48.953Z",
+  "exportDate": "2026-11-18T18:00:55.375Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -14581,6 +14581,15 @@
       "icon": "🏃",
       "notes": "Long run",
       "distance": 8
+    },
+    {
+      "id": "mwmfg8dwk43i",
+      "date": "2026-11-16",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": "Easy (recovery week)",
+      "distance": 4
     }
   ],
   "runplan": [
@@ -14685,8 +14694,8 @@
       "date": "2026-11-16",
       "distance": 3,
       "notes": "Easy (recovery week)",
-      "status": "planned",
-      "sessionId": null
+      "status": "done",
+      "sessionId": "mwmfg8dwk43i"
     },
     {
       "id": "mvzrkzp3rshb",
