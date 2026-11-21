@@ -2,7 +2,7 @@
   "version": 2,
   "user": 1,
   "userName": "Max",
-  "exportDate": "2026-11-18T18:27:30.024Z",
+  "exportDate": "2026-11-21T02:43:33.228Z",
   "exercises": [
     {
       "id": "mo7op0hbqd0d",
@@ -13466,6 +13466,65 @@
           "setNum": 3,
           "weight": 300,
           "reps": 12,
+          "bodyweight": null
+        }
+      ]
+    },
+    {
+      "id": "mwprqatbq00t",
+      "date": "2026-11-20",
+      "routineId": "mpmw45xwh5mb",
+      "routineName": "Free",
+      "dayId": "mpmw3y5ai7wg",
+      "dayName": "Day A",
+      "bodyweight": null,
+      "sets": [
+        {
+          "exerciseId": "mn5gy4vxska4",
+          "exerciseName": "Cable Row",
+          "setNum": 1,
+          "weight": 230,
+          "reps": 12,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxska4",
+          "exerciseName": "Cable Row",
+          "setNum": 2,
+          "weight": 230,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mn5gy4vxska4",
+          "exerciseName": "Cable Row",
+          "setNum": 3,
+          "weight": 230,
+          "reps": 10,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mwjkqwcl49kh",
+          "exerciseName": "Seated Dumbbell Shoulder Press",
+          "setNum": 1,
+          "weight": 46,
+          "reps": 9,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mwjkqwcl49kh",
+          "exerciseName": "Seated Dumbbell Shoulder Press",
+          "setNum": 2,
+          "weight": 46,
+          "reps": 7,
+          "bodyweight": null
+        },
+        {
+          "exerciseId": "mwjkqwcl49kh",
+          "exerciseName": "Seated Dumbbell Shoulder Press",
+          "setNum": 3,
+          "weight": 46,
+          "reps": 6,
           "bodyweight": null
         }
       ]
