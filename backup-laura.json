@@ -2,7 +2,7 @@
   "version": 2,
   "user": 2,
   "userName": "Laura",
-  "exportDate": "2026-11-19T00:02:23.685Z",
+  "exportDate": "2026-11-22T23:12:03.669Z",
   "exercises": [
     {
       "id": "mpn6ru5l2mls",
@@ -6049,6 +6049,16 @@
       "notes": "Long run",
       "distance": 9,
       "duration": 108
+    },
+    {
+      "id": "mwsgbrlmh0yc",
+      "date": "2026-11-22",
+      "type": "running",
+      "label": "Running",
+      "icon": "🏃",
+      "notes": "Easy",
+      "distance": 2,
+      "duration": 18
     }
   ],
   "runplan": [
@@ -6289,8 +6299,8 @@
       "date": "2026-11-22",
       "distance": 2,
       "notes": "Easy",
-      "status": "planned",
-      "sessionId": null
+      "status": "done",
+      "sessionId": "mwsgbrlmh0yc"
     },
     {
       "id": "mvzszuf6ply1",
